@@ -1,0 +1,168 @@
+Source: avahi
+Section: net
+Priority: optional
+Maintainer: Ross Burton <ross@debian.org>
+Build-Depends: debhelper (>= 4.2.28), cdbs, libglib2.0-dev (>= 2.4), libgtk2.0-dev (>= 2.4), libglade2-dev, libexpat-dev, libdaemon-dev, libdbus-1-dev (>= 0.30), python2.4 (>= 2.4), python2.4-dbus, xmltoman
+Standards-Version: 3.6.2
+
+Package: libavahi-common0
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Avahi common library
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This package contains the Avahi common library, which is a set of common
+ functions used by many of Avahis components and client applications.
+
+Package: libavahi-common-dev
+Architecture: any
+Depends: libavahi-common0 (= ${Source-Version}), ${misc:Depends}
+Description: Development files for the Avahi common library
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This package contains the development headers for the Avahi common
+ library, which is a set of common functions and definitions used by many
+ of Avahis components and client applications.
+
+Package: libavahi-core0
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Avahi's embeddable mDNS/DNS-SD library
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This package contains the library for Avahi's embeddable mDNS/DNS-SD stack.
+ This can be used by embedded applications to integrate mDNS/DNS-SD
+ functionality into their applications.
+ .
+ You should not however use this library for non-embedded applications, you
+ shoudl use libavahi-client which interacts with the avahi daemon.
+
+Package: libavahi-core-dev
+Architecture: any
+Depends: libavahi-core0 (= ${Source-Version}), ${misc:Depends}, libavahi-common-dev
+Description: Development files for Avahi's embeddable mDNS/DNS-SD library
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This package contains the development files for Avahi's embeddable
+ mDNS/DNS-SD stack.  This can be used by embedded application developers
+ to integrate mDNS/DNS-SD functionality into their applications.
+ .
+ You should not however use this library for non-embedded applications, you
+ shoudl use libavahi-client-dev which interacts with the avahi daemon.
+
+Package: libavahi-client1
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Recommends: avahi-daemon, dbus
+Description: Avahi client library
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This package contains the library for Avahi's C API which  allows you
+ to integrate mDNS/DNS-SD functionality into your application.
+
+Package: libavahi-client-dev
+Architecture: any
+Depends: libavahi-client1 (= ${Source-Version}), ${misc:Depends}, libavahi-common-dev
+Description: Development files for the Avahi client library
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This package contains the development headers for Avahi's C API which
+ allows you to integrate mDNS/DNS-SD functionality into your application.
+
+Package: libavahi-glib0
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Avahi glib integration library
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This library contains the the interface to integrate the Avahi libraries
+ into a GLIB main loop application, including GTK applications.
+
+Package: libavahi-glib-dev
+Architecture: any
+Depends: libavahi-glib0 (= ${Source-Version}), libglib2.0-dev, ${misc:Depends}, libavahi-common-dev
+Description: Development headers for the Avahi glib integration library
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This package contains the development headers for the interface
+ to integrate the Avahi libraries  into a GLIB main loop application,
+ including GTK applications.
+
+Package: avahi-daemon
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, adduser
+Recommends: dbus, libnss-mdns
+Suggests: avahi-dnsconfd
+Conflicts: mdnsresponder
+Description: Avahi mDNS/DNS-SD daemon
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This package contains the Avahi Daemon which represents your machine
+ on the network and allows other applications to publish and resolve
+ mDNS/DNS-SD records.
+
+Package: avahi-dnsconfd
+Architecture: any
+Depends: avahi-daemon, ${shlibs:Depends}, ${misc:Depends}
+Recommends: resolvconf
+Description: Avahi DNS configuration tool
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This tool listens on the network for announced DNS servers and passes
+ them to resolvconf so it can use them.  This is very useful on IPv6
+ networks where there is no other mechanism to automatically configure
+ a DNS server.
+
+Package: avahi-utils
+Architecture: all
+Depends: ${python:Depends}, python2.4-dbus, python2.4-gtk2, ${shlibs:Depends}, ${misc:Depends}, avahi-daemon
+Recommends: python2.4-twisted
+Description: Avahi browsing, publishing and discovery utilities
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This package contains several utilities that allow you to interact with
+ the Avahi daemon, including publish, browsing and discovering services.

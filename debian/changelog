@@ -1,0 +1,23 @@
+avahi (0.3-1) experimental; urgency=low
+
+  * New upstream release.
+  * Build for Debian Experimental.
+  * Don't build-depend on python2.4-gtk2, it doesn't exist in Debian yet.
+
+ -- Ross Burton <ross@debian.org>  Wed, 31 Aug 2005 14:24:38 +0100
+
+avahi (0.2-0ubuntu1) breezy; urgency=low
+
+  * New upstream version.
+  * Thanks to Trent Lloyd for the work
+    - Dropped all old patches, now merged upstream.
+    - Added new patch avahi-dnsconfd-crash.patch, fix from upstream.
+
+ -- Ross Burton <ross@debian.org>  Tue, 30 Aug 2005 09:13:46 +0100
+
+avahi (0.1-1) breezy; urgency=low
+
+  * First upload.
+  * Thanks to Trent Lloyd for reviewing the packages.
+
+ -- Ross Burton <ross@debian.org>  Tue, 23 Aug 2005 09:29:46 +0100

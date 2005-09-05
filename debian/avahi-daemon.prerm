@@ -1,0 +1,9 @@
+#!/bin/sh -e
+
+if [ "$1" = "remove" ]; then
+    /etc/dbus-1/event.d/20avahi stop || true
+fi
+
+#DEBHELPER#
+
+exit 0

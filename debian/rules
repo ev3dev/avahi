@@ -1,0 +1,29 @@
+#! /usr/bin/make -f 
+
+# Nasty hack to stop building avahi-utils as python2.4-gtk2 doesn't exist
+include /usr/share/cdbs/1/rules/buildvars.mk
+DEB_INDEP_PACKAGES := $(filter-out avahi-utils, $(DEB_INDEP_PACKAGES))
+
+include /usr/share/cdbs/1/rules/debhelper.mk
+include /usr/share/cdbs/1/class/autotools.mk
+include /usr/share/cdbs/1/rules/simple-patchsys.mk
+
+# Building Qt bindings is in the TO DO, and we have to disable pygtk for now
+# until python2.4-gtk2 exists.
+DEB_CONFIGURE_EXTRA_FLAGS := --disable-qt3 --disable-qt4 --disable-pygtk
+
+# Ensure at build time that the library has no dependencies on undefined
+# symbols, and speed up loading.
+LDFLAGS += -Wl,-z,defs -Wl,-O1
+
+DEB_INSTALL_DOCS_ALL += docs/README
+
+DEB_DH_MAKESHLIBS_ARGS_ALL := -V
+DEB_SHLIBDEPS_INCLUDE := debian/libavahi-common0/usr/lib debian/libavahi-core0/usr/lib
+
+binary-install/avahi-utils::
+	dh_python -p$(cdbs_curpkg)
+	rm debian/tmp/usr/lib/python*/site-packages/avahi/*.py[co]
+
+binary-fixup/avahi-daemon binary-fixup/avahi-dnsconfd::
+	chmod +x debian/$(cdbs_curpkg)/etc/dbus-1/event.d/*

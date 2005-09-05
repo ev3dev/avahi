@@ -1,0 +1,2 @@
+debian/tmp/usr/lib/libavahi-core.so.*
+debian/tmp/usr/lib/pkgconfig/avahi-core.pc
