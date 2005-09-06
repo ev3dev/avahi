@@ -5,6 +5,53 @@ Maintainer: Ross Burton <ross@debian.org>
 Build-Depends: debhelper (>= 4.2.28), cdbs, libglib2.0-dev (>= 2.4), libgtk2.0-dev (>= 2.4), libglade2-dev, libexpat-dev, libdaemon-dev, libdbus-1-dev (>= 0.30), python2.4 (>= 2.4), python2.4-dbus, xmltoman
 Standards-Version: 3.6.2
 
+Package: avahi-daemon
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, adduser
+Recommends: dbus, libnss-mdns
+Suggests: avahi-dnsconfd
+Conflicts: mdnsresponder
+Description: Avahi mDNS/DNS-SD daemon
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This package contains the Avahi Daemon which represents your machine
+ on the network and allows other applications to publish and resolve
+ mDNS/DNS-SD records.
+
+Package: avahi-dnsconfd
+Architecture: any
+Depends: avahi-daemon, ${shlibs:Depends}, ${misc:Depends}
+Recommends: resolvconf
+Description: Avahi DNS configuration tool
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This tool listens on the network for announced DNS servers and passes
+ them to resolvconf so it can use them.  This is very useful on IPv6
+ networks where there is no other mechanism to automatically configure
+ a DNS server.
+
+Package: avahi-utils
+Architecture: all
+Depends: ${python:Depends}, python2.4-dbus, python2.4-gtk2, ${shlibs:Depends}, ${misc:Depends}, avahi-daemon
+Recommends: python2.4-twisted
+Description: Avahi browsing, publishing and discovery utilities
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This package contains several utilities that allow you to interact with
+ the Avahi daemon, including publish, browsing and discovering services.
+
 Package: libavahi-common0
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
@@ -119,50 +166,3 @@ Description: Development headers for the Avahi glib integration library
  This package contains the development headers for the interface
  to integrate the Avahi libraries  into a GLIB main loop application,
  including GTK applications.
-
-Package: avahi-daemon
-Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, adduser
-Recommends: dbus, libnss-mdns
-Suggests: avahi-dnsconfd
-Conflicts: mdnsresponder
-Description: Avahi mDNS/DNS-SD daemon
- Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
- It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
- example you can plug into a network and instantly find printers to
- print to, files to look at and people to talk to.
- .
- This package contains the Avahi Daemon which represents your machine
- on the network and allows other applications to publish and resolve
- mDNS/DNS-SD records.
-
-Package: avahi-dnsconfd
-Architecture: any
-Depends: avahi-daemon, ${shlibs:Depends}, ${misc:Depends}
-Recommends: resolvconf
-Description: Avahi DNS configuration tool
- Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
- It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
- example you can plug into a network and instantly find printers to
- print to, files to look at and people to talk to.
- .
- This tool listens on the network for announced DNS servers and passes
- them to resolvconf so it can use them.  This is very useful on IPv6
- networks where there is no other mechanism to automatically configure
- a DNS server.
-
-Package: avahi-utils
-Architecture: all
-Depends: ${python:Depends}, python2.4-dbus, python2.4-gtk2, ${shlibs:Depends}, ${misc:Depends}, avahi-daemon
-Recommends: python2.4-twisted
-Description: Avahi browsing, publishing and discovery utilities
- Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
- It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
- example you can plug into a network and instantly find printers to
- print to, files to look at and people to talk to.
- .
- This package contains several utilities that allow you to interact with
- the Avahi daemon, including publish, browsing and discovering services.
