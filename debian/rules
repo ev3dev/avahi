@@ -8,9 +8,11 @@ include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/autotools.mk
 include /usr/share/cdbs/1/rules/simple-patchsys.mk
 
-# Building Qt bindings is in the TO DO, and we have to disable pygtk for now
-# until python2.4-gtk2 exists.
-DEB_CONFIGURE_EXTRA_FLAGS := --disable-qt3 --disable-qt4 --disable-pygtk
+include /usr/share/cdbs/1/rules/utils.mk
+common-binary-post-install-arch:: list-missing
+
+# Disable pygtk for now until python2.4-gtk2 exists.
+DEB_CONFIGURE_EXTRA_FLAGS := --disable-pygtk
 
 # Ensure at build time that the library has no dependencies on undefined
 # symbols, and speed up loading.
