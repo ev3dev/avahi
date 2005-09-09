@@ -40,6 +40,7 @@ Description: Avahi DNS configuration tool
 
 Package: python2.4-avahi
 Architecture: all
+Replaces: avahi-utils (< 0.4)
 Depends: ${python:Depends}, libavahi-common0
 Description: Python utility package for Avahi
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
@@ -52,7 +53,7 @@ Description: Python utility package for Avahi
 
 Package: avahi-utils
 Architecture: all
-Depends: ${python:Depends}, python2.4-dbus, python2.4-gtk2, avahi-daemon, ${misc:Depends}
+Depends: ${python:Depends}, python2.4-avahi, python2.4-dbus, python2.4-gtk2, avahi-daemon, ${misc:Depends}
 Recommends: python2.4-twisted
 Description: Avahi browsing, publishing and discovery utilities
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
