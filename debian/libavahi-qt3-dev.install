@@ -1,4 +1,4 @@
-debian/tmp/usr/include/avahi-qt4/qt-watch.h
+debian/tmp/usr/include/avahi-qt3/qt-watch.h
 debian/tmp/usr/lib/libavahi-qt3.so
 debian/tmp/usr/lib/libavahi-qt3.la
 debian/tmp/usr/lib/libavahi-qt3.a
