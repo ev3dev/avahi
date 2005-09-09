@@ -5,6 +5,7 @@ avahi (0.4-1) experimental; urgency=low
   * Don't build-depend on python2.4-gtk2, it doesn't exist in Debian yet.
   * Split out python2.4-avahi
   * Add QT3 and QT4 bindings
+  * Reload D-BUS configuration files on install
   * Move .pc files to -dev packages
 
  -- Ross Burton <ross@debian.org>  Wed, 31 Aug 2005 14:24:38 +0100
