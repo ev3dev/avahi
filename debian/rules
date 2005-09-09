@@ -1,13 +1,10 @@
 #! /usr/bin/make -f 
 
-# Nasty hack to stop building avahi-utils as python2.4-gtk2 doesn't exist
-include /usr/share/cdbs/1/rules/buildvars.mk
-DEB_INDEP_PACKAGES := $(filter-out avahi-utils, $(DEB_INDEP_PACKAGES))
-
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/autotools.mk
 include /usr/share/cdbs/1/rules/simple-patchsys.mk
 
+# List any files which are not installed
 include /usr/share/cdbs/1/rules/utils.mk
 common-binary-post-install-arch:: list-missing
 
@@ -25,7 +22,11 @@ DEB_SHLIBDEPS_INCLUDE := debian/libavahi-common0/usr/lib debian/libavahi-core0/u
 
 binary-install/avahi-utils::
 	dh_python -p$(cdbs_curpkg)
-	rm debian/tmp/usr/lib/python*/site-packages/avahi/*.py[co]
+	rm -f debian/tmp/usr/lib/python*/site-packages/avahi/*.py[co]
+
+binary-install/python2.4-avahi::
+	dh_python -p$(cdbs_curpkg)
+	rm -f debian/tmp/usr/lib/python*/site-packages/avahi/*.py[co]
 
 binary-fixup/avahi-daemon binary-fixup/avahi-dnsconfd::
 	chmod +x debian/$(cdbs_curpkg)/etc/dbus-1/event.d/*
