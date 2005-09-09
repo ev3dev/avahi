@@ -20,6 +20,9 @@ case "$1" in
       adduser --quiet --system --home / \
         --gecos "Avahi mDNS daemon" --group avahi
     fi
+
+    # Ask the bus to reload the config file
+    dbus-send --system --type=method_call --dest=org.freedesktop.DBus / org.freedesktop.DBus.ReloadConfig
   ;;
   abort-upgrade|abort-remove|abort-deconfigure)
   ;;
