@@ -3,6 +3,7 @@ avahi (0.4-1) experimental; urgency=low
   * New upstream release.
   * Build for Debian Experimental (closes: #324990)
   * Don't build-depend on python2.4-gtk2, it doesn't exist in Debian yet.
+  * Split out python2.4-avahi
   * Add QT3 and QT4 bindings
   * Move .pc files to -dev packages
 
