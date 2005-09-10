@@ -40,7 +40,7 @@ Description: Avahi DNS configuration tool
 
 Package: python2.4-avahi
 Architecture: all
-Replaces: avahi-utils (< 0.4)
+Replaces: avahi-utils (<< 0.4)
 Depends: ${python:Depends}, libavahi-common0
 Description: Python utility package for Avahi
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
@@ -81,6 +81,7 @@ Description: Avahi common library
 Package: libavahi-common-dev
 Architecture: any
 Depends: libavahi-common0 (= ${Source-Version}), ${misc:Depends}
+Replaces: libavahi-common0 (<< 0.4)
 Description: Development files for the Avahi common library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -112,6 +113,7 @@ Description: Avahi's embeddable mDNS/DNS-SD library
 Package: libavahi-core-dev
 Architecture: any
 Depends: libavahi-core0 (= ${Source-Version}), ${misc:Depends}, libavahi-common-dev
+Replaces: libavahi-core0 (<< 0.4)
 Description: Development files for Avahi's embeddable mDNS/DNS-SD library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -143,6 +145,7 @@ Description: Avahi client library
 Package: libavahi-client-dev
 Architecture: any
 Depends: libavahi-client1 (= ${Source-Version}), ${misc:Depends}, libavahi-common-dev
+Replaces: libavahi-client1 (<< 0.4)
 Description: Development files for the Avahi client library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -169,6 +172,7 @@ Description: Avahi glib integration library
 Package: libavahi-glib-dev
 Architecture: any
 Depends: libavahi-glib0 (= ${Source-Version}), libglib2.0-dev, ${misc:Depends}, libavahi-common-dev
+Replaces: libavahi-glib0 (<< 0.4)
 Description: Development headers for the Avahi glib integration library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
