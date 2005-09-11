@@ -17,7 +17,7 @@ set -e
 case "$1" in
   configure)
     # Restart the daemon
-    sleep 1 && /etc/init.d/avahi-dnsconfd restart
+    /etc/init.d/avahi-dnsconfd restart
   ;;
   abort-upgrade|abort-remove|abort-deconfigure)
   ;;
