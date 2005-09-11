@@ -6,6 +6,7 @@ avahi (0.4-1) experimental; urgency=low
   * Split out python2.4-avahi
   * Add QT3 and QT4 bindings
   * Reload D-BUS configuration files and daemons on install
+  * Fix daemon prerm
   * Move the avahi user's home directory
   * Move .pc files to -dev packages
 
