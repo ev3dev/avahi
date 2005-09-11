@@ -7,6 +7,7 @@ avahi (0.4-1) experimental; urgency=low
   * Add QT3 and QT4 bindings
   * Reload D-BUS configuration files and daemons on install
   * Fix daemon prerm
+  * Add maintainer scripts for dnsconfd
   * Move the avahi user's home directory
   * Move .pc files to -dev packages
 
