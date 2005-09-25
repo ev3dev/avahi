@@ -1,8 +1,8 @@
-avahi (0.4-1) experimental; urgency=low
+avahi (0.5-1) UNRELEASED; urgency=low
 
+  [ Ross Burton ]
   * New upstream release.
   * Build for Debian Experimental (closes: #324990)
-  * Don't build-depend on python2.4-gtk2, it doesn't exist in Debian yet.
   * Split out python2.4-avahi
   * Add QT3 and QT4 bindings
   * Reload D-BUS configuration files and daemons on install
@@ -11,7 +11,10 @@ avahi (0.4-1) experimental; urgency=low
   * Move the avahi user's home directory
   * Move .pc files to -dev packages
 
- -- Ross Burton <ross@debian.org>  Wed, 31 Aug 2005 14:24:38 +0100
+  [ Sjoerd Simons ]
+  * New upstream release 
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 25 Sep 2005 12:31:09 +0200
 
 avahi (0.2-0ubuntu1) breezy; urgency=low
 

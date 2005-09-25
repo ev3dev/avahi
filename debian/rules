@@ -8,14 +8,12 @@ include /usr/share/cdbs/1/rules/simple-patchsys.mk
 include /usr/share/cdbs/1/rules/utils.mk
 common-binary-post-install-arch:: list-missing
 
-# Disable pygtk for now until python2.4-gtk2 exists.
-DEB_CONFIGURE_EXTRA_FLAGS := --disable-pygtk
-
 # Ensure at build time that the library has no dependencies on undefined
 # symbols, and speed up loading.
 LDFLAGS += -Wl,-z,defs -Wl,-O1
 
 DEB_INSTALL_DOCS_ALL += docs/README
+DEB_CONFIGURE_EXTRA_FLAGS += --disable-mono --disable-mono-docs
 
 DEB_DH_MAKESHLIBS_ARGS_ALL := -V
 DEB_SHLIBDEPS_INCLUDE := debian/libavahi-common0/usr/lib debian/libavahi-core0/usr/lib
