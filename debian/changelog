@@ -2,6 +2,7 @@ avahi (0.5-1) UNRELEASED; urgency=low
 
   [ Ross Burton ]
   * New upstream release.
+  * Added libavahi-cil mono bindings (thanks Andrew Mitchell)
   * Build for Debian Experimental (closes: #324990)
   * Split out python2.4-avahi
   * Add QT3 and QT4 bindings
