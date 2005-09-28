@@ -93,7 +93,7 @@ Description: Development files for the Avahi common library
  library, which is a set of common functions and definitions used by many
  of Avahis components and client applications.
 
-Package: libavahi-core0
+Package: libavahi-core1
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Avahi's embeddable mDNS/DNS-SD library
@@ -112,8 +112,8 @@ Description: Avahi's embeddable mDNS/DNS-SD library
 
 Package: libavahi-core-dev
 Architecture: any
-Depends: libavahi-core0 (= ${Source-Version}), ${misc:Depends}, libavahi-common-dev
-Replaces: libavahi-core0 (<< 0.4)
+Depends: libavahi-core1 (= ${Source-Version}), ${misc:Depends}, libavahi-common-dev
+Replaces: libavahi-core1 (<< 0.4)
 Description: Development files for Avahi's embeddable mDNS/DNS-SD library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts

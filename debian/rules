@@ -16,7 +16,7 @@ DEB_INSTALL_DOCS_ALL += docs/README
 DEB_CONFIGURE_EXTRA_FLAGS += --disable-mono-docs
 
 DEB_DH_MAKESHLIBS_ARGS_ALL := -V
-DEB_SHLIBDEPS_INCLUDE := debian/libavahi-common0/usr/lib debian/libavahi-core0/usr/lib
+DEB_SHLIBDEPS_INCLUDE := debian/libavahi-common0/usr/lib debian/libavahi-core1/usr/lib
 
 common-binary-predeb-indep::
 	dh_makeclilibs

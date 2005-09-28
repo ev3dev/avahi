@@ -1,7 +1,7 @@
 avahi (0.5-1) UNRELEASED; urgency=low
 
   [ Ross Burton ]
-  * New upstream release.
+  * Update for new library versions
   * Added libavahi-cil mono bindings (thanks Andrew Mitchell)
   * Build for Debian Experimental (closes: #324990)
   * Split out python2.4-avahi
@@ -15,7 +15,7 @@ avahi (0.5-1) UNRELEASED; urgency=low
   [ Sjoerd Simons ]
   * New upstream release 
 
- -- Sjoerd Simons <sjoerd@debian.org>  Sun, 25 Sep 2005 12:31:09 +0200
+ -- Ross Burton <ross@debian.org>  Wed, 28 Sep 2005 09:53:05 +0100
 
 avahi (0.2-0ubuntu1) breezy; urgency=low
 
