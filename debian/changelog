@@ -1,8 +1,9 @@
 avahi (0.5.2-2) experimental; urgency=low
 
   * -daemon depends on dbus-1-utils, and allow dbus-send to fail (Trent Lloyd).
-
- --
+  * -utils recommends python2.4-glad2, and explain the recommends (TL).
+  
+ -- Ross Burton <ross@debian.org>  Mon, 10 Oct 2005 10:20:05 +0100
 
 avahi (0.5.2-1) experimental; urgency=low
 
