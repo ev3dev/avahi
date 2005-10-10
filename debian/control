@@ -237,7 +237,7 @@ Description: Development headers for the Avahi QT4 integration library
  to integrate the Avahi libraries  into a QT4 main loop application.
 
 Package: libavahi-cil
-Architecture: any
+Architecture: all
 Depends: ${cli:Depends}, libavahi-client1
 Description: CLI bindings for Avahi
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.

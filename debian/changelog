@@ -1,4 +1,11 @@
-avahi (0.5-1) UNRELEASED; urgency=low
+avahi (0.5.2-1) experimental; urgency=low
+
+  * New upstream release.
+  * Change mono package to arch all.
+
+ -- Ross Burton <ross@debian.org>  Mon,  3 Oct 2005 20:08:52 +0100
+
+avahi (0.5-1) experimental; urgency=low
 
   [ Ross Burton ]
   * Update for new library versions
@@ -15,7 +22,7 @@ avahi (0.5-1) UNRELEASED; urgency=low
   [ Sjoerd Simons ]
   * New upstream release 
 
- -- Ross Burton <ross@debian.org>  Wed, 28 Sep 2005 09:53:05 +0100
+ -- Ross Burton <ross@debian.org>  Fri, 30 Sep 2005 12:16:39 +0100
 
 avahi (0.2-0ubuntu1) breezy; urgency=low
 
