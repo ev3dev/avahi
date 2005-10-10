@@ -7,7 +7,7 @@ Standards-Version: 3.6.2
 
 Package: avahi-daemon
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, adduser
+Depends: ${shlibs:Depends}, ${misc:Depends}, adduser, dbus-1-utils
 Recommends: dbus, libnss-mdns
 Suggests: avahi-dnsconfd
 Conflicts: mdnsresponder

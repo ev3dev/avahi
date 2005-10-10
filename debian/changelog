@@ -1,3 +1,9 @@
+avahi (0.5.2-2) experimental; urgency=low
+
+  * -daemon depends on dbus-1-utils, and allow dbus-send to fail (Trent Lloyd).
+
+ --
+
 avahi (0.5.2-1) experimental; urgency=low
 
   * New upstream release.

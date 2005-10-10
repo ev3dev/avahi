@@ -26,7 +26,7 @@ case "$1" in
     fi
 
     # Ask the bus to reload the config file
-    dbus-send --system --type=method_call --dest=org.freedesktop.DBus / org.freedesktop.DBus.ReloadConfig
+    dbus-send --system --type=method_call --dest=org.freedesktop.DBus / org.freedesktop.DBus.ReloadConfig || true
     # Restart the daemon
     sleep 1 && /etc/init.d/avahi-daemon restart
   ;;
