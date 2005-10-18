@@ -1,3 +1,9 @@
+avahi (0.5.2-3) experimental; urgency=low
+
+  * Move all packages to their correct section (closes: #334565)
+
+ -- Ross Burton <ross@debian.org>  Tue, 18 Oct 2005 19:05:22 +0100
+
 avahi (0.5.2-2) experimental; urgency=low
 
   * -daemon depends on dbus-1-utils, and allow dbus-send to fail (Trent Lloyd).

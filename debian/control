@@ -6,6 +6,7 @@ Build-Depends: debhelper (>= 4.2.28), cdbs, libglib2.0-dev (>= 2.4), libgtk2.0-d
 Standards-Version: 3.6.2
 
 Package: avahi-daemon
+Section: net
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, adduser, dbus-1-utils
 Recommends: dbus, libnss-mdns
@@ -23,6 +24,7 @@ Description: Avahi mDNS/DNS-SD daemon
  mDNS/DNS-SD records.
 
 Package: avahi-dnsconfd
+Section: net
 Architecture: any
 Depends: avahi-daemon, ${shlibs:Depends}, ${misc:Depends}
 Recommends: resolvconf
@@ -39,6 +41,7 @@ Description: Avahi DNS configuration tool
  a DNS server.
 
 Package: python2.4-avahi
+Section: python
 Architecture: all
 Replaces: avahi-utils (<< 0.4)
 Depends: ${python:Depends}, libavahi-common0
@@ -52,6 +55,7 @@ Description: Python utility package for Avahi
  This package contains utility modules to talk to Avahi with Python easier.
 
 Package: avahi-utils
+Section: net
 Architecture: all
 Depends: ${python:Depends}, python2.4-avahi, python2.4-dbus, python2.4-gtk2, avahi-daemon, ${misc:Depends}
 Recommends: python2.4-twisted, python2.4-glade2
@@ -69,6 +73,7 @@ Description: Avahi browsing, publishing and discovery utilities
  avahi-bookmarks, and python2.4-glade2 if you want to use avahi-discover.
 
 Package: libavahi-common0
+Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Avahi common library
@@ -82,6 +87,7 @@ Description: Avahi common library
  functions used by many of Avahis components and client applications.
 
 Package: libavahi-common-dev
+Section: libdevel
 Architecture: any
 Depends: libavahi-common0 (= ${Source-Version}), ${misc:Depends}
 Replaces: libavahi-common0 (<< 0.4)
@@ -97,6 +103,7 @@ Description: Development files for the Avahi common library
  of Avahis components and client applications.
 
 Package: libavahi-core1
+Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Avahi's embeddable mDNS/DNS-SD library
@@ -114,6 +121,7 @@ Description: Avahi's embeddable mDNS/DNS-SD library
  shoudl use libavahi-client which interacts with the avahi daemon.
 
 Package: libavahi-core-dev
+Section: libdevel
 Architecture: any
 Depends: libavahi-core1 (= ${Source-Version}), ${misc:Depends}, libavahi-common-dev
 Replaces: libavahi-core1 (<< 0.4)
@@ -132,6 +140,7 @@ Description: Development files for Avahi's embeddable mDNS/DNS-SD library
  shoudl use libavahi-client-dev which interacts with the avahi daemon.
 
 Package: libavahi-client1
+Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Recommends: avahi-daemon, dbus
@@ -146,6 +155,7 @@ Description: Avahi client library
  to integrate mDNS/DNS-SD functionality into your application.
 
 Package: libavahi-client-dev
+Section: libdevel
 Architecture: any
 Depends: libavahi-client1 (= ${Source-Version}), ${misc:Depends}, libavahi-common-dev
 Replaces: libavahi-client1 (<< 0.4)
@@ -160,6 +170,7 @@ Description: Development files for the Avahi client library
  allows you to integrate mDNS/DNS-SD functionality into your application.
 
 Package: libavahi-glib0
+Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Avahi glib integration library
@@ -173,6 +184,7 @@ Description: Avahi glib integration library
  into a GLIB main loop application, including GTK applications.
 
 Package: libavahi-glib-dev
+Section: libdevel
 Architecture: any
 Depends: libavahi-glib0 (= ${Source-Version}), libglib2.0-dev, ${misc:Depends}, libavahi-common-dev
 Replaces: libavahi-glib0 (<< 0.4)
@@ -188,6 +200,7 @@ Description: Development headers for the Avahi glib integration library
  including GTK applications.
 
 Package: libavahi-qt3-0
+Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Avahi QT3 integration library
@@ -201,6 +214,7 @@ Description: Avahi QT3 integration library
  into a QT3 main loop application.
 
 Package: libavahi-qt3-dev
+Section: libdevel
 Architecture: any
 Depends: libavahi-qt3-0 (= ${Source-Version}), libqt3-mt-dev, ${misc:Depends}, libavahi-common-dev
 Description: Development headers for the Avahi QT3 integration library
@@ -214,6 +228,7 @@ Description: Development headers for the Avahi QT3 integration library
  to integrate the Avahi libraries  into a QT3 main loop application.
 
 Package: libavahi-qt4-0
+Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Avahi QT4 integration library
@@ -227,6 +242,7 @@ Description: Avahi QT4 integration library
  into a QT4 main loop application.
 
 Package: libavahi-qt4-dev
+Section: libdevel
 Architecture: any
 Depends: libavahi-qt4-0 (= ${Source-Version}), libqt4-dev, ${misc:Depends}, libavahi-common-dev
 Description: Development headers for the Avahi QT4 integration library
@@ -240,6 +256,7 @@ Description: Development headers for the Avahi QT4 integration library
  to integrate the Avahi libraries  into a QT4 main loop application.
 
 Package: libavahi-cil
+Section: libs
 Architecture: all
 Depends: ${cli:Depends}, libavahi-client1
 Description: CLI bindings for Avahi
