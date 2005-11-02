@@ -1,3 +1,9 @@
+avahi (0.5.2-4) experimental; urgency=low
+
+  * Add python2.4-gdbm dependency to python2.4-avahi (closes: #336900)
+
+ --
+
 avahi (0.5.2-3) experimental; urgency=low
 
   * Move all packages to their correct section (closes: #334565)

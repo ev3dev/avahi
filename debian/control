@@ -44,7 +44,7 @@ Package: python2.4-avahi
 Section: python
 Architecture: all
 Replaces: avahi-utils (<< 0.4)
-Depends: ${python:Depends}, libavahi-common0
+Depends: ${python:Depends}, python2.4-gdbm, libavahi-common0
 Description: Python utility package for Avahi
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
