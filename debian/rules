@@ -12,6 +12,8 @@ common-binary-post-install-arch:: list-missing
 # symbols, and speed up loading.
 LDFLAGS += -Wl,-z,defs -Wl,-O1
 
+DEB_CONFIGURE_EXTRA_FLAGS += --enable-compat-libdns_sd --enable-compat-howl
+
 DEB_INSTALL_DOCS_ALL += docs/README
 
 DEB_DH_MAKESHLIBS_ARGS_ALL := -V
