@@ -15,7 +15,7 @@ LDFLAGS += -Wl,-z,defs -Wl,-O1
 DEB_INSTALL_DOCS_ALL += docs/README
 
 DEB_DH_MAKESHLIBS_ARGS_ALL := -V
-DEB_SHLIBDEPS_INCLUDE := debian/libavahi-common0/usr/lib debian/libavahi-core1/usr/lib
+DEB_SHLIBDEPS_INCLUDE := debian/libavahi-common3/usr/lib debian/libavahi-core3/usr/lib
 
 export MONO_SHARED_DIR=$(CURDIR)
 
