@@ -276,3 +276,58 @@ Description: CLI bindings for Avahi
  .
  This package contains the CLI bindings to Avahi, allowing you to use Avahi from
  Mono languages (e.g. C# and Boo).
+
+Package: libavahi-compat-howl0
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Avahi Howl compatibility library
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This library contains the howl compatibility library for Avahi.
+
+Package: libavahi-compat-howl-dev
+Section: libdevel
+Architecture: any
+Depends: libavahi-compat-howl0 (= ${Source-Version})
+Description: Development headers for the Avahi Howl compatibility library
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This package contains the development headers for howl compatibility library
+ for Avahi.
+
+Package: libavahi-compat-libdnssd1
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Avahi Apple Bonyour compatibility library
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This library contains the Apple Bonyour compatibility library of Avahi.
+
+Package: libavahi-compat-libdnssd-dev
+Section: libdevel
+Architecture: any
+Depends: libavahi-compat-howl0 (= ${Source-Version})
+Description: Development headers for the Avahi Apple Bonyour compatibility library
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This package contains the development headers for Apple Bonyour compatibility 
+ library of Avahi.
+
