@@ -1,13 +1,13 @@
-avahi (0.6-1) UNRELEASED; urgency=low
+avahi (0.6.1-1) UNRELEASED; urgency=low
 
   [ Sjoerd Simons ]
   * New upstream release
   * Depend on dbus >= 0.50-3 so we can use force-reload to have dbus reload
     configuration.
   * Create packages for howl and Apple Bonyour compatibility libraries
-  * Split out common data into libavahi-common-data 
+  * Split out common data into libavahi-common-data
 
- -- Sjoerd Simons <sjoerd@debian.org>  Tue, 22 Nov 2005 10:45:57 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Wed, 30 Nov 2005 12:13:21 +0100
 
 avahi (0.5.2-4) experimental; urgency=low
 
