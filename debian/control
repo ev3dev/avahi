@@ -154,6 +154,7 @@ Package: libavahi-client3
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: avahi-daemon (<< 0.6)
 Recommends: avahi-daemon, dbus
 Description: Avahi client library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
