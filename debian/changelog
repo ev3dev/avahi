@@ -6,9 +6,11 @@ avahi (0.6.1-1) UNRELEASED; urgency=low
     configuration.
   * Create packages for howl and Apple Bonyour compatibility libraries
   * Split out common data into libavahi-common-data
-  * Split out avahi-discover into it's own package 
+  * Split out avahi-discover into it's own package
+  * Symlink /usr/include/avahi-compat-libdns_sd/dns_sd.h to
+    /usr/include//dns_sd.h for API compatability 
 
- -- Sjoerd Simons <sjoerd@debian.org>  Sun,  4 Dec 2005 15:11:52 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun,  4 Dec 2005 15:17:39 +0100
 
 avahi (0.5.2-4) experimental; urgency=low
 
