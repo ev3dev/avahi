@@ -72,6 +72,19 @@ Description: Avahi browsing, publishing and discovery utilities
  Install the recommended package python2.4-twisted if you want to use
  avahi-bookmarks, and python2.4-glade2 if you want to use avahi-discover.
 
+Package: avahi-discover
+Section: net
+Architecture: all
+Depends: ${python:Depends}, python2.4-avahi, python2.4-dbus, python2.4-gtk2, avahi-daemon, python-glade2, ${misc:Depends}
+Description: Avahi 
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This package contains a user interface for discovering services.
+
 Package: libavahi-common3
 Section: libs
 Architecture: any

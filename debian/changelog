@@ -6,8 +6,9 @@ avahi (0.6.1-1) UNRELEASED; urgency=low
     configuration.
   * Create packages for howl and Apple Bonyour compatibility libraries
   * Split out common data into libavahi-common-data
+  * Split out avahi-discover into it's own package 
 
- -- Sjoerd Simons <sjoerd@debian.org>  Wed, 30 Nov 2005 12:13:21 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun,  4 Dec 2005 15:11:52 +0100
 
 avahi (0.5.2-4) experimental; urgency=low
 
