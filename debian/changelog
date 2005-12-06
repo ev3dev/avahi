@@ -1,7 +1,7 @@
 avahi (0.6.1-1) UNRELEASED; urgency=low
 
   [ Sjoerd Simons ]
-  * New upstream release
+  * New upstream release (closes: #341685)
   * Depend on dbus >= 0.50-3 so we can use force-reload to have dbus reload
     configuration.
   * Create packages for howl and Apple Bonyour compatibility libraries
