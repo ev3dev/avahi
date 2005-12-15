@@ -9,11 +9,13 @@ avahi (0.6.1-1) UNRELEASED; urgency=low
   * Split out avahi-discover into it's own package
   * Symlink /usr/include/avahi-compat-libdns_sd/dns_sd.h to
     /usr/include/dns_sd.h for API compatability
+  * debian/patches/01_dbus060_compatibility.patch
+    + Added. Enables build against dbus 0.60 (from upstream svn)
 
   [ Ross Burton ]
   * Add debian/watch
-  
- -- Sjoerd Simons <sjoerd@debian.org>  Sun,  4 Dec 2005 15:17:39 +0100
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu, 15 Dec 2005 11:24:43 +0100
 
 avahi (0.5.2-4) experimental; urgency=low
 
