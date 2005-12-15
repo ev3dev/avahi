@@ -8,7 +8,7 @@ avahi (0.6.1-1) UNRELEASED; urgency=low
   * Split out common data into libavahi-common-data
   * Split out avahi-discover into it's own package
   * Symlink /usr/include/avahi-compat-libdns_sd/dns_sd.h to
-    /usr/include//dns_sd.h for API compatability 
+    /usr/include/dns_sd.h for API compatability
 
   [ Ross Burton ]
   * Add debian/watch
