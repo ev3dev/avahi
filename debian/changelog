@@ -1,4 +1,4 @@
-avahi (0.6.1-1) experimental; urgency=low
+avahi (0.6.1.dfsg-1) experimental; urgency=low
 
   [ Sjoerd Simons ]
   * New upstream release (closes: #341685)
@@ -12,12 +12,14 @@ avahi (0.6.1-1) experimental; urgency=low
   * debian/patches/01_dbus060_compatibility.patch
     + Added. Enables build against dbus 0.60 (from upstream svn)
   * Update debian/copyright
+  * Upstream tarball contains RFC files, which are not DFSG compliant.
+    Therefor the upstream tarball has been repacked without them.
   * Add myself to Uploaders
 
   [ Ross Burton ]
   * Add debian/watch
 
- -- Sjoerd Simons <sjoerd@debian.org>  Mon, 19 Dec 2005 16:25:53 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Mon, 19 Dec 2005 17:19:52 +0100
 
 avahi (0.5.2-4) experimental; urgency=low
 
