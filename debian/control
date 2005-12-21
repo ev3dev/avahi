@@ -99,6 +99,7 @@ Description: Avahi common library
 Package: libavahi-common-data
 Section: libs
 Architecture: all
+Conflicts: libavahi-common0
 Description: Avahi common data files 
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
