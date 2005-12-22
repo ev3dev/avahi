@@ -5,8 +5,12 @@ avahi (0.6.1-2) experimental; urgency=low
   * avahi/debian/patches/02_avahi-sharp.patch
     + Added. Fix avahi-sharp.dll.config.in to use libavahi-glib.so.1 instead
       of libavahi-glib.so.0 (From avahi upstream svn)
+  * Add ${shlibds:Depends} to the avahi-utils depends.
+  * Add debian/libavahi-client3/usr/lib to dh_shlibdeps includes
+  * Also ship the avahi-browse-domains symlink 
+  * Fix the avahi-discover description
 
- -- Sjoerd Simons <sjoerd@debian.org>  Thu, 22 Dec 2005 11:18:36 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu, 22 Dec 2005 18:18:58 +0100
 
 avahi (0.6.1-1) experimental; urgency=low
 

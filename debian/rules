@@ -17,7 +17,9 @@ DEB_CONFIGURE_EXTRA_FLAGS += --enable-compat-libdns_sd --enable-compat-howl
 DEB_INSTALL_DOCS_ALL += docs/README
 
 DEB_DH_MAKESHLIBS_ARGS_ALL := -V
-DEB_SHLIBDEPS_INCLUDE := debian/libavahi-common3/usr/lib debian/libavahi-core3/usr/lib
+DEB_SHLIBDEPS_INCLUDE := debian/libavahi-common3/usr/lib \
+                         debian/libavahi-core3/usr/lib \
+                         debian/libavahi-client3/usr/lib
 
 export MONO_SHARED_DIR=$(CURDIR)
 
