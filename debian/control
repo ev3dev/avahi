@@ -10,7 +10,7 @@ Package: avahi-daemon
 Section: net
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}, adduser, dbus (>= 0.60)
-Recommends: dbus, libnss-mdns
+Recommends: libnss-mdns
 Suggests: avahi-dnsconfd
 Conflicts: mdnsresponder
 Description: Avahi mDNS/DNS-SD daemon
