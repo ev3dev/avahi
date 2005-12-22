@@ -11,9 +11,10 @@ avahi (0.6.1-2) experimental; urgency=low
   * Fix the avahi-discover description
   * Have avahi-daemon depend on dbus (>= 0.60)
   * Fix libavahi-cil depends
-  * Add libavahi-common-data to python2.4-avahi depends 
+  * Add libavahi-common-data to python2.4-avahi depends
+  * Update FSF address in copyright
 
- -- Sjoerd Simons <sjoerd@debian.org>  Thu, 22 Dec 2005 19:39:35 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu, 22 Dec 2005 20:02:11 +0100
 
 avahi (0.6.1-1) experimental; urgency=low
 
