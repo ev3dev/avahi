@@ -27,7 +27,7 @@ common-binary-predeb-indep::
 	dh_makeclilibs
 	dh_clideps
 
-binary-install/avahi-utils::
+binary-install/avahi-discover::
 	dh_python -p$(cdbs_curpkg)
 	rm -f debian/tmp/usr/lib/python*/site-packages/avahi/*.py[co]
 
