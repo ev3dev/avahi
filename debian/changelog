@@ -1,7 +1,10 @@
 avahi (0.6.1-2) experimental; urgency=low
 
   * Let libavahi-common-data conflict with libavahi-common0
-  * Switch avahi-utils from Arch all to Arch any.
+  * Switch avahi-utils from Arch all to Arch any (Closes: #344354)
+  * avahi/debian/patches/02_avahi-sharp.patch
+    + Added. Fix avahi-sharp.dll.config.in to use libavahi-glib.so.1 instead
+      of libavahi-glib.so.0 (From avahi upstream svn)
 
  -- Sjoerd Simons <sjoerd@debian.org>  Thu, 22 Dec 2005 11:18:36 +0100
 
