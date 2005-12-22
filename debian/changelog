@@ -7,10 +7,12 @@ avahi (0.6.1-2) experimental; urgency=low
       of libavahi-glib.so.0 (From avahi upstream svn)
   * Add ${shlibds:Depends} to the avahi-utils depends.
   * Add debian/libavahi-client3/usr/lib to dh_shlibdeps includes
-  * Also ship the avahi-browse-domains symlink 
+  * Also ship the avahi-browse-domains symlink
   * Fix the avahi-discover description
+  * Have avahi-daemon depend on dbus (>= 0.60)
+  * Fix libavahi-cil depends
 
- -- Sjoerd Simons <sjoerd@debian.org>  Thu, 22 Dec 2005 18:18:58 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu, 22 Dec 2005 19:07:15 +0100
 
 avahi (0.6.1-1) experimental; urgency=low
 

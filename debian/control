@@ -9,7 +9,7 @@ Standards-Version: 3.6.2
 Package: avahi-daemon
 Section: net
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, adduser, dbus (>= 0.50-3)
+Depends: ${shlibs:Depends}, ${misc:Depends}, adduser, dbus (>= 0.60)
 Recommends: dbus, libnss-mdns
 Suggests: avahi-dnsconfd
 Conflicts: mdnsresponder
@@ -290,7 +290,7 @@ Description: compiled XML documentation for the CLI bindings of avahi
 Package: libavahi-cil
 Section: libs
 Architecture: all
-Depends: ${cli:Depends}, libavahi-client1
+Depends: ${cli:Depends}, libavahi-client3, libavahi-glib1
 Description: CLI bindings for Avahi
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
