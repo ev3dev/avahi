@@ -1,5 +1,5 @@
 debian/tmp/usr/share/man/man1/avahi-browse.1
-debian/tmp/usr/share/man/man1/avahi-discover.1
+debian/tmp/usr/share/man/man1/avahi-browse-domains.1
 debian/tmp/usr/share/man/man1/avahi-publish.1
 debian/tmp/usr/share/man/man1/avahi-publish-address.1
 debian/tmp/usr/share/man/man1/avahi-publish-service.1
