@@ -45,7 +45,7 @@ Package: python2.4-avahi
 Section: python
 Architecture: all
 Replaces: avahi-utils (<< 0.4)
-Depends: ${python:Depends}, python2.4-gdbm
+Depends: ${python:Depends}, python2.4-gdbm, libavahi-common-data
 Description: Python utility package for Avahi
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -348,7 +348,7 @@ Description: Avahi Apple Bonyour compatibility library
 Package: libavahi-compat-libdnssd-dev
 Section: libdevel
 Architecture: any
-Depends: libavahi-compat-howl0 (= ${Source-Version})
+Depends: libavahi-compat-libdnssd1 (= ${Source-Version})
 Description: Development headers for the Avahi Apple Bonyour compatibility library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
