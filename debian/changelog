@@ -1,8 +1,9 @@
 avahi (0.6.1-2) experimental; urgency=low
 
-  * Let libavahi-common-data conflict with libavahi-common0 
+  * Let libavahi-common-data conflict with libavahi-common0
+  * Switch avahi-utils from Arch all to Arch any.
 
- -- Sjoerd Simons <sjoerd@debian.org>  Wed, 21 Dec 2005 22:06:46 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu, 22 Dec 2005 11:18:36 +0100
 
 avahi (0.6.1-1) experimental; urgency=low
 

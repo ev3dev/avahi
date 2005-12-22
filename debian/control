@@ -57,7 +57,7 @@ Description: Python utility package for Avahi
 
 Package: avahi-utils
 Section: net
-Architecture: all
+Architecture: any
 Depends: avahi-daemon, ${misc:Depends}
 Description: Avahi browsing, publishing and discovery utilities
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
