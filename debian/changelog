@@ -1,3 +1,9 @@
+avahi (0.6.1-4) unstable; urgency=low
+
+  * Upload to unstable 
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu,  5 Jan 2006 22:13:55 +0100
+
 avahi (0.6.1-2) experimental; urgency=low
 
   * Let libavahi-common-data conflict with libavahi-common0
