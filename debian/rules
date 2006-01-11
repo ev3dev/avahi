@@ -37,7 +37,7 @@ DEB_SHLIBDEPS_INCLUDE := debian/libavahi-common3/usr/lib \
 
 export MONO_SHARED_DIR=$(CURDIR)
 
-common-binary-predeb-indep::
+binary-predeb/libavahi-cil::
 	dh_makeclilibs
 	dh_clideps
 
