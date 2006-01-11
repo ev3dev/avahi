@@ -1,8 +1,13 @@
-avahi (0.6.1-5) unstable; urgency=low
+avahi (0.6.3-1) unstable; urgency=low
 
-  * Don't build mono stuff on archs that don't support it (Closes: 347383) 
+  * New upstream release (Closes: 347385)
+  * debian/patches/01_dbus060_compatibility.patch
+    + Removed. Fixed upstream
+  * debian/patches/02_avahi-sharp.patch
+    + Removed. Fixed upstream
+  * Don't build mono stuff on archs that don't support it (Closes: 347383)
 
- -- Sjoerd Simons <sjoerd@debian.org>  Wed, 11 Jan 2006 21:47:25 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Wed, 11 Jan 2006 22:04:16 +0100
 
 avahi (0.6.1-4) unstable; urgency=low
 
