@@ -1,5 +1,15 @@
 #! /usr/bin/make -f 
 
+# Filter out the mono packages on architectures that don't support it
+#
+include /usr/share/cdbs/1/rules/buildvars.mk
+ifeq (,$(findstring $(DEB_BUILD_ARCH), powerpc, amd64, i386))
+  DEB_INDEP_PACKAGES := \
+    $(filter-out libavahi-cil,$(DEB_INDEP_PACKAGES))
+  DEB_INDEP_PACKAGES := \
+    $(filter-out monodoc-avahi-manual,$(DEB_INDEP_PACKAGES))
+endif
+
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/autotools.mk
 include /usr/share/cdbs/1/rules/simple-patchsys.mk
