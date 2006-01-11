@@ -8,6 +8,7 @@ ifeq (,$(findstring $(DEB_BUILD_ARCH), powerpc, amd64, i386))
     $(filter-out libavahi-cil,$(DEB_INDEP_PACKAGES))
   DEB_INDEP_PACKAGES := \
     $(filter-out monodoc-avahi-manual,$(DEB_INDEP_PACKAGES))
+  DEB_INDEP_REGULAR_PACKAGES := $(DEB_INDEP_PACKAGES)
   MONO_FLAGS=--disable-mono --disable-monodoc
 endif
 
