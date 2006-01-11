@@ -1,0 +1,4 @@
+26c26
+< browse-domains=0pointer.de, zeroconf.org
+---
+> #browse-domains=0pointer.de, zeroconf.org

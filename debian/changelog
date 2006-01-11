@@ -8,8 +8,10 @@ avahi (0.6.3-1) unstable; urgency=low
   * Don't build mono stuff on archs that don't support it (Closes: 347383)
   * GNU dbm files aren't arch independent so libavahi-common-data must be an
     arch: any package
+  * debian/patches/01_avahi-daemon.conf.patch 
+    + Added. Don't browse any extra domains by default
 
- -- Sjoerd Simons <sjoerd@debian.org>  Wed, 11 Jan 2006 22:43:53 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Wed, 11 Jan 2006 22:53:31 +0100
 
 avahi (0.6.1-4) unstable; urgency=low
 
