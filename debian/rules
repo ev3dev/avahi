@@ -8,6 +8,7 @@ ifeq (,$(findstring $(DEB_BUILD_ARCH), powerpc, amd64, i386))
     $(filter-out libavahi-cil,$(DEB_INDEP_PACKAGES))
   DEB_INDEP_PACKAGES := \
     $(filter-out monodoc-avahi-manual,$(DEB_INDEP_PACKAGES))
+  MONO_FLAGS=--disable-mono --disable-monodoc
 endif
 
 include /usr/share/cdbs/1/rules/debhelper.mk
@@ -22,7 +23,9 @@ common-binary-post-install-arch:: list-missing
 # symbols, and speed up loading.
 LDFLAGS += -Wl,-z,defs -Wl,-O1
 
-DEB_CONFIGURE_EXTRA_FLAGS += --enable-compat-libdns_sd --enable-compat-howl
+DEB_CONFIGURE_EXTRA_FLAGS += --enable-compat-libdns_sd --enable-compat-howl \
+                            $(MONO_FLAGS)
+
 
 DEB_INSTALL_DOCS_ALL += docs/README
 
