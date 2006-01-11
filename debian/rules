@@ -3,7 +3,7 @@
 # Filter out the mono packages on architectures that don't support it
 #
 include /usr/share/cdbs/1/rules/buildvars.mk
-ifeq (,$(findstring $(DEB_BUILD_ARCH), powerpc, amd64, i386, ia64))
+ifeq (,$(filter $(DEB_BUILD_ARCH), powerpc amd64 i386 ia64))
   DEB_INDEP_PACKAGES := \
     $(filter-out libavahi-cil,$(DEB_INDEP_PACKAGES))
   DEB_INDEP_PACKAGES := \
