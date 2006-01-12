@@ -1,3 +1,9 @@
+avahi (0.6.3-2) unstable; urgency=low
+
+  * Add ia64 to the architectures that build-depend on the mono stuff
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu, 12 Jan 2006 11:08:42 +0100
+
 avahi (0.6.3-1) unstable; urgency=low
 
   * New upstream release (Closes: 347385)
