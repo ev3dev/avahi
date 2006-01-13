@@ -1,0 +1,45 @@
+--- avahi-sharp/Client.cs	(.../tags/release-0.6.3/avahi-sharp)	(revision 1073)
++++ avahi-sharp/Client.cs	(.../trunk/avahi-sharp)	(revision 1073)
+@@ -25,7 +25,10 @@
+ using System.Collections;
+ using System.Runtime.InteropServices;
+ using Mono.Unix;
++using Mono.Unix.Native;
+ 
++using Stdlib = Mono.Unix.Native.Stdlib;
++
+ namespace Avahi
+ {
+     internal enum ResolverEvent {
+@@ -86,7 +89,8 @@
+     public enum LookupFlags {
+         None = 0,
+         UseWideArea = 1,
+-        UseMulticast = 4,
++        UseMulticast = 2,
++	NoTxt = 4,
+         NoAddress = 8
+     }
+ 
+--- avahi-sharp/avahi-sharp-docs.source	(.../tags/release-0.6.3/avahi-sharp)	(revision 1073)
++++ avahi-sharp/avahi-sharp-docs.source	(.../trunk/avahi-sharp)	(revision 1073)
+@@ -1,4 +1,4 @@
+ <?xml version="1.0"?>
+ <monodoc>
+-  <source provider="ecma" basefile="avahi-sharp-docs" path="various"/>
++  <source provider="ecma" basefile="avahi-sharp-docs" path="various" title="Avahi" />
+ </monodoc>
+Index: Utility.cs
+===================================================================
+--- avahi-sharp/Utility.cs	(.../tags/release-0.6.3/avahi-sharp)	(revision 1073)
++++ avahi-sharp/Utility.cs	(.../trunk/avahi-sharp)	(revision 1073)
+@@ -24,7 +24,9 @@
+ using System.Text;
+ using System.Runtime.InteropServices;
+ using Mono.Unix;
++using Mono.Unix.Native;
+ 
++using Stdlib = Mono.Unix.Native.Stdlib;
+ 
+ namespace Avahi
+ {
