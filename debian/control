@@ -181,7 +181,7 @@ Description: Avahi client library
 Package: libavahi-client-dev
 Section: libdevel
 Architecture: any
-Depends: libavahi-client3 (= ${Source-Version}), ${misc:Depends}, libavahi-common-dev
+Depends: libavahi-client3 (= ${Source-Version}), ${misc:Depends}, libavahi-common-dev, libdbus-1-dev (>= 0.60)
 Description: Development files for the Avahi client library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts

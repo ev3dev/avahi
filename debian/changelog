@@ -2,7 +2,7 @@ avahi (0.6.4-1) unstable; urgency=low
 
   * New upstream release
   * Make python2.4-avahi depend on python2.4-glade (Closes: #348284)
-  * debian/patches/02_avahi-sharp-mono1.1.13.patch 
+  * debian/patches/02_avahi-sharp-mono1.1.13.patch
     + Removed. Fixed upstream
   * debian/patches/02_stdlib_NULL.patch
     + Added. To use NULL on GNU/kFreeBSD <stdlib.h> needs to be included
@@ -10,8 +10,9 @@ avahi (0.6.4-1) unstable; urgency=low
   * debian/patches/03_reduce_qt3lib_depends.patch
     + Added. Change avahi-qt3.pc to have qt3-mt in Requires.private instead of
     Requires (Thanks Isaac Clerencia) (Closes: #347710)
+  * Make libavahi-client-dev depend on libdbus-1-dev 
 
- -- Sjoerd Simons <sjoerd@debian.org>  Tue, 17 Jan 2006 09:16:28 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Tue, 17 Jan 2006 11:26:51 +0100
 
 avahi (0.6.3-3) unstable; urgency=low
 
