@@ -1,8 +1,11 @@
 avahi (0.6.4-2) unstable; urgency=low
 
+  * debian/patches/04_pthread_flags.patch
+    + Added. Check how gcc handles -pthread in combination with -shared.
+    Fixes FTBS on mips{,el}.
   * Add --disabled-password to adduser options in postinst
 
- -- Sjoerd Simons <sjoerd@debian.org>  Thu, 19 Jan 2006 16:50:30 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Fri, 20 Jan 2006 10:40:27 +0100
 
 avahi (0.6.4-1) unstable; urgency=low
 
