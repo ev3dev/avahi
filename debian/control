@@ -337,26 +337,26 @@ Package: libavahi-compat-libdnssd1
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Description: Avahi Apple Bonyour compatibility library
+Description: Avahi Apple Bonjour compatibility library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
  running on a local network with no specific configuration.  For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
- This library contains the Apple Bonyour compatibility library of Avahi.
+ This library contains the Apple Bonjour compatibility library of Avahi.
 
 Package: libavahi-compat-libdnssd-dev
 Section: libdevel
 Architecture: any
 Depends: libavahi-compat-libdnssd1 (= ${Source-Version}), libavahi-client-dev
-Description: Development headers for the Avahi Apple Bonyour compatibility library
+Description: Development headers for the Avahi Apple Bonjour compatibility library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
  running on a local network with no specific configuration.  For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
- This package contains the development headers for Apple Bonyour compatibility 
+ This package contains the development headers for Apple Bonjour compatibility 
  library of Avahi.
 

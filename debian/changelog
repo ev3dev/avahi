@@ -1,3 +1,9 @@
+avahi (0.6.4-3) unstable; urgency=low
+
+  * s/Bonyour/Bonjour/ in libdnssd package descriptions (Closes: #349408) 
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Mon, 23 Jan 2006 00:40:26 +0100
+
 avahi (0.6.4-2) unstable; urgency=low
 
   * debian/patches/04_pthread_flags.patch
