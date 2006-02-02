@@ -8,8 +8,9 @@ avahi (0.6.6-1) unstable; urgency=low
     + Removed. Fixed upstream
   * debian/patches/04_pthread_flags.patch
     + Removed Fixed upstream
+  * Don't let avahi-daemon suggets avahi-dnsconfd
 
- -- Sjoerd Simons <sjoerd@debian.org>  Thu,  2 Feb 2006 21:07:44 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu,  2 Feb 2006 21:11:34 +0100
 
 avahi (0.6.4-2) unstable; urgency=low
 
