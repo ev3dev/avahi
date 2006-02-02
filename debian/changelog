@@ -1,8 +1,9 @@
-avahi (0.6.4-3) unstable; urgency=low
+avahi (0.6.6-1) unstable; urgency=low
 
-  * s/Bonyour/Bonjour/ in libdnssd package descriptions (Closes: #349408) 
+  * New upstream release
+  * s/Bonyour/Bonjour/ in libdnssd package descriptions (Closes: #349408)
 
- -- Sjoerd Simons <sjoerd@debian.org>  Mon, 23 Jan 2006 00:40:26 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu,  2 Feb 2006 21:00:49 +0100
 
 avahi (0.6.4-2) unstable; urgency=low
 
