@@ -36,9 +36,8 @@ Description: Avahi DNS configuration tool
  print to, files to look at and people to talk to.
  .
  This tool listens on the network for announced DNS servers and passes
- them to resolvconf so it can use them.  This is very useful on IPv6
- networks where there is no other mechanism to automatically configure
- a DNS server.
+ them to resolvconf so it can use them.  This is very useful on autoconfigured 
+ IPv6 networks.
 
 Package: python2.4-avahi
 Section: python
