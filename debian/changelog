@@ -1,3 +1,9 @@
+avahi (0.6.7-1) unstable; urgency=low
+
+  * New upstream release 
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Wed, 15 Feb 2006 19:27:49 +0100
+
 avahi (0.6.6-2) unstable; urgency=low
 
   * Add libcap-dev to the build-depends to enable chroot() support
