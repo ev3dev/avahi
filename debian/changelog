@@ -1,8 +1,11 @@
 avahi (0.6.7-1) unstable; urgency=low
 
-  * New upstream release 
+  * New upstream release
+  * debian/patches/02_avahi-init_capabilities.patch
+    + Added. For loading of the capabilities kernel module before starting the
+    daemon. (Closes: #352858)
 
- -- Sjoerd Simons <sjoerd@debian.org>  Wed, 15 Feb 2006 19:27:49 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Wed, 15 Feb 2006 20:37:07 +0100
 
 avahi (0.6.6-2) unstable; urgency=low
 

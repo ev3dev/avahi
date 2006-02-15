@@ -1,0 +1,13 @@
+Index: initscript/debian/avahi-daemon.in
+===================================================================
+--- initscript/debian/avahi-daemon.in	(revision 1143)
++++ initscript/debian/avahi-daemon.in	(working copy)
+@@ -91,6 +91,8 @@
+ #       Function that starts the daemon/service.
+ #
+ d_start() {
++    modprobe capability >/dev/null 2>&1 || true
++
+     $DAEMON -c
+     [ $? = 0 ] && exit 0
+ 
