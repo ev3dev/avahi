@@ -1,0 +1,35 @@
+Index: initscript/debian/avahi-dnsconfd.in
+===================================================================
+--- initscript/debian/avahi-dnsconfd.in	(revision 1143)
++++ initscript/debian/avahi-dnsconfd.in	(working copy)
+@@ -150,7 +150,7 @@
+         ;;
+     reload|restart|force-reload)
+         log_begin_msg "Restarting $DESC: $NAME"
+-        d_stop
++        $DAEMON -c && d_stop
+         d_start
+         log_end_msg $?
+         ;;
+Index: initscript/debian/avahi-daemon.in
+===================================================================
+--- initscript/debian/avahi-daemon.in	(revision 1143)
++++ initscript/debian/avahi-daemon.in	(working copy)
+@@ -91,6 +91,8 @@
+ #       Function that starts the daemon/service.
+ #
+ d_start() {
++    modprobe capability >/dev/null 2>&1 || true
++
+     $DAEMON -c
+     [ $? = 0 ] && exit 0
+ 
+@@ -150,7 +152,7 @@
+         ;;
+     restart|force-reload)
+         log_begin_msg "Restarting $DESC: $NAME"
+-        d_stop
++        $DAEMON -c && d_stop
+         d_start
+         log_end_msg $?
+         ;;
