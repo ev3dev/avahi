@@ -1,10 +1,13 @@
-avahi (0.6.7-2) UNRELEASED; urgency=low
+avahi (0.6.8-1) unstable; urgency=low
 
   [ Ross Burton ]
   * Package the avahi.hosts(5) manpage
   * Package the hosts conffile
 
- -- Ross Burton <ross@debian.org>  Thu, 16 Feb 2006 22:14:04 +0000
+  [ Sjoerd Simons ]
+  * New upstream release 
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Mon, 27 Feb 2006 23:09:34 +0100
 
 avahi (0.6.7-1) unstable; urgency=low
 
