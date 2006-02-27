@@ -5,9 +5,11 @@ avahi (0.6.8-1) unstable; urgency=low
   * Package the hosts conffile
 
   [ Sjoerd Simons ]
-  * New upstream release 
+  * New upstream release
+  * debian/patches/02_avahi-initscripts.patch
+    Applied upstream
 
- -- Sjoerd Simons <sjoerd@debian.org>  Mon, 27 Feb 2006 23:09:34 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Mon, 27 Feb 2006 23:13:05 +0100
 
 avahi (0.6.7-1) unstable; urgency=low
 
