@@ -37,6 +37,7 @@ DEB_SHLIBDEPS_INCLUDE := debian/libavahi-common3/usr/lib \
 export MONO_SHARED_DIR=$(CURDIR)
 
 binary-predeb/libavahi-cil::
+	-find debian/libavahi-cil -type f -name "*.dll" -or -name "*.mdb" -or -name "*.cs" -or -name "*.config" | xargs chmod -x
 	dh_makeclilibs
 	dh_clideps
 
