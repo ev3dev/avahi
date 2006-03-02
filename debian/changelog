@@ -1,3 +1,11 @@
+avahi (0.6.8-2) unstable; urgency=low
+
+  * libavahi-core's soname changed from 3 to 4. As only
+    avahi-daemon depends on -core it's not a big problem luckily. 
+  * Change the package to reflect the soname change (Closes: #354771) 
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Wed,  1 Mar 2006 10:23:35 +0100
+
 avahi (0.6.8-1) unstable; urgency=low
 
   [ Ross Burton ]
