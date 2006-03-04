@@ -1,3 +1,9 @@
+avahi (0.6.9-2) unstable; urgency=low
+
+  * Update shlibs of libavahi-common 
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sat,  4 Mar 2006 10:36:51 +0100
+
 avahi (0.6.9-1) unstable; urgency=low
 
   * New upstream release
