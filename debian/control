@@ -140,7 +140,7 @@ Description: Avahi's embeddable mDNS/DNS-SD library
  functionality into their applications.
  .
  You should not however use this library for non-embedded applications, you
- shoudl use libavahi-client which interacts with the avahi daemon.
+ should use libavahi-client which interacts with the avahi daemon.
 
 Package: libavahi-core-dev
 Section: libdevel
