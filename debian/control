@@ -287,7 +287,7 @@ Description: compiled XML documentation for the CLI bindings of avahi
  This packages contains the compiled XML documentation for
  the CLI bindings of Avahi for MonoDoc.
 
-Package: libavahi-cil
+Package: libavahi1.0-cil
 Section: libs
 Architecture: all
 Depends: ${cli:Depends}, libavahi-client3, libavahi-glib1

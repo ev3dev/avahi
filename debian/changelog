@@ -1,3 +1,9 @@
+avahi (0.6.9-4) unstable; urgency=low
+
+  * Renamed libavahi-cil to libavahi1.0-cil to conform with the CLI policy
+
+ -- Sebastian Dröge <slomo@ubuntu.com>  Mon,  6 Mar 2006 15:02:35 +0100
+
 avahi (0.6.9-3) unstable; urgency=low
 
   * Fix typo in libavahi-core4's description (Closes: #355402) 

@@ -5,7 +5,7 @@
 include /usr/share/cdbs/1/rules/buildvars.mk
 ifeq (,$(filter $(DEB_BUILD_ARCH), powerpc amd64 i386 ia64))
   DEB_INDEP_PACKAGES := \
-    $(filter-out libavahi-cil,$(DEB_INDEP_PACKAGES))
+    $(filter-out libavahi1.0-cil,$(DEB_INDEP_PACKAGES))
   DEB_INDEP_PACKAGES := \
     $(filter-out monodoc-avahi-manual,$(DEB_INDEP_PACKAGES))
   DEB_INDEP_REGULAR_PACKAGES := $(DEB_INDEP_PACKAGES)
@@ -36,8 +36,8 @@ DEB_SHLIBDEPS_INCLUDE := debian/libavahi-common3/usr/lib \
 
 export MONO_SHARED_DIR=$(CURDIR)
 
-binary-predeb/libavahi-cil::
-	-find debian/libavahi-cil -type f -name "*.dll" -or -name "*.mdb" -or -name "*.cs" -or -name "*.config" | xargs chmod -x
+binary-predeb/libavahi1.0-cil::
+	-find debian/libavahi1.0-cil -type f -name "*.dll" -or -name "*.mdb" -or -name "*.cs" -or -name "*.config" | xargs chmod -x
 	dh_makeclilibs
 	dh_clideps
 
