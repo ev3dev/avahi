@@ -291,6 +291,9 @@ Package: libavahi1.0-cil
 Section: libs
 Architecture: all
 Depends: ${cli:Depends}, libavahi-client3, libavahi-glib1
+Conflicts: libavahi-cil
+Replaces: libavahi-cil
+Provides: libavahi-cil
 Description: CLI bindings for Avahi
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
