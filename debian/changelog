@@ -1,14 +1,16 @@
-avahi (0.6.9-4) unstable; urgency=low
-
-  * Renamed libavahi-cil to libavahi1.0-cil to conform with the CLI policy
-
- -- Sebastian Dröge <slomo@ubuntu.com>  Mon,  6 Mar 2006 15:02:35 +0100
-
 avahi (0.6.9-3) unstable; urgency=low
 
-  * Fix typo in libavahi-core4's description (Closes: #355402) 
+  [ Sebastian Dröge ]
+  * Renamed libavahi-cil to libavahi1.0-cil to conform with the CLI policy
 
- -- Sjoerd Simons <sjoerd@debian.org>  Sun,  5 Mar 2006 15:41:59 +0100
+  [ Sjoerd Simons ]
+  * Fix typo in libavahi-core4's description (Closes: #355402)
+  * debian/patches/02_pthread_flags.patch
+    + Added. Check how gcc handles -pthread in combination with -shared.
+    Fixes FTBS on mips{,el}. (Was fixed, but patch was accidentally reverted
+    upstream)
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Mon,  6 Mar 2006 17:14:09 +0100
 
 avahi (0.6.9-2) unstable; urgency=low
 
