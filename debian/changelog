@@ -1,3 +1,11 @@
+avahi (0.6.9-4) unstable; urgency=low
+
+  * debian/patches/03_cmsg_too_large.patch 
+    + Added. Don't make the cmsg somewhat oversized. Fixes sendmsg returning
+    EINVAL on 64 bit machines with 32 bit user space. 
+    
+ -- Sjoerd Simons <sjoerd@debian.org>  Fri, 10 Mar 2006 10:12:02 +0100
+
 avahi (0.6.9-3) unstable; urgency=low
 
   [ Sebastian Dröge ]
