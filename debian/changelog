@@ -1,3 +1,10 @@
+avahi (0.6.9-5) unstable; urgency=low
+
+  * debian/patches/03_cmsg_too_large.patch
+    + Updated. The previous version undid a fix for alignment on ia64.
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Wed, 15 Mar 2006 19:01:15 +0100
+
 avahi (0.6.9-4) unstable; urgency=low
 
   * debian/patches/03_cmsg_too_large.patch 

@@ -2,25 +2,30 @@ Index: avahi-core/socket.c
 ===================================================================
 --- avahi-core/socket.c	(revision 1177)
 +++ avahi-core/socket.c	(working copy)
-@@ -465,10 +465,10 @@
-     struct iovec io;
- #ifdef IP_PKTINFO
-     struct cmsghdr *cmsg;
--    size_t cmsg_data[( CMSG_SPACE(sizeof(struct in_pktinfo)) / sizeof(size_t)) + 1];
-+    uint8_t cmsg_data[CMSG_SPACE(sizeof(struct in_pktinfo))];
+@@ -513,7 +513,7 @@
+             pkti->ipi_spec_dst.s_addr = src_address->address;
+ 
+         msg.msg_control = cmsg_data;
+-        msg.msg_controllen = sizeof(cmsg_data);
++        msg.msg_controllen = CMSG_SPACE(struct in_pktinfo);
+     }
  #elif defined(IP_SENDSRCADDR)
-     struct cmsghdr *cmsg;
--    size_t cmsg_data[( CMSG_SPACE(sizeof(struct in_addr)) / sizeof(size_t)) + 1];
-+    uint8_t cmsg_data[CMSG_SPACE(sizeof(struct in_addr))];
- #endif
- 
-     assert(fd >= 0);
-@@ -551,7 +551,7 @@
-     struct msghdr msg;
-     struct iovec io;
-     struct cmsghdr *cmsg;
--    size_t cmsg_data[(CMSG_SPACE(sizeof(struct in6_pktinfo))/sizeof(size_t)) + 1];
-+    size_t cmsg_data[CMSG_SPACE(sizeof(struct in6_pktinfo))];
- 
-     assert(fd >= 0);
-     assert(p);
+     if (src_address) {
+@@ -529,7 +529,7 @@
+ 	addr->s_addr =  src_address->address;
+ 	
+ 	msg.msg_control = cmsg_data;
+-	msg.msg_controllen = sizeof(cmsg_data);
++	msg.msg_controllen = CMSG_SPACE(struct in_addr);
+     }
+ #elif defined(IP_MULTICAST_IF)
+     {
+@@ -592,7 +592,7 @@
+             memcpy(&pkti->ipi6_addr, src_address->address, sizeof(src_address->address));
+         
+         msg.msg_control = cmsg_data;
+-        msg.msg_controllen = sizeof(cmsg_data);
++        msg.msg_controllen = CMSG_SPACE(struct in6_pktinfo);
+     } else {
+         msg.msg_control = NULL;
+         msg.msg_controllen = 0;
