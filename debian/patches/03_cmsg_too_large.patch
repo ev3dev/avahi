@@ -7,7 +7,7 @@ Index: avahi-core/socket.c
  
          msg.msg_control = cmsg_data;
 -        msg.msg_controllen = sizeof(cmsg_data);
-+        msg.msg_controllen = CMSG_SPACE(struct in_pktinfo);
++        msg.msg_controllen = CMSG_SPACE(sizeof(struct in_pktinfo));
      }
  #elif defined(IP_SENDSRCADDR)
      if (src_address) {
@@ -16,7 +16,7 @@ Index: avahi-core/socket.c
  	
  	msg.msg_control = cmsg_data;
 -	msg.msg_controllen = sizeof(cmsg_data);
-+	msg.msg_controllen = CMSG_SPACE(struct in_addr);
++	msg.msg_controllen = CMSG_SPACE(sizeof(struct in_addr));
      }
  #elif defined(IP_MULTICAST_IF)
      {
@@ -25,7 +25,7 @@ Index: avahi-core/socket.c
          
          msg.msg_control = cmsg_data;
 -        msg.msg_controllen = sizeof(cmsg_data);
-+        msg.msg_controllen = CMSG_SPACE(struct in6_pktinfo);
++        msg.msg_controllen = CMSG_SPACE(sizeof(struct in6_pktinfo));
      } else {
          msg.msg_control = NULL;
          msg.msg_controllen = 0;
