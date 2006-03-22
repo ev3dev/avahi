@@ -1,8 +1,19 @@
 avahi (0.6.9-6) UNRELEASED; urgency=low
 
+  [ Sjoerd Simons ]
   * Also ship docs/NEWS (Closes: #355267)
 
- -- Sjoerd Simons <sjoerd@debian.org>  Thu, 16 Mar 2006 23:15:59 +0100
+  [ Sebastian Dröge ]
+  * debian/patches/04_initscript_log_end_msg.patch:
+    + Replace exit statements with return, otherwise log_end_msg might not
+      be called after d_start. Patch by Benjamin Leipold. (Closes: #358190)
+  * debian/patches/05_empty_service_directory.patch:
+    + Change the error message that is printed when running the daemon with an
+      empty or non-existing /etc/avahi/services directory to an informational
+      message as we have no service files installed by default. Also add  that
+      this could be caused by an empty service directory. (Closes: #355615)
+
+ -- Sebastian Dröge <slomo@ubuntu.com>  Wed, 22 Mar 2006 01:08:18 +0100
 
 avahi (0.6.9-5) unstable; urgency=low
 
