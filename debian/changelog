@@ -1,9 +1,13 @@
-avahi (0.6.9-6) UNRELEASED; urgency=low
+avahi (0.6.9-6) unstable; urgency=low
 
   [ Sjoerd Simons ]
   * Also ship docs/NEWS (Closes: #355267)
   * Don't let libavahi-client3 recommend avahi-daemon. Let the end-user apps
     decide if they want to recommend avahi-daemon or not. (Closes: #357416)
+  * debian/patches/99_autotools.patch
+    + Added. Update the autotools files so 
+    debian/patches/02_pthread_flags.patch actually has effect. Fixes ftbs on
+    mips (Closes: #358304)
 
   [ Sebastian Dröge ]
   * debian/patches/04_initscript_log_end_msg.patch:
@@ -16,7 +20,7 @@ avahi (0.6.9-6) UNRELEASED; urgency=low
       this could be caused by an empty service directory. (Closes: #355615)
 
 
- -- Sjoerd Simons <sjoerd@debian.org>  Wed, 22 Mar 2006 19:47:08 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Wed, 22 Mar 2006 20:01:46 +0100
 
 avahi (0.6.9-5) unstable; urgency=low
 
