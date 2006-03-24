@@ -1,11 +1,32 @@
---- avahi-daemon/static-services.c.old	2006-03-22 01:06:03.487842768 +0100
-+++ avahi-daemon/static-services.c	2006-03-22 01:07:21.197029176 +0100
-@@ -682,7 +682,7 @@
+Index: trunk/avahi-daemon/static-services.c
+===================================================================
+--- trunk/avahi-daemon/static-services.c (revision 1162)
++++ trunk/avahi-daemon/static-services.c (revision 1179)
+@@ -656,4 +656,5 @@
+     StaticServiceGroup *g, *n;
+     glob_t globbuf;
++    int globret;
+     char **p;
+ 
+@@ -682,6 +683,18 @@
  
      memset(&globbuf, 0, sizeof(globbuf));
-     if (glob(in_chroot ? "/services/*.service" : AVAHI_SERVICE_DIR "/*.service", GLOB_ERR, NULL, &globbuf) != 0)
+-    if (glob(in_chroot ? "/services/*.service" : AVAHI_SERVICE_DIR "/*.service", GLOB_ERR, NULL, &globbuf) != 0)
 -        avahi_log_error("Failed to read service directory.");
-+        avahi_log_info("Failed to read service directory or no service files in service directory.");
++    if ((globret = glob(in_chroot ? "/services/*.service" : AVAHI_SERVICE_DIR "/*.service", GLOB_ERR, NULL, &globbuf)) != 0)
++        switch (globret) {
++	    case GLOB_NOSPACE:
++	        avahi_log_error("Not enough memory to read service directory.");
++	        break;
++
++	    case GLOB_ABORTED:
++	        avahi_log_error("Failed to read %s.", AVAHI_SERVICE_DIR);
++	        break;
++
++            case GLOB_NOMATCH:
++	        avahi_log_info("No service found in %s.", AVAHI_SERVICE_DIR);
++	        break;
++	        }
      else {
          for (p = globbuf.gl_pathv; *p; p++)
-             load_file(*p);
+

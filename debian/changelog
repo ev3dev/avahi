@@ -1,3 +1,10 @@
+avahi (0.6.9-7) unstable; urgency=low
+
+  * debian/patches/05_empty_service_directory.patch:
+    + updated to use upstream's solution for this which is much cleaner.
+
+ -- Sebastian Dröge <slomo@ubuntu.com>  Fri, 24 Mar 2006 15:17:49 +0100
+
 avahi (0.6.9-6) unstable; urgency=low
 
   [ Sjoerd Simons ]
