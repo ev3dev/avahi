@@ -1,9 +1,14 @@
-avahi (0.6.9-7) unstable; urgency=low
+avahi (0.6.9-7) unstable; urgency=medium
 
+  [ Sebastian Dröge ]
   * debian/patches/05_empty_service_directory.patch:
     + updated to use upstream's solution for this which is much cleaner.
 
- -- Sebastian Dröge <slomo@ubuntu.com>  Fri, 24 Mar 2006 15:17:49 +0100
+  [ Sjoerd Simons ]
+  * Urgency medium. Recent version include some big bug-fixes wrt. the testing
+    version. (i.e. it actually works on sparc64 and ppc64)
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Mon,  3 Apr 2006 23:31:16 +0200
 
 avahi (0.6.9-6) unstable; urgency=low
 
