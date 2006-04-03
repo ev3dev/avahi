@@ -3,7 +3,7 @@ Section: net
 Priority: optional
 Maintainer: Ross Burton <ross@debian.org>
 Uploaders: Sjoerd Simons <sjoerd@debian.org>, Sebastian Dröge <slomo@ubuntu.com>
-Build-Depends: debhelper (>= 4.2.28), cdbs, libcap-dev, libgdbm-dev, libglib2.0-dev (>= 2.4), libgtk2.0-dev (>= 2.4), libglade2-dev, libexpat-dev, libdaemon-dev, libdbus-1-dev (>= 0.60), python2.4 (>= 2.4), python2.4-gdbm, python2.4-dbus, python2.4-gtk2, libqt3-mt-dev, libqt4-dev, xmltoman, mono-mcs (>= 1.0) [i386 powerpc amd64 ia64] | c-sharp-compiler [i386 powerpc amd64 ia64], cli-common (>= 0.2.0)[ i386 powerpc amd64 ia64], mono-gac [i386 powerpc amd64 ia64], monodoc-base (>= 1.1.9) [i386 powerpc amd64 ia64]
+Build-Depends: debhelper (>= 4.2.28), cdbs, libcap-dev, libgdbm-dev, libglib2.0-dev (>= 2.4), libgtk2.0-dev (>= 2.4), libglade2-dev, libexpat-dev, libdaemon-dev, libdbus-1-dev (>= 0.60), python2.4 (>= 2.4), python2.4-gdbm, python2.4-dbus, python2.4-gtk2, libqt3-mt-dev, libqt4-dev, xmltoman, mono-mcs (>= 1.0) [i386 amd64 ] | c-sharp-compiler [i386 amd64 ], cli-common (>= 0.2.0)[ i386 amd64 ], mono-gac [i386 amd64 ], monodoc-base (>= 1.1.9) [i386 amd64]
 Standards-Version: 3.6.2
 
 Package: avahi-daemon

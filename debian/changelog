@@ -7,8 +7,10 @@ avahi (0.6.9-7) unstable; urgency=medium
   [ Sjoerd Simons ]
   * Urgency medium. Recent version include some big bug-fixes wrt. the testing
     version. (i.e. it actually works on sparc64 and ppc64)
+  * Only build the mono library on i386 and amd64 for now. Other architectures
+    can't install the mono build-deps currently.
 
- -- Sjoerd Simons <sjoerd@debian.org>  Mon,  3 Apr 2006 23:31:16 +0200
+ -- Sjoerd Simons <sjoerd@debian.org>  Tue,  4 Apr 2006 00:02:16 +0200
 
 avahi (0.6.9-6) unstable; urgency=low
 
