@@ -1,3 +1,10 @@
+avahi (0.6.9-8) unstable; urgency=medium
+
+  * Pass --disable-mono --disable-monodoc to configure on ia64 and powerpc.
+    This makes the fix in the previous package actually usefull.
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Tue,  4 Apr 2006 00:33:58 +0200
+
 avahi (0.6.9-7) unstable; urgency=medium
 
   [ Sebastian Dröge ]
