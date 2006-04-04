@@ -1,3 +1,10 @@
+avahi (0.6.9-9) UNRELEASED; urgency=low
+
+  * Don't build-depend on libcap-dev on hurd, kfreebsd-* and netbsd-i386 archs
+    (Closes: #360596)
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Tue,  4 Apr 2006 13:34:12 +0200
+
 avahi (0.6.9-8) unstable; urgency=medium
 
   * Pass --disable-mono --disable-monodoc to configure on ia64 and powerpc.
