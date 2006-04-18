@@ -1,9 +1,15 @@
 avahi (0.6.9-9) UNRELEASED; urgency=low
 
+  [ Sjoerd Simons ]
   * Don't build-depend on libcap-dev on hurd, kfreebsd-* and netbsd-i386 archs
     (Closes: #360596)
 
- -- Sjoerd Simons <sjoerd@debian.org>  Tue,  4 Apr 2006 13:34:12 +0200
+  [ Sebastian Dröge ]
+  * debian/patches/07_avahi-sharp_missing_lock.patch (SVN rev 1188):
+    + Add a missing lock around the avahi_entry_group_add_service_strlst()
+      call (Closes: #348999)
+
+ -- Sebastian Dröge <slomo@ubuntu.com>  Tue, 18 Apr 2006 16:12:29 +0200
 
 avahi (0.6.9-8) unstable; urgency=medium
 
