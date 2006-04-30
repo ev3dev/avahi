@@ -36,6 +36,16 @@ DEB_SHLIBDEPS_INCLUDE := debian/libavahi-common3/usr/lib \
 
 export MONO_SHARED_DIR=$(CURDIR)
 
+install/libavahi1.0-cil::
+	# copy files to the location required by the CLI policy
+	mkdir -p debian/tmp/usr/lib/cli/avahi-sharp-1.0
+	cp avahi-sharp/avahi-sharp.dll debian/tmp/usr/lib/cli/avahi-sharp-1.0
+	cp avahi-sharp/avahi-sharp.dll.config debian/tmp/usr/lib/cli/avahi-sharp-1.0
+	cp avahi-sharp/avahi-sharp.dll.mdb debian/tmp/usr/lib/cli/avahi-sharp-1.0
+
+binary-install/libavahi1.0-cil::
+	dh_installcligac
+
 binary-predeb/libavahi1.0-cil::
 	-find debian/libavahi1.0-cil -type f -name "*.dll" -or -name "*.mdb" -or -name "*.cs" -or -name "*.config" | xargs chmod -x
 	dh_makeclilibs

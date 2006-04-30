@@ -1,2 +1,2 @@
-debian/tmp/usr/lib/mono/*
+debian/tmp/usr/lib/cli/avahi-sharp-1.0/*
 debian/tmp/usr/lib/pkgconfig/avahi-sharp.pc

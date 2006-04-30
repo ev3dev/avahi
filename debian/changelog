@@ -8,6 +8,8 @@ avahi (0.6.9-9) UNRELEASED; urgency=low
   * debian/patches/07_avahi-sharp_missing_lock.patch (SVN rev 1188):
     + Add a missing lock around the avahi_entry_group_add_service_strlst()
       call (Closes: #348999)
+  * Make libavahi1.0-cil conform to the latest version of the CLI policy and
+    use late GAC installation via dh_installcligac
 
  -- Sebastian Dröge <slomo@ubuntu.com>  Tue, 18 Apr 2006 16:12:29 +0200
 
