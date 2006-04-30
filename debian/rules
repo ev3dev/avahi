@@ -48,8 +48,8 @@ binary-install/libavahi1.0-cil::
 
 binary-predeb/libavahi1.0-cil::
 	-find debian/libavahi1.0-cil -type f -name "*.dll" -or -name "*.mdb" -or -name "*.cs" -or -name "*.config" | xargs chmod -x
-	dh_makeclilibs
-	dh_clideps
+	dh_makeclilibs -v0.6.5
+	dh_clideps -d
 
 binary-install/avahi-discover::
 	dh_python -p$(cdbs_curpkg)
