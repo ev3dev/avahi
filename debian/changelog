@@ -10,6 +10,9 @@ avahi (0.6.9-9) UNRELEASED; urgency=low
       call (Closes: #348999)
   * Make libavahi1.0-cil conform to the latest version of the CLI policy and
     use late GAC installation via dh_installcligac
+  * patches/08_avahi-sharp-pkg-config-new-location.patch:
+    + Adjust the location of the .dll in the pkg-config file for the new CLI
+      policy.
 
  -- Sebastian Dröge <slomo@ubuntu.com>  Tue, 18 Apr 2006 16:12:29 +0200
 

@@ -1,0 +1,8 @@
+--- avahi-sharp.pc.in.old	2006-05-01 12:06:37.200731312 +0200
++++ avahi-sharp.pc.in	2006-05-01 12:06:49.643839672 +0200
+@@ -5,4 +5,4 @@
+ Name: avahi-sharp
+ Description: Mono bindings for the Avahi mDNS/DNS-SD stack
+ Version: @PACKAGE_VERSION@
+-Libs: -r:${libdir}/mono/avahi-sharp/avahi-sharp.dll
++Libs: -r:${libdir}/cli/avahi-sharp-1.0/avahi-sharp.dll
