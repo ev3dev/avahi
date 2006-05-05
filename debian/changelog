@@ -1,8 +1,17 @@
-avahi (0.6.9-9) UNRELEASED; urgency=low
+avahi (0.6.10-0.1) UNRELEASED; urgency=low
 
   [ Sjoerd Simons ]
+  * New upstream release
   * Don't build-depend on libcap-dev on hurd, kfreebsd-* and netbsd-i386 archs
     (Closes: #360596)
+  * Dropped patches that have been applied upstream:
+    + debian/patches/02_pthread_flags.patch
+    + debian/patches/03_cmsg_too_large.patch
+    + debian/patches/04_initscript_log_end_msg.patch
+    + debian/patches/05_empty_service_directory.patch
+    + debian/patches/07_avahi-sharp_missing_lock.patch
+  * debian/patches/99_autotools.patch
+    + Not needed anymore 
 
   [ Sebastian Dröge ]
   * debian/patches/07_avahi-sharp_missing_lock.patch (SVN rev 1188):
@@ -14,7 +23,7 @@ avahi (0.6.9-9) UNRELEASED; urgency=low
     + Adjust the location of the .dll in the pkg-config file for the new CLI
       policy.
 
- -- Sebastian Dröge <slomo@ubuntu.com>  Tue, 18 Apr 2006 16:12:29 +0200
+ -- Sjoerd Simons <sjoerd@debian.org>  Fri,  5 May 2006 10:32:00 +0200
 
 avahi (0.6.9-8) unstable; urgency=medium
 
