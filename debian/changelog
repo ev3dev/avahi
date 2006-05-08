@@ -1,4 +1,4 @@
-avahi (0.6.10-0.1) UNRELEASED; urgency=low
+avahi (0.6.10-1) unstable; urgency=low
 
   [ Sjoerd Simons ]
   * New upstream release
@@ -11,7 +11,7 @@ avahi (0.6.10-0.1) UNRELEASED; urgency=low
     + debian/patches/05_empty_service_directory.patch
     + debian/patches/07_avahi-sharp_missing_lock.patch
   * debian/patches/99_autotools.patch
-    + Not needed anymore 
+    + Not needed anymore
 
   [ Sebastian Dröge ]
   * debian/patches/07_avahi-sharp_missing_lock.patch (SVN rev 1188):
@@ -23,7 +23,7 @@ avahi (0.6.10-0.1) UNRELEASED; urgency=low
     + Adjust the location of the .dll in the pkg-config file for the new CLI
       policy.
 
- -- Sjoerd Simons <sjoerd@debian.org>  Fri,  5 May 2006 10:32:00 +0200
+ -- Sjoerd Simons <sjoerd@debian.org>  Mon,  8 May 2006 22:04:20 +0200
 
 avahi (0.6.9-8) unstable; urgency=medium
 
