@@ -2,6 +2,8 @@ avahi (0.6.10-1) unstable; urgency=high
 
   * New upstream release
   * Urgency high, contains security fixes
+    - Local DOS via unspecified mDNS name conflicts (CVE-2006-2288)
+    - Local buffer overflow in avahi-core (CVS-2006-2289)
   * No longer ship the avahi cli bindings, they now have their own source
     package (Closes: #360881)
   * Don't build-depend on libcap-dev on hurd, kfreebsd-* and netbsd-i386 archs
