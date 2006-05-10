@@ -1,17 +1,5 @@
 #! /usr/bin/make -f 
 
-# Filter out the mono packages on architectures that don't support it
-#
-include /usr/share/cdbs/1/rules/buildvars.mk
-ifeq (,$(filter $(DEB_BUILD_ARCH), amd64 i386))
-  DEB_INDEP_PACKAGES := \
-    $(filter-out libavahi1.0-cil,$(DEB_INDEP_PACKAGES))
-  DEB_INDEP_PACKAGES := \
-    $(filter-out monodoc-avahi-manual,$(DEB_INDEP_PACKAGES))
-  DEB_INDEP_REGULAR_PACKAGES := $(DEB_INDEP_PACKAGES)
-  MONO_FLAGS=--disable-mono --disable-monodoc
-endif
-
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/autotools.mk
 include /usr/share/cdbs/1/rules/simple-patchsys.mk
@@ -25,7 +13,7 @@ common-binary-post-install-arch:: list-missing
 LDFLAGS += -Wl,-z,defs -Wl,-O1
 
 DEB_CONFIGURE_EXTRA_FLAGS += --enable-compat-libdns_sd --enable-compat-howl \
-                            $(MONO_FLAGS)
+                            --disable-mono --disable-monodoc
 
 
 DEB_INSTALL_DOCS_ALL += docs/README docs/NEWS
@@ -33,23 +21,6 @@ DEB_INSTALL_DOCS_ALL += docs/README docs/NEWS
 DEB_SHLIBDEPS_INCLUDE := debian/libavahi-common3/usr/lib \
                          debian/libavahi-core4/usr/lib \
                          debian/libavahi-client3/usr/lib
-
-export MONO_SHARED_DIR=$(CURDIR)
-
-install/libavahi1.0-cil::
-	# copy files to the location required by the CLI policy
-	mkdir -p debian/tmp/usr/lib/cli/avahi-sharp-1.0
-	cp avahi-sharp/avahi-sharp.dll debian/tmp/usr/lib/cli/avahi-sharp-1.0
-	cp avahi-sharp/avahi-sharp.dll.config debian/tmp/usr/lib/cli/avahi-sharp-1.0
-	cp avahi-sharp/avahi-sharp.dll.mdb debian/tmp/usr/lib/cli/avahi-sharp-1.0
-
-binary-install/libavahi1.0-cil::
-	dh_installcligac
-
-binary-predeb/libavahi1.0-cil::
-	-find debian/libavahi1.0-cil -type f -name "*.dll" -or -name "*.mdb" -or -name "*.cs" -or -name "*.config" | xargs chmod -x
-	dh_makeclilibs -m0.6.5
-	dh_clideps -d
 
 binary-install/avahi-discover::
 	dh_python -p$(cdbs_curpkg)
@@ -61,6 +32,3 @@ binary-install/python2.4-avahi::
 
 binary-fixup/avahi-daemon binary-fixup/avahi-dnsconfd::
 	chmod +x debian/$(cdbs_curpkg)/etc/dbus-1/event.d/*
-
-clean::
-	rm -rf $(MONO_SHARED_DIR)/.wapi

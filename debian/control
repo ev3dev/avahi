@@ -3,7 +3,7 @@ Section: net
 Priority: optional
 Maintainer: Ross Burton <ross@debian.org>
 Uploaders: Sjoerd Simons <sjoerd@debian.org>, Sebastian Dröge <slomo@ubuntu.com>
-Build-Depends: debhelper (>= 4.2.28), cdbs, libcap-dev [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64 !netbsd-i386], libgdbm-dev, libglib2.0-dev (>= 2.4), libgtk2.0-dev (>= 2.4), libglade2-dev, libexpat-dev, libdaemon-dev, libdbus-1-dev (>= 0.60), python2.4 (>= 2.4), python2.4-gdbm, python2.4-dbus, python2.4-gtk2, libqt3-mt-dev, libqt4-dev, xmltoman, mono-mcs (>= 1.0) [i386 amd64 ] | c-sharp-compiler [i386 amd64 ], cli-common-dev (>= 0.4.0)[ i386 amd64 ], mono-gac [i386 amd64 ], monodoc-base (>= 1.1.9) [i386 amd64]
+Build-Depends: debhelper (>= 4.2.28), cdbs, libcap-dev [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64 !netbsd-i386], libgdbm-dev, libglib2.0-dev (>= 2.4), libgtk2.0-dev (>= 2.4), libglade2-dev, libexpat-dev, libdaemon-dev, libdbus-1-dev (>= 0.60), python2.4 (>= 2.4), python2.4-gdbm, python2.4-dbus, python2.4-gtk2, libqt3-mt-dev, libqt4-dev, xmltoman
 Standards-Version: 3.6.2
 
 Package: avahi-daemon
@@ -274,34 +274,6 @@ Description: Development headers for the Avahi QT4 integration library
  .
  This package contains the development headers for the interface
  to integrate the Avahi libraries  into a QT4 main loop application.
-
-Package: monodoc-avahi-manual
-Architecture: all
-Depends: monodoc-manual
-Description: compiled XML documentation for the CLI bindings of avahi
- The MonoDoc Project is the documentation framework of the Mono project which
- provides detailed API documentation for all Mono components and the Mono CLI
- implementation.
- .
- This packages contains the compiled XML documentation for
- the CLI bindings of Avahi for MonoDoc.
-
-Package: libavahi1.0-cil
-Section: libs
-Architecture: all
-Depends: ${cli:Depends}, libavahi-client3, libavahi-glib1
-Conflicts: libavahi-cil
-Replaces: libavahi-cil
-Provides: libavahi-cil
-Description: CLI bindings for Avahi
- Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
- It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
- example you can plug into a network and instantly find printers to
- print to, files to look at and people to talk to.
- .
- This package contains the CLI bindings to Avahi, allowing you to use Avahi from
- Mono languages (e.g. C# and Boo).
 
 Package: libavahi-compat-howl0
 Section: libs
