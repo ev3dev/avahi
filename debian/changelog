@@ -1,7 +1,9 @@
-avahi (0.6.10-1) unstable; urgency=low
+avahi (0.6.10-1) unstable; urgency=high
 
-  [ Sjoerd Simons ]
   * New upstream release
+  * Urgency high, contains security fixes
+  * No longer ship the avahi cli bindings, they now have their own source
+    package (Closes: #360881)
   * Don't build-depend on libcap-dev on hurd, kfreebsd-* and netbsd-i386 archs
     (Closes: #360596)
   * Dropped patches that have been applied upstream:
@@ -12,18 +14,9 @@ avahi (0.6.10-1) unstable; urgency=low
     + debian/patches/07_avahi-sharp_missing_lock.patch
   * debian/patches/99_autotools.patch
     + Not needed anymore
+  * Bump libavahi-core3's shlibs
 
-  [ Sebastian Dröge ]
-  * debian/patches/07_avahi-sharp_missing_lock.patch (SVN rev 1188):
-    + Add a missing lock around the avahi_entry_group_add_service_strlst()
-      call (Closes: #348999)
-  * Make libavahi1.0-cil conform to the latest version of the CLI policy and
-    use late GAC installation via dh_installcligac
-  * patches/08_avahi-sharp-pkg-config-new-location.patch:
-    + Adjust the location of the .dll in the pkg-config file for the new CLI
-      policy.
-
- -- Sjoerd Simons <sjoerd@debian.org>  Mon,  8 May 2006 22:04:20 +0200
+ -- Sjoerd Simons <sjoerd@debian.org>  Wed, 10 May 2006 11:02:17 +0200
 
 avahi (0.6.9-8) unstable; urgency=medium
 
