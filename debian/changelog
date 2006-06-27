@@ -6,6 +6,9 @@ avahi (0.6.11-1) unstable; urgency=low
 
   [ Sebastian Dröge ]
   * New upstream release
+  * debian/patches/09_initscripts-default.patch:
+    Add /etc/default/avahi-daemon and /etc/default/avahi-dnsconfd to allow
+    disabling of the startup of both daemons (Closes: #349603)
 
  -- Sebastian Dröge <slomo@ubuntu.com>  Mon, 26 Jun 2006 09:56:01 +0200
 
