@@ -1,4 +1,4 @@
-avahi (0.6.11-1) unstable; urgency=low
+avahi (0.6.11-1) UNRELEASED; urgency=low
 
   [ Sjoerd Simons ]
   * debian/copyright: Obfuscate Lennart poettering's e-mail address on his
@@ -10,7 +10,10 @@ avahi (0.6.11-1) unstable; urgency=low
     Add /etc/default/avahi-daemon and /etc/default/avahi-dnsconfd to allow
     disabling of the startup of both daemons (Closes: #349603)
 
- -- Sebastian Dröge <slomo@ubuntu.com>  Mon, 26 Jun 2006 09:56:01 +0200
+  [ Sjoerd Simons ]
+  * Update the python packages for the new policy. FIXME not finished yet
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu, 29 Jun 2006 23:45:53 +0200
 
 avahi (0.6.10-1) unstable; urgency=high
 

@@ -23,10 +23,12 @@ DEB_SHLIBDEPS_INCLUDE := debian/libavahi-common3/usr/lib \
                          debian/libavahi-client3/usr/lib
 
 binary-install/avahi-discover::
+	dh_pysupport -p$(cdbs_curpkg)
 	dh_python -p$(cdbs_curpkg)
 	rm -f debian/tmp/usr/lib/python*/site-packages/avahi/*.py[co]
 
 binary-install/python2.4-avahi::
+	dh_pysupport -p$(cdbs_curpkg)
 	dh_python -p$(cdbs_curpkg)
 	rm -f debian/tmp/usr/lib/python*/site-packages/avahi/*.py[co]
 
