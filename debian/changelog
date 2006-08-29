@@ -1,3 +1,15 @@
+avahi (0.6.13-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/libavahi-client3.shlibs,
+    debian/libavahi-compat-libdnssd1.shlibs:
+    + Bumped for new functions
+  * debian/avahi-utils.install,
+    debian/avahi-utils.manpages:
+    + Added new avahi-set-host-name utility for setting the mDNS hostname
+
+ -- Sebastian Dröge <slomo@ubuntu.com>  Sun, 27 Aug 2006 22:10:05 +0200
+
 avahi (0.6.12-1) unstable; urgency=low
 
   * New upstream version
