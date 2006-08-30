@@ -1,3 +1,11 @@
+avahi (0.6.13-2) unstable; urgency=low
+
+  * debian/patches/02_static-hosts.patch:
+    + Fix assertion failure when using static hosts (Closes: #385297)
+      Patch from upstream SVN (r1285)
+
+ -- Sebastian Dröge <slomo@ubuntu.com>  Wed, 30 Aug 2006 18:29:10 +0200
+
 avahi (0.6.13-1) unstable; urgency=low
 
   * New upstream release
