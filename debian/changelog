@@ -1,5 +1,6 @@
 avahi (0.6.13-3) UNRELEASED; urgency=low
 
+  [ Sebastian Dröge ]
   * debian/control,
     debian/pyversions:
     + Allow the modules to be used with all supported python versions greater
@@ -7,7 +8,12 @@ avahi (0.6.13-3) UNRELEASED; urgency=low
   * debian/pycompat:
     + Dropped, not required by policy anymore
 
- -- Sebastian Dröge <slomo@ubuntu.com>  Thu, 31 Aug 2006 23:05:32 +0200
+  [ Sjoerd Simons ]
+  * Make libavahi-compat-libdnssd1 depend on libnss-mdns as it's needed for
+    proper operation.
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun,  3 Sep 2006 19:27:13 +0200
+
 
 avahi (0.6.13-2) unstable; urgency=low
 
