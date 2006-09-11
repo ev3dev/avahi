@@ -1,4 +1,4 @@
-avahi (0.6.13-3) UNRELEASED; urgency=low
+avahi (0.6.13-3) unstable; urgency=low
 
   [ Sebastian Dröge ]
   * debian/control,
@@ -11,6 +11,8 @@ avahi (0.6.13-3) UNRELEASED; urgency=low
   [ Sjoerd Simons ]
   * Make libavahi-compat-libdnssd1 depend on libnss-mdns as it's needed for
     proper operation.
+  * debian/clean-la.mk: Copy clean-la.mk from the gnome-pkg-tools packages.
+    Removes dependency_libs from the .la file.
 
  -- Sjoerd Simons <sjoerd@debian.org>  Sun,  3 Sep 2006 19:27:13 +0200
 
