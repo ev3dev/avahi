@@ -1,5 +1,6 @@
-avahi (0.6.14-1) UNRELEASED; urgency=low
+avahi (0.6.14-1) unstable; urgency=low
 
+  [ Sebastian Dröge ]
   * New upstream release
   * debian/patches/02_static-hosts.patch:
     + Dropped, merged upstream
@@ -13,7 +14,11 @@ avahi (0.6.14-1) UNRELEASED; urgency=low
     debian/avahi-autoipd.install:
     + Add new avahi-autoipd package
 
- -- Sebastian Dröge <slomo@ubuntu.com>  Tue, 26 Sep 2006 23:55:31 +0200
+  [ Sjoerd Simons ]
+  * Let libavahi-compat-libdnssd1 recommend libnss-mdns instead of depending
+    on it. (Closes: #390614)
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Mon,  2 Oct 2006 19:51:56 +0200
 
 avahi (0.6.13-3) unstable; urgency=low
 
