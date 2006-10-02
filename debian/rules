@@ -35,3 +35,7 @@ binary-install/python-avahi::
 
 binary-fixup/avahi-daemon binary-fixup/avahi-dnsconfd::
 	chmod +x debian/$(cdbs_curpkg)/etc/dbus-1/event.d/*
+
+common-install-impl::
+	mv $(DEB_DESTDIR)/etc/dhcp3/dhclient-exit-hooks.d/avahi-autoipd \
+		$(DEB_DESTDIR)/etc/dhcp3/dhclient-exit-hooks.d/zzz_avahi-autoipd

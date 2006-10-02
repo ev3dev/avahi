@@ -17,8 +17,10 @@ avahi (0.6.14-1) unstable; urgency=low
   [ Sjoerd Simons ]
   * Let libavahi-compat-libdnssd1 recommend libnss-mdns instead of depending
     on it. (Closes: #390614)
+  * Install avahi-autoipd's exit hook as zzz_avahi-autoipd to ensure it runs
+    last.
 
- -- Sjoerd Simons <sjoerd@debian.org>  Mon,  2 Oct 2006 19:51:56 +0200
+ -- Sjoerd Simons <sjoerd@debian.org>  Mon,  2 Oct 2006 21:03:20 +0200
 
 avahi (0.6.13-3) unstable; urgency=low
 
