@@ -26,6 +26,11 @@ case "$1" in
         usermod -d /var/run/avahi-daemon avahi
     fi
 
+    # Add the netdev group unless it's already there
+    if ! getent group netdev >/dev/null; then
+      addgroup --quiet --system netdev || true
+    fi
+
     # Ask the bus to reload the config file
     if [ -x "/etc/init.d/dbus" ]; then
       invoke-rc.d dbus force-reload || true

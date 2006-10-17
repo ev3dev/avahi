@@ -14,6 +14,8 @@ avahi (0.6.14-2) unstable; urgency=low
       for the patch.
   * debian/patches/10_initscripts-scriptname.patch:
     + Set SCRIPTNAME variable in init scripts (Closes: #386957)
+  * debian/avahi-daemon.postinst:
+    + Add the netdev group unless it's already there (Closes: #385495, #389243)
 
  -- Sebastian Dröge <slomo@ubuntu.com>  Tue, 17 Oct 2006 18:45:52 +0200
 
