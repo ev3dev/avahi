@@ -1,3 +1,22 @@
+avahi (0.6.14-2) unstable; urgency=low
+
+  * debian/control:
+    + Update Standards-Version to 3.7.2
+    + Recommend dhcp3-client instead of non-existing dhclient
+      (Closes: #392076, #391924)
+    + Change QT to Qt in all descriptions (Closes: #384783)
+    + Change Maintainer to pkg-utopia team
+    + Add XS-X-Vcs-Svn control field
+  * debian/control,
+    debian/rules:
+    + Don't build avahi-autoipd on something else than Linux until it is
+      ported (Closes: #391298). Thanks to Aurelien Jarno <aurel32@debian.org>
+      for the patch.
+  * debian/patches/10_initscripts-scriptname.patch:
+    + Set SCRIPTNAME variable in init scripts (Closes: #386957)
+
+ -- Sebastian Dröge <slomo@ubuntu.com>  Tue, 17 Oct 2006 18:45:52 +0200
+
 avahi (0.6.14-1) unstable; urgency=low
 
   [ Sebastian Dröge ]
