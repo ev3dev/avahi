@@ -1,0 +1,27 @@
+#!/bin/sh -e
+# Description:      Add routes to allow communication between machines which
+#                   only have an IPv4LL address assigned and those which only
+#                   have a routable address assigned.
+#
+#                   See http://developer.apple.com/qa/qa2004/qa1357.html for
+#                   more information.
+
+[ "$IFACE" != "lo" ] || exit 0
+[ "$ADDRFAM" = "inet" ] || exit 0
+[ "$METHOD" = "static" -o "$METHOD" = "dhcp" ] || exit 0
+
+
+if [ -x /bin/ip ]; then
+	# route already present?
+	[ "`ip route show dev $IFACE | grep ^169.254.0.0/16`" ] && exit 0
+
+	/bin/ip route add 169.254.0.0/16 dev $IFACE metric 1000 scope link
+	/bin/ip route add default dev $IFACE metric 1000 scope link
+elif [ -x /sbin/route ]; then
+	# route already present?
+	[ "`/sbin/route -n | grep ^169.254.0.0 | grep $IFACE`" ] && exit 0
+
+	/sbin/route add -net 169.254.0.0 netmask 255.255.0.0 dev $IFACE metric 99
+	/sbin/route add default dev $IFACE metric 99
+fi
+
