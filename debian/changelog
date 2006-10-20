@@ -18,7 +18,8 @@ avahi (0.6.14-2) unstable; urgency=low
     + Add the netdev group unless it's already there (Closes: #385495, #389243)
   * debian/avahi-autoipd.ifup,
     debian/avahi-autoipd.ifdown,
-    debian/rules:
+    debian/rules,
+    debian/patches/11_avahi-autoipd.action-add-routes.patch:
     + Add ifupdown scripts to set routes to allow communication between
       machines which only have an IPv4LL address assigned and those which
       only have a routable address assigned.
