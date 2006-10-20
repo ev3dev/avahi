@@ -8,7 +8,10 @@
 
 [ "$IFACE" != "lo" ] || exit 0
 [ "$ADDRFAM" = "inet" ] || exit 0
-[ "$METHOD" = "static" -o "$METHOD" = "dhcp" ] || exit 0
+case "$METHOD" in
+	static|dhcp|NetworkManager) ;;
+	*) exit 0
+esac
 
 
 if [ -x /bin/ip ]; then
