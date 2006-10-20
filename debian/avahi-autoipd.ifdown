@@ -22,7 +22,7 @@ elif [ -x /sbin/route ]; then
 	# route already present?
 	[ "`/sbin/route -n | grep ^169.254.0.0 | grep $IFACE`" ] || exit 0
 
-	/sbin/route del -net 169.254.0.0 netmask 255.255.0.0 dev $IFACE metric 99 || true
-	/sbin/route del default dev $IFACE metric 99 || true
+	/sbin/route del -net 169.254.0.0 netmask 255.255.0.0 dev $IFACE metric 1000 || true
+	/sbin/route del default dev $IFACE metric 1000 || true
 fi
 
