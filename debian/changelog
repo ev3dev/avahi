@@ -29,7 +29,8 @@ avahi (0.6.14-2) unstable; urgency=low
   [ Sjoerd Simons ]
   * debian/avahi-autoipd.ifup,
     debian/avahi-autoipd.ifdown,
-    + Also recognize the NetworkManager method as valid for ipv4ll routes
+    + Also recognise the NetworkManager method and address family(?!) as valid
+    for ipv4ll routes
    
  -- Sjoerd Simons <sjoerd@debian.org>  Fri, 20 Oct 2006 21:55:17 +0200
 

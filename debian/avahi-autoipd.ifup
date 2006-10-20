@@ -7,7 +7,11 @@
 #                   more information.
 
 [ "$IFACE" != "lo" ] || exit 0
-[ "$ADDRFAM" = "inet" ] || exit 0
+case "$ADDRFAM" in
+  inet|NetworkManager) ;;
+  *) exit 0
+esac
+
 case "$METHOD" in
 	static|dhcp|NetworkManager) ;;
 	*) exit 0
