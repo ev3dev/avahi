@@ -63,10 +63,9 @@ Description: Avahi DNS configuration tool
 Package: python-avahi
 Section: python
 Architecture: all
-Replaces: avahi-utils (<< 0.4)
 Depends: ${python:Depends}, python-gdbm (>= 2.4.3-1), python-glade2 (>= 2.8.6-2), libavahi-common-data
 Provides: ${python:Provides}
-Replaces: python2.4-avahi (<< 0.6.11)
+Replaces: python2.4-avahi (<< 0.6.11), avahi-utils (<< 0.4)
 Conflicts: python2.4-avahi (<< 0.6.11)
 XB-Python-Version: ${python:Versions}
 Description: Python utility package for Avahi
