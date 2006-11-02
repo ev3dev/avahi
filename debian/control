@@ -47,7 +47,7 @@ Architecture: i386 ia64 alpha amd64 armeb arm hppa m32r m68k mips mipsel powerpc
 Depends: ${shlibs:Depends}, ${misc:Depends}, adduser
 Recommends: dhcp3-client, iproute
 Conflicts: zeroconf
-Description: Avahi DNS configuration tool
+Description: Avahi IPv4LL network address configuration daemon
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
  running on a local network with no specific configuration.  For

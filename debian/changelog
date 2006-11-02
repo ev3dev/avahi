@@ -1,3 +1,10 @@
+avahi (0.6.14-3) unstable; urgency=low
+
+  * debian/control:
+    + Fix the avahi-autoipd description (Closes: #394330)
+
+ -- Sebastian Dröge <slomo@ubuntu.com>  Fri,  3 Nov 2006 00:10:09 +0100
+
 avahi (0.6.14-2) unstable; urgency=low
 
   [ Sebastian Dröge ]
