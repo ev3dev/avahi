@@ -1,6 +1,8 @@
 avahi (0.6.15-1) unstable; urgency=high
 
-  * New upstream version, urgency=high because of potential security fix
+  * New upstream version, urgency=high because of potential security fix:
+    + Check that netlink messages actually originate from the kernel and
+      not another process
   * debian/patches/02_local-service.patch:
     + Dropped, merged upstream
   * debian/control:
