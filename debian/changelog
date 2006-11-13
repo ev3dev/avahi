@@ -3,7 +3,7 @@ avahi (0.6.15-2) unstable; urgency=low
   * debian/patches/12_dbus1.0.patch:
     + Fix version detection of dbus with version above 1.0. Also don't ever
       call dbus_connection_close on shared connections as this is not allowed
-      by the DBus API.
+      by the DBus API. Patch from upstream SVN (r1333)
 
  -- Sebastian Dröge <slomo@ubuntu.com>  Mon, 13 Nov 2006 10:48:48 +0100
 
