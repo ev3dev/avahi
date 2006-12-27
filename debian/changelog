@@ -1,3 +1,10 @@
+avahi (0.6.15-3) unstable; urgency=low
+
+  * Add ifupdown up and post-down hooks to disable avahi if there is a .local
+    unicast domain. Based on work from the Ubuntu package by Martin Pitt.
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Wed, 27 Dec 2006 22:09:03 +0100
+
 avahi (0.6.15-2) unstable; urgency=low
 
   * debian/patches/12_dbus1.0.patch:

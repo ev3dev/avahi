@@ -47,6 +47,12 @@ install/avahi-autoipd::
 	install -D -o root -g root -m 755 debian/avahi-autoipd.ifdown \
 		debian/$(cdbs_curpkg)/etc/network/if-down.d/avahi-autoipd
 
+install/avahi-daemon::
+	install -D -o root -g root -m 755 debian/avahi-daemon.ifupdown \
+		debian/$(cdbs_curpkg)/etc/network/if-up.d/avahi-daemon
+	install -D -o root -g root -m 755 debian/avahi-daemon.ifupdown \
+		debian/$(cdbs_curpkg)/etc/network/if-post-down.d/avahi-daemon
+
 common-install-impl::
 	mv $(DEB_DESTDIR)/etc/dhcp3/dhclient-exit-hooks.d/avahi-autoipd \
 		$(DEB_DESTDIR)/etc/dhcp3/dhclient-exit-hooks.d/zzz_avahi-autoipd

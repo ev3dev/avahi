@@ -1,0 +1,23 @@
+#!/bin/sh
+#
+# If we have an unicast .local domain, we immediately disable avahi to avoid
+# conflicts with the multicast IP4LL .local domain
+DISABLE_TAG="/var/run/avahi-daemon/disabled-for-unicast-local"
+OUT=`LC_ALL=C host -t soa local. 2>&1`
+if [ $? -eq 0 ] && echo "$OUT" | egrep -vq 'has no|not found'; then
+    if [ -x /etc/init.d/avahi-daemon ]; then
+        /etc/init.d/avahi-daemon stop || true
+    fi
+    if [ -d /var/run/avahi-daemon ]; then
+        touch $DISABLE_TAG
+    fi
+    exit 0
+else
+    # no unicast .local conflict, so remove the tag and start avahi again
+    if [ -e $DISABLE_TAG ]; then
+        rm -f $DISABLE_TAG
+        if [ -x /etc/init.d/avahi-daemon ]; then
+            /etc/init.d/avahi-daemon start || true
+        fi
+    fi
+fi
