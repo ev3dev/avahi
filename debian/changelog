@@ -1,9 +1,18 @@
-avahi (0.6.15-3) unstable; urgency=low
+avahi (0.6.16-1) unstable; urgency=low
 
+  * New upstream release
+  * Uses a SO_PASSCRED-based check of the sending UID on netlink messages
+    (Closes: #399766)
+  * Removed patches which were merged upstream:
+    - debian/patches/09_initscripts-default.patch
+    - debian/patches/10_initscripts-scriptname.patch
+    - debian/patches/12_dbus1.0.patch
   * Add ifupdown up and post-down hooks to disable avahi if there is a .local
     unicast domain. Based on work from the Ubuntu package by Martin Pitt.
+  * debian/patches/02_avahi-daemon-init-unicast-disable.patch
+    - Added. Prevent avahi from starting when there is a unicast .local domain
 
- -- Sjoerd Simons <sjoerd@debian.org>  Wed, 27 Dec 2006 22:09:03 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu, 28 Dec 2006 20:02:27 +0100
 
 avahi (0.6.15-2) unstable; urgency=low
 
