@@ -9,13 +9,14 @@
  if [ -f /lib/lsb/init-functions ]
  then
      . /lib/lsb/init-functions
-@@ -104,6 +106,11 @@
+@@ -104,6 +106,12 @@
  
      $DAEMON -c && return 0
  
 +    if [ -e ${DISABLE_TAG} ]; then 
 +      # Disabled because of the existance of an unicast .local domain
-+      return 1;
++      log_warning_msg "avahi-daemon disabled because there is a unicast .local domain"
++      exit 0;
 +    fi;
 +
      if [ -s /etc/localtime ]; then

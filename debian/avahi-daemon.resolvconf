@@ -4,10 +4,6 @@
 # conflicts with the multicast IP4LL .local domain
 DISABLE_TAG_DIR="/var/run/avahi-daemon/"
 DISABLE_TAG="$DISABLE_TAG_DIR/disabled-for-unicast-local"
-
-# Bail out if resolvconf is installed
-[ -x /sbin/resolvconf ] && exit 0
-
 OUT=`LC_ALL=C host -t soa local. 2>&1`
 
 if [ $? -eq 0 ] && echo "$OUT" | egrep -vq 'has no|not found'; then

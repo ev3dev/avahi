@@ -1,3 +1,21 @@
+avahi (0.6.16-2) unstable; urgency=low
+
+  * debian/patches/02_avahi-daemon-init-unicast-disable.patch
+    - Renamed to 03_avahi-daemon-init-unicast-disable.patch
+  * debian/patches/02_avahi-init-warn.patch
+    - Added. Output a warning if avahi-daemon or avahi-dnsconfd are disabled
+      via /etc/default (Thanks Laurent Bigonville) (Closes: #405375)
+  * debian/patches/03_avahi-daemon-init-unicast-disable.patch
+    - Add a warning if avahi-daemon isn't started because of the presence of a
+      unicast .local domain.
+  * debian/avahi-daemon.ifupdown
+    - Log to syslog if disabling avahi.
+    - Don't run if resolvconf is installed
+  * debian/avahi-daemon.resolvconf
+    - Added. Hook script for resolvconf
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Wed,  3 Jan 2007 11:22:59 +0100
+
 avahi (0.6.16-1) unstable; urgency=low
 
   * New upstream release
