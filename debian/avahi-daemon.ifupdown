@@ -24,9 +24,11 @@ For more information, see http://avahi.org/wiki/AvahiAndUnicastDotLocal
 EOF
         fi
     fi
-    mkdir -p ${DISABLE_TAG_DIR}
+    if [ ! -d ${DISABLE_TAG_DIR} ] ; then 
+      mkdir -m 0755 -p ${DISABLE_TAG_DIR}
+      chown avahi:avahi ${DISABLE_TAG_DIR}
+    fi 
     touch ${DISABLE_TAG}
-    exit 0
 else
     # no unicast .local conflict, so remove the tag and start avahi again
     if [ -e ${DISABLE_TAG} ]; then
@@ -36,3 +38,5 @@ else
         fi
     fi
 fi
+
+exit 0
