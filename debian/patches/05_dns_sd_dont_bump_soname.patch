@@ -1,0 +1,21 @@
+------------------------------------------------------------------------
+r1354 | lathiat | 2006-12-29 13:55:23 +0100 (Fri, 29 Dec 2006) | 4 lines
+
+ * Un-bump DNS-SD soname, we are following apple's version so we 
+shouldn't bump it (woops)
+
+
+------------------------------------------------------------------------
+Index: configure.ac
+===================================================================
+--- configure.ac	(revision 1353)
++++ configure.ac	(revision 1354)
+@@ -34,7 +34,7 @@
+ AC_SUBST(LIBAVAHI_GLIB_VERSION_INFO, [1:1:0])
+ AC_SUBST(LIBAVAHI_QT3_VERSION_INFO, [1:1:0])
+ AC_SUBST(LIBAVAHI_QT4_VERSION_INFO, [1:1:0])
+-AC_SUBST(LIBAVAHI_COMPAT_LIBDNS_SD_VERSION_INFO, [1:1:0])
++AC_SUBST(LIBAVAHI_COMPAT_LIBDNS_SD_VERSION_INFO, [1:0:0])
+ AC_SUBST(LIBAVAHI_COMPAT_HOWL_VERSION_INFO, [0:0:0])
+ AC_SUBST(HOWL_COMPAT_VERSION, [0.9.8])
+ 

@@ -13,8 +13,37 @@ avahi (0.6.16-2) unstable; urgency=low
     - Don't run if resolvconf is installed
   * debian/avahi-daemon.resolvconf
     - Added. Hook script for resolvconf
+  * debian/patches/04_function_return.patch
+    - Added. Ensure a value is always returned from a non-void function (From
+             upstream svn)
+  * debian/patches/05_dns_sd_dont_bump_soname.patch
+    - Added. Undo the bumping of the micro soname version to keep the soname
+             fully in sync with apple's (From upstream svn)
+  * debian/patches/06_dont_log_broken_packets.patch
+    - Added. Don't log errors from recvmsg if there caused by broken ip
+             packets. Fixes log flooding on machines with bad links (From
+             upstream svn) (Closes: #386239)
+  * debian/patches/07_ia64_unaligned_access.patch
+    - Added. Some fixes for unaligned accesses as seen on ia64 (From upstream
+             svn)
+  * debian/patches/08_unicast_ipv6_only.patch
+    - Added. Set the unicast ipv6 socket as ipv6 only, as the linux ipv4 in
+             ipv6 misses some control info (From upstream svn)
+  * debian/patches/09_fionread.patch
+    - Added. It's valid for FIONREAD so handle this instead of throwing a
+             warning and failing (From upstream svn)
+  * debian/patches/10_widearea_socket_types.patch
+    - Added. Only create a unicast ipv4 or ipv6 socket for widecast if
+             respectively ipv4 or ipv6 is enabled. (From upstream svn)
+  * debian/patches/12_bogus_static_host_error_message.patch
+    - Added. Prevent logging of bogus error message when adding static .local
+             hosts. (from upstream svn)
+  * debian/patches/13_NULL_dns_service_refs.patch
+    - Added. Let the bonjour compatibility layer handle NULL services
+             references gracefully and don't use the service reference after
+             unreffing it.  (From upstream svn)
 
- -- Sjoerd Simons <sjoerd@debian.org>  Wed,  3 Jan 2007 11:22:59 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun,  7 Jan 2007 15:32:56 +0100
 
 avahi (0.6.16-1) unstable; urgency=low
 

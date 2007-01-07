@@ -1,0 +1,31 @@
+------------------------------------------------------------------------
+r1370 | lennart | 2007-01-06 17:10:01 +0100 (Sat, 06 Jan 2007) | 3 lines
+
+* set IPV6_V6ONLY for unicast DNS sockets, too
+
+------------------------------------------------------------------------
+Index: avahi-core/socket.c
+===================================================================
+--- avahi-core/socket.c	(revision 1369)
++++ avahi-core/socket.c	(revision 1370)
+@@ -912,13 +937,19 @@
+ 
+ int avahi_open_unicast_socket_ipv6(void) {
+     struct sockaddr_in6 local;
+-    int fd = -1;
++    int fd = -1, yes;
+         
+     if ((fd = socket(AF_INET6, SOCK_DGRAM, 0)) < 0) {
+         avahi_log_warn("socket() failed: %s", strerror(errno));
+         goto fail;
+     }
+     
++    yes = 1;
++    if (setsockopt(fd, IPPROTO_IPV6, IPV6_V6ONLY, &yes, sizeof(yes)) < 0) {
++        avahi_log_warn("IPV6_V6ONLY failed: %s", strerror(errno));
++        goto fail;
++    }
++
+     memset(&local, 0, sizeof(local));
+     local.sin6_family = AF_INET6;
+     
