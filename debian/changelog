@@ -1,5 +1,6 @@
 avahi (0.6.16-2) unstable; urgency=low
 
+  [ Sjoerd Simons ]
   * debian/patches/02_avahi-daemon-init-unicast-disable.patch
     - Renamed to 03_avahi-daemon-init-unicast-disable.patch
   * debian/patches/02_avahi-init-warn.patch
@@ -43,7 +44,11 @@ avahi (0.6.16-2) unstable; urgency=low
              references gracefully and don't use the service reference after
              unreffing it.  (From upstream svn)
 
- -- Sjoerd Simons <sjoerd@debian.org>  Sun,  7 Jan 2007 15:32:56 +0100
+  [ Sebastian Dröge ]
+  * debian/control:
+    + Updated to use my debian.org mail address
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Mon,  8 Jan 2007 02:04:46 +0100
 
 avahi (0.6.16-1) unstable; urgency=low
 
