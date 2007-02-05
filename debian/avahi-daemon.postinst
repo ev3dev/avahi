@@ -1,5 +1,5 @@
 #! /bin/sh
-# postinst script for avai
+# postinst script for avahi
 
 set -e
 
@@ -17,12 +17,18 @@ set -e
 case "$1" in
   configure)
     if ! getent passwd avahi >/dev/null; then
-      adduser --quiet --system --home /var/run/avahi-daemon \
+      adduser --disabled-password  --quiet --system \
+        --home /var/run/avahi-daemon \
         --gecos "Avahi mDNS daemon" --group avahi
     fi
     # If the Avahi user has the old home, change it
     if ! getent passwd avahi | grep -q /var/run/avahi-daemon; then
         usermod -d /var/run/avahi-daemon avahi
+    fi
+
+    # Add the netdev group unless it's already there
+    if ! getent group netdev >/dev/null; then
+      addgroup --quiet --system netdev || true
     fi
 
     # Ask the bus to reload the config file

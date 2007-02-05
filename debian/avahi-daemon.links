@@ -1,1 +1,2 @@
 etc/init.d/avahi-daemon etc/dbus-1/event.d/25avahi-daemon
+etc/network/if-up.d/avahi-daemon etc/network/if-post-down.d/avahi-daemon
