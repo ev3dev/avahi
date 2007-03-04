@@ -1,3 +1,12 @@
+avahi (0.6.16-3) unstable; urgency=low
+
+  * Move .local detection code to a common script. Also minize the cases where
+    host lookups are done, fixing annoying slowdowns (Closes: #409513)
+  * Add a way to disable the .location detection code completely for the cases
+    we can't work around. (Closes: #406272)
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun,  4 Mar 2007 20:52:53 +0100
+
 avahi (0.6.16-2) unstable; urgency=low
 
   * debian/patches/02_avahi-daemon-init-unicast-disable.patch
