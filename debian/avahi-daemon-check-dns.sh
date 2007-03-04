@@ -5,9 +5,8 @@
 DISABLE_TAG_DIR="/var/run/avahi-daemon/"
 DISABLE_TAG="$DISABLE_TAG_DIR/disabled-for-unicast-local"
 
-. /etc/default/avahi-daemon
-
 AVAHI_DAEMON_DETECT_LOCAL=1
+
 test -f /etc/default/avahi-daemon && . /etc/default/avahi-daemon
 
 if [ "$AVAHI_DAEMON_DETECT_LOCAL" != "1" ]; then
