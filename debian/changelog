@@ -1,3 +1,10 @@
+avahi (0.6.16-4) unstable; urgency=low
+
+  * Bump version number to be greater then the one in testing-proposed-updates
+    (0.6.16-3etch0)
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu, 15 Mar 2007 10:59:15 +0100
+
 avahi (0.6.16-3) unstable; urgency=low
 
   * Move .local detection code to a common script. Also minize the cases where
