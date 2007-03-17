@@ -1,3 +1,10 @@
+avahi (0.6.16-5) unstable; urgency=low
+
+  * debian/avahi-daemon-check-dns.sh: Run ifconfig with LC_ALL=C to make
+    .local detection work for all locales (Closes: #415160)
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sat, 17 Mar 2007 13:30:05 +0100
+
 avahi (0.6.16-4) unstable; urgency=low
 
   * Bump version number to be greater then the one in testing-proposed-updates

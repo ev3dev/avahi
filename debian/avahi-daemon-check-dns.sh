@@ -23,7 +23,7 @@ dns_has_local() {
   # then there is no need to query the nameservers
   if ! $(egrep -q "nameserver 127.0.0.1|::1" /etc/resolv.conf); then 
     # Get addresses of all running interfaces
-    ADDRS=$(ifconfig | grep ' addr:')
+    ADDRS=$(LC_ALL=C ifconfig | grep ' addr:')
     # Filter out all local addresses
     ADDRS=$(echo "${ADDRS}" | egrep -v ':127|Scope:Host|Scope:Link')
     if [ -z "${ADDRS}" ] ; then
