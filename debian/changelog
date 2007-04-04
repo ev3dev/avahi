@@ -1,3 +1,14 @@
+avahi (0.6.17-2) experimental; urgency=low
+
+  * debian/patches/12_avahi-generic-records.patch
+    + Added. Fixes the resolving of generic dns records.
+      Patch from http://avahi.org/ticket/130
+  * debian/patches/13_avahi_big_dns_records.patch
+    + Added. Fixes publishing of big dns records.
+      Patch from http://avahi.org/ticket/131
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Wed, 04 Apr 2007 14:40:35 +0200
+
 avahi (0.6.17-1) experimental; urgency=low
 
   * New upstream release:
