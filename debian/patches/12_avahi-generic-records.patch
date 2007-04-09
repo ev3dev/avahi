@@ -1,0 +1,21 @@
+Index: avahi-core/dns.c
+===================================================================
+--- avahi-core/dns.c	(revision 1400)
++++ avahi-core/dns.c	(working copy)
+@@ -589,6 +589,7 @@
+             if (rdlength > 0) {
+ 
+                 r->data.generic.data = avahi_memdup(avahi_dns_packet_get_rptr(p), rdlength);
++                r->data.generic.size = rdlength;
+                 
+                 if (avahi_dns_packet_skip(p, rdlength) < 0)
+                     return -1;
+@@ -754,7 +755,7 @@
+         default:
+ 
+             if (r->data.generic.size)
+-                if (avahi_dns_packet_append_bytes(p, r->data.generic.data, r->data.generic.size))
++                if (!avahi_dns_packet_append_bytes(p, r->data.generic.data, r->data.generic.size))
+                     return -1;
+ 
+             break;

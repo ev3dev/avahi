@@ -1,5 +1,11 @@
 #!/bin/sh
-#
+
+# Don't run the avahi-daemon unicast local check while bringing up
+# the loopback device; it's not necessary until we bring up a real network
+# device, and we do those in the background so they don't hold up the
+# boot process
+[ "$IFACE" != "lo" ] || exit 0
+
 # If we have an unicast .local domain, we immediately disable avahi to avoid
 # conflicts with the multicast IP4LL .local domain
 

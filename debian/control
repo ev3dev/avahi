@@ -2,7 +2,7 @@ Source: avahi
 Section: net
 Priority: optional
 Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
-Uploaders: Sjoerd Simons <sjoerd@debian.org>, Sebastian Dröge <slomo@ubuntu.com>
+Uploaders: Sjoerd Simons <sjoerd@debian.org>, Sebastian Dröge <slomo@debian.org>
 Build-Depends: debhelper (>= 5.0.37.2), cdbs (>= 0.4.43), python-support (>= 0.3), libcap-dev [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64 !netbsd-i386], libgdbm-dev, libglib2.0-dev (>= 2.4), libgtk2.0-dev (>= 2.4), libglade2-dev, libexpat-dev, libdaemon-dev, libdbus-1-dev (>= 0.60), python-all-dev (>= 2.3.5-11), python-gdbm (>= 2.4.3-1), python-dbus, python-gtk2 (>= 2.8.6-2), libqt3-mt-dev, libqt4-dev, xmltoman
 Standards-Version: 3.7.2
 XS-X-Vcs-Svn: svn://svn.debian.org/svn/pkg-utopia/packages/unstable/avahi
@@ -148,7 +148,7 @@ Description: Development files for the Avahi common library
  library, which is a set of common functions and definitions used by many
  of Avahis components and client applications.
 
-Package: libavahi-core4
+Package: libavahi-core5
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends}, ${misc:Depends}
@@ -170,7 +170,7 @@ Description: Avahi's embeddable mDNS/DNS-SD library
 Package: libavahi-core-dev
 Section: libdevel
 Architecture: any
-Depends: libavahi-core4 (= ${Source-Version}), ${misc:Depends}, libavahi-common-dev
+Depends: libavahi-core5 (= ${Source-Version}), ${misc:Depends}, libavahi-common-dev
 Replaces: libavahi-core1 (<< 0.4)
 Description: Development files for Avahi's embeddable mDNS/DNS-SD library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.

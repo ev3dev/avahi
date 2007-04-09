@@ -1,3 +1,57 @@
+avahi (0.6.17-3) unstable; urgency=low
+
+  * Upload to unstable
+  * Merge experimental branch
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Mon, 09 Apr 2007 22:37:02 +0200
+
+avahi (0.6.17-2) experimental; urgency=low
+
+  * debian/patches/12_avahi-generic-records.patch
+    + Added. Fixes the resolving of generic dns records.
+      Patch from http://avahi.org/ticket/130
+  * debian/patches/13_avahi_big_dns_records.patch
+    + Added. Fixes publishing of big dns records.
+      Patch from http://avahi.org/ticket/131
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Wed, 04 Apr 2007 14:40:35 +0200
+
+avahi (0.6.17-1) experimental; urgency=low
+
+  * New upstream release:
+    + Fix bogus comment in init script (Closes: #399234)
+    + debian/patches/02_avahi-init-warn.patch,
+      debian/patches/04_function_return.patch,
+      debian/patches/05_dns_sd_dont_bump_soname.patch,
+      debian/patches/06_dont_log_broken_packets.patch,
+      debian/patches/07_ia64_unaligned_access.patch,
+      debian/patches/08_unicast_ipv6_only.patch,
+      debian/patches/09_fionread.patch,
+      debian/patches/10_widearea_socket_types.patch,
+      debian/patches/12_bogus_static_host_error_message.patch,
+      debian/patches/13_NULL_dns_service_refs.patch:
+      - Dropped, merged upstream
+  * debian/control:
+    + Updated to use my debian.org mail address
+  * debian/rules:
+    + Fix build failure on GNU/kFreeBSD (Closes: #391298)
+    + Install more complex example service in
+    /usr/share/doc/avahi-daemon/eexamples (Closes: #398623)
+  * debian/avahi-daemon.ifupdown:
+    + Don't run the avahi-daemon unicast local check while bringing up
+      the loopback device; it's not necessary until we bring up a real network
+      device, and we do those in the background so they don't hold up the
+      boot process. Patch by Scott James Remnant, taken from the Ubuntu
+      package
+  * debian/python-avahi.install:
+    + Ship python module from every python version, not just 2.4. This fixes
+      python-avahi for non-2.4 default python versions
+  * debian/libavahi-core5.install, debian/libavahi-core5.shlibs,
+    debian/control:
+    + Updated for new libavahi-core soname
+
+ -- Sebastian Dröge <slomo@debian.org>  Mon,  5 Feb 2007 06:22:21 +0100
+
 avahi (0.6.16-5) unstable; urgency=low
 
   * debian/avahi-daemon-check-dns.sh: Run ifconfig with LC_ALL=C to make

@@ -55,6 +55,8 @@ install/avahi-daemon::
 	install -D -o root -g root -m 755 debian/avahi-daemon-check-dns.sh \
 		debian/$(cdbs_curpkg)/usr/lib/avahi/avahi-daemon-check-dns.sh
 
+ifeq (linux,$(DEB_HOST_ARCH_OS))
 common-install-impl::
 	mv $(DEB_DESTDIR)/etc/dhcp3/dhclient-exit-hooks.d/avahi-autoipd \
 		$(DEB_DESTDIR)/etc/dhcp3/dhclient-exit-hooks.d/zzz_avahi-autoipd
+endif
