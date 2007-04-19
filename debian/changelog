@@ -1,3 +1,11 @@
+avahi (0.6.18-3) UNRELEASED; urgency=low
+
+  * debian/avahi-daemon.postinst:
+    + Don't let adduser create avahi-daemon's homedir. This prevents it from
+      being created with the wrong permissions. (Closes: #419935)
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu, 19 Apr 2007 21:21:21 +0200
+
 avahi (0.6.18-2) unstable; urgency=low
 
   * debian/control,

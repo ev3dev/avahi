@@ -18,7 +18,7 @@ case "$1" in
   configure)
     if ! getent passwd avahi >/dev/null; then
       adduser --disabled-password  --quiet --system \
-        --home /var/run/avahi-daemon \
+        --home /var/run/avahi-daemon --no-create-home \
         --gecos "Avahi mDNS daemon" --group avahi
     fi
     # If the Avahi user has the old home, change it
