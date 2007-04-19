@@ -1,3 +1,17 @@
+avahi (0.6.18-2) unstable; urgency=low
+
+  * debian/control,
+    debian/libavahi-ui0.install,
+    debian/libavahi-ui0.shlibs,
+    debian/libavahi-ui-dev.install:
+    + Add libavahi-ui package, containing a Gtk widget for browsing services
+      and two example programs (zssh, zxvnc) that can be used to browse for
+      local ssh or vnc servers.
+  * debian/rules:
+    + Add libavahi-glib and libavahi-ui to DEB_SHLIBDEPS_INCLUDE
+
+ -- Sebastian Dröge <slomo@ubuntu.com>  Thu, 19 Apr 2007 15:13:03 +0200
+
 avahi (0.6.18-1) unstable; urgency=low
 
   [ Sjoerd Simons ]

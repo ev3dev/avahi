@@ -26,7 +26,9 @@ DEB_INSTALL_DOCS_ALL += docs/README docs/NEWS
 
 DEB_SHLIBDEPS_INCLUDE := debian/libavahi-common3/usr/lib \
                          debian/libavahi-core4/usr/lib \
-                         debian/libavahi-client3/usr/lib
+                         debian/libavahi-client3/usr/lib \
+                         debian/libavahi-glib1/usr/lib \
+                         debian/libavahi-ui0/usr/lib
 
 binary-install/avahi-discover::
 	dh_pysupport -p$(cdbs_curpkg)
