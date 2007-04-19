@@ -1,9 +1,18 @@
-avahi (0.6.17-4) UNRELEASED; urgency=low
+avahi (0.6.18-1) unstable; urgency=low
 
+  [ Sjoerd Simons ]
   * debian/patches/13_avahi_big_dns_records.patch
     + Update this patch to the version that was commited upstream
 
- -- Sjoerd Simons <sjoerd@debian.org>  Sat, 14 Apr 2007 11:14:58 +0200
+  [ Sebastian Dröge ]
+  * New upstream release:
+    + debian/patches/12_avahi-generic-records.patch,
+      debian/patches/13_avahi_big_dns_records.patch:
+      - Dropped, merged upstream.
+  * debian/patches/12_avahi-autoipd-dhcp-exit-hook-take-down.patch:
+    + Patch by Joey Hess to make ifdown faster again (Closes: #419794)
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 19 Apr 2007 07:00:01 +0200
 
 avahi (0.6.17-3) unstable; urgency=low
 
