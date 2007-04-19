@@ -1,5 +1,5 @@
---- avahi-autoipd/dhclient-exit-hook.in.old	2007-04-19 08:30:02.000000000 +0200
-+++ avahi-autoipd/dhclient-exit-hook.in	2007-04-19 08:29:40.000000000 +0200
+--- avahi-autoipd/dhclient-exit-hook.in.old	2007-04-19 13:20:50.000000000 +0200
++++ avahi-autoipd/dhclient-exit-hook.in	2007-04-19 13:21:16.000000000 +0200
 @@ -23,11 +23,11 @@
      MEDIUM|ARPCHECK|ARPSEND|NBI)
          ;;
@@ -9,7 +9,7 @@
          # Stopping avahi-autoipd is left for the enter hook
          ;;
      
--    EXPIRE|RELEASE|FAIL|TIMEOUT)
+-    EXPIRE|FAIL|RELEASE|TIMEOUT)
 +    EXPIRE|FAIL|TIMEOUT)
          @sbindir@/avahi-autoipd -wD $interface 2> /dev/null
          ;;
