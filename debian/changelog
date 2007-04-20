@@ -1,10 +1,16 @@
-avahi (0.6.18-3) UNRELEASED; urgency=low
+avahi (0.6.18-3) unstable; urgency=low
 
+  [ Sjoerd Simons ]
   * debian/avahi-daemon.postinst:
     + Don't let adduser create avahi-daemon's homedir. This prevents it from
       being created with the wrong permissions. (Closes: #419935)
 
- -- Sjoerd Simons <sjoerd@debian.org>  Thu, 19 Apr 2007 21:21:21 +0200
+  [ Sebastian Dröge ]
+  * debian/patches/20_avahi-ui-non-existing-domain-segv.patch:
+    + Patch from upstream SVN (r1448): fix segfault when browsing for services
+      on non-existing domains or domains that don't have any services assigned.
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 20 Apr 2007 21:05:05 +0200
 
 avahi (0.6.18-2) unstable; urgency=low
 
