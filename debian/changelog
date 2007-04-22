@@ -1,3 +1,11 @@
+avahi (0.6.18-4) UNRELEASED; urgency=low
+
+  * debian/rules:
+    + Ensure that ServiceTypeDatabase.py is generated instead of using the one
+      from the tarball (Closes: #420184)
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 22 Apr 2007 20:31:27 +0200
+
 avahi (0.6.18-3) unstable; urgency=low
 
   [ Sjoerd Simons ]
