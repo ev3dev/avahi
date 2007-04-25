@@ -35,7 +35,6 @@ case "$1" in
     if [ -x "/etc/init.d/dbus" ]; then
       invoke-rc.d dbus force-reload || true
     fi
-    /etc/init.d/avahi-daemon restart
   ;;
   abort-upgrade|abort-remove|abort-deconfigure)
   ;;

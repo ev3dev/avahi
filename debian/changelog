@@ -1,10 +1,38 @@
-avahi (0.6.18-4) UNRELEASED; urgency=low
+avahi (0.6.18-4) unstable; urgency=low
 
+  [ Sjoerd Simons ]
   * debian/rules:
     + Ensure that ServiceTypeDatabase.py is generated instead of using the one
       from the tarball (Closes: #420184)
 
- -- Sjoerd Simons <sjoerd@debian.org>  Sun, 22 Apr 2007 20:31:27 +0200
+  [ Michael Biebl ]
+  * Start avahi-daemon and avahi-dnsconfd as regular SysV init scripts.
+    (Closes: #396811, #367748, #378114)
+    + debian/avahi-daemon.init, 
+      debian/avahi-dnsconfd.init
+      - Added. Based on the upstream init scripts.
+      - Add proper LSB headers.
+      - Remove reimplementation of LSB logging functions. Depend on lsb-base
+        being installed.
+      - Use log_daemon_msg instead of log_begin_msg.
+      - Remove SVN $Id keyword. (Closes: #354988)
+    + debian/avahi-daemon.install,
+      debian/avahi-dnsconfd.install
+      - Do not install the upstream init script anymore. 
+    + debian/avahi-daemon.links
+      - Remove the symlink /etc/dbus-1/event.d/25avahi-daemon
+    + debian/avahi-daemon.postinst
+      - Do not restart avahi-daemon manually. dh_installinit takes care of
+        that automatically.
+    + debian/avahi-daemon.prerm,
+      debian/avahi-dnsconfd.{links,postinst,prerm}
+      - Removed. Not needed anymore.
+    + debian/control
+      - Add Depends: lsb-base (>= 3.0-6) to avahi-daemon and avahi-dnsconfd.
+    + debian/rules
+      - Set DEB_DH_INSTALLINIT_ARGS to start at 24 and stop at 16.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 25 Apr 2007 17:49:54 +0200
 
 avahi (0.6.18-3) unstable; urgency=low
 

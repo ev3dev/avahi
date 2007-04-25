@@ -18,6 +18,8 @@ LDFLAGS += -Wl,-z,defs -Wl,-O1
 DEB_CONFIGURE_EXTRA_FLAGS += --enable-compat-libdns_sd --enable-compat-howl \
                              --disable-mono --disable-monodoc
 
+DEB_DH_INSTALLINIT_ARGS := -- start 24 2 3 4 5 . stop 16 0 1 6 .
+
 ifneq (linux,$(DEB_HOST_ARCH_OS))
 	DEB_CONFIGURE_EXTRA_FLAGS += --disable-autoipd
 endif
@@ -36,16 +38,11 @@ pre-build::
 
 binary-install/avahi-discover::
 	dh_pysupport -p$(cdbs_curpkg)
-	dh_python -p$(cdbs_curpkg)
 	rm -f debian/tmp/usr/lib/python*/site-packages/avahi/*.py[co]
 
 binary-install/python-avahi::
 	dh_pysupport -p$(cdbs_curpkg)
-	dh_python -p$(cdbs_curpkg)
 	rm -f debian/tmp/usr/lib/python*/site-packages/avahi/*.py[co]
-
-binary-fixup/avahi-daemon binary-fixup/avahi-dnsconfd::
-	chmod +x debian/$(cdbs_curpkg)/etc/dbus-1/event.d/*
 
 install/avahi-autoipd::
 	install -D -o root -g root -m 755 debian/avahi-autoipd.ifup \

@@ -10,7 +10,7 @@ XS-X-Vcs-Svn: svn://svn.debian.org/svn/pkg-utopia/packages/unstable/avahi
 Package: avahi-daemon
 Section: net
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, adduser, dbus (>= 0.60)
+Depends: ${shlibs:Depends}, ${misc:Depends}, adduser, dbus (>= 0.60), lsb-base (>= 3.0-6)
 Recommends: libnss-mdns
 Suggests: avahi-autoipd
 Conflicts: mdnsresponder
@@ -28,7 +28,7 @@ Description: Avahi mDNS/DNS-SD daemon
 Package: avahi-dnsconfd
 Section: net
 Architecture: any
-Depends: avahi-daemon, ${shlibs:Depends}, ${misc:Depends}
+Depends: avahi-daemon, ${shlibs:Depends}, ${misc:Depends}, lsb-base (>= 3.0-6)
 Recommends: resolvconf
 Description: Avahi DNS configuration tool
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
