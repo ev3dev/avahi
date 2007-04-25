@@ -31,6 +31,10 @@ avahi (0.6.18-4) unstable; urgency=low
       - Add Depends: lsb-base (>= 3.0-6) to avahi-daemon and avahi-dnsconfd.
     + debian/rules
       - Set DEB_DH_INSTALLINIT_ARGS to start at 24 and stop at 16.
+    + debian/patches/03_avahi-daemon-init-unicast-disable.patch
+      - Removed, debian/avahi-daemon.init includes this fix directly.
+  * debian/rules
+    + Remove dh_python call as it is not needed anymore with python-support. 
 
  -- Michael Biebl <biebl@debian.org>  Wed, 25 Apr 2007 17:49:54 +0200
 
