@@ -8,7 +8,7 @@ avahi (0.6.18-4) unstable; urgency=low
   [ Michael Biebl ]
   * Start avahi-daemon and avahi-dnsconfd as regular SysV init scripts.
     (Closes: #396811, #367748, #378114)
-    + debian/avahi-daemon.init, 
+    + debian/avahi-daemon.init,
       debian/avahi-dnsconfd.init
       - Added. Based on the upstream init scripts.
       - Add proper LSB headers.
@@ -18,7 +18,7 @@ avahi (0.6.18-4) unstable; urgency=low
       - Remove SVN $Id keyword. (Closes: #354988)
     + debian/avahi-daemon.install,
       debian/avahi-dnsconfd.install
-      - Do not install the upstream init script anymore. 
+      - Do not install the upstream init script anymore.
     + debian/avahi-daemon.links
       - Remove the symlink /etc/dbus-1/event.d/25avahi-daemon
     + debian/avahi-daemon.postinst
@@ -34,9 +34,12 @@ avahi (0.6.18-4) unstable; urgency=low
     + debian/patches/03_avahi-daemon-init-unicast-disable.patch
       - Removed, debian/avahi-daemon.init includes this fix directly.
   * debian/rules
-    + Remove dh_python call as it is not needed anymore with python-support. 
+    + Remove dh_python call as it is not needed anymore with python-support.
+  * debian/control
+    + Update the Vcs control field from XS-X-Vcs-Svn to XS-Vcs-Svn.
+    + Add XS-Vcs-Browser control field.
 
- -- Michael Biebl <biebl@debian.org>  Wed, 25 Apr 2007 17:49:54 +0200
+ -- Michael Biebl <biebl@debian.org>  Fri, 27 Apr 2007 00:45:50 +0200
 
 avahi (0.6.18-3) unstable; urgency=low
 
