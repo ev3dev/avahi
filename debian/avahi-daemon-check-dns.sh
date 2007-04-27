@@ -145,7 +145,7 @@ if dns_has_local ; then
   # .local from dns server, disabling avahi
   disable_avahi
 else
-  # no .local from dns server, enablign avahi
+  # no .local from dns server, enabling avahi
   enable_avahi
 fi
 
