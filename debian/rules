@@ -3,13 +3,12 @@
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/autotools.mk
 include /usr/share/cdbs/1/rules/simple-patchsys.mk
+include /usr/share/cdbs/1/rules/buildvars.mk
 include debian/clean-la.mk
 
 # List any files which are not installed
 include /usr/share/cdbs/1/rules/utils.mk
 common-binary-post-install-arch:: list-missing
-
-DEB_HOST_ARCH_OS ?= $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
 
 # Ensure at build time that the library has no dependencies on undefined
 # symbols, and speed up loading.
@@ -17,6 +16,11 @@ LDFLAGS += -Wl,-z,defs -Wl,-O1
 
 DEB_CONFIGURE_EXTRA_FLAGS += --enable-compat-libdns_sd --enable-compat-howl \
                              --disable-mono --disable-monodoc
+
+# Only enable the stack protector on certain archs
+ifeq (,$(filter $(DEB_BUILD_ARCH), powerpc s390 sparc amd64 i386))
+  DEB_CONFIGURE_EXTRA_FLAGS += --disable-stack-protector
+endif
 
 DEB_DH_INSTALLINIT_ARGS := -- start 24 2 3 4 5 . stop 16 0 1 6 .
 
