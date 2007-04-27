@@ -1,0 +1,36 @@
+Index: avahi-ui/zssh.desktop.in
+===================================================================
+--- avahi-ui/zssh.desktop.in	(revision 1453)
++++ avahi-ui/zssh.desktop.in	(working copy)
+@@ -7,6 +7,6 @@
+ Terminal=false
+ Type=Application
+ Icon=network-wired
+-Categories=GNOME;Application;System;Utility;
++Categories=GNOME;Application;Network;
+ StartupNotify=false
+ GenericName=
+Index: avahi-ui/zvnc.desktop.in
+===================================================================
+--- avahi-ui/zvnc.desktop.in	(revision 1453)
++++ avahi-ui/zvnc.desktop.in	(working copy)
+@@ -7,6 +7,6 @@
+ Terminal=false
+ Type=Application
+ Icon=network-wired
+-Categories=GNOME;Application;System;Utility;
++Categories=GNOME;Application;Network;
+ StartupNotify=false
+ GenericName=
+Index: avahi-python/avahi-discover.desktop.in
+===================================================================
+--- avahi-python/avahi-discover.desktop.in	(revision 1453)
++++ avahi-python/avahi-discover.desktop.in	(working copy)
+@@ -7,6 +7,6 @@
+ Terminal=false
+ Type=Application
+ Icon=network-wired
+-Categories=GNOME;Application;System;Utility;
++Categories=GNOME;Application;System;
+ StartupNotify=false
+ GenericName=

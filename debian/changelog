@@ -16,6 +16,10 @@ avahi (0.6.18-4) unstable; urgency=low
     + Disable gcc's strack protection on all archs except those that actually
       support it (powerpc s390 sparc amd64 i386). Fixes FTBS on the other
       architectures.
+  * debian/patches/25_avahi_fix_desktop_files.patch:
+    + Added. Only put at most one main category in one .desktop file. Fixes
+      applications turning up in multiple places in the KDE menu. Also move 
+      zvnc and zssh to the Network category.
 
   [ Michael Biebl ]
   * Start avahi-daemon and avahi-dnsconfd as regular SysV init scripts.
@@ -51,7 +55,7 @@ avahi (0.6.18-4) unstable; urgency=low
     + Update the Vcs control field from XS-X-Vcs-Svn to XS-Vcs-Svn.
     + Add XS-Vcs-Browser control field.
 
- -- Sjoerd Simons <sjoerd@debian.org>  Fri, 27 Apr 2007 12:43:08 +0200
+ -- Sjoerd Simons <sjoerd@debian.org>  Fri, 27 Apr 2007 13:43:07 +0200
 
 avahi (0.6.18-3) unstable; urgency=low
 
