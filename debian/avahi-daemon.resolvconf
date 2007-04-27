@@ -3,4 +3,6 @@
 # If we have an unicast .local domain, we immediately disable avahi to avoid
 # conflicts with the multicast IP4LL .local domain
 
-exec /usr/lib/avahi/avahi-daemon-check-dns.sh 
+if [ -x /usr/lib/avahi/avahi-daemon-check-dns.sh ]
+  exec /usr/lib/avahi/avahi-daemon-check-dns.sh
+fi

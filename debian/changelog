@@ -4,6 +4,14 @@ avahi (0.6.18-4) unstable; urgency=low
   * debian/rules:
     + Ensure that ServiceTypeDatabase.py is generated instead of using the one
       from the tarball (Closes: #420184)
+  * debian/avahi-daemon-check-dns.sh:
+    + Minimise the number of times the DNS servers are checked for a unicast
+      .local domain even more.  (Closes: #419796)
+    + Use invoke-rc.d to start/stop avahi as we're a proper sysv init service
+      now
+  * debian/avahi-daemon.{ifupdown,resolvconf}:
+    + Check if avahi-daemon-check-dns.sh is executable before executing it
+      (Closes:  #419259)
 
   [ Michael Biebl ]
   * Start avahi-daemon and avahi-dnsconfd as regular SysV init scripts.
@@ -39,7 +47,7 @@ avahi (0.6.18-4) unstable; urgency=low
     + Update the Vcs control field from XS-X-Vcs-Svn to XS-Vcs-Svn.
     + Add XS-Vcs-Browser control field.
 
- -- Michael Biebl <biebl@debian.org>  Fri, 27 Apr 2007 00:45:50 +0200
+ -- Sjoerd Simons <sjoerd@debian.org>  Fri, 27 Apr 2007 11:48:45 +0200
 
 avahi (0.6.18-3) unstable; urgency=low
 
