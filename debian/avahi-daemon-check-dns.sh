@@ -3,6 +3,8 @@
 # If we have an unicast .local domain, we immediately disable avahi to avoid
 # conflicts with the multicast IP4LL .local domain
 
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+
 RUNDIR="/var/run/avahi-daemon/"
 DISABLE_TAG="$RUNDIR/disabled-for-unicast-local"
 NS_CACHE="$RUNDIR/checked_nameservers"
@@ -77,7 +79,6 @@ dns_needs_check() {
     ADDED=$?
     echo "${DIFFERENCE}" | grep -q '^<'
     REMOVED=$?
-    echo "${DIFFERENCE}"
     # Avahi was disabled and no servers were removed, no need to recheck
     [ -e ${DISABLE_TAG} ] && [ ${REMOVED} -ne 0 ]  && RET=1
     # Avahi was enabled and no servers were added, no need to recheck

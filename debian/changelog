@@ -2,8 +2,10 @@ avahi (0.6.18-5) unstable; urgency=low
 
   * debian/avahi-daemon.init: Don't report failure when stopping an already
     stopped daemon (Closes: #421928)
+  * debian/avahi-daemon-check-dns.sh: Explicitly set $PATH so programs in
+    /usr/bin are also found (Closes: #421360)
 
- -- Sjoerd Simons <sjoerd@debian.org>  Thu, 03 May 2007 13:03:38 +0200
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu, 03 May 2007 13:11:53 +0200
 
 avahi (0.6.18-4) unstable; urgency=low
 
