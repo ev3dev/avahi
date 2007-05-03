@@ -2,7 +2,12 @@ Index: avahi-ui/zssh.desktop.in
 ===================================================================
 --- avahi-ui/zssh.desktop.in	(revision 1453)
 +++ avahi-ui/zssh.desktop.in	(working copy)
-@@ -7,6 +7,6 @@
+@@ -3,10 +3,10 @@
+ Encoding=UTF-8
+ Name=Avahi SSH Server Browser
+ Comment=Browse for Zeroconf-enabled SSH Servers
+-Exec=@bindir@/zssh
++Exec=@bindir@/bssh
  Terminal=false
  Type=Application
  Icon=network-wired
@@ -14,7 +19,12 @@ Index: avahi-ui/zvnc.desktop.in
 ===================================================================
 --- avahi-ui/zvnc.desktop.in	(revision 1453)
 +++ avahi-ui/zvnc.desktop.in	(working copy)
-@@ -7,6 +7,6 @@
+@@ -3,10 +3,10 @@
+ Encoding=UTF-8
+ Name=Avahi VNC Server Browser
+ Comment=Browse for Zeroconf-enabled VNC Servers
+-Exec=@bindir@/zvnc
++Exec=@bindir@/bvnc
  Terminal=false
  Type=Application
  Icon=network-wired

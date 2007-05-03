@@ -1,5 +1,4 @@
 debian/tmp/usr/lib/libavahi-ui.so.*
 debian/tmp/usr/bin/zssh
-debian/tmp/usr/bin/zvnc
 debian/tmp/usr/share/applications/zssh.desktop
 debian/tmp/usr/share/applications/zvnc.desktop
