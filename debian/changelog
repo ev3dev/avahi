@@ -1,3 +1,10 @@
+avahi (0.6.18-5) unstable; urgency=low
+
+  * debian/avahi-daemon.init: Don't report failure when stopping an already
+    stopped daemon (Closes: #421928)
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu, 03 May 2007 13:03:38 +0200
+
 avahi (0.6.18-4) unstable; urgency=low
 
   [ Sjoerd Simons ]

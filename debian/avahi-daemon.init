@@ -64,7 +64,9 @@ d_start() {
 #       Function that stops the daemon/service.
 #
 d_stop() {
-    $DAEMON -c && $DAEMON -k
+    if $DAEMON -c ; then 
+       $DAEMON -k 
+    fi
 }
 
 #
