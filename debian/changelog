@@ -1,3 +1,10 @@
+avahi (0.6.19-2) unstable; urgency=low
+
+  * debian/control:
+    + libavahi-ui-dev must depend on libgtk2.0-dev.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 17 May 2007 14:44:05 +0200
+
 avahi (0.6.19-1) unstable; urgency=low
 
   * New upstream release

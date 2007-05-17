@@ -377,7 +377,7 @@ Description: Avahi Apple Bonjour compatibility library
 Package: libavahi-ui-dev
 Section: libdevel
 Architecture: any
-Depends: libavahi-ui0 (= ${Source-Version}), libavahi-client-dev, libavahi-glib-dev
+Depends: libavahi-ui0 (= ${Source-Version}), libavahi-client-dev, libavahi-glib-dev, libgtk2.0-dev
 Description: Development headers for the Avahi Apple Bonjour compatibility library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
