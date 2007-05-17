@@ -62,14 +62,6 @@ install/avahi-daemon::
 	install -D -o root -g root -m 755 debian/avahi-daemon-check-dns.sh \
 		debian/$(cdbs_curpkg)/usr/lib/avahi/avahi-daemon-check-dns.sh
 
-binary-fixup/libavahi-ui0::
-	mv debian/$(cdbs_curpkg)/usr/share/applications/zvnc.desktop \
-	  debian/$(cdbs_curpkg)/usr/share/applications/bvnc.desktop
-	mv debian/$(cdbs_curpkg)/usr/share/applications/zssh.desktop \
-	  debian/$(cdbs_curpkg)/usr/share/applications/bssh.desktop
-	mv debian/$(cdbs_curpkg)/usr/bin/zssh \
-	  debian/$(cdbs_curpkg)/usr/bin/bssh
-
 ifeq (linux,$(DEB_HOST_ARCH_OS))
 common-install-impl::
 	mv $(DEB_DESTDIR)/etc/dhcp3/dhclient-exit-hooks.d/avahi-autoipd \

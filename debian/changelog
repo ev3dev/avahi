@@ -2,7 +2,8 @@ avahi (0.6.19-1) unstable; urgency=low
 
   * New upstream release
   * debian/libavahi-ui0.install,
-    debian/libavahi-ui0.links:
+    debian/libavahi-ui0.links,
+    debian/rules:
     + Update for the new binary names which are upstream now.
   * debian/patches/11_avahi-autoipd.action-add-routes.patch:
     + Fix patch header to patch the real source file and actually apply.
