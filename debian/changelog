@@ -1,3 +1,19 @@
+avahi (0.6.19-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/libavahi-ui0.install,
+    debian/libavahi-ui0.links:
+    + Update for the new binary names which are upstream now.
+  * debian/patches/11_avahi-autoipd.action-add-routes.patch:
+    + Fix patch header to patch the real source file and actually apply.
+      Thanks to Martin Pitt for noticing.
+  * debian/patches/12_avahi-autoipd-dhcp-exit-hook-take-down.patch,
+    debian/patches/20_avahi-ui-non-existing-domain-segv.patch,
+    debian/patches/25_avahi_fix_desktop_files.patch:
+    + Dropped, merged upstream.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 17 May 2007 13:48:26 +0200
+
 avahi (0.6.18-5) unstable; urgency=low
 
   * debian/avahi-daemon.init: Don't report failure when stopping an already
