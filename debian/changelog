@@ -1,8 +1,10 @@
 avahi (0.6.20-1) unstable; urgency=low
 
   * New upstream release
+  * debian/control:
+    + Bump build-depend on libdaemon to (>= 0.11)
 
- -- Sjoerd Simons <sjoerd@debian.org>  Fri, 22 Jun 2007 20:04:43 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Fri, 22 Jun 2007 20:27:03 +0100
 
 avahi (0.6.19-2) unstable; urgency=low
 
