@@ -3,7 +3,7 @@
 set -e
 
 case "$1" in
-  install)
+  install|upgrade)
     if dpkg --compare-versions "$2" le "0.6.20-1"; then
       if [ -d "/etc/avahi/etc" ]; then
         rm -f /etc/avahi/etc/localtime;
