@@ -1,3 +1,9 @@
+avahi (0.6.20-2) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Fri, 06 Jul 2007 16:10:32 +0200
+
 avahi (0.6.20-1) unstable; urgency=low
 
   * New upstream release
