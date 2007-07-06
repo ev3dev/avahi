@@ -50,13 +50,6 @@ d_start() {
       exit 0;
     fi;
 
-    if [ -s /etc/localtime ]; then
-	if [ ! -d /etc/avahi/etc ]; then
-	    mkdir -p /etc/avahi/etc >/dev/null 2>&1
-	fi
-	cp -fp /etc/localtime /etc/avahi/etc >/dev/null 2>&1
-    fi;
-    
     $DAEMON -D
 }
 

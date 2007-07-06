@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -e
+
+case "$1" in
+  install)
+    if dpkg --compare-versions "$2" le "0.6.20-1"; then
+      if [ -d "/etc/avahi/etc" ]; then
+        rm -f /etc/avahi/etc/localtime;
+        rmdir --ignore-fail-on-non-empty /etc/avahi/etc;
+      fi
+    fi
+esac
+
+#DEBHELPER#
+
+exit 0

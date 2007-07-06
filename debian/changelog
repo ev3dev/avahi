@@ -3,8 +3,18 @@ avahi (0.6.20-1) unstable; urgency=low
   * New upstream release
   * debian/control:
     + Bump build-depend on libdaemon to (>= 0.11)
+    + Add depend on python-dbus to python-avahi (Closes: #426365)
+  * debian/avahi-autoipd.{ifup,ifdown}:
+    + Check for the existance of link-local routes on all interfaces
+      and use some nicer grep rules. Thanks Martin F Krafft and  Eloi Granado
+      (Closes: #426918)
+  * debian/avahi-daemon.preinst:
+    + Added. Remove /etc/avahi/etc/{,localtime} on installation, it's should
+      no longer be necessary (Closes: #427237)
+  * debian/avahi-daemon.init:
+    + No longer create /etc/avahi/etc/localtime (Closes: #422368)
 
- -- Sjoerd Simons <sjoerd@debian.org>  Fri, 22 Jun 2007 20:27:03 +0100
+ -- Sjoerd Simons <sjoerd@debian.org>  Fri, 06 Jul 2007 14:56:24 +0200
 
 avahi (0.6.19-2) unstable; urgency=low
 
