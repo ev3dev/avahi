@@ -1,6 +1,8 @@
 avahi (0.6.20-2) UNRELEASED; urgency=low
 
-  * NOT RELEASED YET
+  * debian/patches/15_avahi_dns_truncate.patch:
+    + Added. Fix truncating of dns packets when their too big. Could cause
+      assertion failures 
 
  -- Sjoerd Simons <sjoerd@debian.org>  Fri, 06 Jul 2007 16:10:32 +0200
 
