@@ -1,4 +1,4 @@
-avahi (0.6.20-2) UNRELEASED; urgency=low
+avahi (0.6.20-2) unstable; urgency=low
 
   * debian/patches/15_avahi_dns_truncate.patch:
     + Added. Fix truncating of dns packets when their too big. Could cause
@@ -6,8 +6,9 @@ avahi (0.6.20-2) UNRELEASED; urgency=low
   * debian/patches/20_avahi_remove_ka_conflict.patch:
     + Added. Don't treat known answers as authorative when they don't match
     our local records.
+  * Fix short description of libavahi-ui0 and libavahi-ui-dev
 
- -- Sjoerd Simons <sjoerd@debian.org>  Tue, 10 Jul 2007 21:25:49 +0200
+ -- Sjoerd Simons <sjoerd@debian.org>  Tue, 10 Jul 2007 21:29:46 +0200
 
 avahi (0.6.20-1) unstable; urgency=low
 
