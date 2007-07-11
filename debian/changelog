@@ -1,3 +1,9 @@
+avahi (0.6.20-3) UNRELEASED; urgency=low
+
+  * NOT RELEASED YET
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Wed, 11 Jul 2007 22:41:11 +0200
+
 avahi (0.6.20-2) unstable; urgency=low
 
   * debian/patches/15_avahi_dns_truncate.patch:
