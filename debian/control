@@ -227,7 +227,7 @@ Description: Avahi glib integration library
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
- This library contains the the interface to integrate the Avahi libraries
+ This library contains the interface to integrate the Avahi libraries
  into a GLIB main loop application, including GTK applications.
 
 Package: libavahi-glib-dev
@@ -256,7 +256,7 @@ Description: Avahi Qt3 integration library
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
- This library contains the the interface to integrate the Avahi libraries
+ This library contains the interface to integrate the Avahi libraries
  into a Qt3 main loop application.
 
 Package: libavahi-qt3-dev
@@ -284,7 +284,7 @@ Description: Avahi Qt4 integration library
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
- This library contains the the interface to integrate the Avahi libraries
+ This library contains the interface to integrate the Avahi libraries
  into a Qt4 main loop application.
 
 Package: libavahi-qt4-dev
