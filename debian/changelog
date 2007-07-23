@@ -4,10 +4,10 @@ avahi (0.6.20-3) UNRELEASED; urgency=low
   * NOT RELEASED YET
 
   [ Loic Minier ]
-  * Fix "the the" typos in descriptions; thanks Philippe Cloutier;
-    closes: #434261.
+  * Fix "the the" typos in descriptions and use "Qt 3" instead of "Qt3" and
+    "Qt 4" instead of "Qt4"; thanks Philippe Cloutier; closes: #434261.
 
- -- Loic Minier <lool@dooz.org>  Mon, 23 Jul 2007 11:08:42 +0200
+ -- Loic Minier <lool@dooz.org>  Mon, 23 Jul 2007 11:49:25 +0200
 
 avahi (0.6.20-2) unstable; urgency=low
 
