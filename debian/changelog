@@ -6,8 +6,12 @@ avahi (0.6.21-1) UNRELEASED; urgency=low
 
   [ Sjoerd Simons ]
   * New upstream release
+  * debian/patches/15_avahi_dns_truncate.patch
+    + Removed, fixed upstream
+  * debian/patches/20_avahi_remove_ka_conflict.patch:
+    + Removed, fixed upstream
 
- -- Sjoerd Simons <sjoerd@debian.org>  Sun, 12 Aug 2007 18:58:50 +0200
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 12 Aug 2007 19:04:04 +0200
 
 avahi (0.6.20-2) unstable; urgency=low
 
