@@ -1,4 +1,4 @@
-avahi (0.6.21-1) UNRELEASED; urgency=low
+avahi (0.6.21-1) unstable; urgency=low
 
   [ Loic Minier ]
   * Fix "the the" typos in descriptions and use "Qt 3" instead of "Qt3" and
@@ -11,7 +11,7 @@ avahi (0.6.21-1) UNRELEASED; urgency=low
   * debian/patches/20_avahi_remove_ka_conflict.patch:
     + Removed, fixed upstream
 
- -- Sjoerd Simons <sjoerd@debian.org>  Sun, 12 Aug 2007 19:04:04 +0200
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 12 Aug 2007 19:44:01 +0200
 
 avahi (0.6.20-2) unstable; urgency=low
 
