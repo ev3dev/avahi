@@ -1,13 +1,13 @@
-avahi (0.6.20-3) UNRELEASED; urgency=low
-
-  [ Sjoerd Simons ]
-  * NOT RELEASED YET
+avahi (0.6.21-1) UNRELEASED; urgency=low
 
   [ Loic Minier ]
   * Fix "the the" typos in descriptions and use "Qt 3" instead of "Qt3" and
     "Qt 4" instead of "Qt4"; thanks Philippe Cloutier; closes: #434261.
 
- -- Loic Minier <lool@dooz.org>  Mon, 23 Jul 2007 11:49:25 +0200
+  [ Sjoerd Simons ]
+  * New upstream release
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 12 Aug 2007 18:58:50 +0200
 
 avahi (0.6.20-2) unstable; urgency=low
 
