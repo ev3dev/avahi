@@ -1,8 +1,10 @@
-avahi (0.6.21-2) UNRELEASED; urgency=low
+avahi (0.6.21-2) unstable; urgency=low
 
-  * NOT RELEASED YET
+  * debian/patches/20_avahi-libdns_sd-crash.patch
+    + Added. Fix a segfault when registering services with libdns_sd before the
+      avahi daemon finished starting up (from upstream SVN)
 
- -- Sjoerd Simons <sjoerd@debian.org>  Sun, 12 Aug 2007 19:59:18 +0200
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 09 Sep 2007 12:15:55 +0200
 
 avahi (0.6.21-1) unstable; urgency=low
 
