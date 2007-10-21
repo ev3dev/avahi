@@ -7,6 +7,7 @@ Build-Depends: debhelper (>= 5.0.37.2), cdbs (>= 0.4.43), python-support (>= 0.3
 Standards-Version: 3.7.2
 XS-Vcs-Svn: svn://svn.debian.org/svn/pkg-utopia/packages/unstable/avahi
 XS-Vcs-Browser: http://svn.debian.org/wsvn/pkg-utopia/packages/unstable/avahi
+Homepage: http://avahi.org/
 
 Package: avahi-daemon
 Section: net
