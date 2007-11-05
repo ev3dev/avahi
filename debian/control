@@ -138,7 +138,7 @@ Description: Avahi common data files
 Package: libavahi-common-dev
 Section: libdevel
 Architecture: any
-Depends: libavahi-common3 (= ${Source-Version}), ${misc:Depends}
+Depends: libavahi-common3 (= ${binary:Version}), ${misc:Depends}
 Description: Development files for the Avahi common library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -172,7 +172,7 @@ Description: Avahi's embeddable mDNS/DNS-SD library
 Package: libavahi-core-dev
 Section: libdevel
 Architecture: any
-Depends: libavahi-core5 (= ${Source-Version}), ${misc:Depends}, libavahi-common-dev
+Depends: libavahi-core5 (= ${binary:Version}), ${misc:Depends}, libavahi-common-dev
 Replaces: libavahi-core1 (<< 0.4)
 Description: Development files for Avahi's embeddable mDNS/DNS-SD library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
@@ -206,7 +206,7 @@ Description: Avahi client library
 Package: libavahi-client-dev
 Section: libdevel
 Architecture: any
-Depends: libavahi-client3 (= ${Source-Version}), ${misc:Depends}, libavahi-common-dev, libdbus-1-dev (>= 0.60)
+Depends: libavahi-client3 (= ${binary:Version}), ${misc:Depends}, libavahi-common-dev, libdbus-1-dev (>= 0.60)
 Description: Development files for the Avahi client library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -234,7 +234,7 @@ Description: Avahi glib integration library
 Package: libavahi-glib-dev
 Section: libdevel
 Architecture: any
-Depends: libavahi-glib1 (= ${Source-Version}), libglib2.0-dev, ${misc:Depends}, libavahi-common-dev
+Depends: libavahi-glib1 (= ${binary:Version}), libglib2.0-dev, ${misc:Depends}, libavahi-common-dev
 Description: Development headers for the Avahi glib integration library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -263,7 +263,7 @@ Description: Avahi Qt 3 integration library
 Package: libavahi-qt3-dev
 Section: libdevel
 Architecture: any
-Depends: libavahi-qt3-1 (= ${Source-Version}), libqt3-mt-dev, ${misc:Depends}, libavahi-common-dev
+Depends: libavahi-qt3-1 (= ${binary:Version}), libqt3-mt-dev, ${misc:Depends}, libavahi-common-dev
 Description: Development headers for the Avahi Qt 3 integration library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -291,7 +291,7 @@ Description: Avahi Qt 4 integration library
 Package: libavahi-qt4-dev
 Section: libdevel
 Architecture: any
-Depends: libavahi-qt4-1 (= ${Source-Version}), libqt4-dev, ${misc:Depends}, libavahi-common-dev
+Depends: libavahi-qt4-1 (= ${binary:Version}), libqt4-dev, ${misc:Depends}, libavahi-common-dev
 Description: Development headers for the Avahi Qt 4 integration library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -322,7 +322,7 @@ Section: libdevel
 Architecture: any
 Replaces: libhowl-dev
 Conflicts: libhowl-dev
-Depends: libavahi-compat-howl0 (= ${Source-Version}), libavahi-client-dev
+Depends: libavahi-compat-howl0 (= ${binary:Version}), libavahi-client-dev
 Description: Development headers for the Avahi Howl compatibility library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -350,7 +350,7 @@ Description: Avahi Apple Bonjour compatibility library
 Package: libavahi-compat-libdnssd-dev
 Section: libdevel
 Architecture: any
-Depends: libavahi-compat-libdnssd1 (= ${Source-Version}), libavahi-client-dev
+Depends: libavahi-compat-libdnssd1 (= ${binary:Version}), libavahi-client-dev
 Description: Development headers for the Avahi Apple Bonjour compatibility library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -378,7 +378,7 @@ Description: Avahi GTK User interface library
 Package: libavahi-ui-dev
 Section: libdevel
 Architecture: any
-Depends: libavahi-ui0 (= ${Source-Version}), libavahi-client-dev, libavahi-glib-dev, libgtk2.0-dev
+Depends: libavahi-ui0 (= ${binary:Version}), libavahi-client-dev, libavahi-glib-dev, libgtk2.0-dev
 Description: Development headers for the Avahi GTK User interface library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
