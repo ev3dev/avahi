@@ -1,4 +1,4 @@
-avahi (0.6.21-3) UNRELEASED; urgency=low
+avahi (0.6.21-3) unstable; urgency=low
 
   [ Michael Biebl ]
   * debian/control
@@ -19,8 +19,9 @@ avahi (0.6.21-3) UNRELEASED; urgency=low
   * Add myself to uploaders.
   * Misc whitespace cleanups.
   * Let avahi-daemon depend on bind9-host | host; closes: #433030.
+  * Bump up Debhelper compatibility level to 5.
 
- -- Loic Minier <lool@dooz.org>  Tue, 27 Nov 2007 15:17:49 +0100
+ -- Loic Minier <lool@dooz.org>  Tue, 27 Nov 2007 15:30:15 +0100
 
 avahi (0.6.21-2) unstable; urgency=low
 
