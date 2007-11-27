@@ -1,11 +1,15 @@
 avahi (0.6.21-3) UNRELEASED; urgency=low
 
+  [ Michael Biebl ]
   * debian/control
     + Use new "Homepage:" field to specify the upstream URL.
     + The Vcs-* fields are now officially supported, so remove the XS- prefix.
     + Replace deprecated ${Source-Version} substvar with ${binary:Version}.
 
- -- Michael Biebl <biebl@debian.org>  Sun, 21 Oct 2007 18:41:16 +0200
+  [ Loic Minier ]
+  * Only check the DNS on ifup in avahi-daemon.ifupdown, not on ifdown.
+
+ -- Loic Minier <lool@dooz.org>  Tue, 27 Nov 2007 14:16:47 +0100
 
 avahi (0.6.21-2) unstable; urgency=low
 
