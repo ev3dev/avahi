@@ -15,8 +15,9 @@ avahi (0.6.21-3) UNRELEASED; urgency=low
     thanks Neil Williams; closes: #452859.
   * New patch, 60_hurd-fixes, fixes FTBFS on hurd; thanks Samuel Thibault;
     closes: #438938.
+  * Wrap deps, uploaders and build-deps.
 
- -- Loic Minier <lool@dooz.org>  Tue, 27 Nov 2007 14:45:39 +0100
+ -- Loic Minier <lool@dooz.org>  Tue, 27 Nov 2007 14:49:39 +0100
 
 avahi (0.6.21-2) unstable; urgency=low
 
@@ -102,7 +103,7 @@ avahi (0.6.18-5) unstable; urgency=low
   * debian/avahi-daemon-check-dns.sh: Explicitly set $PATH so programs in
     /usr/bin are also found (Closes: #421360)
   * debian/rules, debian/libavahi-ui0.links: Rename zssh and zvnc to bssh and
-    bvnc. Upstream will have this renaming in their next release 
+    bvnc. Upstream will have this renaming in their next release
     (Closes: #421473)
 
  -- Sjoerd Simons <sjoerd@debian.org>  Thu, 03 May 2007 19:06:17 +0200
@@ -127,7 +128,7 @@ avahi (0.6.18-4) unstable; urgency=low
       architectures.
   * debian/patches/25_avahi_fix_desktop_files.patch:
     + Added. Only put at most one main category in one .desktop file. Fixes
-      applications turning up in multiple places in the KDE menu. Also move 
+      applications turning up in multiple places in the KDE menu. Also move
       zvnc and zssh to the Network category.
 
   [ Michael Biebl ]
@@ -404,7 +405,7 @@ avahi (0.6.14-2) unstable; urgency=low
     debian/avahi-autoipd.ifdown,
     + Also recognise the NetworkManager method and address family(?!) as valid
     for ipv4ll routes
-   
+
  -- Sjoerd Simons <sjoerd@debian.org>  Fri, 20 Oct 2006 21:55:17 +0200
 
 avahi (0.6.14-1) unstable; urgency=low
@@ -482,7 +483,7 @@ avahi (0.6.11-1) unstable; urgency=low
   [ Sjoerd Simons ]
   * debian/copyright: Obfuscate Lennart poettering's e-mail address on his
     request.
-  * Update the python bindings for the new policy. 
+  * Update the python bindings for the new policy.
 
   [ Sebastian Dröge ]
   * New upstream release
@@ -542,7 +543,7 @@ avahi (0.6.9-6) unstable; urgency=low
   * Don't let libavahi-client3 recommend avahi-daemon. Let the end-user apps
     decide if they want to recommend avahi-daemon or not. (Closes: #357416)
   * debian/patches/99_autotools.patch
-    + Added. Update the autotools files so 
+    + Added. Update the autotools files so
     debian/patches/02_pthread_flags.patch actually has effect. Fixes ftbs on
     mips (Closes: #358304)
 
@@ -568,10 +569,10 @@ avahi (0.6.9-5) unstable; urgency=low
 
 avahi (0.6.9-4) unstable; urgency=low
 
-  * debian/patches/03_cmsg_too_large.patch 
+  * debian/patches/03_cmsg_too_large.patch
     + Added. Don't make the cmsg somewhat oversized. Fixes sendmsg returning
-    EINVAL on 64 bit machines with 32 bit user space. 
-    
+    EINVAL on 64 bit machines with 32 bit user space.
+
  -- Sjoerd Simons <sjoerd@debian.org>  Fri, 10 Mar 2006 10:12:02 +0100
 
 avahi (0.6.9-3) unstable; urgency=low
@@ -590,7 +591,7 @@ avahi (0.6.9-3) unstable; urgency=low
 
 avahi (0.6.9-2) unstable; urgency=low
 
-  * Update shlibs of libavahi-common 
+  * Update shlibs of libavahi-common
 
  -- Sjoerd Simons <sjoerd@debian.org>  Sat,  4 Mar 2006 10:36:51 +0100
 
@@ -605,8 +606,8 @@ avahi (0.6.9-1) unstable; urgency=low
 avahi (0.6.8-2) unstable; urgency=low
 
   * libavahi-core's soname changed from 3 to 4. As only
-    avahi-daemon depends on -core it's not a big problem luckily. 
-  * Change the package to reflect the soname change (Closes: #354771) 
+    avahi-daemon depends on -core it's not a big problem luckily.
+  * Change the package to reflect the soname change (Closes: #354771)
 
  -- Sjoerd Simons <sjoerd@debian.org>  Wed,  1 Mar 2006 10:23:35 +0100
 
@@ -637,7 +638,7 @@ avahi (0.6.6-2) unstable; urgency=low
 
   * Add libcap-dev to the build-depends to enable chroot() support
     (Closes: #351699)
-  * Update the avahi-dnsconfd description (Closes: 351273) 
+  * Update the avahi-dnsconfd description (Closes: 351273)
 
  -- Sjoerd Simons <sjoerd@debian.org>  Sun, 12 Feb 2006 20:12:23 +0100
 
@@ -676,13 +677,13 @@ avahi (0.6.4-1) unstable; urgency=low
   * debian/patches/03_reduce_qt3lib_depends.patch
     + Added. Change avahi-qt3.pc to have qt3-mt in Requires.private instead of
     Requires (Thanks Isaac Clerencia) (Closes: #347710)
-  * Make libavahi-client-dev depend on libdbus-1-dev 
+  * Make libavahi-client-dev depend on libdbus-1-dev
 
  -- Sjoerd Simons <sjoerd@debian.org>  Tue, 17 Jan 2006 11:26:51 +0100
 
 avahi (0.6.3-3) unstable; urgency=low
 
-  * debian/patches/02_avahi-sharp-mono1.1.13.patch 
+  * debian/patches/02_avahi-sharp-mono1.1.13.patch
     + Added. Compatibility fixes for mono 1.1.13.
 
  -- Sjoerd Simons <sjoerd@debian.org>  Fri, 13 Jan 2006 14:03:59 +0100
@@ -705,14 +706,14 @@ avahi (0.6.3-1) unstable; urgency=low
     arch: any package
   * debian/patches/01_avahi-daemon.conf.patch
     + Added. Don't browse any extra domains by default
-  * Add libavahi-client-dev depend to libavahi-compat-howl-dev 
+  * Add libavahi-client-dev depend to libavahi-compat-howl-dev
     and libavahi-compat-libdnssd-dev (Closes: 347247)
 
  -- Sjoerd Simons <sjoerd@debian.org>  Thu, 12 Jan 2006 00:23:42 +0100
 
 avahi (0.6.1-4) unstable; urgency=low
 
-  * Upload to unstable 
+  * Upload to unstable
 
  -- Sjoerd Simons <sjoerd@debian.org>  Thu,  5 Jan 2006 22:13:55 +0100
 
@@ -772,7 +773,7 @@ avahi (0.5.2-2) experimental; urgency=low
 
   * -daemon depends on dbus-1-utils, and allow dbus-send to fail (Trent Lloyd).
   * -utils recommends python2.4-glad2, and explain the recommends (TL).
-  
+
  -- Ross Burton <ross@debian.org>  Mon, 10 Oct 2005 10:20:05 +0100
 
 avahi (0.5.2-1) experimental; urgency=low
@@ -797,7 +798,7 @@ avahi (0.5-1) experimental; urgency=low
   * Move .pc files to -dev packages
 
   [ Sjoerd Simons ]
-  * New upstream release 
+  * New upstream release
 
  -- Ross Burton <ross@debian.org>  Fri, 30 Sep 2005 12:16:39 +0100
 
