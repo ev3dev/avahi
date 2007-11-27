@@ -13,8 +13,10 @@ avahi (0.6.21-3) UNRELEASED; urgency=low
   * Build avahi-autoipd on lpia.
   * Check the host -- not build -- arch to enable/disable the stack protector;
     thanks Neil Williams; closes: #452859.
+  * New patch, 60_hurd-fixes, fixes FTBFS on hurd; thanks Samuel Thibault;
+    closes: #438938.
 
- -- Loic Minier <lool@dooz.org>  Tue, 27 Nov 2007 14:40:31 +0100
+ -- Loic Minier <lool@dooz.org>  Tue, 27 Nov 2007 14:45:39 +0100
 
 avahi (0.6.21-2) unstable; urgency=low
 
