@@ -18,7 +18,7 @@ DEB_CONFIGURE_EXTRA_FLAGS += --enable-compat-libdns_sd --enable-compat-howl \
                              --disable-mono --disable-monodoc
 
 # Only enable the stack protector on certain archs
-ifeq (,$(filter $(DEB_BUILD_ARCH), powerpc s390 sparc amd64 i386))
+ifeq (,$(filter $(DEB_BUILD_ARCH), powerpc s390 sparc amd64 i386 lpia))
   DEB_CONFIGURE_EXTRA_FLAGS += --disable-stack-protector
 endif
 
