@@ -45,7 +45,7 @@ Description: Avahi DNS configuration tool
 
 Package: avahi-autoipd
 Section: net
-Architecture: i386 ia64 alpha amd64 armeb arm hppa m32r m68k mips mipsel powerpc ppc64 s390 s390x sh3 sh3eb sh4 sh4eb sparc
+Architecture: i386 ia64 alpha amd64 armeb arm hppa lpia m32r m68k mips mipsel powerpc ppc64 s390 s390x sh3 sh3eb sh4 sh4eb sparc
 Depends: ${shlibs:Depends}, ${misc:Depends}, adduser
 Recommends: dhcp3-client, iproute
 Conflicts: zeroconf

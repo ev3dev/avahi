@@ -10,8 +10,9 @@ avahi (0.6.21-3) UNRELEASED; urgency=low
   * Only check the DNS on ifup in avahi-daemon.ifupdown, not on ifdown.
   * Add lpia to the list of arches on which not to pass
     --disable-stack-protector to configure.
+  * Build avahi-autoipd on lpia.
 
- -- Loic Minier <lool@dooz.org>  Tue, 27 Nov 2007 14:18:01 +0100
+ -- Loic Minier <lool@dooz.org>  Tue, 27 Nov 2007 14:20:45 +0100
 
 avahi (0.6.21-2) unstable; urgency=low
 
