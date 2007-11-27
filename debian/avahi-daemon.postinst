@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 # postinst script for avahi
 
 set -e
@@ -46,4 +46,3 @@ esac
 
 #DEBHELPER#
 
-exit 0

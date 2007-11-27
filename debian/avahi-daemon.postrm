@@ -9,4 +9,3 @@ if [ "$1" = "purge" ] ; then
         delgroup --quiet --system avahi > /dev/null || true
 fi
 
-exit 0

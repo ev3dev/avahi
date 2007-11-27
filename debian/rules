@@ -1,4 +1,4 @@
-#! /usr/bin/make -f 
+#!/usr/bin/make -f
 
 include /usr/share/cdbs/1/rules/debhelper.mk
 include /usr/share/cdbs/1/class/autotools.mk
@@ -67,3 +67,4 @@ common-install-impl::
 	mv $(DEB_DESTDIR)/etc/dhcp3/dhclient-exit-hooks.d/avahi-autoipd \
 		$(DEB_DESTDIR)/etc/dhcp3/dhclient-exit-hooks.d/zzz_avahi-autoipd
 endif
+
