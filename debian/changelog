@@ -11,8 +11,10 @@ avahi (0.6.21-3) UNRELEASED; urgency=low
   * Add lpia to the list of arches on which not to pass
     --disable-stack-protector to configure.
   * Build avahi-autoipd on lpia.
+  * Check the host -- not build -- arch to enable/disable the stack protector;
+    thanks Neil Williams; closes: #452859.
 
- -- Loic Minier <lool@dooz.org>  Tue, 27 Nov 2007 14:20:45 +0100
+ -- Loic Minier <lool@dooz.org>  Tue, 27 Nov 2007 14:40:31 +0100
 
 avahi (0.6.21-2) unstable; urgency=low
 
