@@ -16,8 +16,9 @@ avahi (0.6.21-3) UNRELEASED; urgency=low
   * New patch, 60_hurd-fixes, fixes FTBFS on hurd; thanks Samuel Thibault;
     closes: #438938.
   * Wrap deps, uploaders and build-deps.
+  * Add myself to uploaders.
 
- -- Loic Minier <lool@dooz.org>  Tue, 27 Nov 2007 14:49:39 +0100
+ -- Loic Minier <lool@dooz.org>  Tue, 27 Nov 2007 14:51:05 +0100
 
 avahi (0.6.21-2) unstable; urgency=low
 

@@ -3,7 +3,8 @@ Section: net
 Priority: optional
 Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
 Uploaders: Sjoerd Simons <sjoerd@debian.org>,
-           Sebastian Dröge <slomo@debian.org>
+           Sebastian Dröge <slomo@debian.org>,
+           Loic Minier <lool@dooz.org>
 Build-Depends: debhelper (>= 5.0.37.2),
                cdbs (>= 0.4.43),
                python-support (>= 0.3),
