@@ -35,7 +35,8 @@ Depends: ${shlibs:Depends},
          ${misc:Depends},
          adduser,
          dbus (>= 0.60),
-         lsb-base (>= 3.0-6)
+         lsb-base (>= 3.0-6),
+         bind9-host | host
 Recommends: libnss-mdns
 Suggests: avahi-autoipd
 Conflicts: mdnsresponder

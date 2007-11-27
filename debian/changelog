@@ -18,8 +18,9 @@ avahi (0.6.21-3) UNRELEASED; urgency=low
   * Wrap deps, uploaders and build-deps.
   * Add myself to uploaders.
   * Misc whitespace cleanups.
+  * Let avahi-daemon depend on bind9-host | host; closes: #433030.
 
- -- Loic Minier <lool@dooz.org>  Tue, 27 Nov 2007 14:54:17 +0100
+ -- Loic Minier <lool@dooz.org>  Tue, 27 Nov 2007 15:17:49 +0100
 
 avahi (0.6.21-2) unstable; urgency=low
 
