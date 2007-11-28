@@ -7,6 +7,7 @@ avahi (0.6.21-3) unstable; urgency=low
     + Replace deprecated ${Source-Version} substvar with ${binary:Version}.
 
   [ Loic Minier ]
+  * Only check the DNS on ifup in avahi-daemon.ifupdown, not on ifdown.
   * Add lpia to the list of arches on which not to pass
     --disable-stack-protector to configure.
   * Build avahi-autoipd on lpia.

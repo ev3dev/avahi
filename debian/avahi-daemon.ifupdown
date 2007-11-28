@@ -5,6 +5,9 @@
 # device
 [ "$IFACE" != "lo" ] || exit 0
 
+# only check on ifup
+[ "$MODE" = "start" ] || exit 0
+
 # Bail out if resolvconf is installed
 [ -x /sbin/resolvconf ] && exit 0
 
