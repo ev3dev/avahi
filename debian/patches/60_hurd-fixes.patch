@@ -1,0 +1,127 @@
+diff -ur avahi-0.6.21-orig/avahi-core/Makefile.am avahi-0.6.21/avahi-core/Makefile.am
+--- avahi-0.6.21-orig/avahi-core/Makefile.am	2007-04-13 01:41:00.000000000 +0200
++++ avahi-0.6.21/avahi-core/Makefile.am	2007-08-20 23:09:35.000000000 +0200
+@@ -95,6 +95,9 @@
+ if HAVE_PF_ROUTE 
+ libavahi_core_la_SOURCES += \
+ 	iface-pfroute.c iface-pfroute.h
++else
++libavahi_core_la_SOURCES += \
++	iface-none.c
+ endif
+ endif
+ 
+diff -ur avahi-0.6.21-orig/avahi-core/Makefile.in avahi-0.6.21/avahi-core/Makefile.in
+--- avahi-0.6.21-orig/avahi-core/Makefile.in	2007-08-12 18:08:47.338305000 +0200
++++ avahi-0.6.21/avahi-core/Makefile.in	2007-08-20 23:10:21.673759000 +0200
+@@ -72,6 +72,9 @@
+ @HAVE_NETLINK_FALSE@@HAVE_PF_ROUTE_TRUE@am__append_2 = \
+ @HAVE_NETLINK_FALSE@@HAVE_PF_ROUTE_TRUE@	iface-pfroute.c iface-pfroute.h
+ 
++@HAVE_NETLINK_FALSE@@HAVE_PF_ROUTE_FALSE@am__append_3 = \
++@HAVE_NETLINK_FALSE@@HAVE_PF_ROUTE_FALSE@	iface-none.c
++
+ subdir = avahi-core
+ DIST_COMMON = $(avahiinclude_HEADERS) $(srcdir)/Makefile.am \
+ 	$(srcdir)/Makefile.in
+@@ -108,10 +111,11 @@
+ 	multicast-lookup.h querier.c querier.h addr-util.h addr-util.c \
+ 	domain-util.h domain-util.c dns-srv-rr.h iface-linux.c \
+ 	iface-linux.h netlink.c netlink.h iface-pfroute.c \
+-	iface-pfroute.h
++	iface-pfroute.h iface-none.c
+ @HAVE_NETLINK_TRUE@am__objects_1 = libavahi_core_la-iface-linux.lo \
+ @HAVE_NETLINK_TRUE@	libavahi_core_la-netlink.lo
+ @HAVE_NETLINK_FALSE@@HAVE_PF_ROUTE_TRUE@am__objects_2 = libavahi_core_la-iface-pfroute.lo
++@HAVE_NETLINK_FALSE@@HAVE_PF_ROUTE_FALSE@am__objects_3 = libavahi_core_la-iface-none.lo
+ am_libavahi_core_la_OBJECTS = libavahi_core_la-timeeventq.lo \
+ 	libavahi_core_la-iface.lo libavahi_core_la-server.lo \
+ 	libavahi_core_la-entry.lo libavahi_core_la-prioq.lo \
+@@ -133,7 +137,7 @@
+ 	libavahi_core_la-multicast-lookup.lo \
+ 	libavahi_core_la-querier.lo libavahi_core_la-addr-util.lo \
+ 	libavahi_core_la-domain-util.lo $(am__objects_1) \
+-	$(am__objects_2)
++	$(am__objects_2) $(am__objects_3)
+ libavahi_core_la_OBJECTS = $(am_libavahi_core_la_OBJECTS)
+ PROGRAMS = $(noinst_PROGRAMS)
+ am_avahi_reflector_OBJECTS =  \
+@@ -525,7 +529,7 @@
+ 	hashmap.c hashmap.h wide-area.c wide-area.h multicast-lookup.c \
+ 	multicast-lookup.h querier.c querier.h addr-util.h addr-util.c \
+ 	domain-util.h domain-util.c dns-srv-rr.h $(am__append_1) \
+-	$(am__append_2)
++	$(am__append_2) $(am__append_3)
+ libavahi_core_la_CFLAGS = $(AM_CFLAGS)
+ libavahi_core_la_LIBADD = $(AM_LDADD) ../avahi-common/libavahi-common.la
+ libavahi_core_la_LDFLAGS = $(AM_LDFLAGS) -export-dynamic -version-info $(LIBAVAHI_CORE_VERSION_INFO)
+@@ -725,6 +729,7 @@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libavahi_core_la-fdutil.Plo@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libavahi_core_la-hashmap.Plo@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libavahi_core_la-iface-linux.Plo@am__quote@
++@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libavahi_core_la-iface-none.Plo@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libavahi_core_la-iface-pfroute.Plo@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libavahi_core_la-iface.Plo@am__quote@
+ @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libavahi_core_la-log.Plo@am__quote@
+@@ -1013,6 +1018,13 @@
+ @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+ @am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libavahi_core_la_CFLAGS) $(CFLAGS) -c -o libavahi_core_la-iface-pfroute.lo `test -f 'iface-pfroute.c' || echo '$(srcdir)/'`iface-pfroute.c
+ 
++libavahi_core_la-iface-none.lo: iface-none.c
++@am__fastdepCC_TRUE@	if $(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libavahi_core_la_CFLAGS) $(CFLAGS) -MT libavahi_core_la-iface-none.lo -MD -MP -MF "$(DEPDIR)/libavahi_core_la-iface-none.Tpo" -c -o libavahi_core_la-iface-none.lo `test -f 'iface-none.c' || echo '$(srcdir)/'`iface-none.c; \
++@am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/libavahi_core_la-iface-none.Tpo" "$(DEPDIR)/libavahi_core_la-iface-none.Plo"; else rm -f "$(DEPDIR)/libavahi_core_la-iface-none.Tpo"; exit 1; fi
++@AMDEP_TRUE@@am__fastdepCC_FALSE@	source='iface-none.c' object='libavahi_core_la-iface-none.lo' libtool=yes @AMDEPBACKSLASH@
++@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
++@am__fastdepCC_FALSE@	$(LIBTOOL) --tag=CC --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libavahi_core_la_CFLAGS) $(CFLAGS) -c -o libavahi_core_la-iface-none.lo `test -f 'iface-none.c' || echo '$(srcdir)/'`iface-none.c
++
+ avahi_reflector-avahi-reflector.o: avahi-reflector.c
+ @am__fastdepCC_TRUE@	if $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(avahi_reflector_CFLAGS) $(CFLAGS) -MT avahi_reflector-avahi-reflector.o -MD -MP -MF "$(DEPDIR)/avahi_reflector-avahi-reflector.Tpo" -c -o avahi_reflector-avahi-reflector.o `test -f 'avahi-reflector.c' || echo '$(srcdir)/'`avahi-reflector.c; \
+ @am__fastdepCC_TRUE@	then mv -f "$(DEPDIR)/avahi_reflector-avahi-reflector.Tpo" "$(DEPDIR)/avahi_reflector-avahi-reflector.Po"; else rm -f "$(DEPDIR)/avahi_reflector-avahi-reflector.Tpo"; exit 1; fi
+--- /dev/null	2005-07-18 01:39:37.000000000 +0200
++++ avahi-0.6.21/avahi-core/iface-none.c	2007-08-20 23:08:51.000000000 +0200
+@@ -0,0 +1,32 @@
++/* $Id: iface-linux.c 1339 2006-12-12 02:12:03Z lathiat $ */
++
++/***
++  This file is part of avahi.
++ 
++  avahi is free software; you can redistribute it and/or modify it
++  under the terms of the GNU Lesser General Public License as
++  published by the Free Software Foundation; either version 2.1 of the
++  License, or (at your option) any later version.
++ 
++  avahi is distributed in the hope that it will be useful, but WITHOUT
++  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
++  or FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General
++  Public License for more details.
++ 
++  You should have received a copy of the GNU Lesser General Public
++  License along with avahi; if not, write to the Free Software
++  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307
++  USA.
++***/
++
++#include "iface.h"
++
++int avahi_interface_monitor_init_osdep(AvahiInterfaceMonitor *m) {
++    return 0;
++}
++
++void avahi_interface_monitor_free_osdep(AvahiInterfaceMonitor *m) {
++}
++
++void avahi_interface_monitor_sync(AvahiInterfaceMonitor *m) {
++}
+--- avahi-0.6.21-orig/avahi-client/xdg-config.c	2006-08-31 19:18:03.887351000 +0200
++++ avahi-0.6.21/avahi-client/xdg-config.c	2007-08-20 23:18:31.782555000 +0200
+@@ -31,6 +31,10 @@
+ 
+ #include "xdg-config.h"
+ 
++#ifndef PATH_MAX
++#define PATH_MAX 4096
++#endif
++
+ FILE *avahi_xdg_config_open(const char *filename) {
+     FILE *f;
+     const char *e, *d;

@@ -1,3 +1,235 @@
+avahi (0.6.21-4) unstable; urgency=low
+
+  * Revert checking DNS on ifup only in avahi-daemon.ifupdown as an ifdown
+    might actually reenable avahi properly if the interface was the only
+    defining a DNS server with .local; thanks Sjoerd.
+
+ -- Loic Minier <lool@dooz.org>  Wed, 28 Nov 2007 13:33:41 +0100
+
+avahi (0.6.21-3) unstable; urgency=low
+
+  [ Michael Biebl ]
+  * debian/control
+    + Use new "Homepage:" field to specify the upstream URL.
+    + The Vcs-* fields are now officially supported, so remove the XS- prefix.
+    + Replace deprecated ${Source-Version} substvar with ${binary:Version}.
+
+  [ Loic Minier ]
+  * Only check the DNS on ifup in avahi-daemon.ifupdown, not on ifdown.
+  * Add lpia to the list of arches on which not to pass
+    --disable-stack-protector to configure.
+  * Build avahi-autoipd on lpia.
+  * Check the host -- not build -- arch to enable/disable the stack protector;
+    thanks Neil Williams; closes: #452859.
+  * New patch, 60_hurd-fixes, fixes FTBFS on hurd; thanks Samuel Thibault;
+    closes: #438938.
+  * Wrap deps, uploaders and build-deps.
+  * Add myself to uploaders.
+  * Misc whitespace cleanups.
+  * Let avahi-daemon depend on bind9-host | host; closes: #433030.
+  * Bump up Debhelper compatibility level to 5.
+
+ -- Loic Minier <lool@dooz.org>  Tue, 27 Nov 2007 15:30:15 +0100
+
+avahi (0.6.21-2) unstable; urgency=low
+
+  * debian/patches/20_avahi-libdns_sd-crash.patch
+    + Added. Fix a segfault when registering services with libdns_sd before the
+      avahi daemon finished starting up (from upstream SVN)
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 09 Sep 2007 12:15:55 +0200
+
+avahi (0.6.21-1) unstable; urgency=low
+
+  [ Loic Minier ]
+  * Fix "the the" typos in descriptions and use "Qt 3" instead of "Qt3" and
+    "Qt 4" instead of "Qt4"; thanks Philippe Cloutier; closes: #434261.
+
+  [ Sjoerd Simons ]
+  * New upstream release
+  * debian/patches/15_avahi_dns_truncate.patch
+    + Removed, fixed upstream
+  * debian/patches/20_avahi_remove_ka_conflict.patch:
+    + Removed, fixed upstream
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 12 Aug 2007 19:44:01 +0200
+
+avahi (0.6.20-2) unstable; urgency=low
+
+  * debian/patches/15_avahi_dns_truncate.patch:
+    + Added. Fix truncating of dns packets when their too big. Could cause
+      assertion failures
+  * debian/patches/20_avahi_remove_ka_conflict.patch:
+    + Added. Don't treat known answers as authorative when they don't match
+    our local records.
+  * Fix short description of libavahi-ui0 and libavahi-ui-dev
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Tue, 10 Jul 2007 21:29:46 +0200
+
+avahi (0.6.20-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/control:
+    + Bump build-depend on libdaemon to (>= 0.11)
+    + Add depend on python-dbus to python-avahi (Closes: #426365)
+  * debian/avahi-autoipd.{ifup,ifdown}:
+    + Check for the existance of link-local routes on all interfaces
+      and use some nicer grep rules. Thanks Martin F Krafft and  Eloi Granado
+      (Closes: #426918)
+  * debian/avahi-daemon.preinst:
+    + Added. Remove /etc/avahi/etc/{,localtime} on installation, it's should
+      no longer be necessary (Closes: #427237)
+  * debian/avahi-daemon.init:
+    + No longer create /etc/avahi/etc/localtime (Closes: #422368)
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Fri, 06 Jul 2007 14:56:24 +0200
+
+avahi (0.6.19-2) unstable; urgency=low
+
+  * debian/control:
+    + libavahi-ui-dev must depend on libgtk2.0-dev.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 17 May 2007 14:44:05 +0200
+
+avahi (0.6.19-1) unstable; urgency=low
+
+  * New upstream release
+  * debian/libavahi-ui0.install,
+    debian/libavahi-ui0.links,
+    debian/rules:
+    + Update for the new binary names which are upstream now.
+  * debian/patches/11_avahi-autoipd.action-add-routes.patch:
+    + Fix patch header to patch the real source file and actually apply.
+      Thanks to Martin Pitt for noticing.
+  * debian/patches/12_avahi-autoipd-dhcp-exit-hook-take-down.patch,
+    debian/patches/20_avahi-ui-non-existing-domain-segv.patch,
+    debian/patches/25_avahi_fix_desktop_files.patch:
+    + Dropped, merged upstream.
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 17 May 2007 13:48:26 +0200
+
+avahi (0.6.18-5) unstable; urgency=low
+
+  * debian/avahi-daemon.init: Don't report failure when stopping an already
+    stopped daemon (Closes: #421928)
+  * debian/avahi-daemon-check-dns.sh: Explicitly set $PATH so programs in
+    /usr/bin are also found (Closes: #421360)
+  * debian/rules, debian/libavahi-ui0.links: Rename zssh and zvnc to bssh and
+    bvnc. Upstream will have this renaming in their next release
+    (Closes: #421473)
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu, 03 May 2007 19:06:17 +0200
+
+avahi (0.6.18-4) unstable; urgency=low
+
+  [ Sjoerd Simons ]
+  * debian/rules:
+    + Ensure that ServiceTypeDatabase.py is generated instead of using the one
+      from the tarball (Closes: #420184)
+  * debian/avahi-daemon-check-dns.sh:
+    + Minimise the number of times the DNS servers are checked for a unicast
+      .local domain even more.  (Closes: #419796)
+    + Use invoke-rc.d to start/stop avahi as we're a proper sysv init service
+      now
+  * debian/avahi-daemon.{ifupdown,resolvconf}:
+    + Check if avahi-daemon-check-dns.sh is executable before executing it
+      (Closes:  #419259)
+  * debian/rules:
+    + Disable gcc's strack protection on all archs except those that actually
+      support it (powerpc s390 sparc amd64 i386). Fixes FTBS on the other
+      architectures.
+  * debian/patches/25_avahi_fix_desktop_files.patch:
+    + Added. Only put at most one main category in one .desktop file. Fixes
+      applications turning up in multiple places in the KDE menu. Also move
+      zvnc and zssh to the Network category.
+
+  [ Michael Biebl ]
+  * Start avahi-daemon and avahi-dnsconfd as regular SysV init scripts.
+    (Closes: #396811, #367748, #378114)
+    + debian/avahi-daemon.init,
+      debian/avahi-dnsconfd.init
+      - Added. Based on the upstream init scripts.
+      - Add proper LSB headers.
+      - Remove reimplementation of LSB logging functions. Depend on lsb-base
+        being installed.
+      - Use log_daemon_msg instead of log_begin_msg.
+      - Remove SVN $Id keyword. (Closes: #354988)
+    + debian/avahi-daemon.install,
+      debian/avahi-dnsconfd.install
+      - Do not install the upstream init script anymore.
+    + debian/avahi-daemon.links
+      - Remove the symlink /etc/dbus-1/event.d/25avahi-daemon
+    + debian/avahi-daemon.postinst
+      - Do not restart avahi-daemon manually. dh_installinit takes care of
+        that automatically.
+    + debian/avahi-daemon.prerm,
+      debian/avahi-dnsconfd.{links,postinst,prerm}
+      - Removed. Not needed anymore.
+    + debian/control
+      - Add Depends: lsb-base (>= 3.0-6) to avahi-daemon and avahi-dnsconfd.
+    + debian/rules
+      - Set DEB_DH_INSTALLINIT_ARGS to start at 24 and stop at 16.
+    + debian/patches/03_avahi-daemon-init-unicast-disable.patch
+      - Removed, debian/avahi-daemon.init includes this fix directly.
+  * debian/rules
+    + Remove dh_python call as it is not needed anymore with python-support.
+  * debian/control
+    + Update the Vcs control field from XS-X-Vcs-Svn to XS-Vcs-Svn.
+    + Add XS-Vcs-Browser control field.
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Fri, 27 Apr 2007 13:43:07 +0200
+
+avahi (0.6.18-3) unstable; urgency=low
+
+  [ Sjoerd Simons ]
+  * debian/avahi-daemon.postinst:
+    + Don't let adduser create avahi-daemon's homedir. This prevents it from
+      being created with the wrong permissions. (Closes: #419935)
+
+  [ Sebastian Dröge ]
+  * debian/patches/20_avahi-ui-non-existing-domain-segv.patch:
+    + Patch from upstream SVN (r1448): fix segfault when browsing for services
+      on non-existing domains or domains that don't have any services assigned.
+
+ -- Sebastian Dröge <slomo@debian.org>  Fri, 20 Apr 2007 21:05:05 +0200
+
+avahi (0.6.18-2) unstable; urgency=low
+
+  * debian/control,
+    debian/libavahi-ui0.install,
+    debian/libavahi-ui0.shlibs,
+    debian/libavahi-ui-dev.install:
+    + Add libavahi-ui package, containing a Gtk widget for browsing services
+      and two example programs (zssh, zxvnc) that can be used to browse for
+      local ssh or vnc servers.
+  * debian/rules:
+    + Add libavahi-glib and libavahi-ui to DEB_SHLIBDEPS_INCLUDE
+
+ -- Sebastian Dröge <slomo@ubuntu.com>  Thu, 19 Apr 2007 15:13:03 +0200
+
+avahi (0.6.18-1) unstable; urgency=low
+
+  [ Sjoerd Simons ]
+  * debian/patches/13_avahi_big_dns_records.patch
+    + Update this patch to the version that was commited upstream
+
+  [ Sebastian Dröge ]
+  * New upstream release:
+    + debian/patches/12_avahi-generic-records.patch,
+      debian/patches/13_avahi_big_dns_records.patch:
+      - Dropped, merged upstream.
+  * debian/patches/12_avahi-autoipd-dhcp-exit-hook-take-down.patch:
+    + Patch by Joey Hess to make ifdown faster again (Closes: #419794)
+
+ -- Sebastian Dröge <slomo@debian.org>  Thu, 19 Apr 2007 07:00:01 +0200
+
+avahi (0.6.17-3) unstable; urgency=low
+
+  * Upload to unstable
+  * Merge experimental branch
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Mon, 09 Apr 2007 22:37:02 +0200
+
 avahi (0.6.17-2) experimental; urgency=low
 
   * debian/patches/12_avahi-generic-records.patch
@@ -44,6 +276,29 @@ avahi (0.6.17-1) experimental; urgency=low
     + Updated for new libavahi-core soname
 
  -- Sebastian Dröge <slomo@debian.org>  Mon,  5 Feb 2007 06:22:21 +0100
+
+avahi (0.6.16-5) unstable; urgency=low
+
+  * debian/avahi-daemon-check-dns.sh: Run ifconfig with LC_ALL=C to make
+    .local detection work for all locales (Closes: #415160)
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sat, 17 Mar 2007 13:30:05 +0100
+
+avahi (0.6.16-4) unstable; urgency=low
+
+  * Bump version number to be greater then the one in testing-proposed-updates
+    (0.6.16-3etch0)
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Thu, 15 Mar 2007 10:59:15 +0100
+
+avahi (0.6.16-3) unstable; urgency=low
+
+  * Move .local detection code to a common script. Also minize the cases where
+    host lookups are done, fixing annoying slowdowns (Closes: #409513)
+  * Add a way to disable the .location detection code completely for the cases
+    we can't work around. (Closes: #406272)
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun,  4 Mar 2007 20:52:53 +0100
 
 avahi (0.6.16-2) unstable; urgency=low
 
@@ -162,7 +417,7 @@ avahi (0.6.14-2) unstable; urgency=low
     debian/avahi-autoipd.ifdown,
     + Also recognise the NetworkManager method and address family(?!) as valid
     for ipv4ll routes
-   
+
  -- Sjoerd Simons <sjoerd@debian.org>  Fri, 20 Oct 2006 21:55:17 +0200
 
 avahi (0.6.14-1) unstable; urgency=low
@@ -240,7 +495,7 @@ avahi (0.6.11-1) unstable; urgency=low
   [ Sjoerd Simons ]
   * debian/copyright: Obfuscate Lennart poettering's e-mail address on his
     request.
-  * Update the python bindings for the new policy. 
+  * Update the python bindings for the new policy.
 
   [ Sebastian Dröge ]
   * New upstream release
@@ -300,7 +555,7 @@ avahi (0.6.9-6) unstable; urgency=low
   * Don't let libavahi-client3 recommend avahi-daemon. Let the end-user apps
     decide if they want to recommend avahi-daemon or not. (Closes: #357416)
   * debian/patches/99_autotools.patch
-    + Added. Update the autotools files so 
+    + Added. Update the autotools files so
     debian/patches/02_pthread_flags.patch actually has effect. Fixes ftbs on
     mips (Closes: #358304)
 
@@ -326,10 +581,10 @@ avahi (0.6.9-5) unstable; urgency=low
 
 avahi (0.6.9-4) unstable; urgency=low
 
-  * debian/patches/03_cmsg_too_large.patch 
+  * debian/patches/03_cmsg_too_large.patch
     + Added. Don't make the cmsg somewhat oversized. Fixes sendmsg returning
-    EINVAL on 64 bit machines with 32 bit user space. 
-    
+    EINVAL on 64 bit machines with 32 bit user space.
+
  -- Sjoerd Simons <sjoerd@debian.org>  Fri, 10 Mar 2006 10:12:02 +0100
 
 avahi (0.6.9-3) unstable; urgency=low
@@ -348,7 +603,7 @@ avahi (0.6.9-3) unstable; urgency=low
 
 avahi (0.6.9-2) unstable; urgency=low
 
-  * Update shlibs of libavahi-common 
+  * Update shlibs of libavahi-common
 
  -- Sjoerd Simons <sjoerd@debian.org>  Sat,  4 Mar 2006 10:36:51 +0100
 
@@ -363,8 +618,8 @@ avahi (0.6.9-1) unstable; urgency=low
 avahi (0.6.8-2) unstable; urgency=low
 
   * libavahi-core's soname changed from 3 to 4. As only
-    avahi-daemon depends on -core it's not a big problem luckily. 
-  * Change the package to reflect the soname change (Closes: #354771) 
+    avahi-daemon depends on -core it's not a big problem luckily.
+  * Change the package to reflect the soname change (Closes: #354771)
 
  -- Sjoerd Simons <sjoerd@debian.org>  Wed,  1 Mar 2006 10:23:35 +0100
 
@@ -395,7 +650,7 @@ avahi (0.6.6-2) unstable; urgency=low
 
   * Add libcap-dev to the build-depends to enable chroot() support
     (Closes: #351699)
-  * Update the avahi-dnsconfd description (Closes: 351273) 
+  * Update the avahi-dnsconfd description (Closes: 351273)
 
  -- Sjoerd Simons <sjoerd@debian.org>  Sun, 12 Feb 2006 20:12:23 +0100
 
@@ -434,13 +689,13 @@ avahi (0.6.4-1) unstable; urgency=low
   * debian/patches/03_reduce_qt3lib_depends.patch
     + Added. Change avahi-qt3.pc to have qt3-mt in Requires.private instead of
     Requires (Thanks Isaac Clerencia) (Closes: #347710)
-  * Make libavahi-client-dev depend on libdbus-1-dev 
+  * Make libavahi-client-dev depend on libdbus-1-dev
 
  -- Sjoerd Simons <sjoerd@debian.org>  Tue, 17 Jan 2006 11:26:51 +0100
 
 avahi (0.6.3-3) unstable; urgency=low
 
-  * debian/patches/02_avahi-sharp-mono1.1.13.patch 
+  * debian/patches/02_avahi-sharp-mono1.1.13.patch
     + Added. Compatibility fixes for mono 1.1.13.
 
  -- Sjoerd Simons <sjoerd@debian.org>  Fri, 13 Jan 2006 14:03:59 +0100
@@ -463,14 +718,14 @@ avahi (0.6.3-1) unstable; urgency=low
     arch: any package
   * debian/patches/01_avahi-daemon.conf.patch
     + Added. Don't browse any extra domains by default
-  * Add libavahi-client-dev depend to libavahi-compat-howl-dev 
+  * Add libavahi-client-dev depend to libavahi-compat-howl-dev
     and libavahi-compat-libdnssd-dev (Closes: 347247)
 
  -- Sjoerd Simons <sjoerd@debian.org>  Thu, 12 Jan 2006 00:23:42 +0100
 
 avahi (0.6.1-4) unstable; urgency=low
 
-  * Upload to unstable 
+  * Upload to unstable
 
  -- Sjoerd Simons <sjoerd@debian.org>  Thu,  5 Jan 2006 22:13:55 +0100
 
@@ -530,7 +785,7 @@ avahi (0.5.2-2) experimental; urgency=low
 
   * -daemon depends on dbus-1-utils, and allow dbus-send to fail (Trent Lloyd).
   * -utils recommends python2.4-glad2, and explain the recommends (TL).
-  
+
  -- Ross Burton <ross@debian.org>  Mon, 10 Oct 2005 10:20:05 +0100
 
 avahi (0.5.2-1) experimental; urgency=low
@@ -555,7 +810,7 @@ avahi (0.5-1) experimental; urgency=low
   * Move .pc files to -dev packages
 
   [ Sjoerd Simons ]
-  * New upstream release 
+  * New upstream release
 
  -- Ross Burton <ross@debian.org>  Fri, 30 Sep 2005 12:16:39 +0100
 

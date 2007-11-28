@@ -5,8 +5,7 @@ set -e
 #DEBHELPER#
 
 if [ "$1" = "purge" ] ; then
-        deluser --quiet --system avahi-autoipd > /dev/null || true
-        delgroup --quiet --system avahi-autoipd > /dev/null || true
+    deluser --quiet --system avahi-autoipd > /dev/null || true
+    delgroup --quiet --system avahi-autoipd > /dev/null || true
 fi
 
-exit 0

@@ -1,0 +1,5 @@
+debian/tmp/usr/lib/libavahi-ui.so.*
+debian/tmp/usr/bin/bssh
+debian/tmp/usr/bin/bvnc
+debian/tmp/usr/share/applications/bssh.desktop
+debian/tmp/usr/share/applications/bvnc.desktop

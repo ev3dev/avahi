@@ -1,4 +1,4 @@
-#! /bin/sh
+#!/bin/sh
 
 set -e
 
@@ -21,4 +21,3 @@ esac
 
 #DEBHELPER#
 
-exit 0

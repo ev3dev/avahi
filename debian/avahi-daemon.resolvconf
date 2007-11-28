@@ -2,38 +2,7 @@
 #
 # If we have an unicast .local domain, we immediately disable avahi to avoid
 # conflicts with the multicast IP4LL .local domain
-DISABLE_TAG_DIR="/var/run/avahi-daemon/"
-DISABLE_TAG="$DISABLE_TAG_DIR/disabled-for-unicast-local"
 
-OUT=`LC_ALL=C host -t soa local. 2>&1`
-
-if [ $? -eq 0 ] && echo "$OUT" | egrep -vq 'has no|not found'; then
-    if [ -x /etc/init.d/avahi-daemon ]; then
-        /etc/init.d/avahi-daemon stop || true
-        if [ -x /usr/bin/logger ]; then
-            logger -p daemon.warning -t avahi <<EOF
-Avahi detected that your currently configured local DNS server serves
-a domain .local. This is inherently incompatible with Avahi and thus
-Avahi disabled itself. If you want to use Avahi in this network, please
-contact your administrator and convince him to use a different DNS domain,
-since .local should be used exclusively for Zeroconf technology.
-For more information, see http://avahi.org/wiki/AvahiAndUnicastDotLocal
-EOF
-        fi
-    fi
-    if [ ! -d ${DISABLE_TAG_DIR} ] ; then 
-      mkdir -m 0755 -p ${DISABLE_TAG_DIR}
-      chown avahi:avahi ${DISABLE_TAG_DIR}
-    fi 
-    touch ${DISABLE_TAG}
-else
-    # no unicast .local conflict, so remove the tag and start avahi again
-    if [ -e ${DISABLE_TAG} ]; then
-        rm -f ${DISABLE_TAG}
-        if [ -x /etc/init.d/avahi-daemon ]; then
-            /etc/init.d/avahi-daemon start || true
-        fi
-    fi
+if [ -x /usr/lib/avahi/avahi-daemon-check-dns.sh ]; then
+  exec /usr/lib/avahi/avahi-daemon-check-dns.sh
 fi
-
-exit 0

@@ -1,5 +1,5 @@
---- avahi-autoipd/avahi-autoipd.action.old	2006-10-20 09:42:33.732375000 +0200
-+++ avahi-autoipd/avahi-autoipd.action	2006-10-20 09:44:35.003954000 +0200
+--- avahi-autoipd/avahi-autoipd.action.linux	2006-10-20 09:42:33.732375000 +0200
++++ avahi-autoipd/avahi-autoipd.action.linux	2006-10-20 09:44:35.003954000 +0200
 @@ -36,11 +36,13 @@
  
      case "$1" in
