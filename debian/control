@@ -461,3 +461,13 @@ Description: Development headers for the Avahi GTK User interface library
  .
  This package contains the development headers for the Gtk library of Avahi.
 
+Package: avahi-dbg
+Section: libdevel
+Priority: extra
+Architecture: any
+Description: Avahi - debugging symbols
+ This package contains detached debugging symbols for the binary packages
+ produced by the avahi source.
+ .
+ Most people will not need this package.
+
