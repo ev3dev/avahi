@@ -1,3 +1,11 @@
+avahi (0.6.21-4) unstable; urgency=low
+
+  * Revert checking DNS on ifup only in avahi-daemon.ifupdown as an ifdown
+    might actually reenable avahi properly if the interface was the only
+    defining a DNS server with .local; thanks Sjoerd.
+
+ -- Loic Minier <lool@dooz.org>  Wed, 28 Nov 2007 13:33:41 +0100
+
 avahi (0.6.21-3) unstable; urgency=low
 
   [ Michael Biebl ]
