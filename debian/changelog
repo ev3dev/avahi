@@ -1,3 +1,11 @@
+avahi (0.6.21-5) experimental; urgency=low
+
+  * Add a -dbg package; thanks Sam Morris; closes: #379953.
+    - Target at experimental to avoid blocking uploads to unstable.
+    - Update control.
+
+ -- Loic Minier <lool@dooz.org>  Wed, 28 Nov 2007 17:14:18 +0100
+
 avahi (0.6.21-4) unstable; urgency=low
 
   * Revert checking DNS on ifup only in avahi-daemon.ifupdown as an ifdown
