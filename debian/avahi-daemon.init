@@ -25,15 +25,15 @@ test -x $DAEMON || exit 0
 
 . /lib/lsb/init-functions
 
-# don't start if /etc/default/avahi-daemon says so.
-AVAHI_DAEMON_START=1
+# Include avahi-daemon defaults if available.
 test -f /etc/default/avahi-daemon && . /etc/default/avahi-daemon
 
 DISABLE_TAG="/var/run/avahi-daemon/disabled-for-unicast-local"
 
-if [ "$AVAHI_DAEMON_START" != "1" -a "$1" != "stop" ]; then
-    log_warning_msg "Not starting $DESC $NAME, disabled via /etc/default/$NAME"
-    exit 0
+if [ -n "$AVAHI_DAEMON_START" ]; then
+    log_warning_msg "The AVAHI_DAEMON_START option in /etc/default/$NAME has been deprecated."
+    log_warning_msg "Please remove this setting from the configuration file."
+    log_warning_msg "To disable the service use a runlevel editor like sysv-rc-conf or bum instead."
 fi
 
 #
