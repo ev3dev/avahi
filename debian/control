@@ -302,6 +302,39 @@ Description: Development headers for the Avahi glib integration library
  to integrate the Avahi libraries  into a GLIB main loop application,
  including GTK applications.
 
+Package: libavahi-gobject0
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends}
+Description: Avahi GObject library
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This library contains the development headers for a GObject interface
+ to Avahi
+
+Package: libavahi-gobject-dev
+Section: libdevel
+Architecture: any
+Depends: libavahi-gobject (= ${binary:Version}),
+         ${misc:Depends},
+         libglib2.0-dev,
+         libavahi-common-dev
+         libavahi-client-dev
+Description: Development headers for the Avahi GObject library
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This package contains the development headers for a GObject interface
+ to Avahi
+
 Package: libavahi-qt3-1
 Section: libs
 Architecture: any
