@@ -1,8 +1,12 @@
-avahi (0.6.21-6) UNRELEASED; urgency=low
+avahi (0.6.22-1) UNRELEASED; urgency=low
 
+  [ Michael Biebl ]
   * Deprecate the AVAHI_DAEMON_START option and remove it from
     /etc/default/avahi-daemon. Print a warning message in the init script if
     this option is still used.
+
+  [ Sjoerd Simons ]
+  * New upstream release
 
  -- Michael Biebl <biebl@debian.org>  Tue, 04 Dec 2007 19:00:37 +0100
 
