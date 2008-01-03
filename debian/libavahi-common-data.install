@@ -1,2 +1,2 @@
 debian/tmp/usr/share/avahi/service-types
-debian/tmp/usr/share/avahi/service-types.db
+debian/tmp/usr/lib/avahi/service-types.db
