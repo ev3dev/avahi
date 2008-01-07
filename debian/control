@@ -323,7 +323,7 @@ Architecture: any
 Depends: libavahi-gobject0 (= ${binary:Version}),
          ${misc:Depends},
          libglib2.0-dev,
-         libavahi-common-dev
+         libavahi-common-dev,
          libavahi-client-dev
 Description: Development headers for the Avahi GObject library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
