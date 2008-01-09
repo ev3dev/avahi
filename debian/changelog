@@ -2,11 +2,13 @@ avahi (0.6.22-3) UNRELEASED; urgency=low
 
   [ Sjoerd Simons ]
   * debian/control: Add libavahi-glib-dev to the libavahi-gobject-dev depends
+  * debian/control: Remove python-glade2 dependencies from python-avahi. It's
+    not needed anymore
 
   [ Michael Biebl ]
   * debian/control
     - Bump Standards-Version to 3.7.3. No further changes required.
-    - Add dependency on python-glade2 to avahi-discover. (Closes: #459809)
+    - Add dependency on python-glade2 to avahi-discover.
 
  -- Sjoerd Simons <sjoerd@debian.org>  Tue, 08 Jan 2008 17:39:50 +0100
 

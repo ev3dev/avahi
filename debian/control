@@ -97,7 +97,6 @@ Section: python
 Architecture: all
 Depends: ${python:Depends},
          python-gdbm (>= 2.4.3-1),
-         python-glade2 (>= 2.8.6-2),
          libavahi-common-data (>= 0.6.22),
          python-dbus
 Provides: ${python:Provides}
