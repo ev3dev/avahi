@@ -10,6 +10,11 @@ avahi (0.6.22-3) UNRELEASED; urgency=low
     - Bump Standards-Version to 3.7.3. No further changes required.
     - Add dependency on python-glade2 to avahi-discover.
 
+  [ Sjoerd Simons ]
+  * debian/patches/80_better_poof.patch:
+    - Added. Improve the poof algorithm to prevent false positives when on a
+      unreliable network.
+
  -- Sjoerd Simons <sjoerd@debian.org>  Tue, 08 Jan 2008 17:39:50 +0100
 
 avahi (0.6.22-2) unstable; urgency=low

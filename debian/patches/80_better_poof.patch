@@ -1,0 +1,78 @@
+Index: avahi-core/cache.c
+===================================================================
+--- avahi-core/cache.c	(revision 1745)
++++ avahi-core/cache.c	(working copy)
+@@ -444,12 +444,15 @@
+ 
+ static void* start_poof_callback(AvahiCache *c, AvahiKey *pattern, AvahiCacheEntry *e, void *userdata) {
+     AvahiAddress *a = userdata;
++    struct timeval now;
+ 
+     assert(c);
+     assert(pattern);
+     assert(e);
+     assert(a);
+-    
++
++    gettimeofday(&now, NULL);
++
+     switch (e->state) {
+         case AVAHI_CACHE_VALID:
+ 
+@@ -458,15 +461,23 @@
+ 
+             e->state = AVAHI_CACHE_POOF;
+             e->poof_address = *a;
+-            
++            e->poof_timestamp = now;
++            e->poof_num = 0;
++
+             break;
+ 
+         case AVAHI_CACHE_POOF:
++            if (avahi_timeval_diff(&now, &e->poof_timestamp) < 1000000)
++              break;
+ 
+-            /* This is the second time we got no response, so let's
++            e->poof_timestamp = now;
++            e->poof_address = *a;
++            e->poof_num ++;
++
++            /* This is the 4th time we got no response, so let's
+              * fucking remove this entry. */
+-            
+-            expire_in_one_second(c, e, AVAHI_CACHE_POOF_FINAL);
++            if (e->poof_num > 3)
++              expire_in_one_second(c, e, AVAHI_CACHE_POOF_FINAL);
+             break;
+ 
+         default:
+Index: avahi-core/server.c
+===================================================================
+--- avahi-core/server.c	(revision 1745)
++++ avahi-core/server.c	(working copy)
+@@ -585,7 +585,8 @@
+ 
+         if (!legacy_unicast && !from_local_iface) {
+             reflect_query(s, i, key);
+-            avahi_cache_start_poof(i->cache, key, a);
++            if (!unicast_response)
++              avahi_cache_start_poof(i->cache, key, a);
+         }
+ 
+         if (avahi_dns_packet_get_field(p, AVAHI_DNS_FIELD_ANCOUNT) == 0 &&
+Index: avahi-core/cache.h
+===================================================================
+--- avahi-core/cache.h	(revision 1745)
++++ avahi-core/cache.h	(working copy)
+@@ -48,8 +48,10 @@
+     AvahiCache *cache;
+     AvahiRecord *record;
+     struct timeval timestamp;
++    struct timeval poof_timestamp;
+     struct timeval expiry;
+     int cache_flush;
++    int poof_num;
+     
+     AvahiAddress origin;
+ 
