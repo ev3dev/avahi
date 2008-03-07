@@ -21,6 +21,7 @@ avahi (0.6.22-3) UNRELEASED; urgency=low
     in the menus while we have nicer alternatives now (e.g. vinagre); finally
     these require additional deps which wouldn't be fit for libavahi-ui (bvnc
     requires xvncviewer); see also Launchpad #194749.
+  * Add armel to architecture list; closes: #469854.
 
  -- Sjoerd Simons <sjoerd@debian.org>  Tue, 08 Jan 2008 17:39:50 +0100
 
