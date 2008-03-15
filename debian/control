@@ -7,7 +7,7 @@ Uploaders: Sjoerd Simons <sjoerd@debian.org>,
            Loic Minier <lool@dooz.org>
 Build-Depends: debhelper (>= 5.0.37.2),
                cdbs (>= 0.4.43),
-               python-support (>= 0.3),
+               python-support (>= 0.6),
                libcap-dev [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64 !netbsd-i386],
                libgdbm-dev,
                libglib2.0-dev (>= 2.4),
@@ -103,7 +103,6 @@ Provides: ${python:Provides}
 Replaces: python2.4-avahi (<< 0.6.11),
           avahi-utils (<< 0.4)
 Conflicts: python2.4-avahi (<< 0.6.11)
-XB-Python-Version: ${python:Versions}
 Description: Python utility package for Avahi
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -139,7 +138,6 @@ Depends: ${python:Depends},
          python-glade2,
          avahi-daemon,
          ${misc:Depends}
-XB-Python-Version: ${python:Versions}
 Conflicts: avahi-utils (<< 0.6.1-2)
 Description: Service discover user interface for avahi
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
