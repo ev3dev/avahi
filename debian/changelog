@@ -14,9 +14,9 @@ avahi (0.6.22-3) UNRELEASED; urgency=low
     - Bump python-support build dependency to (>= 0.6) as suggested by the
       python-support documentation.
   * debian/avahi-daemon.init, debian/avahi-dnsconfd.init
-    - Fix LSB init header. Use $remote_fs instead of $local_fs as the daemon
-      requires /usr to be mounted.
-    - Remove S from Should-Stop.
+    - Fix LSB init header. (Closes: #469990)
+      Use $remote_fs instead of $local_fs as the daemon requires /usr to be
+      mounted. Remove S from Should-Stop.
   * debian/watch
     - Add a watch file which allows to track new upstream releases.
 
