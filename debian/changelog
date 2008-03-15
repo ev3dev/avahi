@@ -9,6 +9,10 @@ avahi (0.6.22-3) UNRELEASED; urgency=low
   * debian/control
     - Bump Standards-Version to 3.7.3. No further changes required.
     - Add dependency on python-glade2 to avahi-discover.
+  * debian/avahi-daemon.init, debian/avahi-dnsconfd.init
+    - Fix LSB init header. Use $remote_fs instead of $local_fs as the daemon
+      requires /usr to be mounted.
+    - Remove S from Should-Stop.
 
   [ Sjoerd Simons ]
   * debian/patches/80_better_poof.patch:

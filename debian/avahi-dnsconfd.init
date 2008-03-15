@@ -1,12 +1,12 @@
 #!/bin/sh
 ### BEGIN INIT INFO
 # Provides:          avahi-dnsconfd
-# Required-Start:    $local_fs avahi
-# Required-Stop:     $local_fs avahi
+# Required-Start:    $remote_fs avahi
+# Required-Stop:     $remote_fs avahi
 # Should-Start:	     $syslog
 # Should-Stop:       $syslog
 # Default-Start:     2 3 4 5
-# Default-Stop:      S 0 1 6
+# Default-Stop:      0 1 6
 # Short-Description: Avahi Unicast DNS Configuration Daemon
 # Description:       A DNS configuration daemon using mDNS in a
 #                    DHCP-like fashion

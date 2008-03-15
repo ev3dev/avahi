@@ -1,12 +1,12 @@
 #!/bin/sh
 ### BEGIN INIT INFO
 # Provides:          avahi
-# Required-Start:    $local_fs dbus
-# Required-Stop:     $local_fs dbus
+# Required-Start:    $remote_fs dbus
+# Required-Stop:     $remote_fs dbus
 # Should-Start:	     $syslog
 # Should-Stop:       $syslog
 # Default-Start:     2 3 4 5
-# Default-Stop:      S 0 1 6
+# Default-Stop:      0 1 6
 # Short-Description: Avahi mDNS/DNS-SD Daemon
 # Description:       Zeroconf daemon for configuring your network 
 #                    automatically
