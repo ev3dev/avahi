@@ -466,8 +466,6 @@ Section: libs
 Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends}
-Suggests: ssh-client,
-          xvncviewer
 Description: Avahi GTK User interface library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -492,6 +490,22 @@ Description: Development headers for the Avahi GTK User interface library
  print to, files to look at and people to talk to.
  .
  This package contains the development headers for the Gtk library of Avahi.
+
+Package: avahi-ui-utils
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends}
+Recommends: ssh-client, xvncviewer
+Description: Avahi GTK+ utilities
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration.  For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This package contains some small GTK+ utilities to discover ssh and vnc
+ servers.
 
 Package: avahi-dbg
 Section: libdevel
