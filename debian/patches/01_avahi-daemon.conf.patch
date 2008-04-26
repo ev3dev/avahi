@@ -1,6 +1,7 @@
---- avahi-daemon/avahi-daemon.conf.orig	2006-01-11 22:48:59.000000000 +0100
-+++ avahi-daemon/avahi-daemon.conf	2006-01-11 22:51:46.000000000 +0100
-@@ -23,7 +23,7 @@
+diff -Naur avahi-0.6.22/avahi-daemon/avahi-daemon.conf avahi-0.6.22.patched/avahi-daemon/avahi-daemon.conf
+--- avahi-0.6.22/avahi-daemon/avahi-daemon.conf	2007-05-09 00:51:01.000000000 +0200
++++ avahi-0.6.22.patched/avahi-daemon/avahi-daemon.conf	2008-04-26 13:17:07.000000000 +0200
+@@ -23,9 +23,9 @@
  [server]
  #host-name=foo
  #domain-name=local
@@ -10,3 +11,13 @@
 -use-ipv6=no
 +use-ipv6=yes
  #check-response-ttl=no
+ #use-iff-running=no
+ #enable-dbus=yes
+@@ -57,6 +57,6 @@
+ rlimit-core=0
+ rlimit-data=4194304
+ rlimit-fsize=0
+-rlimit-nofile=30
++rlimit-nofile=300
+ rlimit-stack=4194304
+ rlimit-nproc=3
