@@ -8,8 +8,9 @@ avahi (0.6.22-3.1) UNRELEASED; urgency=high
   * debian/patches/01_avahi-daemon.conf.patch
     - Updated. Set the no file rlimit from 30 to 300, making it very unlikely
     that it ever gets hit. (Closes: 461181)
+  * Add symbols files for all libraries
 
- -- Sjoerd Simons <sjoerd@debian.org>  Sat, 26 Apr 2008 13:18:05 +0200
+ -- Sjoerd Simons <sjoerd@debian.org>  Sat, 26 Apr 2008 13:36:12 +0200
 
 avahi (0.6.22-3) unstable; urgency=low
 
