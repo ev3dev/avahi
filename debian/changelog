@@ -12,8 +12,10 @@ avahi (0.6.22-3.1) UNRELEASED; urgency=high
   * Update all shlibs files to match the symbols files (Closes: #463677)
   * debian/control, debian/avahi-ui-utils.install
     - Package bvnc and bssh (Closes: #477712)
+  * debian/patches/05_avahi_gobject_pkgconfig.patch
+    - Use Requires.private in avahi-gobject.pc (From upstream svn)
 
- -- Sjoerd Simons <sjoerd@debian.org>  Sat, 26 Apr 2008 14:22:53 +0200
+ -- Sjoerd Simons <sjoerd@debian.org>  Sat, 26 Apr 2008 15:36:08 +0200
 
 avahi (0.6.22-3) unstable; urgency=low
 
