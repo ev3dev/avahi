@@ -1,5 +1,5 @@
 #!/bin/sh
-# postinst script for avahi
+# postinst script for avahi-daemon
 
 set -e
 
@@ -31,6 +31,15 @@ case "$1" in
       addgroup --quiet --system netdev || true
     fi
 
+    # update init script symlinks for new runlevels and priorities for upgrades
+    # from older versions
+    if dpkg --compare-versions "$2" lt-nl 0.6.22-4; then
+      echo "Reinstalling init script for new runlevels and priorities ..." >&2
+      # remove old init script symlinks; dh_installinit adds the proper
+      # update-rc.d snippet later on
+      update-rc.d -f avahi-daemon remove >/dev/null
+    fi
+ 
     # Ask the bus to reload the config file
     if [ -x "/etc/init.d/dbus" ]; then
       invoke-rc.d dbus force-reload || true

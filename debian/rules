@@ -22,7 +22,8 @@ ifeq (,$(filter $(DEB_HOST_ARCH), powerpc s390 sparc amd64 i386 lpia))
   DEB_CONFIGURE_EXTRA_FLAGS += --disable-stack-protector
 endif
 
-DEB_DH_INSTALLINIT_ARGS := -- start 24 2 3 4 5 . stop 16 0 1 6 .
+DEB_UPDATE_RCD_PARAMS_avahi-daemon := start 14 2 3 4 5 . stop 86 0 1 6 .
+DEB_UPDATE_RCD_PARAMS_avahi-dnsconfd := start 16 2 3 4 5 . stop 84 0 1 6 .
 
 ifneq (linux,$(DEB_HOST_ARCH_OS))
 	DEB_CONFIGURE_EXTRA_FLAGS += --disable-autoipd
