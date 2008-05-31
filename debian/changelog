@@ -1,4 +1,4 @@
-avahi (0.6.22-4) UNRELEASED; urgency=high
+avahi (0.6.22-4) unstable; urgency=low
 
   [ Michael Biebl ]
   * debian/control
@@ -24,7 +24,7 @@ avahi (0.6.22-4) UNRELEASED; urgency=high
   * debian/patches/05_avahi_gobject_pkgconfig.patch
     - Use Requires.private in avahi-gobject.pc (From upstream svn)
 
- -- Sjoerd Simons <sjoerd@debian.org>  Sat, 26 Apr 2008 15:36:08 +0200
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 01 Jun 2008 00:21:34 +0200
 
 avahi (0.6.22-3) unstable; urgency=low
 
