@@ -1,7 +1,7 @@
-Index: ga-entry-group.c
+Index: avahi-gobject/ga-entry-group.c
 ===================================================================
---- ga-entry-group.c	(revision 1783)
-+++ ga-entry-group.c	(revision 1784)
+--- avahi-gobject/ga-entry-group.c	(revision 1783)
++++ avahi-gobject/ga-entry-group.c	(revision 1784)
 @@ -556,9 +556,13 @@
  gboolean ga_entry_group_service_remove_key(GaEntryGroupService * service,
                                    const gchar * key, GError ** error) {
