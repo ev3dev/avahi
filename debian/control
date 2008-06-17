@@ -68,7 +68,7 @@ Description: Avahi DNS configuration tool
  print to, files to look at and people to talk to.
  .
  This tool listens on the network for announced DNS servers and passes
- them to resolvconf so it can use them.  This is very useful on autoconfigured
+ them to resolvconf so it can use them. This is very useful on autoconfigured
  IPv6 networks.
 
 Package: avahi-autoipd

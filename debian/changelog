@@ -1,3 +1,10 @@
+avahi (0.6.22-6) UNRELEASED; urgency=low
+
+  * debian/libavahi-qt3-1.symbols, debian/libavahi-qt4.so.1.symbols
+    - Set the correct package names in the symbols files. (Closes: #486595)
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 18 Jun 2008 00:01:51 +0200
+
 avahi (0.6.22-5) unstable; urgency=low
 
   * debian/patches/85_gobject_service_remove_key.patch

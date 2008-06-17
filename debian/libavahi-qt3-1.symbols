@@ -1,4 +1,4 @@
-libavahi-qt3.so.1 libavahi-qt3 #MINVER#
+libavahi-qt3.so.1 libavahi-qt3-1 #MINVER#
  _ZN10AvahiWatch11qt_propertyEiiP8QVariant@Base 0.6.16
  _ZN10AvahiWatch16setWatchedEventsE15AvahiWatchEvent@Base 0.6.16
  _ZN10AvahiWatch16staticMetaObjectEv@Base 0.6.16

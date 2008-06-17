@@ -1,4 +1,4 @@
-libavahi-qt4.so.1 libavahi-qt4 #MINVER#
+libavahi-qt4.so.1 libavahi-qt4-1 #MINVER#
  _ZN10AvahiWatch11qt_metacallEN11QMetaObject4CallEiPPv@Base 0.6.16
  _ZN10AvahiWatch11qt_metacastEPKc@Base 0.6.16
  _ZN10AvahiWatch16setWatchedEventsE15AvahiWatchEvent@Base 0.6.16
