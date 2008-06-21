@@ -1,9 +1,17 @@
 avahi (0.6.22-6) UNRELEASED; urgency=low
 
+  [ Michael Biebl ]
   * debian/libavahi-qt3-1.symbols, debian/libavahi-qt4.so.1.symbols
     - Set the correct package names in the symbols files. (Closes: #486595)
 
- -- Michael Biebl <biebl@debian.org>  Wed, 18 Jun 2008 00:01:51 +0200
+  [ Sjoerd Simons ]
+  * debian/libavahi-core5.symbols.kfreebsd-amd64,
+    libavahi-core5.symbols.kfreebsd-i386:
+    - Add symbol files for kfreebsd (Closes: #485690)
+  *  debian/libavahi-gobject0.symbols
+    - Add symbols file for libavahi-gobject
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sat, 21 Jun 2008 19:18:16 +0200
 
 avahi (0.6.22-5) unstable; urgency=low
 
