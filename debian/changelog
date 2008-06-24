@@ -1,4 +1,4 @@
-avahi (0.6.23-1) UNRELEASED; urgency=low
+avahi (0.6.23-1) unstable; urgency=low
 
   [ Michael Biebl ]
   * debian/libavahi-qt3-1.symbols, debian/libavahi-qt4.so.1.symbols
@@ -23,7 +23,7 @@ avahi (0.6.23-1) UNRELEASED; urgency=low
     - Updated. Private symbols are no longer visible.
   * Bump the build-depend on intltool to >= 0.35.0
 
- -- Sjoerd Simons <sjoerd@debian.org>  Tue, 24 Jun 2008 16:33:13 +0200
+ -- Sjoerd Simons <sjoerd@debian.org>  Tue, 24 Jun 2008 16:41:23 +0200
 
 avahi (0.6.22-5) unstable; urgency=low
 
