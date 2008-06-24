@@ -23,7 +23,8 @@ Build-Depends: debhelper (>= 5.0.37.2),
                python-gtk2 (>= 2.8.6-2),
                libqt3-mt-dev,
                libqt4-dev,
-               xmltoman
+               xmltoman,
+               intltool (>= 0.35.0)
 Standards-Version: 3.7.3
 Vcs-Svn: svn://svn.debian.org/svn/pkg-utopia/packages/unstable/avahi
 Vcs-Browser: http://svn.debian.org/wsvn/pkg-utopia/packages/unstable/avahi
