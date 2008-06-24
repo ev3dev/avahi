@@ -1,4 +1,4 @@
-avahi (0.6.22-6) UNRELEASED; urgency=low
+avahi (0.6.23-1) UNRELEASED; urgency=low
 
   [ Michael Biebl ]
   * debian/libavahi-qt3-1.symbols, debian/libavahi-qt4.so.1.symbols
@@ -10,8 +10,19 @@ avahi (0.6.22-6) UNRELEASED; urgency=low
     - Add symbol files for kfreebsd (Closes: #485690)
   *  debian/libavahi-gobject0.symbols
     - Add symbols file for libavahi-gobject
+  * New upstream bugfix release
+  * Remove patches that were merged upstream:
+    - debian/patches/05_avahi_gobject_pkgconfig.patch
+    - debian/patches/60_hurd-fixes.patch
+    - debian/patches/70_gobject_libs_typo.patch
+    - debian/patches/80_better_poof.patch
+    - debian/patches/85_gobject_service_remove_key.patch
+  * debian/patches/01_avahi-daemon.conf.patch:
+    - Updated. The higher rlimit is now the upstream default
+  * debian/libavahi-qt4-1.symbols:
+    - Updated. Private symbols are no longer visible.
 
- -- Sjoerd Simons <sjoerd@debian.org>  Sat, 21 Jun 2008 19:18:16 +0200
+ -- Sjoerd Simons <sjoerd@debian.org>  Tue, 24 Jun 2008 14:48:34 +0200
 
 avahi (0.6.22-5) unstable; urgency=low
 
