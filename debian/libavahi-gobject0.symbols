@@ -1,4 +1,4 @@
-libavahi-gobject.so.0 libavahi-glib0 #MINVERo
+libavahi-gobject.so.0 libavahi-gobject0 #MINVER#
  ga_browser_event_get_type@Base 0.6.22
  ga_client_flags_get_type@Base 0.6.22
  ga_client_get_type@Base 0.6.22
