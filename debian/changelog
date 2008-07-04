@@ -2,6 +2,10 @@ avahi (0.6.23-2) unstable; urgency=low
 
   * debian/control
     - Add myself to Uploaders.
+    - Build against libcap2 instead of libcap1 to avoid kernel warning about
+      using legacy support of 32-bit capabilities. Add a Build-Depends on
+      libcap2-dev (>= 2.10) to avoid possibly insecure use of v2 capabilities.
+      Thanks to Ted Percival for the patch. (Closes: #464712)
   * debian/libavahi-gobject0.symbols
     - Fix incorrect package name and #MINVER# stanza. (Closes: #488947)
 
