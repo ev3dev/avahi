@@ -283,7 +283,7 @@ Description: Avahi glib integration library
  print to, files to look at and people to talk to.
  .
  This library contains the interface to integrate the Avahi libraries
- into a GLIB main loop application, including GTK applications.
+ into a GLIB main loop application, including GTK+ applications.
 
 Package: libavahi-glib-dev
 Section: libdevel
@@ -301,7 +301,7 @@ Description: Development headers for the Avahi glib integration library
  .
  This package contains the development headers for the interface
  to integrate the Avahi libraries  into a GLIB main loop application,
- including GTK applications.
+ including GTK+ applications.
 
 Package: libavahi-gobject0
 Section: libs
@@ -468,14 +468,14 @@ Section: libs
 Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends}
-Description: Avahi GTK User interface library
+Description: Avahi GTK+ User interface library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
  running on a local network with no specific configuration.  For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
- This library contains a Gtk widget for browsing services.
+ This library contains a GTK+ widget for browsing services.
 
 Package: libavahi-ui-dev
 Section: libdevel
@@ -484,14 +484,14 @@ Depends: libavahi-ui0 (= ${binary:Version}),
          libavahi-client-dev,
          libavahi-glib-dev,
          libgtk2.0-dev
-Description: Development headers for the Avahi GTK User interface library
+Description: Development headers for the Avahi GTK+ User interface library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
  running on a local network with no specific configuration.  For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
- This package contains the development headers for the Gtk library of Avahi.
+ This package contains the development headers for the GTK+ library of Avahi.
 
 Package: avahi-ui-utils
 Section: libs

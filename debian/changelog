@@ -6,6 +6,7 @@ avahi (0.6.23-2) unstable; urgency=low
       using legacy support of 32-bit capabilities. Add a Build-Depends on
       libcap2-dev (>= 2.10) to avoid possibly insecure use of v2 capabilities.
       Thanks to Ted Percival for the patch. (Closes: #464712)
+    - Fix spelling of GTK+ in description.
   * debian/libavahi-gobject0.symbols
     - Fix incorrect package name and #MINVER# stanza. (Closes: #488947)
   * debian/patches/02_avahi-ui.disable-translations.patch
