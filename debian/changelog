@@ -8,8 +8,12 @@ avahi (0.6.23-2) unstable; urgency=low
       Thanks to Ted Percival for the patch. (Closes: #464712)
   * debian/libavahi-gobject0.symbols
     - Fix incorrect package name and #MINVER# stanza. (Closes: #488947)
+  * debian/patches/02_avahi-ui.disable-translations.patch
+    - Disable translatable strings in the avahi-ui desktop files. The build
+      system doesn't process them correctly yet and we end up with broken
+      desktop files otherwise.
 
- -- Michael Biebl <biebl@debian.org>  Fri, 04 Jul 2008 22:44:01 +0200
+ -- Michael Biebl <biebl@debian.org>  Sat, 05 Jul 2008 13:49:06 +0200
 
 avahi (0.6.23-1) unstable; urgency=low
 
