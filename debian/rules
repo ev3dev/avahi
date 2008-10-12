@@ -37,9 +37,16 @@ DEB_SHLIBDEPS_INCLUDE := debian/libavahi-common3/usr/lib \
                          debian/libavahi-glib1/usr/lib \
                          debian/libavahi-ui0/usr/lib
 
-#ensure that ServiceTypeDatabase.py is regenerated 
+# ensure that ServiceTypeDatabase.py is regenerated 
 pre-build::
-	-rm -f avahi-python/avahi/ServiceTypeDatabase.py 
+	-rm -f avahi-python/avahi/ServiceTypeDatabase.py
+
+common-build-arch::
+	# create an up to date PO template
+	cd po; intltool-update -p --verbose
+
+clean::
+	rm -f po/*.pot
 
 binary-install/avahi-discover::
 	dh_pysupport -p$(cdbs_curpkg)

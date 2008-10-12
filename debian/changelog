@@ -1,3 +1,11 @@
+avahi (0.6.23-3) UNRELEASED; urgency=low
+
+  * Generate a POT file during build; helps downstreams such as Ubuntu import
+    an always up-to-date pot, even we patch the source of upstream forgets to
+    do so; from Ubuntu; thanks Martin Pitt; closes: #486908.
+
+ -- Loic Minier <lool@dooz.org>  Sun, 12 Oct 2008 14:08:54 +0200
+
 avahi (0.6.23-2) unstable; urgency=low
 
   * debian/control
