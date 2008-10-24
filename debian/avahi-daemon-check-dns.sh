@@ -45,7 +45,7 @@ dns_reachable() {
 
 dns_has_local() { 
   # Some magic to do tests 
-  if [ -n ${FAKE_HOST_RETURN} ] ; then
+  if [ -n "${FAKE_HOST_RETURN}" ] ; then
     if [ "${FAKE_HOST_RETURN}" = "true" ]; then
       return 0;
     else
