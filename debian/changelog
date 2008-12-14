@@ -1,4 +1,4 @@
-avahi (0.6.23-3) UNRELEASED; urgency=low
+avahi (0.6.23-3) unstable; urgency=low
 
   [ Loic Minier ]
   * Generate a POT file during build; helps downstreams such as Ubuntu import
@@ -15,8 +15,7 @@ avahi (0.6.23-3) UNRELEASED; urgency=low
     - Added. Don't abort on receiving an UDP packet with a source port of zero.
       Fixes CVE-2008-5081 (Closes: #508700)
 
-
- -- Sjoerd Simons <sjoerd@debian.org>  Sun, 14 Dec 2008 19:29:00 +0000
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 14 Dec 2008 19:39:58 +0000
 
 avahi (0.6.23-2) unstable; urgency=low
 
