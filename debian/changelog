@@ -15,6 +15,8 @@ avahi (0.6.24-2) UNRELEASED; urgency=low
   * debian/libavahi-core6.symbols.hurd-i386
     - Add symbols file for hurd-i386, copied from
       libavahi-core6.symbols.kfreebsd-i386. (Closes: #508895)
+  * Use dh_installifupdown to install the ifupdown hook scripts for
+    avahi-daemon and avahi-autoipd.
 
  -- Michael Biebl <biebl@debian.org>  Tue, 17 Feb 2009 15:44:07 +0100
 

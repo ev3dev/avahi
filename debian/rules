@@ -47,14 +47,10 @@ binary-install/python-avahi::
 	rm -f debian/tmp/usr/lib/python*/site-packages/avahi/*.py[co]
 
 install/avahi-autoipd::
-	install -D -o root -g root -m 755 debian/avahi-autoipd.ifup \
-		debian/$(cdbs_curpkg)/etc/network/if-up.d/avahi-autoipd
-	install -D -o root -g root -m 755 debian/avahi-autoipd.ifdown \
-		debian/$(cdbs_curpkg)/etc/network/if-down.d/avahi-autoipd
+	dh_installifupdown -p$(cdbs_curpkg)
 
 install/avahi-daemon::
-	install -D -o root -g root -m 755 debian/avahi-daemon.ifupdown \
-		debian/$(cdbs_curpkg)/etc/network/if-up.d/avahi-daemon
+	dh_installifupdown -p$(cdbs_curpkg)
 	install -D -o root -g root -m 755 debian/avahi-daemon.resolvconf \
 		debian/$(cdbs_curpkg)/etc/resolvconf/update-libc.d/avahi-daemon
 	install -D -o root -g root -m 755 debian/avahi-daemon-check-dns.sh \
