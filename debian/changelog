@@ -10,6 +10,7 @@ avahi (0.6.24-2) UNRELEASED; urgency=low
       (superseded by xvnc4viewer). We use the virtual package instead.
     - Bump Standards-Version to 3.8.0. No further changes.
     - Remove ancient Conflicts/Replaces from pre-oldstable (sarge).
+    - Add ${misc:Depends} to all binary packages.
   * debian/rules
     - Remove DEB_SHLIBDEPS_INCLUDE, dpkg-shlibdeps works fine without it
       nowadays.
