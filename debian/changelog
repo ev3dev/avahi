@@ -1,4 +1,4 @@
-avahi (0.6.24-2) UNRELEASED; urgency=low
+avahi (0.6.24-2) unstable; urgency=low
 
   * Merge changes from experimental branch. 
   * debian/compat
@@ -24,7 +24,7 @@ avahi (0.6.24-2) UNRELEASED; urgency=low
     - Update D-Bus policy and fix deny rule by adding
       send_destionation="org.freedesktop.Avahi". (Closes: #510653)
 
- -- Michael Biebl <biebl@debian.org>  Tue, 17 Feb 2009 15:44:07 +0100
+ -- Michael Biebl <biebl@debian.org>  Tue, 17 Feb 2009 18:30:27 +0100
 
 avahi (0.6.24-1) experimental; urgency=low
 
