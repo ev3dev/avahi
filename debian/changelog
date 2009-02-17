@@ -8,6 +8,10 @@ avahi (0.6.24-2) UNRELEASED; urgency=low
     - Replace Recommends: xvncviewer with vnc-viewer for avahi-ui-utils.
       The xvncviewer package is no longer available from the archive
       (superseded by xvnc4viewer). We use the virtual package instead.
+  * debian/rules
+    - Remove DEB_SHLIBDEPS_INCLUDE, dpkg-shlibdeps works fine without it
+      nowadays.
+    - Remove clean-up rule in pre-build, fixed upstream.
 
  -- Michael Biebl <biebl@debian.org>  Tue, 17 Feb 2009 15:44:07 +0100
 

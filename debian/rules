@@ -31,16 +31,6 @@ DEB_UPDATE_RCD_PARAMS_avahi-dnsconfd := start 16 2 3 4 5 . stop 84 0 1 6 .
 
 DEB_INSTALL_DOCS_ALL += docs/README docs/NEWS
 
-DEB_SHLIBDEPS_INCLUDE := debian/libavahi-common3/usr/lib \
-                         debian/libavahi-core4/usr/lib \
-                         debian/libavahi-client3/usr/lib \
-                         debian/libavahi-glib1/usr/lib \
-                         debian/libavahi-ui0/usr/lib
-
-# ensure that ServiceTypeDatabase.py is regenerated 
-pre-build::
-	-rm -f avahi-python/avahi/ServiceTypeDatabase.py
-
 common-build-arch::
 	# create an up to date PO template
 	cd po; intltool-update -p --verbose
