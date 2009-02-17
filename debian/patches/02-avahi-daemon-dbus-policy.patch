@@ -1,0 +1,14 @@
+diff --git a/avahi-daemon/avahi-dbus.conf.in b/avahi-daemon/avahi-dbus.conf.in
+index e439e07..6ea099e 100644
+--- a/avahi-daemon/avahi-dbus.conf.in
++++ b/avahi-daemon/avahi-dbus.conf.in
+@@ -16,7 +16,8 @@
+     <allow send_destination="org.freedesktop.Avahi"/>
+     <allow receive_sender="org.freedesktop.Avahi"/>
+ 
+-    <deny send_interface="org.freedesktop.Avahi.Server" send_member="SetHostName"/>
++    <deny send_destination="org.freedesktop.Avahi"
++          send_interface="org.freedesktop.Avahi.Server" send_member="SetHostName"/>
+   </policy>
+ 
+   <!-- Allow everything, including access to SetHostName to users of the group "@AVAHI_PRIV_ACCESS_GROUP@" -->

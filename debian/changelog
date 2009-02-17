@@ -20,6 +20,9 @@ avahi (0.6.24-2) UNRELEASED; urgency=low
       libavahi-core6.symbols.kfreebsd-i386. (Closes: #508895)
   * Use dh_installifupdown to install the ifupdown hook scripts for
     avahi-daemon and avahi-autoipd.
+  * debian/patches/02-avahi-daemon-dbus-policy.patch
+    - Update D-Bus policy and fix deny rule by adding
+      send_destionation="org.freedesktop.Avahi".
 
  -- Michael Biebl <biebl@debian.org>  Tue, 17 Feb 2009 15:44:07 +0100
 
