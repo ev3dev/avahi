@@ -12,6 +12,9 @@ avahi (0.6.24-2) UNRELEASED; urgency=low
     - Remove DEB_SHLIBDEPS_INCLUDE, dpkg-shlibdeps works fine without it
       nowadays.
     - Remove clean-up rule in pre-build, fixed upstream.
+  * debian/libavahi-core6.symbols.hurd-i386
+    - Add symbols file for hurd-i386, copied from
+      libavahi-core6.symbols.kfreebsd-i386. (Closes: #508895)
 
  -- Michael Biebl <biebl@debian.org>  Tue, 17 Feb 2009 15:44:07 +0100
 
