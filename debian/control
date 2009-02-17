@@ -196,7 +196,7 @@ Description: Development files for the Avahi common library
  library, which is a set of common functions and definitions used by many
  of Avahis components and client applications.
 
-Package: libavahi-core5
+Package: libavahi-core6
 Section: libs
 Architecture: any
 Depends: ${shlibs:Depends},
@@ -219,7 +219,7 @@ Description: Avahi's embeddable mDNS/DNS-SD library
 Package: libavahi-core-dev
 Section: libdevel
 Architecture: any
-Depends: libavahi-core5 (= ${binary:Version}),
+Depends: libavahi-core6 (= ${binary:Version}),
          ${misc:Depends},
          libavahi-common-dev
 Replaces: libavahi-core1 (<< 0.4)

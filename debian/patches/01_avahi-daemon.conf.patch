@@ -1,6 +1,7 @@
-diff -Naur avahi-0.6.22/avahi-daemon/avahi-daemon.conf avahi-0.6.22.patched/avahi-daemon/avahi-daemon.conf
---- avahi-0.6.22/avahi-daemon/avahi-daemon.conf	2007-05-09 00:51:01.000000000 +0200
-+++ avahi-0.6.22.patched/avahi-daemon/avahi-daemon.conf	2008-04-26 13:17:07.000000000 +0200
+diff --git a/avahi-daemon/avahi-daemon.conf b/avahi-daemon/avahi-daemon.conf
+index ad69c73..737a3b2 100644
+--- a/avahi-daemon/avahi-daemon.conf
++++ b/avahi-daemon/avahi-daemon.conf
 @@ -23,9 +23,9 @@
  [server]
  #host-name=foo
@@ -10,6 +11,6 @@ diff -Naur avahi-0.6.22/avahi-daemon/avahi-daemon.conf avahi-0.6.22.patched/avah
  use-ipv4=yes
 -use-ipv6=no
 +use-ipv6=yes
+ #allow-interfaces=eth0
+ #deny-interfaces=eth1
  #check-response-ttl=no
- #use-iff-running=no
- #enable-dbus=yes
