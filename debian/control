@@ -42,7 +42,6 @@ Depends: ${shlibs:Depends},
          bind9-host | host
 Recommends: libnss-mdns
 Suggests: avahi-autoipd
-Conflicts: mdnsresponder
 Description: Avahi mDNS/DNS-SD daemon
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -103,9 +102,6 @@ Depends: ${python:Depends},
          libavahi-common-data (>= 0.6.22),
          python-dbus
 Provides: ${python:Provides}
-Replaces: python2.4-avahi (<< 0.6.11),
-          avahi-utils (<< 0.4)
-Conflicts: python2.4-avahi (<< 0.6.11)
 Description: Python utility package for Avahi
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -141,7 +137,6 @@ Depends: ${python:Depends},
          python-glade2,
          avahi-daemon,
          ${misc:Depends}
-Conflicts: avahi-utils (<< 0.6.1-2)
 Description: Service discover user interface for avahi
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -170,7 +165,6 @@ Description: Avahi common library
 Package: libavahi-common-data
 Section: libs
 Architecture: any
-Conflicts: libavahi-common0
 Description: Avahi common data files
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -201,7 +195,6 @@ Section: libs
 Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends}
-Conflicts: libavahi-core3 (>= 0.6.8)
 Description: Avahi's embeddable mDNS/DNS-SD library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -222,7 +215,6 @@ Architecture: any
 Depends: libavahi-core6 (= ${binary:Version}),
          ${misc:Depends},
          libavahi-common-dev
-Replaces: libavahi-core1 (<< 0.4)
 Description: Development files for Avahi's embeddable mDNS/DNS-SD library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -242,7 +234,6 @@ Section: libs
 Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends}
-Conflicts: avahi-daemon (<< 0.6)
 Description: Avahi client library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -405,8 +396,6 @@ Section: libs
 Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends}
-Replaces: libhowl0
-Conflicts: libhowl0
 Description: Avahi Howl compatibility library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -419,8 +408,6 @@ Description: Avahi Howl compatibility library
 Package: libavahi-compat-howl-dev
 Section: libdevel
 Architecture: any
-Replaces: libhowl-dev
-Conflicts: libhowl-dev
 Depends: libavahi-compat-howl0 (= ${binary:Version}),
          libavahi-client-dev
 Description: Development headers for the Avahi Howl compatibility library
