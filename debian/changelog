@@ -5,6 +5,9 @@ avahi (0.6.24-2) UNRELEASED; urgency=low
     - Bump to debhelper v7 compat mode.
   * debian/control
     - Bump debhelper Build-Depends to (>= 7).
+    - Replace Recommends: xvncviewer with vnc-viewer for avahi-ui-utils.
+      The xvncviewer package is no longer available from the archive
+      (superseded by xvnc4viewer). We use the virtual package instead.
 
  -- Michael Biebl <biebl@debian.org>  Tue, 17 Feb 2009 15:44:07 +0100
 
