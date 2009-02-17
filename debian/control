@@ -6,7 +6,7 @@ Uploaders: Sjoerd Simons <sjoerd@debian.org>,
            Sebastian Dröge <slomo@debian.org>,
            Loic Minier <lool@dooz.org>,
            Michael Biebl <biebl@debian.org> 
-Build-Depends: debhelper (>= 5.0.37.2),
+Build-Depends: debhelper (>= 7),
                cdbs (>= 0.4.43),
                pkg-config,
                python-support (>= 0.6),
