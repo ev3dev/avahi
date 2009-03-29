@@ -4,6 +4,9 @@ avahi (0.6.24-3) UNRELEASED; urgency=low
   * debian/control
     - Change Section of avahi-dbg to debug.
     - Bump Standards-Version to 3.8.1. No further changes.
+    - Change Build-Depends on libcap2-dev to libcap-dev. Tighten the version
+      to (>= 1:2.16) to ensure we don't pick up any old libcap1 version.
+      (Closes: #520836)
   * debian/patches/03-avahi-daemon-reflector-packet-storm.patch
     - Fix a bug in avahi-daemon that could cause packet storms when reflecting
       legacy unicast mDNS traffic. (Closes: #517683)
