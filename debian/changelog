@@ -1,6 +1,8 @@
 avahi (0.6.24-3) UNRELEASED; urgency=low
 
   * Switch patch management system to quilt. 
+  * debian/control
+    - Change Section of avahi-dbg to debug.
 
  -- Michael Biebl <biebl@debian.org>  Sun, 29 Mar 2009 21:52:23 +0200
 

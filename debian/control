@@ -503,7 +503,7 @@ Description: Avahi GTK+ utilities
  servers.
 
 Package: avahi-dbg
-Section: libdevel
+Section: debug
 Priority: extra
 Architecture: any
 Depends: ${misc:Depends}
