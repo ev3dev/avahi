@@ -12,6 +12,9 @@ avahi (0.6.24-3) UNRELEASED; urgency=low
       legacy unicast mDNS traffic. (Closes: #517683)
       SECURITY: CVE-2009-0758
       Thanks to Rob Leslie for the patch.
+  * debian/python-avahi.examples
+    - Install avahi-bookmarks as example in
+      /usr/share/doc/python-avahi/examples/. (Closes: #368566)
 
  -- Michael Biebl <biebl@debian.org>  Sun, 29 Mar 2009 21:52:23 +0200
 
