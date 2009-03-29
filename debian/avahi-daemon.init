@@ -30,12 +30,6 @@ test -f /etc/default/avahi-daemon && . /etc/default/avahi-daemon
 
 DISABLE_TAG="/var/run/avahi-daemon/disabled-for-unicast-local"
 
-if [ -n "$AVAHI_DAEMON_START" ]; then
-    log_warning_msg "The AVAHI_DAEMON_START option in /etc/default/$NAME has been deprecated."
-    log_warning_msg "Please remove this setting from the configuration file."
-    log_warning_msg "To disable the service use a runlevel editor like sysv-rc-conf or bum instead."
-fi
-
 #
 #       Function that starts the daemon/service.
 #
@@ -44,7 +38,7 @@ d_start() {
 
     $DAEMON -c && return 0
 
-    if [ -e ${DISABLE_TAG} ]; then 
+    if [ -e $DISABLE_TAG -a "$AVAHI_DAEMON_DETECT_LOCAL" != "0" ]; then 
       # Disabled because of the existance of an unicast .local domain
       log_warning_msg "avahi-daemon disabled because there is a unicast .local domain"
       exit 0;
