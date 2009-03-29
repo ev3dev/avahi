@@ -4,6 +4,11 @@ avahi (0.6.24-3) UNRELEASED; urgency=low
   * debian/control
     - Change Section of avahi-dbg to debug.
     - Bump Standards-Version to 3.8.1. No further changes.
+  * debian/patches/03-avahi-daemon-reflector-packet-storm.patch
+    - Fix a bug in avahi-daemon that could cause packet storms when reflecting
+      legacy unicast mDNS traffic. (Closes: #517683)
+      SECURITY: CVE-2009-0758
+      Thanks to Rob Leslie for the patch.
 
  -- Michael Biebl <biebl@debian.org>  Sun, 29 Mar 2009 21:52:23 +0200
 
