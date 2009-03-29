@@ -1,0 +1,3 @@
+01_avahi-daemon.conf.patch
+02-avahi-daemon-dbus-policy.patch
+11_avahi-autoipd.action-add-routes.patch
