@@ -1,4 +1,4 @@
-avahi (0.6.24-3) UNRELEASED; urgency=low
+avahi (0.6.24-3) unstable; urgency=low
 
   * Switch patch management system to quilt. 
   * debian/control
@@ -21,7 +21,7 @@ avahi (0.6.24-3) UNRELEASED; urgency=low
       Thanks to Reed Hedges for the fix.
     - Remove some old cruft.
 
- -- Michael Biebl <biebl@debian.org>  Sun, 29 Mar 2009 21:52:23 +0200
+ -- Michael Biebl <biebl@debian.org>  Mon, 30 Mar 2009 00:00:51 +0200
 
 avahi (0.6.24-2) unstable; urgency=low
 
