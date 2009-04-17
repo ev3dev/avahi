@@ -1,4 +1,4 @@
-avahi (0.6.25-1) UNRELEASED; urgency=low
+avahi (0.6.25-1) unstable; urgency=low
 
   * New upstream release.
   * debian/patches/02-avahi-daemon-dbus-policy.patch
@@ -6,7 +6,7 @@ avahi (0.6.25-1) UNRELEASED; urgency=low
   * debian/patches/03-avahi-daemon-reflector-packet-storm.patch
     - Removed, merged upstream.
 
- -- Michael Biebl <biebl@debian.org>  Tue, 14 Apr 2009 22:43:55 +0200
+ -- Michael Biebl <biebl@debian.org>  Fri, 17 Apr 2009 13:21:58 +0200
 
 avahi (0.6.24-3) unstable; urgency=low
 
