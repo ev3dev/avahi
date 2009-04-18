@@ -1,6 +1,7 @@
 avahi (0.6.25-1) unstable; urgency=low
 
   * New upstream release.
+  * Use set -e instead of #!/bin/sh -e for all maintainer and shell scripts.
   * debian/patches/02-avahi-daemon-dbus-policy.patch
     - Removed, merged upstream.
   * debian/patches/03-avahi-daemon-reflector-packet-storm.patch
