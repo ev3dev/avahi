@@ -1,3 +1,12 @@
+avahi (0.6.25-2) UNRELEASED; urgency=low
+
+  * patches/15-manpage-typo-fixes.patch
+    - Fix a few typos in the man pages (s/seperated/separated/).
+      (Closes: #525268)
+      Thanks to A. Costa for the patch.
+
+ -- Michael Biebl <biebl@debian.org>  Sat, 18 Apr 2009 14:52:48 +0200
+
 avahi (0.6.25-1) unstable; urgency=low
 
   * New upstream release.
