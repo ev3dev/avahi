@@ -5,9 +5,6 @@
 # device
 [ "$IFACE" != "lo" ] || exit 0
 
-# Bail out if resolvconf is installed
-[ -x /sbin/resolvconf ] && exit 0
-
 # If we have an unicast .local domain, we immediately disable avahi to avoid
 # conflicts with the multicast IP4LL .local domain
 if [ -x /usr/lib/avahi/avahi-daemon-check-dns.sh ] ; then

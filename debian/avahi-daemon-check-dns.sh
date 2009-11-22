@@ -35,7 +35,9 @@ dns_reachable() {
     ADDRS=$(LC_ALL=C ifconfig | grep ' addr:')
     # Filter out all local addresses
     ADDRS=$(echo "${ADDRS}" | egrep -v ':127|Scope:Host|Scope:Link')
-    if [ -z "${ADDRS}" ] ; then
+    # Check we have a default route
+    ROUTES=$(route -n | grep '^0.0.0.0 ')
+    if [ -z "${ADDRS}" -o -z "${ROUTES}" ] ; then
       return 1;
     fi
   fi

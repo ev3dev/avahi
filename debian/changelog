@@ -1,11 +1,16 @@
 avahi (0.6.25-2) UNRELEASED; urgency=low
 
+  [ Michael Biebl ]
   * patches/15-manpage-typo-fixes.patch
     - Fix a few typos in the man pages (s/seperated/separated/).
       (Closes: #525268)
       Thanks to A. Costa for the patch.
 
- -- Michael Biebl <biebl@debian.org>  Sat, 18 Apr 2009 14:52:48 +0200
+  [ Sjoerd Simons ]
+  * debian/avahi-daemon-check-dns.sh
+    + Also check for a default route before checking the DNS
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 22 Nov 2009 22:44:42 +0000
 
 avahi (0.6.25-1) unstable; urgency=low
 
