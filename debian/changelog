@@ -1,4 +1,4 @@
-avahi (0.6.25-2) UNRELEASED; urgency=low
+avahi (0.6.25-2) unstable; urgency=low
 
   [ Michael Biebl ]
   * patches/15-manpage-typo-fixes.patch
