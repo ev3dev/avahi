@@ -8,9 +8,9 @@ avahi (0.6.25-2) UNRELEASED; urgency=low
 
   [ Sjoerd Simons ]
   * debian/avahi-daemon-check-dns.sh
-    + Also check for a default route before checking the DNS
+    + Also check for a default route before checking the DNS (Closes: #551651)
 
- -- Sjoerd Simons <sjoerd@debian.org>  Sun, 22 Nov 2009 22:44:42 +0000
+ -- Sjoerd Simons <sjoerd@debian.org>  Sun, 22 Nov 2009 22:46:03 +0000
 
 avahi (0.6.25-1) unstable; urgency=low
 
