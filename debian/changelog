@@ -29,7 +29,7 @@ avahi (0.6.25-3) UNRELEASED; urgency=low
   * debian/avahi-daemon.postrm
     - Cleanup /var/run/avahi-daemon on "purge". (Closes: #448539)
   * debian/avahi-autoipd.postrm
-    - Cleanup /var/run/avahi-daemon on "purge". (Closes: #527925)
+    - Cleanup /var/run/avahi-autoipd on "purge". (Closes: #527925)
 
  -- Michael Biebl <biebl@debian.org>  Wed, 13 Jan 2010 21:25:47 +0100
 
