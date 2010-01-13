@@ -46,7 +46,7 @@ Suggests: avahi-autoipd
 Description: Avahi mDNS/DNS-SD daemon
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -65,7 +65,7 @@ Recommends: resolvconf
 Description: Avahi DNS configuration tool
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -85,7 +85,7 @@ Conflicts: zeroconf
 Description: Avahi IPv4LL network address configuration daemon
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -107,7 +107,7 @@ Provides: ${python:Provides}
 Description: Python utility package for Avahi
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -142,7 +142,7 @@ Depends: ${python:Depends},
 Description: Service discover user interface for avahi
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -157,7 +157,7 @@ Depends: ${shlibs:Depends},
 Description: Avahi common library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -171,7 +171,7 @@ Depends: ${misc:Depends}
 Description: Avahi common data files
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -185,7 +185,7 @@ Depends: libavahi-common3 (= ${binary:Version}),
 Description: Development files for the Avahi common library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -201,7 +201,7 @@ Depends: ${shlibs:Depends},
 Description: Avahi's embeddable mDNS/DNS-SD library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -221,12 +221,12 @@ Depends: libavahi-core6 (= ${binary:Version}),
 Description: Development files for Avahi's embeddable mDNS/DNS-SD library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
  This package contains the development files for Avahi's embeddable
- mDNS/DNS-SD stack.  This can be used by embedded application developers
+ mDNS/DNS-SD stack. This can be used by embedded application developers
  to integrate mDNS/DNS-SD functionality into their applications.
  .
  You should not however use this library for non-embedded applications, you
@@ -240,7 +240,7 @@ Depends: ${shlibs:Depends},
 Description: Avahi client library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -257,7 +257,7 @@ Depends: libavahi-client3 (= ${binary:Version}),
 Description: Development files for the Avahi client library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -272,7 +272,7 @@ Depends: ${shlibs:Depends},
 Description: Avahi glib integration library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -289,7 +289,7 @@ Depends: libavahi-glib1 (= ${binary:Version}),
 Description: Development headers for the Avahi glib integration library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -305,12 +305,11 @@ Depends: ${shlibs:Depends},
 Description: Avahi GObject library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
- This library contains the development headers for a GObject interface
- to Avahi
+ This library contains the GObject wrapper for Avahi.
 
 Package: libavahi-gobject-dev
 Section: libdevel
@@ -323,7 +322,7 @@ Depends: libavahi-gobject0 (= ${binary:Version}),
 Description: Development headers for the Avahi GObject library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -338,7 +337,7 @@ Depends: ${shlibs:Depends},
 Description: Avahi Qt 3 integration library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -355,7 +354,7 @@ Depends: libavahi-qt3-1 (= ${binary:Version}),
 Description: Development headers for the Avahi Qt 3 integration library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -370,7 +369,7 @@ Depends: ${shlibs:Depends},
 Description: Avahi Qt 4 integration library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -387,7 +386,7 @@ Depends: libavahi-qt4-1 (= ${binary:Version}),
 Description: Development headers for the Avahi Qt 4 integration library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -402,7 +401,7 @@ Depends: ${shlibs:Depends},
 Description: Avahi Howl compatibility library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -417,7 +416,7 @@ Depends: libavahi-compat-howl0 (= ${binary:Version}),
 Description: Development headers for the Avahi Howl compatibility library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -433,7 +432,7 @@ Recommends: libnss-mdns
 Description: Avahi Apple Bonjour compatibility library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -448,7 +447,7 @@ Depends: libavahi-compat-libdnssd1 (= ${binary:Version}),
 Description: Development headers for the Avahi Apple Bonjour compatibility library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -463,7 +462,7 @@ Depends: ${shlibs:Depends},
 Description: Avahi GTK+ User interface library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -480,7 +479,7 @@ Depends: libavahi-ui0 (= ${binary:Version}),
 Description: Development headers for the Avahi GTK+ User interface library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
@@ -495,7 +494,7 @@ Recommends: ssh-client, vnc-viewer
 Description: Avahi GTK+ utilities
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration.  For
+ running on a local network with no specific configuration. For
  example you can plug into a network and instantly find printers to
  print to, files to look at and people to talk to.
  .
