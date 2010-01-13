@@ -10,7 +10,7 @@ avahi (0.6.25-3) unstable; urgency=low
 avahi (0.6.25-2) unstable; urgency=low
 
   [ Michael Biebl ]
-  * patches/15-manpage-typo-fixes.patch
+  * debian/patches/15-manpage-typo-fixes.patch
     - Fix a few typos in the man pages (s/seperated/separated/).
       Thanks to A. Costa for the patch. (Closes: #525268)
 
