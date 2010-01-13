@@ -1,0 +1,2700 @@
+Index: avahi-0.6.25/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/Makefile.in	2010-01-13 22:40:26.304304967 +0100
++++ avahi-0.6.25/Makefile.in	2010-01-13 22:40:04.692304984 +0100
+@@ -304,6 +304,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -541,7 +542,7 @@
+ .SUFFIXES:
+ am--refresh:
+ 	@:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am $(srcdir)/common/doxygen.mk $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(srcdir)/common/doxygen.mk $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -568,9 +569,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	$(SHELL) ./config.status --recheck
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(srcdir) && $(AUTOCONF)
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(srcdir) && $(ACLOCAL) $(ACLOCAL_AMFLAGS)
+ 
+ config.h: stamp-h1
+@@ -582,7 +583,7 @@
+ stamp-h1: $(srcdir)/config.h.in $(top_builddir)/config.status
+ 	@rm -f stamp-h1
+ 	cd $(top_builddir) && $(SHELL) ./config.status config.h
+-$(srcdir)/config.h.in:  $(am__configure_deps) 
++$(srcdir)/config.h.in: @MAINTAINER_MODE_TRUE@ $(am__configure_deps) 
+ 	cd $(top_srcdir) && $(AUTOHEADER)
+ 	rm -f stamp-h1
+ 	touch $@
+Index: avahi-0.6.25/aclocal.m4
+===================================================================
+--- avahi-0.6.25.orig/aclocal.m4	2010-01-13 22:40:28.232302811 +0100
++++ avahi-0.6.25/aclocal.m4	2010-01-13 22:39:51.968305226 +0100
+@@ -714,14 +714,16 @@
+ # _PKG_CONFIG([VARIABLE], [COMMAND], [MODULES])
+ # ---------------------------------------------
+ m4_define([_PKG_CONFIG],
+-[if test -n "$$1"; then
+-    pkg_cv_[]$1="$$1"
+- elif test -n "$PKG_CONFIG"; then
+-    PKG_CHECK_EXISTS([$3],
+-                     [pkg_cv_[]$1=`$PKG_CONFIG --[]$2 "$3" 2>/dev/null`],
+-		     [pkg_failed=yes])
+- else
+-    pkg_failed=untried
++[if test -n "$PKG_CONFIG"; then
++    if test -n "$$1"; then
++        pkg_cv_[]$1="$$1"
++    else
++        PKG_CHECK_EXISTS([$3],
++                         [pkg_cv_[]$1=`$PKG_CONFIG --[]$2 "$3" 2>/dev/null`],
++			 [pkg_failed=yes])
++    fi
++else
++	pkg_failed=untried
+ fi[]dnl
+ ])# _PKG_CONFIG
+ 
+@@ -765,9 +767,9 @@
+ if test $pkg_failed = yes; then
+         _PKG_SHORT_ERRORS_SUPPORTED
+         if test $_pkg_short_errors_supported = yes; then
+-	        $1[]_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "$2" 2>&1`
++	        $1[]_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "$2"`
+         else 
+-	        $1[]_PKG_ERRORS=`$PKG_CONFIG --print-errors "$2" 2>&1`
++	        $1[]_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "$2"`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$$1[]_PKG_ERRORS" >&AS_MESSAGE_LOG_FD
+@@ -1323,6 +1325,35 @@
+ rmdir .tst 2>/dev/null
+ AC_SUBST([am__leading_dot])])
+ 
++# Add --enable-maintainer-mode option to configure.         -*- Autoconf -*-
++# From Jim Meyering
++
++# Copyright (C) 1996, 1998, 2000, 2001, 2002, 2003, 2004, 2005
++# Free Software Foundation, Inc.
++#
++# This file is free software; the Free Software Foundation
++# gives unlimited permission to copy and/or distribute it,
++# with or without modifications, as long as this notice is preserved.
++
++# serial 4
++
++AC_DEFUN([AM_MAINTAINER_MODE],
++[AC_MSG_CHECKING([whether to enable maintainer-specific portions of Makefiles])
++  dnl maintainer-mode is disabled by default
++  AC_ARG_ENABLE(maintainer-mode,
++[  --enable-maintainer-mode  enable make rules and dependencies not useful
++			  (and sometimes confusing) to the casual installer],
++      USE_MAINTAINER_MODE=$enableval,
++      USE_MAINTAINER_MODE=no)
++  AC_MSG_RESULT([$USE_MAINTAINER_MODE])
++  AM_CONDITIONAL(MAINTAINER_MODE, [test $USE_MAINTAINER_MODE = yes])
++  MAINT=$MAINTAINER_MODE_TRUE
++  AC_SUBST(MAINT)dnl
++]
++)
++
++AU_DEFUN([jm_MAINTAINER_MODE], [AM_MAINTAINER_MODE])
++
+ # Check to see how 'make' treats includes.	            -*- Autoconf -*-
+ 
+ # Copyright (C) 2001, 2002, 2003, 2005  Free Software Foundation, Inc.
+Index: avahi-0.6.25/avahi-autoipd/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-autoipd/Makefile.in	2010-01-13 22:40:28.888301459 +0100
++++ avahi-0.6.25/avahi-autoipd/Makefile.in	2010-01-13 22:39:58.344300320 +0100
+@@ -226,6 +226,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -382,7 +383,7 @@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .c .lo .o .obj
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -407,9 +408,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-sbinPROGRAMS: $(sbin_PROGRAMS)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/avahi-client/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-client/Makefile.in	2010-01-13 22:40:26.508307787 +0100
++++ avahi-0.6.25/avahi-client/Makefile.in	2010-01-13 22:39:58.608306301 +0100
+@@ -299,6 +299,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -461,7 +462,7 @@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .c .lo .o .obj
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -486,9 +487,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-libLTLIBRARIES: $(lib_LTLIBRARIES)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/avahi-common/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-common/Makefile.in	2010-01-13 22:40:27.340301760 +0100
++++ avahi-0.6.25/avahi-common/Makefile.in	2010-01-13 22:39:58.984299445 +0100
+@@ -305,6 +305,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -522,7 +523,7 @@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .c .lo .o .obj
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -547,9 +548,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-libLTLIBRARIES: $(lib_LTLIBRARIES)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/avahi-compat-howl/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-compat-howl/Makefile.in	2010-01-13 22:40:28.592301749 +0100
++++ avahi-0.6.25/avahi-compat-howl/Makefile.in	2010-01-13 22:39:59.260300509 +0100
+@@ -360,6 +360,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -562,7 +563,7 @@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .c .lo .o .obj
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -587,9 +588,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-libLTLIBRARIES: $(lib_LTLIBRARIES)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/avahi-compat-howl/samples/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-compat-howl/samples/Makefile.in	2010-01-13 22:40:28.652303523 +0100
++++ avahi-0.6.25/avahi-compat-howl/samples/Makefile.in	2010-01-13 22:39:59.428301808 +0100
+@@ -235,6 +235,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -383,7 +384,7 @@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .c .lo .o .obj
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -408,9 +409,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+ clean-noinstPROGRAMS:
+Index: avahi-0.6.25/avahi-compat-libdns_sd/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-compat-libdns_sd/Makefile.in	2010-01-13 22:40:26.368305306 +0100
++++ avahi-0.6.25/avahi-compat-libdns_sd/Makefile.in	2010-01-13 22:39:59.636299530 +0100
+@@ -255,6 +255,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -411,7 +412,7 @@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .c .lo .o .obj
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -436,9 +437,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-libLTLIBRARIES: $(lib_LTLIBRARIES)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/avahi-core/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-core/Makefile.in	2010-01-13 22:40:28.372307242 +0100
++++ avahi-0.6.25/avahi-core/Makefile.in	2010-01-13 22:40:00.168304722 +0100
+@@ -361,6 +361,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -577,7 +578,7 @@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .c .lo .o .obj
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -602,9 +603,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-libLTLIBRARIES: $(lib_LTLIBRARIES)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/avahi-daemon/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-daemon/Makefile.in	2010-01-13 22:40:28.760305259 +0100
++++ avahi-0.6.25/avahi-daemon/Makefile.in	2010-01-13 22:40:00.488300234 +0100
+@@ -322,6 +322,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -531,7 +532,7 @@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .c .lo .o .obj
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -556,9 +557,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ avahi-dbus.conf: $(top_builddir)/config.status $(srcdir)/avahi-dbus.conf.in
+ 	cd $(top_builddir) && $(SHELL) ./config.status $(subdir)/$@
+Index: avahi-0.6.25/avahi-discover-standalone/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-discover-standalone/Makefile.in	2010-01-13 22:40:27.640304785 +0100
++++ avahi-0.6.25/avahi-discover-standalone/Makefile.in	2010-01-13 22:40:00.660301189 +0100
+@@ -224,6 +224,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -375,7 +376,7 @@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .c .lo .o .obj
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -400,9 +401,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-binPROGRAMS: $(bin_PROGRAMS)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/avahi-dnsconfd/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-dnsconfd/Makefile.in	2010-01-13 22:40:27.980313461 +0100
++++ avahi-0.6.25/avahi-dnsconfd/Makefile.in	2010-01-13 22:40:00.808299362 +0100
+@@ -213,6 +213,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -351,7 +352,7 @@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .c .lo .o .obj
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -376,9 +377,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-sbinPROGRAMS: $(sbin_PROGRAMS)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/avahi-glib/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-glib/Makefile.in	2010-01-13 22:40:28.960304209 +0100
++++ avahi-0.6.25/avahi-glib/Makefile.in	2010-01-13 22:40:00.988299396 +0100
+@@ -242,6 +242,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -390,7 +391,7 @@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .c .lo .o .obj
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -415,9 +416,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-libLTLIBRARIES: $(lib_LTLIBRARIES)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/avahi-gobject/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-gobject/Makefile.in	2010-01-13 22:40:27.196305763 +0100
++++ avahi-0.6.25/avahi-gobject/Makefile.in	2010-01-13 22:40:01.200304606 +0100
+@@ -247,6 +247,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -418,7 +419,7 @@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .c .lo .o .obj
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -443,9 +444,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-libLTLIBRARIES: $(lib_LTLIBRARIES)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/avahi-python/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-python/Makefile.in	2010-01-13 22:40:26.920305524 +0100
++++ avahi-0.6.25/avahi-python/Makefile.in	2010-01-13 22:40:01.324300284 +0100
+@@ -197,6 +197,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -332,7 +333,7 @@
+ all: all-recursive
+ 
+ .SUFFIXES:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -357,9 +358,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-binSCRIPTS: $(bin_SCRIPTS)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/avahi-python/avahi-discover/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-python/avahi-discover/Makefile.in	2010-01-13 22:40:27.040304892 +0100
++++ avahi-0.6.25/avahi-python/avahi-discover/Makefile.in	2010-01-13 22:40:01.460298622 +0100
+@@ -209,6 +209,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -349,7 +350,7 @@
+ all: all-am
+ 
+ .SUFFIXES:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -374,9 +375,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-binSCRIPTS: $(bin_SCRIPTS)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/avahi-python/avahi/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-python/avahi/Makefile.in	2010-01-13 22:40:26.980305628 +0100
++++ avahi-0.6.25/avahi-python/avahi/Makefile.in	2010-01-13 22:40:01.588299563 +0100
+@@ -196,6 +196,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -325,7 +326,7 @@
+ all: all-am
+ 
+ .SUFFIXES:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -350,9 +351,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-nodist_avahiSCRIPTS: $(nodist_avahi_SCRIPTS)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/avahi-qt/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-qt/Makefile.in	2010-01-13 22:40:27.512301611 +0100
++++ avahi-0.6.25/avahi-qt/Makefile.in	2010-01-13 22:40:01.756299442 +0100
+@@ -247,6 +247,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -396,7 +397,7 @@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .cpp .lo .o .obj
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -421,9 +422,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-libLTLIBRARIES: $(lib_LTLIBRARIES)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/avahi-sharp/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-sharp/Makefile.in	2010-01-13 22:40:26.584304899 +0100
++++ avahi-0.6.25/avahi-sharp/Makefile.in	2010-01-13 22:40:01.928299573 +0100
+@@ -191,6 +191,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -344,7 +345,7 @@
+ all: all-am
+ 
+ .SUFFIXES:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -369,9 +370,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+ mostlyclean-libtool:
+Index: avahi-0.6.25/avahi-ui-sharp/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-ui-sharp/Makefile.in	2010-01-13 22:40:26.728305359 +0100
++++ avahi-0.6.25/avahi-ui-sharp/Makefile.in	2010-01-13 22:40:02.052298610 +0100
+@@ -191,6 +191,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -330,7 +331,7 @@
+ all: all-am
+ 
+ .SUFFIXES:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -355,9 +356,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+ mostlyclean-libtool:
+Index: avahi-0.6.25/avahi-ui/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-ui/Makefile.in	2010-01-13 22:40:28.288300444 +0100
++++ avahi-0.6.25/avahi-ui/Makefile.in	2010-01-13 22:40:02.236298573 +0100
+@@ -257,6 +257,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -420,7 +421,7 @@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .c .lo .o .obj
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -445,9 +446,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-libLTLIBRARIES: $(lib_LTLIBRARIES)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/avahi-utils/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/avahi-utils/Makefile.in	2010-01-13 22:40:27.772301475 +0100
++++ avahi-0.6.25/avahi-utils/Makefile.in	2010-01-13 22:40:02.444299656 +0100
+@@ -264,6 +264,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -408,7 +409,7 @@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .c .lo .o .obj
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -433,9 +434,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-binPROGRAMS: $(bin_PROGRAMS)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/common/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/common/Makefile.in	2010-01-13 22:40:26.060304615 +0100
++++ avahi-0.6.25/common/Makefile.in	2010-01-13 22:40:02.556301075 +0100
+@@ -181,6 +181,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -309,7 +310,7 @@
+ all: all-am
+ 
+ .SUFFIXES:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -334,9 +335,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+ mostlyclean-libtool:
+Index: avahi-0.6.25/common/ltversion.m4
+===================================================================
+--- avahi-0.6.25.orig/common/ltversion.m4	2010-01-13 22:40:26.132302893 +0100
++++ avahi-0.6.25/common/ltversion.m4	2010-01-13 22:39:43.360305153 +0100
+@@ -9,15 +9,15 @@
+ 
+ # Generated from ltversion.in.
+ 
+-# serial 3012 ltversion.m4
++# serial 3017 ltversion.m4
+ # This file is part of GNU Libtool
+ 
+-m4_define([LT_PACKAGE_VERSION], [2.2.6])
+-m4_define([LT_PACKAGE_REVISION], [1.3012])
++m4_define([LT_PACKAGE_VERSION], [2.2.6b])
++m4_define([LT_PACKAGE_REVISION], [1.3017])
+ 
+ AC_DEFUN([LTVERSION_VERSION],
+-[macro_version='2.2.6'
+-macro_revision='1.3012'
++[macro_version='2.2.6b'
++macro_revision='1.3017'
+ _LT_DECL(, macro_version, 0, [Which release of libtool.m4 was used?])
+ _LT_DECL(, macro_revision, 0)
+ ])
+Index: avahi-0.6.25/config.guess
+===================================================================
+--- avahi-0.6.25.orig/config.guess	2010-01-13 22:40:27.124305814 +0100
++++ avahi-0.6.25/config.guess	2010-01-13 22:39:43.016332297 +0100
+@@ -1,10 +1,10 @@
+ #! /bin/sh
+ # Attempt to guess a canonical system name.
+ #   Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999,
+-#   2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008
++#   2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009
+ #   Free Software Foundation, Inc.
+ 
+-timestamp='2008-01-23'
++timestamp='2009-06-10'
+ 
+ # This file is free software; you can redistribute it and/or modify it
+ # under the terms of the GNU General Public License as published by
+@@ -170,7 +170,7 @@
+ 	    arm*|i386|m68k|ns32k|sh3*|sparc|vax)
+ 		eval $set_cc_for_build
+ 		if echo __ELF__ | $CC_FOR_BUILD -E - 2>/dev/null \
+-			| grep __ELF__ >/dev/null
++			| grep -q __ELF__
+ 		then
+ 		    # Once all utilities can be ECOFF (netbsdecoff) or a.out (netbsdaout).
+ 		    # Return netbsd for either.  FIX?
+@@ -324,6 +324,9 @@
+ 	case `/usr/bin/uname -p` in
+ 	    sparc) echo sparc-icl-nx7; exit ;;
+ 	esac ;;
++    s390x:SunOS:*:*)
++	echo ${UNAME_MACHINE}-ibm-solaris2`echo ${UNAME_RELEASE}|sed -e 's/[^.]*//'`
++	exit ;;
+     sun4H:SunOS:5.*:*)
+ 	echo sparc-hal-solaris2`echo ${UNAME_RELEASE}|sed -e 's/[^.]*//'`
+ 	exit ;;
+@@ -331,7 +334,20 @@
+ 	echo sparc-sun-solaris2`echo ${UNAME_RELEASE}|sed -e 's/[^.]*//'`
+ 	exit ;;
+     i86pc:SunOS:5.*:* | i86xen:SunOS:5.*:*)
+-	echo i386-pc-solaris2`echo ${UNAME_RELEASE}|sed -e 's/[^.]*//'`
++	eval $set_cc_for_build
++	SUN_ARCH="i386"
++	# If there is a compiler, see if it is configured for 64-bit objects.
++	# Note that the Sun cc does not turn __LP64__ into 1 like gcc does.
++	# This test works for both compilers.
++	if [ "$CC_FOR_BUILD" != 'no_compiler_found' ]; then
++	    if (echo '#ifdef __amd64'; echo IS_64BIT_ARCH; echo '#endif') | \
++		(CCOPTS= $CC_FOR_BUILD -E - 2>/dev/null) | \
++		grep IS_64BIT_ARCH >/dev/null
++	    then
++		SUN_ARCH="x86_64"
++	    fi
++	fi
++	echo ${SUN_ARCH}-pc-solaris2`echo ${UNAME_RELEASE}|sed -e 's/[^.]*//'`
+ 	exit ;;
+     sun4*:SunOS:6*:*)
+ 	# According to config.sub, this is the proper way to canonicalize
+@@ -640,7 +656,7 @@
+ 	    # => hppa64-hp-hpux11.23
+ 
+ 	    if echo __LP64__ | (CCOPTS= $CC_FOR_BUILD -E - 2>/dev/null) |
+-		grep __LP64__ >/dev/null
++		grep -q __LP64__
+ 	    then
+ 		HP_ARCH="hppa2.0w"
+ 	    else
+@@ -796,7 +812,7 @@
+ 	    x86)
+ 		echo i586-pc-interix${UNAME_RELEASE}
+ 		exit ;;
+-	    EM64T | authenticamd)
++	    EM64T | authenticamd | genuineintel)
+ 		echo x86_64-unknown-interix${UNAME_RELEASE}
+ 		exit ;;
+ 	    IA64)
+@@ -806,6 +822,9 @@
+     [345]86:Windows_95:* | [345]86:Windows_98:* | [345]86:Windows_NT:*)
+ 	echo i${UNAME_MACHINE}-pc-mks
+ 	exit ;;
++    8664:Windows_NT:*)
++	echo x86_64-pc-mks
++	exit ;;
+     i*:Windows_NT*:* | Pentium*:Windows_NT*:*)
+ 	# How do we know it's Interix rather than the generic POSIX subsystem?
+ 	# It also conflicts with pre-2.0 versions of AT&T UWIN. Should we
+@@ -866,40 +885,17 @@
+     m68*:Linux:*:*)
+ 	echo ${UNAME_MACHINE}-unknown-linux-gnu
+ 	exit ;;
+-    mips:Linux:*:*)
++    mips:Linux:*:* | mips64:Linux:*:*)
+ 	eval $set_cc_for_build
+ 	sed 's/^	//' << EOF >$dummy.c
+ 	#undef CPU
+-	#undef mips
+-	#undef mipsel
++	#undef ${UNAME_MACHINE}
++	#undef ${UNAME_MACHINE}el
+ 	#if defined(__MIPSEL__) || defined(__MIPSEL) || defined(_MIPSEL) || defined(MIPSEL)
+-	CPU=mipsel
++	CPU=${UNAME_MACHINE}el
+ 	#else
+ 	#if defined(__MIPSEB__) || defined(__MIPSEB) || defined(_MIPSEB) || defined(MIPSEB)
+-	CPU=mips
+-	#else
+-	CPU=
+-	#endif
+-	#endif
+-EOF
+-	eval "`$CC_FOR_BUILD -E $dummy.c 2>/dev/null | sed -n '
+-	    /^CPU/{
+-		s: ::g
+-		p
+-	    }'`"
+-	test x"${CPU}" != x && { echo "${CPU}-unknown-linux-gnu"; exit; }
+-	;;
+-    mips64:Linux:*:*)
+-	eval $set_cc_for_build
+-	sed 's/^	//' << EOF >$dummy.c
+-	#undef CPU
+-	#undef mips64
+-	#undef mips64el
+-	#if defined(__MIPSEL__) || defined(__MIPSEL) || defined(_MIPSEL) || defined(MIPSEL)
+-	CPU=mips64el
+-	#else
+-	#if defined(__MIPSEB__) || defined(__MIPSEB) || defined(_MIPSEB) || defined(MIPSEB)
+-	CPU=mips64
++	CPU=${UNAME_MACHINE}
+ 	#else
+ 	CPU=
+ 	#endif
+@@ -931,10 +927,13 @@
+ 	  EV67)  UNAME_MACHINE=alphaev67 ;;
+ 	  EV68*) UNAME_MACHINE=alphaev68 ;;
+         esac
+-	objdump --private-headers /bin/sh | grep ld.so.1 >/dev/null
++	objdump --private-headers /bin/sh | grep -q ld.so.1
+ 	if test "$?" = 0 ; then LIBC="libc1" ; else LIBC="" ; fi
+ 	echo ${UNAME_MACHINE}-unknown-linux-gnu${LIBC}
+ 	exit ;;
++    padre:Linux:*:*)
++	echo sparc-unknown-linux-gnu
++	exit ;;
+     parisc:Linux:*:* | hppa:Linux:*:*)
+ 	# Look for CPU level
+ 	case `grep '^cpu[^a-z]*:' /proc/cpuinfo 2>/dev/null | cut -d' ' -f2` in
+@@ -982,17 +981,6 @@
+ 	  elf32-i386)
+ 		TENTATIVE="${UNAME_MACHINE}-pc-linux-gnu"
+ 		;;
+-	  a.out-i386-linux)
+-		echo "${UNAME_MACHINE}-pc-linux-gnuaout"
+-		exit ;;
+-	  coff-i386)
+-		echo "${UNAME_MACHINE}-pc-linux-gnucoff"
+-		exit ;;
+-	  "")
+-		# Either a pre-BFD a.out linker (linux-gnuoldld) or
+-		# one that does not give us useful --help.
+-		echo "${UNAME_MACHINE}-pc-linux-gnuoldld"
+-		exit ;;
+ 	esac
+ 	# Determine whether the default compiler is a.out or elf
+ 	eval $set_cc_for_build
+@@ -1058,7 +1046,7 @@
+     i*86:syllable:*:*)
+ 	echo ${UNAME_MACHINE}-pc-syllable
+ 	exit ;;
+-    i*86:LynxOS:2.*:* | i*86:LynxOS:3.[01]*:* | i*86:LynxOS:4.0*:*)
++    i*86:LynxOS:2.*:* | i*86:LynxOS:3.[01]*:* | i*86:LynxOS:4.[02]*:*)
+ 	echo i386-unknown-lynxos${UNAME_RELEASE}
+ 	exit ;;
+     i*86:*DOS:*:*)
+@@ -1102,8 +1090,11 @@
+     pc:*:*:*)
+ 	# Left here for compatibility:
+         # uname -m prints for DJGPP always 'pc', but it prints nothing about
+-        # the processor, so we play safe by assuming i386.
+-	echo i386-pc-msdosdjgpp
++        # the processor, so we play safe by assuming i586.
++	# Note: whatever this is, it MUST be the same as what config.sub
++	# prints for the "djgpp" host, or else GDB configury will decide that
++	# this is a cross-build.
++	echo i586-pc-msdosdjgpp
+         exit ;;
+     Intel:Mach:3*:*)
+ 	echo i386-pc-mach3
+@@ -1141,6 +1132,16 @@
+     3[34]??:*:4.0:* | 3[34]??,*:*:4.0:*)
+         /bin/uname -p 2>/dev/null | grep 86 >/dev/null \
+           && { echo i486-ncr-sysv4; exit; } ;;
++    NCR*:*:4.2:* | MPRAS*:*:4.2:*)
++	OS_REL='.3'
++	test -r /etc/.relid \
++	    && OS_REL=.`sed -n 's/[^ ]* [^ ]* \([0-9][0-9]\).*/\1/p' < /etc/.relid`
++	/bin/uname -p 2>/dev/null | grep 86 >/dev/null \
++	    && { echo i486-ncr-sysv4.3${OS_REL}; exit; }
++	/bin/uname -p 2>/dev/null | /bin/grep entium >/dev/null \
++	    && { echo i586-ncr-sysv4.3${OS_REL}; exit; }
++	/bin/uname -p 2>/dev/null | /bin/grep pteron >/dev/null \
++	    && { echo i586-ncr-sysv4.3${OS_REL}; exit; } ;;
+     m68*:LynxOS:2.*:* | m68*:LynxOS:3.0*:*)
+ 	echo m68k-unknown-lynxos${UNAME_RELEASE}
+ 	exit ;;
+@@ -1153,7 +1154,7 @@
+     rs6000:LynxOS:2.*:*)
+ 	echo rs6000-unknown-lynxos${UNAME_RELEASE}
+ 	exit ;;
+-    PowerPC:LynxOS:2.*:* | PowerPC:LynxOS:3.[01]*:* | PowerPC:LynxOS:4.0*:*)
++    PowerPC:LynxOS:2.*:* | PowerPC:LynxOS:3.[01]*:* | PowerPC:LynxOS:4.[02]*:*)
+ 	echo powerpc-unknown-lynxos${UNAME_RELEASE}
+ 	exit ;;
+     SM[BE]S:UNIX_SV:*:*)
+@@ -1216,6 +1217,9 @@
+     BePC:BeOS:*:*)	# BeOS running on Intel PC compatible.
+ 	echo i586-pc-beos
+ 	exit ;;
++    BePC:Haiku:*:*)	# Haiku running on Intel PC compatible.
++	echo i586-pc-haiku
++	exit ;;
+     SX-4:SUPER-UX:*:*)
+ 	echo sx4-nec-superux${UNAME_RELEASE}
+ 	exit ;;
+@@ -1324,6 +1328,9 @@
+     i*86:rdos:*:*)
+ 	echo ${UNAME_MACHINE}-pc-rdos
+ 	exit ;;
++    i*86:AROS:*:*)
++	echo ${UNAME_MACHINE}-pc-aros
++	exit ;;
+ esac
+ 
+ #echo '(No uname command or uname output not recognized.)' 1>&2
+Index: avahi-0.6.25/config.sub
+===================================================================
+--- avahi-0.6.25.orig/config.sub	2010-01-13 22:40:29.688304754 +0100
++++ avahi-0.6.25/config.sub	2010-01-13 22:39:43.044301502 +0100
+@@ -1,10 +1,10 @@
+ #! /bin/sh
+ # Configuration validation subroutine script.
+ #   Copyright (C) 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999,
+-#   2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008
++#   2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009
+ #   Free Software Foundation, Inc.
+ 
+-timestamp='2008-01-16'
++timestamp='2009-06-11'
+ 
+ # This file is (in principle) common to ALL GNU software.
+ # The presence of a machine in this file suggests that SOME GNU software
+@@ -122,6 +122,7 @@
+ case $maybe_os in
+   nto-qnx* | linux-gnu* | linux-dietlibc | linux-newlib* | linux-uclibc* | \
+   uclinux-uclibc* | uclinux-gnu* | kfreebsd*-gnu* | knetbsd*-gnu* | netbsd*-gnu* | \
++  kopensolaris*-gnu* | \
+   storm-chaos* | os2-emx* | rtmk-nova*)
+     os=-$maybe_os
+     basic_machine=`echo $1 | sed 's/^\(.*\)-\([^-]*-[^-]*\)$/\1/'`
+@@ -152,6 +153,9 @@
+ 		os=
+ 		basic_machine=$1
+ 		;;
++        -bluegene*)
++	        os=-cnk
++		;;
+ 	-sim | -cisco | -oki | -wec | -winbond)
+ 		os=
+ 		basic_machine=$1
+@@ -249,13 +253,16 @@
+ 	| h8300 | h8500 | hppa | hppa1.[01] | hppa2.0 | hppa2.0[nw] | hppa64 \
+ 	| i370 | i860 | i960 | ia64 \
+ 	| ip2k | iq2000 \
++	| lm32 \
+ 	| m32c | m32r | m32rle | m68000 | m68k | m88k \
+-	| maxq | mb | microblaze | mcore | mep \
++	| maxq | mb | microblaze | mcore | mep | metag \
+ 	| mips | mipsbe | mipseb | mipsel | mipsle \
+ 	| mips16 \
+ 	| mips64 | mips64el \
+-	| mips64vr | mips64vrel \
++	| mips64octeon | mips64octeonel \
+ 	| mips64orion | mips64orionel \
++	| mips64r5900 | mips64r5900el \
++	| mips64vr | mips64vrel \
+ 	| mips64vr4100 | mips64vr4100el \
+ 	| mips64vr4300 | mips64vr4300el \
+ 	| mips64vr5000 | mips64vr5000el \
+@@ -268,6 +275,7 @@
+ 	| mipsisa64sr71k | mipsisa64sr71kel \
+ 	| mipstx39 | mipstx39el \
+ 	| mn10200 | mn10300 \
++	| moxie \
+ 	| mt \
+ 	| msp430 \
+ 	| nios | nios2 \
+@@ -277,7 +285,7 @@
+ 	| powerpc | powerpc64 | powerpc64le | powerpcle | ppcbe \
+ 	| pyramid \
+ 	| score \
+-	| sh | sh[1234] | sh[24]a | sh[23]e | sh[34]eb | sheb | shbe | shle | sh[1234]le | sh3ele \
++	| sh | sh[1234] | sh[24]a | sh[24]aeb | sh[23]e | sh[34]eb | sheb | shbe | shle | sh[1234]le | sh3ele \
+ 	| sh64 | sh64le \
+ 	| sparc | sparc64 | sparc64b | sparc64v | sparc86x | sparclet | sparclite \
+ 	| sparcv8 | sparcv9 | sparcv9b | sparcv9v \
+@@ -286,7 +294,7 @@
+ 	| v850 | v850e \
+ 	| we32k \
+ 	| x86 | xc16x | xscale | xscalee[bl] | xstormy16 | xtensa \
+-	| z8k)
++	| z8k | z80)
+ 		basic_machine=$basic_machine-unknown
+ 		;;
+ 	m6811 | m68hc11 | m6812 | m68hc12)
+@@ -329,14 +337,17 @@
+ 	| hppa-* | hppa1.[01]-* | hppa2.0-* | hppa2.0[nw]-* | hppa64-* \
+ 	| i*86-* | i860-* | i960-* | ia64-* \
+ 	| ip2k-* | iq2000-* \
++	| lm32-* \
+ 	| m32c-* | m32r-* | m32rle-* \
+ 	| m68000-* | m680[012346]0-* | m68360-* | m683?2-* | m68k-* \
+-	| m88110-* | m88k-* | maxq-* | mcore-* \
++	| m88110-* | m88k-* | maxq-* | mcore-* | metag-* \
+ 	| mips-* | mipsbe-* | mipseb-* | mipsel-* | mipsle-* \
+ 	| mips16-* \
+ 	| mips64-* | mips64el-* \
+-	| mips64vr-* | mips64vrel-* \
++	| mips64octeon-* | mips64octeonel-* \
+ 	| mips64orion-* | mips64orionel-* \
++	| mips64r5900-* | mips64r5900el-* \
++	| mips64vr-* | mips64vrel-* \
+ 	| mips64vr4100-* | mips64vr4100el-* \
+ 	| mips64vr4300-* | mips64vr4300el-* \
+ 	| mips64vr5000-* | mips64vr5000el-* \
+@@ -358,20 +369,20 @@
+ 	| powerpc-* | powerpc64-* | powerpc64le-* | powerpcle-* | ppcbe-* \
+ 	| pyramid-* \
+ 	| romp-* | rs6000-* \
+-	| sh-* | sh[1234]-* | sh[24]a-* | sh[23]e-* | sh[34]eb-* | sheb-* | shbe-* \
++	| sh-* | sh[1234]-* | sh[24]a-* | sh[24]aeb-* | sh[23]e-* | sh[34]eb-* | sheb-* | shbe-* \
+ 	| shle-* | sh[1234]le-* | sh3ele-* | sh64-* | sh64le-* \
+ 	| sparc-* | sparc64-* | sparc64b-* | sparc64v-* | sparc86x-* | sparclet-* \
+ 	| sparclite-* \
+ 	| sparcv8-* | sparcv9-* | sparcv9b-* | sparcv9v-* | strongarm-* | sv1-* | sx?-* \
+ 	| tahoe-* | thumb-* \
+-	| tic30-* | tic4x-* | tic54x-* | tic55x-* | tic6x-* | tic80-* \
++	| tic30-* | tic4x-* | tic54x-* | tic55x-* | tic6x-* | tic80-* | tile-* \
+ 	| tron-* \
+ 	| v850-* | v850e-* | vax-* \
+ 	| we32k-* \
+ 	| x86-* | x86_64-* | xc16x-* | xps100-* | xscale-* | xscalee[bl]-* \
+ 	| xstormy16-* | xtensa*-* \
+ 	| ymp-* \
+-	| z8k-*)
++	| z8k-* | z80-*)
+ 		;;
+ 	# Recognize the basic CPU types without company name, with glob match.
+ 	xtensa*)
+@@ -439,6 +450,10 @@
+ 		basic_machine=m68k-apollo
+ 		os=-bsd
+ 		;;
++	aros)
++		basic_machine=i386-pc
++		os=-aros
++		;;
+ 	aux)
+ 		basic_machine=m68k-apple
+ 		os=-aux
+@@ -455,10 +470,18 @@
+ 		basic_machine=bfin-`echo $basic_machine | sed 's/^[^-]*-//'`
+ 		os=-linux
+ 		;;
++	bluegene*)
++		basic_machine=powerpc-ibm
++		os=-cnk
++		;;
+ 	c90)
+ 		basic_machine=c90-cray
+ 		os=-unicos
+ 		;;
++        cegcc)
++		basic_machine=arm-unknown
++		os=-cegcc
++		;;
+ 	convex-c1)
+ 		basic_machine=c1-convex
+ 		os=-bsd
+@@ -526,6 +549,10 @@
+ 		basic_machine=m88k-motorola
+ 		os=-sysv3
+ 		;;
++	dicos)
++		basic_machine=i686-pc
++		os=-dicos
++		;;
+ 	djgpp)
+ 		basic_machine=i586-pc
+ 		os=-msdosdjgpp
+@@ -1128,6 +1155,10 @@
+ 		basic_machine=z8k-unknown
+ 		os=-sim
+ 		;;
++	z80-*-coff)
++		basic_machine=z80-unknown
++		os=-sim
++		;;
+ 	none)
+ 		basic_machine=none-none
+ 		os=-none
+@@ -1166,7 +1197,7 @@
+ 	we32k)
+ 		basic_machine=we32k-att
+ 		;;
+-	sh[1234] | sh[24]a | sh[34]eb | sh[1234]le | sh[23]ele)
++	sh[1234] | sh[24]a | sh[24]aeb | sh[34]eb | sh[1234]le | sh[23]ele)
+ 		basic_machine=sh-unknown
+ 		;;
+ 	sparc | sparcv8 | sparcv9 | sparcv9b | sparcv9v)
+@@ -1236,10 +1267,11 @@
+ 	# Each alternative MUST END IN A *, to match a version number.
+ 	# -sysv* is not here because it comes later, after sysvr4.
+ 	-gnu* | -bsd* | -mach* | -minix* | -genix* | -ultrix* | -irix* \
+-	      | -*vms* | -sco* | -esix* | -isc* | -aix* | -sunos | -sunos[34]*\
++	      | -*vms* | -sco* | -esix* | -isc* | -aix* | -cnk* | -sunos | -sunos[34]*\
+ 	      | -hpux* | -unos* | -osf* | -luna* | -dgux* | -solaris* | -sym* \
++	      | -kopensolaris* \
+ 	      | -amigaos* | -amigados* | -msdos* | -newsos* | -unicos* | -aof* \
+-	      | -aos* \
++	      | -aos* | -aros* \
+ 	      | -nindy* | -vxsim* | -vxworks* | -ebmon* | -hms* | -mvs* \
+ 	      | -clix* | -riscos* | -uniplus* | -iris* | -rtu* | -xenix* \
+ 	      | -hiux* | -386bsd* | -knetbsd* | -mirbsd* | -netbsd* \
+@@ -1248,7 +1280,7 @@
+ 	      | -bosx* | -nextstep* | -cxux* | -aout* | -elf* | -oabi* \
+ 	      | -ptx* | -coff* | -ecoff* | -winnt* | -domain* | -vsta* \
+ 	      | -udi* | -eabi* | -lites* | -ieee* | -go32* | -aux* \
+-	      | -chorusos* | -chorusrdb* \
++	      | -chorusos* | -chorusrdb* | -cegcc* \
+ 	      | -cygwin* | -pe* | -psos* | -moss* | -proelf* | -rtems* \
+ 	      | -mingw32* | -linux-gnu* | -linux-newlib* | -linux-uclibc* \
+ 	      | -uxpv* | -beos* | -mpeix* | -udk* \
+@@ -1388,6 +1420,9 @@
+ 	-zvmoe)
+ 		os=-zvmoe
+ 		;;
++	-dicos*)
++		os=-dicos
++		;;
+ 	-none)
+ 		;;
+ 	*)
+@@ -1585,7 +1620,7 @@
+ 			-sunos*)
+ 				vendor=sun
+ 				;;
+-			-aix*)
++			-cnk*|-aix*)
+ 				vendor=ibm
+ 				;;
+ 			-beos*)
+Index: avahi-0.6.25/configure
+===================================================================
+--- avahi-0.6.25.orig/configure	2010-01-13 22:40:26.440310015 +0100
++++ avahi-0.6.25/configure	2010-01-13 22:39:56.636298692 +0100
+@@ -1076,6 +1076,9 @@
+ LIBAVAHI_CORE_VERSION_INFO
+ LIBAVAHI_COMMON_VERSION_INFO
+ PACKAGE_URL
++MAINT
++MAINTAINER_MODE_FALSE
++MAINTAINER_MODE_TRUE
+ am__untar
+ am__tar
+ AMTAR
+@@ -1139,6 +1142,7 @@
+ ac_subst_files=''
+ ac_user_opts='
+ enable_option_checking
++enable_maintainer_mode
+ enable_dependency_tracking
+ enable_stack_protector
+ enable_shared
+@@ -1852,6 +1856,8 @@
+   --disable-option-checking  ignore unrecognized --enable/--with options
+   --disable-FEATURE       do not include FEATURE (same as --enable-FEATURE=no)
+   --enable-FEATURE[=ARG]  include FEATURE [ARG=yes]
++  --enable-maintainer-mode  enable make rules and dependencies not useful
++			  (and sometimes confusing) to the casual installer
+   --disable-dependency-tracking  speeds up one-time build
+   --enable-dependency-tracking   do not reject slow dependency extractors
+   --disable-stack-protector
+@@ -2910,6 +2916,28 @@
+ 
+ 
+ 
++{ $as_echo "$as_me:$LINENO: checking whether to enable maintainer-specific portions of Makefiles" >&5
++$as_echo_n "checking whether to enable maintainer-specific portions of Makefiles... " >&6; }
++    # Check whether --enable-maintainer-mode was given.
++if test "${enable_maintainer_mode+set}" = set; then
++  enableval=$enable_maintainer_mode; USE_MAINTAINER_MODE=$enableval
++else
++  USE_MAINTAINER_MODE=no
++fi
++
++  { $as_echo "$as_me:$LINENO: result: $USE_MAINTAINER_MODE" >&5
++$as_echo "$USE_MAINTAINER_MODE" >&6; }
++   if test $USE_MAINTAINER_MODE = yes; then
++  MAINTAINER_MODE_TRUE=
++  MAINTAINER_MODE_FALSE='#'
++else
++  MAINTAINER_MODE_TRUE='#'
++  MAINTAINER_MODE_FALSE=
++fi
++
++  MAINT=$MAINTAINER_MODE_TRUE
++
++
+ 
+ PACKAGE_URL=http://avahi.org/
+ 
+@@ -6240,8 +6268,8 @@
+ 
+ 
+ 
+-macro_version='2.2.6'
+-macro_revision='1.3012'
++macro_version='2.2.6b'
++macro_revision='1.3017'
+ 
+ 
+ 
+@@ -6800,13 +6828,13 @@
+ else
+   lt_cv_nm_interface="BSD nm"
+   echo "int some_variable = 0;" > conftest.$ac_ext
+-  (eval echo "\"\$as_me:6803: $ac_compile\"" >&5)
++  (eval echo "\"\$as_me:6831: $ac_compile\"" >&5)
+   (eval "$ac_compile" 2>conftest.err)
+   cat conftest.err >&5
+-  (eval echo "\"\$as_me:6806: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
++  (eval echo "\"\$as_me:6834: $NM \\\"conftest.$ac_objext\\\"\"" >&5)
+   (eval "$NM \"conftest.$ac_objext\"" 2>conftest.err > conftest.out)
+   cat conftest.err >&5
+-  (eval echo "\"\$as_me:6809: output\"" >&5)
++  (eval echo "\"\$as_me:6837: output\"" >&5)
+   cat conftest.out >&5
+   if $GREP 'External.*some_variable' conftest.out > /dev/null; then
+     lt_cv_nm_interface="MS dumpbin"
+@@ -8000,7 +8028,7 @@
+   ;;
+ *-*-irix6*)
+   # Find out which ABI we are using.
+-  echo '#line 8003 "configure"' > conftest.$ac_ext
++  echo '#line 8031 "configure"' > conftest.$ac_ext
+   if { (eval echo "$as_me:$LINENO: \"$ac_compile\"") >&5
+   (eval $ac_compile) 2>&5
+   ac_status=$?
+@@ -10087,11 +10115,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:10090: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:10118: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>conftest.err)
+    ac_status=$?
+    cat conftest.err >&5
+-   echo "$as_me:10094: \$? = $ac_status" >&5
++   echo "$as_me:10122: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s "$ac_outfile"; then
+      # The compiler can only warn and ignore the option if not recognized
+      # So say no if there are warnings other than the usual output.
+@@ -10426,11 +10454,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:10429: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:10457: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>conftest.err)
+    ac_status=$?
+    cat conftest.err >&5
+-   echo "$as_me:10433: \$? = $ac_status" >&5
++   echo "$as_me:10461: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s "$ac_outfile"; then
+      # The compiler can only warn and ignore the option if not recognized
+      # So say no if there are warnings other than the usual output.
+@@ -10531,11 +10559,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:10534: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:10562: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>out/conftest.err)
+    ac_status=$?
+    cat out/conftest.err >&5
+-   echo "$as_me:10538: \$? = $ac_status" >&5
++   echo "$as_me:10566: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s out/conftest2.$ac_objext
+    then
+      # The compiler can only warn and ignore the option if not recognized
+@@ -10586,11 +10614,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:10589: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:10617: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>out/conftest.err)
+    ac_status=$?
+    cat out/conftest.err >&5
+-   echo "$as_me:10593: \$? = $ac_status" >&5
++   echo "$as_me:10621: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s out/conftest2.$ac_objext
+    then
+      # The compiler can only warn and ignore the option if not recognized
+@@ -13389,7 +13417,7 @@
+   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
+   lt_status=$lt_dlunknown
+   cat > conftest.$ac_ext <<_LT_EOF
+-#line 13392 "configure"
++#line 13420 "configure"
+ #include "confdefs.h"
+ 
+ #if HAVE_DLFCN_H
+@@ -13485,7 +13513,7 @@
+   lt_dlunknown=0; lt_dlno_uscore=1; lt_dlneed_uscore=2
+   lt_status=$lt_dlunknown
+   cat > conftest.$ac_ext <<_LT_EOF
+-#line 13488 "configure"
++#line 13516 "configure"
+ #include "confdefs.h"
+ 
+ #if HAVE_DLFCN_H
+@@ -15505,11 +15533,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:15508: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:15536: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>conftest.err)
+    ac_status=$?
+    cat conftest.err >&5
+-   echo "$as_me:15512: \$? = $ac_status" >&5
++   echo "$as_me:15540: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s "$ac_outfile"; then
+      # The compiler can only warn and ignore the option if not recognized
+      # So say no if there are warnings other than the usual output.
+@@ -15604,11 +15632,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:15607: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:15635: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>out/conftest.err)
+    ac_status=$?
+    cat out/conftest.err >&5
+-   echo "$as_me:15611: \$? = $ac_status" >&5
++   echo "$as_me:15639: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s out/conftest2.$ac_objext
+    then
+      # The compiler can only warn and ignore the option if not recognized
+@@ -15656,11 +15684,11 @@
+    -e 's:.*FLAGS}\{0,1\} :&$lt_compiler_flag :; t' \
+    -e 's: [^ ]*conftest\.: $lt_compiler_flag&:; t' \
+    -e 's:$: $lt_compiler_flag:'`
+-   (eval echo "\"\$as_me:15659: $lt_compile\"" >&5)
++   (eval echo "\"\$as_me:15687: $lt_compile\"" >&5)
+    (eval "$lt_compile" 2>out/conftest.err)
+    ac_status=$?
+    cat out/conftest.err >&5
+-   echo "$as_me:15663: \$? = $ac_status" >&5
++   echo "$as_me:15691: \$? = $ac_status" >&5
+    if (exit $ac_status) && test -s out/conftest2.$ac_objext
+    then
+      # The compiler can only warn and ignore the option if not recognized
+@@ -17486,6 +17514,7 @@
+ 
+ #include <sys/types.h>
+ #include <sys/socket.h>
++#include <net/if_dl.h>
+ 
+ 
+ #include <net/route.h>
+@@ -24128,10 +24157,11 @@
+ { $as_echo "$as_me:$LINENO: checking for GLIB20" >&5
+ $as_echo_n "checking for GLIB20... " >&6; }
+ 
+-if test -n "$GLIB20_CFLAGS"; then
+-    pkg_cv_GLIB20_CFLAGS="$GLIB20_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GLIB20_CFLAGS"; then
++        pkg_cv_GLIB20_CFLAGS="$GLIB20_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" glib-2.0 >= 2.4.0 \"") >&5
+   ($PKG_CONFIG --exists --print-errors " glib-2.0 >= 2.4.0 ") 2>&5
+   ac_status=$?
+@@ -24141,13 +24171,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$GLIB20_LIBS"; then
+-    pkg_cv_GLIB20_LIBS="$GLIB20_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GLIB20_LIBS"; then
++        pkg_cv_GLIB20_LIBS="$GLIB20_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" glib-2.0 >= 2.4.0 \"") >&5
+   ($PKG_CONFIG --exists --print-errors " glib-2.0 >= 2.4.0 ") 2>&5
+   ac_status=$?
+@@ -24157,8 +24189,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -24171,9 +24204,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        GLIB20_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors " glib-2.0 >= 2.4.0 " 2>&1`
++	        GLIB20_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors " glib-2.0 >= 2.4.0 "`
+         else
+-	        GLIB20_PKG_ERRORS=`$PKG_CONFIG --print-errors " glib-2.0 >= 2.4.0 " 2>&1`
++	        GLIB20_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors " glib-2.0 >= 2.4.0 "`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$GLIB20_PKG_ERRORS" >&5
+@@ -24267,10 +24300,11 @@
+ { $as_echo "$as_me:$LINENO: checking for GOBJECT" >&5
+ $as_echo_n "checking for GOBJECT... " >&6; }
+ 
+-if test -n "$GOBJECT_CFLAGS"; then
+-    pkg_cv_GOBJECT_CFLAGS="$GOBJECT_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GOBJECT_CFLAGS"; then
++        pkg_cv_GOBJECT_CFLAGS="$GOBJECT_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" glib-2.0 >= 2.4.0 gobject-2.0 \"") >&5
+   ($PKG_CONFIG --exists --print-errors " glib-2.0 >= 2.4.0 gobject-2.0 ") 2>&5
+   ac_status=$?
+@@ -24280,13 +24314,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$GOBJECT_LIBS"; then
+-    pkg_cv_GOBJECT_LIBS="$GOBJECT_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GOBJECT_LIBS"; then
++        pkg_cv_GOBJECT_LIBS="$GOBJECT_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" glib-2.0 >= 2.4.0 gobject-2.0 \"") >&5
+   ($PKG_CONFIG --exists --print-errors " glib-2.0 >= 2.4.0 gobject-2.0 ") 2>&5
+   ac_status=$?
+@@ -24296,8 +24332,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -24310,9 +24347,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        GOBJECT_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors " glib-2.0 >= 2.4.0 gobject-2.0 " 2>&1`
++	        GOBJECT_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors " glib-2.0 >= 2.4.0 gobject-2.0 "`
+         else
+-	        GOBJECT_PKG_ERRORS=`$PKG_CONFIG --print-errors " glib-2.0 >= 2.4.0 gobject-2.0 " 2>&1`
++	        GOBJECT_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors " glib-2.0 >= 2.4.0 gobject-2.0 "`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$GOBJECT_PKG_ERRORS" >&5
+@@ -24406,10 +24443,11 @@
+ { $as_echo "$as_me:$LINENO: checking for QT3" >&5
+ $as_echo_n "checking for QT3... " >&6; }
+ 
+-if test -n "$QT3_CFLAGS"; then
+-    pkg_cv_QT3_CFLAGS="$QT3_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$QT3_CFLAGS"; then
++        pkg_cv_QT3_CFLAGS="$QT3_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" qt-mt >= 3.0.0 \"") >&5
+   ($PKG_CONFIG --exists --print-errors " qt-mt >= 3.0.0 ") 2>&5
+   ac_status=$?
+@@ -24419,13 +24457,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$QT3_LIBS"; then
+-    pkg_cv_QT3_LIBS="$QT3_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$QT3_LIBS"; then
++        pkg_cv_QT3_LIBS="$QT3_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" qt-mt >= 3.0.0 \"") >&5
+   ($PKG_CONFIG --exists --print-errors " qt-mt >= 3.0.0 ") 2>&5
+   ac_status=$?
+@@ -24435,8 +24475,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -24449,9 +24490,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        QT3_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors " qt-mt >= 3.0.0 " 2>&1`
++	        QT3_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors " qt-mt >= 3.0.0 "`
+         else
+-	        QT3_PKG_ERRORS=`$PKG_CONFIG --print-errors " qt-mt >= 3.0.0 " 2>&1`
++	        QT3_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors " qt-mt >= 3.0.0 "`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$QT3_PKG_ERRORS" >&5
+@@ -24598,10 +24639,11 @@
+ { $as_echo "$as_me:$LINENO: checking for QT4" >&5
+ $as_echo_n "checking for QT4... " >&6; }
+ 
+-if test -n "$QT4_CFLAGS"; then
+-    pkg_cv_QT4_CFLAGS="$QT4_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$QT4_CFLAGS"; then
++        pkg_cv_QT4_CFLAGS="$QT4_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" QtCore >= 4.0.0 \"") >&5
+   ($PKG_CONFIG --exists --print-errors " QtCore >= 4.0.0 ") 2>&5
+   ac_status=$?
+@@ -24611,13 +24653,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$QT4_LIBS"; then
+-    pkg_cv_QT4_LIBS="$QT4_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$QT4_LIBS"; then
++        pkg_cv_QT4_LIBS="$QT4_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" QtCore >= 4.0.0 \"") >&5
+   ($PKG_CONFIG --exists --print-errors " QtCore >= 4.0.0 ") 2>&5
+   ac_status=$?
+@@ -24627,8 +24671,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -24641,9 +24686,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        QT4_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors " QtCore >= 4.0.0 " 2>&1`
++	        QT4_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors " QtCore >= 4.0.0 "`
+         else
+-	        QT4_PKG_ERRORS=`$PKG_CONFIG --print-errors " QtCore >= 4.0.0 " 2>&1`
++	        QT4_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors " QtCore >= 4.0.0 "`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$QT4_PKG_ERRORS" >&5
+@@ -24791,10 +24836,11 @@
+ { $as_echo "$as_me:$LINENO: checking for GTK20" >&5
+ $as_echo_n "checking for GTK20... " >&6; }
+ 
+-if test -n "$GTK20_CFLAGS"; then
+-    pkg_cv_GTK20_CFLAGS="$GTK20_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GTK20_CFLAGS"; then
++        pkg_cv_GTK20_CFLAGS="$GTK20_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" gtk+-2.0 >= 2.4.0 \"") >&5
+   ($PKG_CONFIG --exists --print-errors " gtk+-2.0 >= 2.4.0 ") 2>&5
+   ac_status=$?
+@@ -24804,13 +24850,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$GTK20_LIBS"; then
+-    pkg_cv_GTK20_LIBS="$GTK20_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GTK20_LIBS"; then
++        pkg_cv_GTK20_LIBS="$GTK20_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" gtk+-2.0 >= 2.4.0 \"") >&5
+   ($PKG_CONFIG --exists --print-errors " gtk+-2.0 >= 2.4.0 ") 2>&5
+   ac_status=$?
+@@ -24820,8 +24868,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -24834,9 +24883,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        GTK20_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors " gtk+-2.0 >= 2.4.0 " 2>&1`
++	        GTK20_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors " gtk+-2.0 >= 2.4.0 "`
+         else
+-	        GTK20_PKG_ERRORS=`$PKG_CONFIG --print-errors " gtk+-2.0 >= 2.4.0 " 2>&1`
++	        GTK20_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors " gtk+-2.0 >= 2.4.0 "`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$GTK20_PKG_ERRORS" >&5
+@@ -24904,10 +24953,11 @@
+ { $as_echo "$as_me:$LINENO: checking for GLADE20" >&5
+ $as_echo_n "checking for GLADE20... " >&6; }
+ 
+-if test -n "$GLADE20_CFLAGS"; then
+-    pkg_cv_GLADE20_CFLAGS="$GLADE20_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GLADE20_CFLAGS"; then
++        pkg_cv_GLADE20_CFLAGS="$GLADE20_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" libglade-2.0 >= 2.4.0 \"") >&5
+   ($PKG_CONFIG --exists --print-errors " libglade-2.0 >= 2.4.0 ") 2>&5
+   ac_status=$?
+@@ -24917,13 +24967,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$GLADE20_LIBS"; then
+-    pkg_cv_GLADE20_LIBS="$GLADE20_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$GLADE20_LIBS"; then
++        pkg_cv_GLADE20_LIBS="$GLADE20_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" libglade-2.0 >= 2.4.0 \"") >&5
+   ($PKG_CONFIG --exists --print-errors " libglade-2.0 >= 2.4.0 ") 2>&5
+   ac_status=$?
+@@ -24933,8 +24985,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -24947,9 +25000,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        GLADE20_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors " libglade-2.0 >= 2.4.0 " 2>&1`
++	        GLADE20_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors " libglade-2.0 >= 2.4.0 "`
+         else
+-	        GLADE20_PKG_ERRORS=`$PKG_CONFIG --print-errors " libglade-2.0 >= 2.4.0 " 2>&1`
++	        GLADE20_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors " libglade-2.0 >= 2.4.0 "`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$GLADE20_PKG_ERRORS" >&5
+@@ -25059,10 +25112,11 @@
+ { $as_echo "$as_me:$LINENO: checking for DBUS" >&5
+ $as_echo_n "checking for DBUS... " >&6; }
+ 
+-if test -n "$DBUS_CFLAGS"; then
+-    pkg_cv_DBUS_CFLAGS="$DBUS_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$DBUS_CFLAGS"; then
++        pkg_cv_DBUS_CFLAGS="$DBUS_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" dbus-1 >= 0.34 \"") >&5
+   ($PKG_CONFIG --exists --print-errors " dbus-1 >= 0.34 ") 2>&5
+   ac_status=$?
+@@ -25072,13 +25126,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$DBUS_LIBS"; then
+-    pkg_cv_DBUS_LIBS="$DBUS_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$DBUS_LIBS"; then
++        pkg_cv_DBUS_LIBS="$DBUS_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" dbus-1 >= 0.34 \"") >&5
+   ($PKG_CONFIG --exists --print-errors " dbus-1 >= 0.34 ") 2>&5
+   ac_status=$?
+@@ -25088,8 +25144,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -25102,9 +25159,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        DBUS_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors " dbus-1 >= 0.34 " 2>&1`
++	        DBUS_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors " dbus-1 >= 0.34 "`
+         else
+-	        DBUS_PKG_ERRORS=`$PKG_CONFIG --print-errors " dbus-1 >= 0.34 " 2>&1`
++	        DBUS_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors " dbus-1 >= 0.34 "`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$DBUS_PKG_ERRORS" >&5
+@@ -26345,10 +26402,11 @@
+ { $as_echo "$as_me:$LINENO: checking for LIBDAEMON" >&5
+ $as_echo_n "checking for LIBDAEMON... " >&6; }
+ 
+-if test -n "$LIBDAEMON_CFLAGS"; then
+-    pkg_cv_LIBDAEMON_CFLAGS="$LIBDAEMON_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$LIBDAEMON_CFLAGS"; then
++        pkg_cv_LIBDAEMON_CFLAGS="$LIBDAEMON_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" libdaemon >= 0.11 \"") >&5
+   ($PKG_CONFIG --exists --print-errors " libdaemon >= 0.11 ") 2>&5
+   ac_status=$?
+@@ -26358,13 +26416,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$LIBDAEMON_LIBS"; then
+-    pkg_cv_LIBDAEMON_LIBS="$LIBDAEMON_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$LIBDAEMON_LIBS"; then
++        pkg_cv_LIBDAEMON_LIBS="$LIBDAEMON_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \" libdaemon >= 0.11 \"") >&5
+   ($PKG_CONFIG --exists --print-errors " libdaemon >= 0.11 ") 2>&5
+   ac_status=$?
+@@ -26374,8 +26434,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -26388,9 +26449,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        LIBDAEMON_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors " libdaemon >= 0.11 " 2>&1`
++	        LIBDAEMON_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors " libdaemon >= 0.11 "`
+         else
+-	        LIBDAEMON_PKG_ERRORS=`$PKG_CONFIG --print-errors " libdaemon >= 0.11 " 2>&1`
++	        LIBDAEMON_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors " libdaemon >= 0.11 "`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$LIBDAEMON_PKG_ERRORS" >&5
+@@ -27075,10 +27136,11 @@
+ { $as_echo "$as_me:$LINENO: checking for MONODOC" >&5
+ $as_echo_n "checking for MONODOC... " >&6; }
+ 
+-if test -n "$MONODOC_CFLAGS"; then
+-    pkg_cv_MONODOC_CFLAGS="$MONODOC_CFLAGS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$MONODOC_CFLAGS"; then
++        pkg_cv_MONODOC_CFLAGS="$MONODOC_CFLAGS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"monodoc >= 1.1.8\"") >&5
+   ($PKG_CONFIG --exists --print-errors "monodoc >= 1.1.8") 2>&5
+   ac_status=$?
+@@ -27088,13 +27150,15 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+-if test -n "$MONODOC_LIBS"; then
+-    pkg_cv_MONODOC_LIBS="$MONODOC_LIBS"
+- elif test -n "$PKG_CONFIG"; then
+-    if test -n "$PKG_CONFIG" && \
++if test -n "$PKG_CONFIG"; then
++    if test -n "$MONODOC_LIBS"; then
++        pkg_cv_MONODOC_LIBS="$MONODOC_LIBS"
++    else
++        if test -n "$PKG_CONFIG" && \
+     { ($as_echo "$as_me:$LINENO: \$PKG_CONFIG --exists --print-errors \"monodoc >= 1.1.8\"") >&5
+   ($PKG_CONFIG --exists --print-errors "monodoc >= 1.1.8") 2>&5
+   ac_status=$?
+@@ -27104,8 +27168,9 @@
+ else
+   pkg_failed=yes
+ fi
+- else
+-    pkg_failed=untried
++    fi
++else
++	pkg_failed=untried
+ fi
+ 
+ 
+@@ -27118,9 +27183,9 @@
+         _pkg_short_errors_supported=no
+ fi
+         if test $_pkg_short_errors_supported = yes; then
+-	        MONODOC_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors "monodoc >= 1.1.8" 2>&1`
++	        MONODOC_PKG_ERRORS=`$PKG_CONFIG --short-errors --errors-to-stdout --print-errors "monodoc >= 1.1.8"`
+         else
+-	        MONODOC_PKG_ERRORS=`$PKG_CONFIG --print-errors "monodoc >= 1.1.8" 2>&1`
++	        MONODOC_PKG_ERRORS=`$PKG_CONFIG --errors-to-stdout --print-errors "monodoc >= 1.1.8"`
+         fi
+ 	# Put the nasty error message in config.log where it belongs
+ 	echo "$MONODOC_PKG_ERRORS" >&5
+@@ -29688,6 +29753,13 @@
+ LTLIBOBJS=$ac_ltlibobjs
+ 
+ 
++if test -z "${MAINTAINER_MODE_TRUE}" && test -z "${MAINTAINER_MODE_FALSE}"; then
++  { { $as_echo "$as_me:$LINENO: error: conditional \"MAINTAINER_MODE\" was never defined.
++Usually this means the macro was only invoked conditionally." >&5
++$as_echo "$as_me: error: conditional \"MAINTAINER_MODE\" was never defined.
++Usually this means the macro was only invoked conditionally." >&2;}
++   { (exit 1); exit 1; }; }
++fi
+ if test -z "${AMDEP_TRUE}" && test -z "${AMDEP_FALSE}"; then
+   { { $as_echo "$as_me:$LINENO: error: conditional \"AMDEP\" was never defined.
+ Usually this means the macro was only invoked conditionally." >&5
+Index: avahi-0.6.25/examples/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/examples/Makefile.in	2010-01-13 22:40:27.440305288 +0100
++++ avahi-0.6.25/examples/Makefile.in	2010-01-13 22:40:02.740299361 +0100
+@@ -267,6 +267,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -407,7 +408,7 @@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .c .lo .o .obj
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -432,9 +433,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+ clean-noinstPROGRAMS:
+Index: avahi-0.6.25/initscript/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/initscript/Makefile.in	2010-01-13 22:40:29.088304033 +0100
++++ avahi-0.6.25/initscript/Makefile.in	2010-01-13 22:40:02.872300258 +0100
+@@ -204,6 +204,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -331,7 +332,7 @@
+ all: all-recursive
+ 
+ .SUFFIXES:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -356,9 +357,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+ mostlyclean-libtool:
+Index: avahi-0.6.25/initscript/archlinux/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/initscript/archlinux/Makefile.in	2010-01-13 22:40:29.388304532 +0100
++++ avahi-0.6.25/initscript/archlinux/Makefile.in	2010-01-13 22:40:02.988300514 +0100
+@@ -185,6 +185,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -321,7 +322,7 @@
+ all: all-am
+ 
+ .SUFFIXES:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -346,9 +347,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-initdSCRIPTS: $(initd_SCRIPTS)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/initscript/darwin/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/initscript/darwin/Makefile.in	2010-01-13 22:40:29.628301584 +0100
++++ avahi-0.6.25/initscript/darwin/Makefile.in	2010-01-13 22:40:03.108298758 +0100
+@@ -185,6 +185,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -321,7 +322,7 @@
+ all: all-am
+ 
+ .SUFFIXES:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -346,9 +347,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-initdSCRIPTS: $(initd_SCRIPTS)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/initscript/debian/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/initscript/debian/Makefile.in	2010-01-13 22:40:29.268304322 +0100
++++ avahi-0.6.25/initscript/debian/Makefile.in	2010-01-13 22:40:03.228299230 +0100
+@@ -185,6 +185,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -321,7 +322,7 @@
+ all: all-am
+ 
+ .SUFFIXES:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -346,9 +347,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-initdSCRIPTS: $(initd_SCRIPTS)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/initscript/fedora/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/initscript/fedora/Makefile.in	2010-01-13 22:40:29.028302537 +0100
++++ avahi-0.6.25/initscript/fedora/Makefile.in	2010-01-13 22:40:03.344298923 +0100
+@@ -185,6 +185,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -312,7 +313,7 @@
+ all: all-am
+ 
+ .SUFFIXES:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -337,9 +338,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-initdSCRIPTS: $(initd_SCRIPTS)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/initscript/freebsd/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/initscript/freebsd/Makefile.in	2010-01-13 22:40:29.328304706 +0100
++++ avahi-0.6.25/initscript/freebsd/Makefile.in	2010-01-13 22:40:03.460301136 +0100
+@@ -185,6 +185,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -321,7 +322,7 @@
+ all: all-am
+ 
+ .SUFFIXES:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -346,9 +347,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-initdSCRIPTS: $(initd_SCRIPTS)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/initscript/gentoo/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/initscript/gentoo/Makefile.in	2010-01-13 22:40:29.568303721 +0100
++++ avahi-0.6.25/initscript/gentoo/Makefile.in	2010-01-13 22:40:03.576298873 +0100
+@@ -185,6 +185,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -322,7 +323,7 @@
+ all: all-am
+ 
+ .SUFFIXES:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -347,9 +348,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-initdSCRIPTS: $(initd_SCRIPTS)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/initscript/lfs/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/initscript/lfs/Makefile.in	2010-01-13 22:40:29.448304077 +0100
++++ avahi-0.6.25/initscript/lfs/Makefile.in	2010-01-13 22:40:03.696299347 +0100
+@@ -185,6 +185,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -312,7 +313,7 @@
+ all: all-am
+ 
+ .SUFFIXES:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -337,9 +338,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-initdSCRIPTS: $(initd_SCRIPTS)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/initscript/mandriva/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/initscript/mandriva/Makefile.in	2010-01-13 22:40:29.508304738 +0100
++++ avahi-0.6.25/initscript/mandriva/Makefile.in	2010-01-13 22:40:03.848301389 +0100
+@@ -185,6 +185,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -312,7 +313,7 @@
+ all: all-am
+ 
+ .SUFFIXES:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -337,9 +338,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-initdSCRIPTS: $(initd_SCRIPTS)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/initscript/slackware/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/initscript/slackware/Makefile.in	2010-01-13 22:40:29.204304556 +0100
++++ avahi-0.6.25/initscript/slackware/Makefile.in	2010-01-13 22:40:03.980301729 +0100
+@@ -185,6 +185,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -312,7 +313,7 @@
+ all: all-am
+ 
+ .SUFFIXES:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -337,9 +338,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-initdSCRIPTS: $(initd_SCRIPTS)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/initscript/suse/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/initscript/suse/Makefile.in	2010-01-13 22:40:29.144305577 +0100
++++ avahi-0.6.25/initscript/suse/Makefile.in	2010-01-13 22:40:04.096300303 +0100
+@@ -185,6 +185,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -312,7 +313,7 @@
+ all: all-am
+ 
+ .SUFFIXES:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -337,9 +338,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ install-initdSCRIPTS: $(initd_SCRIPTS)
+ 	@$(NORMAL_INSTALL)
+Index: avahi-0.6.25/install-sh
+===================================================================
+--- avahi-0.6.25.orig/install-sh	2010-01-13 22:40:27.268305711 +0100
++++ avahi-0.6.25/install-sh	2010-01-13 22:39:43.072300319 +0100
+@@ -1,7 +1,7 @@
+ #!/bin/sh
+ # install - install a program, script, or datafile
+ 
+-scriptversion=2006-12-25.00
++scriptversion=2009-04-28.21; # UTC
+ 
+ # This originates from X11R5 (mit/util/scripts/install.sh), which was
+ # later released in X11R6 (xc/config/util/install.sh) with the
+@@ -515,5 +515,6 @@
+ # eval: (add-hook 'write-file-hooks 'time-stamp)
+ # time-stamp-start: "scriptversion="
+ # time-stamp-format: "%:y-%02m-%02d.%02H"
+-# time-stamp-end: "$"
++# time-stamp-time-zone: "UTC"
++# time-stamp-end: "; # UTC"
+ # End:
+Index: avahi-0.6.25/ltmain.sh
+===================================================================
+--- avahi-0.6.25.orig/ltmain.sh	2010-01-13 22:40:28.520304311 +0100
++++ avahi-0.6.25/ltmain.sh	2010-01-13 22:39:43.120305594 +0100
+@@ -1,6 +1,6 @@
+ # Generated from ltmain.m4sh.
+ 
+-# ltmain.sh (GNU libtool) 2.2.6
++# ltmain.sh (GNU libtool) 2.2.6b
+ # Written by Gordon Matzigkeit <gord@gnu.ai.mit.edu>, 1996
+ 
+ # Copyright (C) 1996, 1997, 1998, 1999, 2000, 2001, 2003, 2004, 2005, 2006, 2007 2008 Free Software Foundation, Inc.
+@@ -65,7 +65,7 @@
+ #       compiler:		$LTCC
+ #       compiler flags:		$LTCFLAGS
+ #       linker:		$LD (gnu? $with_gnu_ld)
+-#       $progname:		(GNU libtool) 2.2.6
++#       $progname:		(GNU libtool) 2.2.6b Debian-2.2.6b-2
+ #       automake:		$automake_version
+ #       autoconf:		$autoconf_version
+ #
+@@ -73,9 +73,9 @@
+ 
+ PROGRAM=ltmain.sh
+ PACKAGE=libtool
+-VERSION=2.2.6
++VERSION="2.2.6b Debian-2.2.6b-2"
+ TIMESTAMP=""
+-package_revision=1.3012
++package_revision=1.3017
+ 
+ # Be Bourne compatible
+ if test -n "${ZSH_VERSION+set}" && (emulate sh) >/dev/null 2>&1; then
+@@ -5033,7 +5033,10 @@
+ 	case $pass in
+ 	dlopen) libs="$dlfiles" ;;
+ 	dlpreopen) libs="$dlprefiles" ;;
+-	link) libs="$deplibs %DEPLIBS% $dependency_libs" ;;
++	link)
++	  libs="$deplibs %DEPLIBS%"
++	  test "X$link_all_deplibs" != Xno && libs="$libs $dependency_libs"
++	  ;;
+ 	esac
+       fi
+       if test "$linkmode,$pass" = "lib,dlpreopen"; then
+@@ -5344,19 +5347,19 @@
+ 	    # It is a libtool convenience library, so add in its objects.
+ 	    convenience="$convenience $ladir/$objdir/$old_library"
+ 	    old_convenience="$old_convenience $ladir/$objdir/$old_library"
++	    tmp_libs=
++	    for deplib in $dependency_libs; do
++	      deplibs="$deplib $deplibs"
++	      if $opt_duplicate_deps ; then
++		case "$tmp_libs " in
++		*" $deplib "*) specialdeplibs="$specialdeplibs $deplib" ;;
++		esac
++	      fi
++	      tmp_libs="$tmp_libs $deplib"
++	    done
+ 	  elif test "$linkmode" != prog && test "$linkmode" != lib; then
+ 	    func_fatal_error "\`$lib' is not a convenience library"
+ 	  fi
+-	  tmp_libs=
+-	  for deplib in $dependency_libs; do
+-	    deplibs="$deplib $deplibs"
+-	    if $opt_duplicate_deps ; then
+-	      case "$tmp_libs " in
+-	      *" $deplib "*) specialdeplibs="$specialdeplibs $deplib" ;;
+-	      esac
+-	    fi
+-	    tmp_libs="$tmp_libs $deplib"
+-	  done
+ 	  continue
+ 	fi # $pass = conv
+ 
+@@ -5893,6 +5896,7 @@
+ 	  if test "$link_all_deplibs" != no; then
+ 	    # Add the search paths of all dependency libraries
+ 	    for deplib in $dependency_libs; do
++	      path=
+ 	      case $deplib in
+ 	      -L*) path="$deplib" ;;
+ 	      *.la)
+@@ -6206,6 +6210,9 @@
+ 	    revision="$number_minor"
+ 	    lt_irix_increment=no
+ 	    ;;
++	  *)
++	    func_fatal_configuration "$modename: unknown library version type \`$version_type'"
++	    ;;
+ 	  esac
+ 	  ;;
+ 	no)
+Index: avahi-0.6.25/man/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/man/Makefile.in	2010-01-13 22:40:26.216305212 +0100
++++ avahi-0.6.25/man/Makefile.in	2010-01-13 22:40:04.244301826 +0100
+@@ -211,6 +211,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -382,7 +383,7 @@
+ all: all-am
+ 
+ .SUFFIXES:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -407,9 +408,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+ mostlyclean-libtool:
+Index: avahi-0.6.25/service-type-database/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/service-type-database/Makefile.in	2010-01-13 22:40:26.800300841 +0100
++++ avahi-0.6.25/service-type-database/Makefile.in	2010-01-13 22:40:04.372299699 +0100
+@@ -196,6 +196,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -326,7 +327,7 @@
+ all: all-am
+ 
+ .SUFFIXES:
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -351,9 +352,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+ mostlyclean-libtool:
+Index: avahi-0.6.25/tests/Makefile.in
+===================================================================
+--- avahi-0.6.25.orig/tests/Makefile.in	2010-01-13 22:40:26.860304859 +0100
++++ avahi-0.6.25/tests/Makefile.in	2010-01-13 22:40:04.512303292 +0100
+@@ -212,6 +212,7 @@
+ LIPO = @LIPO@
+ LN_S = @LN_S@
+ LTLIBOBJS = @LTLIBOBJS@
++MAINT = @MAINT@
+ MAKEINFO = @MAKEINFO@
+ MCS = @MCS@
+ MDASSEMBLER = @MDASSEMBLER@
+@@ -355,7 +356,7 @@
+ 
+ .SUFFIXES:
+ .SUFFIXES: .cc .lo .o .obj
+-$(srcdir)/Makefile.in:  $(srcdir)/Makefile.am  $(am__configure_deps)
++$(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am  $(am__configure_deps)
+ 	@for dep in $?; do \
+ 	  case '$(am__configure_deps)' in \
+ 	    *$$dep*) \
+@@ -380,9 +381,9 @@
+ $(top_builddir)/config.status: $(top_srcdir)/configure $(CONFIG_STATUS_DEPENDENCIES)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+-$(top_srcdir)/configure:  $(am__configure_deps)
++$(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+-$(ACLOCAL_M4):  $(am__aclocal_m4_deps)
++$(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
+ 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
+ 
+ clean-noinstPROGRAMS:

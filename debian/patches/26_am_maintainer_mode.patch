@@ -1,0 +1,12 @@
+Index: avahi-0.6.25/configure.ac
+===================================================================
+--- avahi-0.6.25.orig/configure.ac	2010-01-13 22:29:48.352301588 +0100
++++ avahi-0.6.25/configure.ac	2010-01-13 22:30:21.288302354 +0100
+@@ -25,6 +25,7 @@
+ AC_CONFIG_SRCDIR([avahi-core/server.c])
+ AC_CONFIG_HEADERS([config.h])
+ AM_INIT_AUTOMAKE([foreign 1.9 -Wall])
++AM_MAINTAINER_MODE
+ 
+ AC_SUBST(PACKAGE_URL, [http://avahi.org/])
+ 

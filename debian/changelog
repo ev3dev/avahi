@@ -11,6 +11,12 @@ avahi (0.6.25-3) unstable; urgency=low
     - Fix build failure on GNU/Hurd by improving the configure check to also
       test for net/if_dl.h so the correct backend is used. (Closes: #558975)
       Thanks to Pino Toscano for the patch.
+  * debian/patches/26_am_maintainer_mode.patch
+    - Set AM_MAINTAINER_MODE as it makes patching the build system less
+      painful.
+  * debian/patches/99_autoreconf.patch
+    - Run autoreconf as 25_check_net_if_dl_h_for_pfroute.patch changes the
+      build system.
 
  -- Michael Biebl <biebl@debian.org>  Wed, 13 Jan 2010 21:25:47 +0100
 
