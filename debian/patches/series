@@ -1,3 +1,5 @@
+# Debian patches for Avahi
 01_avahi-daemon.conf.patch
 11_avahi-autoipd.action-add-routes.patch
 15-manpage-typo-fixes.patch
+20_avahi-daemon_kfreebsd.patch
