@@ -1,4 +1,4 @@
-avahi (0.6.25-3) UNRELEASED; urgency=low
+avahi (0.6.25-3) unstable; urgency=low
 
   * debian/control
     - Fix package description for libavahi-gobject0. (Closes: #528916)
@@ -31,7 +31,7 @@ avahi (0.6.25-3) UNRELEASED; urgency=low
   * debian/avahi-autoipd.postrm
     - Cleanup /var/run/avahi-autoipd on "purge". (Closes: #527925)
 
- -- Michael Biebl <biebl@debian.org>  Wed, 13 Jan 2010 21:25:47 +0100
+ -- Michael Biebl <biebl@debian.org>  Thu, 14 Jan 2010 00:47:50 +0100
 
 avahi (0.6.25-2) unstable; urgency=low
 
