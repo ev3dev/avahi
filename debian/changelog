@@ -3,8 +3,7 @@ avahi (0.6.25-2) unstable; urgency=low
   [ Michael Biebl ]
   * patches/15-manpage-typo-fixes.patch
     - Fix a few typos in the man pages (s/seperated/separated/).
-      (Closes: #525268)
-      Thanks to A. Costa for the patch.
+      Thanks to A. Costa for the patch. (Closes: #525268)
 
   [ Sjoerd Simons ]
   * debian/avahi-daemon-check-dns.sh
@@ -25,7 +24,7 @@ avahi (0.6.25-1) unstable; urgency=low
 
 avahi (0.6.24-3) unstable; urgency=low
 
-  * Switch patch management system to quilt. 
+  * Switch patch management system to quilt.
   * debian/control
     - Change Section of avahi-dbg to debug.
     - Bump Standards-Version to 3.8.1. No further changes.
@@ -50,7 +49,7 @@ avahi (0.6.24-3) unstable; urgency=low
 
 avahi (0.6.24-2) unstable; urgency=low
 
-  * Merge changes from experimental branch. 
+  * Merge changes from experimental branch.
   * debian/compat
     - Bump to debhelper v7 compat mode.
   * debian/control
