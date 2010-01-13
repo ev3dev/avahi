@@ -486,7 +486,7 @@ Description: Development headers for the Avahi GTK+ User interface library
  This package contains the development headers for the GTK+ library of Avahi.
 
 Package: avahi-ui-utils
-Section: libs
+Section: utils
 Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends}
