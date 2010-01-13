@@ -1,6 +1,7 @@
 libavahi-core.so.6 libavahi-core6 #MINVER#
  avahi_address_from_sockaddr@Base 0.6.24
  avahi_address_is_ipv4_in_ipv6@Base 0.6.24
+ avahi_address_is_link_local@Base 0.6.25-3~
  avahi_address_is_local@Base 0.6.24
  avahi_announce_entry@Base 0.6.24
  avahi_announce_group@Base 0.6.24
@@ -174,6 +175,7 @@ libavahi-core.so.6 libavahi-core6 #MINVER#
  avahi_record_equal_no_ttl@Base 0.6.24
  avahi_record_get_estimate_size@Base 0.6.24
  avahi_record_is_goodbye@Base 0.6.24
+ avahi_record_is_link_local_address@Base 0.6.25-3~
  avahi_record_is_valid@Base 0.6.24
  avahi_record_lexicographical_compare@Base 0.6.24
  avahi_record_list_all_flush_cache@Base 0.6.24

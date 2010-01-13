@@ -20,6 +20,9 @@ avahi (0.6.25-3) unstable; urgency=low
   * debian/patches/30_dont_reflect_link-local_addresses.patch
     - Don't reflect link-local IPv4 or IPv6 addresses. (Closes: #517160)
       Patch pulled from upstream, original patch by Rob Leslie, thanks!
+  * debian/libavahi-core6.symbols
+    - Add new symbols that were introduced by
+      30_dont_reflect_link-local_addresses.patch.
 
  -- Michael Biebl <biebl@debian.org>  Wed, 13 Jan 2010 21:25:47 +0100
 
