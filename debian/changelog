@@ -3,6 +3,7 @@ avahi (0.6.25-3) unstable; urgency=low
   * debian/control
     - Fix package description for libavahi-gobject0. (Closes: #528916)
     - Change section of avahi-ui-utils to utils. (Closes: #560830)
+    - Bump Standards-Version to 3.8.3. No further changes.
 
  -- Michael Biebl <biebl@debian.org>  Wed, 13 Jan 2010 21:25:47 +0100
 
