@@ -1,4 +1,4 @@
-avahi (0.6.25-3) unstable; urgency=low
+avahi (0.6.25-3) UNRELEASED; urgency=low
 
   * debian/control
     - Fix package description for libavahi-gobject0. (Closes: #528916)
