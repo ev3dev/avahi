@@ -17,6 +17,9 @@ avahi (0.6.25-3) unstable; urgency=low
   * debian/patches/99_autoreconf.patch
     - Run autoreconf as 25_check_net_if_dl_h_for_pfroute.patch changes the
       build system.
+  * debian/patches/30_dont_reflect_link-local_addresses.patch
+    - Don't reflect link-local IPv4 or IPv6 addresses. (Closes: #517160)
+      Patch pulled from upstream, original patch by Rob Leslie, thanks!
 
  -- Michael Biebl <biebl@debian.org>  Wed, 13 Jan 2010 21:25:47 +0100
 

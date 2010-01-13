@@ -1,0 +1,146 @@
+From: Rob Leslie <rob@mars.org>
+Date: Wed, 4 Mar 2009 05:37:15 +0000 (-0800)
+Subject: reflector: Don't reflect link-local IPv4 or IPv6 addresses
+X-Git-Url: http://git.0pointer.de/?p=avahi.git;a=commitdiff_plain;h=2ea7e99ed0dcfd371fef5aeecd3de77da1dfcd4f;hp=fd5bae5a6626956acd11995628fb83e7e8182c1f
+
+reflector: Don't reflect link-local IPv4 or IPv6 addresses
+
+Modify avahi-daemon so that it doesn't advertise patently useless
+link-local addresses on the wrong interfaces when reflecting mDNS
+responses.
+---
+
+diff --git a/avahi-core/Makefile.am b/avahi-core/Makefile.am
+index d190c66..3062cc6 100644
+--- a/avahi-core/Makefile.am
++++ b/avahi-core/Makefile.am
+@@ -143,7 +143,8 @@ dns_test_SOURCES = \
+ 	util.c util.h \
+ 	rr.c rr.h \
+ 	hashmap.c hashmap.h \
+-	domain-util.c domain-util.h
++	domain-util.c domain-util.h \
++	addr-util.c addr-util.h
+ dns_test_CFLAGS = $(AM_CFLAGS)
+ dns_test_LDADD = $(AM_LDADD) ../avahi-common/libavahi-common.la
+ 
+diff --git a/avahi-core/addr-util.c b/avahi-core/addr-util.c
+index 9e2d1e9..22a2714 100644
+--- a/avahi-core/addr-util.c
++++ b/avahi-core/addr-util.c
+@@ -75,5 +75,22 @@ int avahi_address_is_ipv4_in_ipv6(const AvahiAddress *a) {
+     return memcmp(a->data.ipv6.address, ipv4_in_ipv6, sizeof(ipv4_in_ipv6)) == 0;
+ }
+ 
++#define IPV4LL_NETWORK 0xA9FE0000L
++#define IPV4LL_NETMASK 0xFFFF0000L
++#define IPV6LL_NETWORK 0xFE80
++#define IPV6LL_NETMASK 0xFFC0
+ 
++int avahi_address_is_link_local(const AvahiAddress *a) {
++    assert(a);
++
++    if (a->proto == AVAHI_PROTO_INET) {
++        uint32_t n = ntohl(a->data.ipv4.address);
++        return (n & IPV4LL_NETMASK) == IPV4LL_NETWORK;
++    }
++    else if (a->proto == AVAHI_PROTO_INET6) {
++        unsigned n = (a->data.ipv6.address[0] << 8) | (a->data.ipv6.address[1] << 0);
++        return (n & IPV6LL_NETMASK) == IPV6LL_NETWORK;
++    }
+ 
++    return 0;
++}
+diff --git a/avahi-core/addr-util.h b/avahi-core/addr-util.h
+index 4134de1..b4785d7 100644
+--- a/avahi-core/addr-util.h
++++ b/avahi-core/addr-util.h
+@@ -40,6 +40,10 @@ uint16_t avahi_port_from_sockaddr(const struct sockaddr* sa);
+  * encapsulated IPv4 address, returns 1 if yes, 0 otherwise */
+ int avahi_address_is_ipv4_in_ipv6(const AvahiAddress *a);
+ 
++/** Check whether the specified address is a link-local IPv4 or IPv6 address;
++ * returns 1 if yes, 0 otherwise */
++int avahi_address_is_link_local(const AvahiAddress *a);
++
+ AVAHI_C_DECL_END
+ 
+ #endif
+diff --git a/avahi-core/rr.c b/avahi-core/rr.c
+index 8b7fab7..e815a2f 100644
+--- a/avahi-core/rr.c
++++ b/avahi-core/rr.c
+@@ -40,6 +40,7 @@
+ #include "hashmap.h"
+ #include "domain-util.h"
+ #include "rr-util.h"
++#include "addr-util.h"
+ 
+ AvahiKey *avahi_key_new(const char *name, uint16_t class, uint16_t type) {
+     AvahiKey *k;
+@@ -698,6 +699,37 @@ int avahi_record_is_valid(AvahiRecord *r) {
+         }
+     }
+             
+-
+     return 1;
+ }
++
++static AvahiAddress *get_address(const AvahiRecord *r, AvahiAddress *a) {
++    assert(r);
++
++    switch (r->key->type) {
++        case AVAHI_DNS_TYPE_A:
++            a->proto = AVAHI_PROTO_INET;
++            a->data.ipv4 = r->data.a.address;
++            break;
++
++        case AVAHI_DNS_TYPE_AAAA:
++            a->proto = AVAHI_PROTO_INET6;
++            a->data.ipv6 = r->data.aaaa.address;
++            break;
++
++        default:
++            return NULL;
++    }
++
++    return a;
++}
++
++int avahi_record_is_link_local_address(const AvahiRecord *r) {
++    AvahiAddress a;
++
++    assert(r);
++
++    if (!get_address(r, &a))
++        return 0;
++
++    return avahi_address_is_link_local(&a);
++}
+diff --git a/avahi-core/rr.h b/avahi-core/rr.h
+index 6bfe0ec..2160507 100644
+--- a/avahi-core/rr.h
++++ b/avahi-core/rr.h
+@@ -169,6 +169,9 @@ int avahi_rdata_parse(AvahiRecord *record, const void* rdata, size_t size);
+ /** Serialize an AvahiRecord object into binary rdata. This function is actually implemented in dns.c */
+ size_t avahi_rdata_serialize(AvahiRecord *record, void *rdata, size_t max_size);
+ 
++/** Return TRUE if the AvahiRecord object is a link-local A or AAAA address */
++int avahi_record_is_link_local_address(const AvahiRecord *r);
++
+ AVAHI_C_DECL_END
+ 
+ #endif
+diff --git a/avahi-core/server.c b/avahi-core/server.c
+index bb625a5..2bbf57d 100644
+--- a/avahi-core/server.c
++++ b/avahi-core/server.c
+@@ -666,7 +666,7 @@ static void handle_response_packet(AvahiServer *s, AvahiDnsPacket *p, AvahiInter
+             break;
+         }
+ 
+-        if (!avahi_key_is_pattern(record->key)) {
++        if (!avahi_key_is_pattern(record->key) && !avahi_record_is_link_local_address(record)) {
+ 
+             if (handle_conflict(s, i, record, cache_flush)) {
+                 if (!from_local_iface)
