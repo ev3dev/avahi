@@ -137,10 +137,10 @@ libavahi-core.so.6 libavahi-core6 #MINVER#
  avahi_multicast_lookup_engine_scan_cache@Base 0.6.24
  avahi_multicast_lookup_free@Base 0.6.24
  avahi_multicast_lookup_new@Base 0.6.24
- avahi_netlink_free@Base 0.6.24
- avahi_netlink_new@Base 0.6.24
- avahi_netlink_send@Base 0.6.24
- avahi_netlink_work@Base 0.6.24
+ (arch=linux-any)avahi_netlink_free@Base 0.6.24
+ (arch=linux-any)avahi_netlink_new@Base 0.6.24
+ (arch=linux-any)avahi_netlink_send@Base 0.6.24
+ (arch=linux-any)avahi_netlink_work@Base 0.6.24
  avahi_open_socket_ipv4@Base 0.6.24
  avahi_open_socket_ipv6@Base 0.6.24
  avahi_open_unicast_socket_ipv4@Base 0.6.24
