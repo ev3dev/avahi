@@ -7,6 +7,8 @@ set -e
 if [ "$1" = "purge" ] ; then
         deluser --quiet --system avahi > /dev/null || true
         delgroup --quiet --system avahi > /dev/null || true
-        rmdir --ignore-fail-on-non-empty /var/run/avahi-daemon
+        # Cleanup /var/run/avahi-daemon, see #448539
+        f=/var/run/avahi-daemon
+        rmdir "$f" || { chown root:root "$f" && chmod 00700 "$f"; }
 fi
 
