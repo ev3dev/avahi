@@ -25,11 +25,10 @@ Build-Depends: debhelper (>= 7),
                libqt3-mt-dev,
                libqt4-dev,
                xmltoman,
-               intltool (>= 0.35.0),
-               quilt
+               intltool (>= 0.35.0)
 Standards-Version: 3.8.3
-Vcs-Svn: svn://svn.debian.org/svn/pkg-utopia/packages/unstable/avahi
-Vcs-Browser: http://svn.debian.org/wsvn/pkg-utopia/packages/unstable/avahi
+Vcs-Svn: svn://svn.debian.org/pkg-utopia/packages/unstable/avahi/
+Vcs-Browser: http://svn.debian.org/wsvn/pkg-utopia/packages/unstable/avahi/
 Homepage: http://avahi.org/
 
 Package: avahi-daemon
