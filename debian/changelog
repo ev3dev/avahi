@@ -1,4 +1,4 @@
-avahi (0.6.25-4) UNRELEASED; urgency=low
+avahi (0.6.25-4) unstable; urgency=low
 
   * Switch to source format 3.0 (quilt)
     - Add debian/source/format.
@@ -9,7 +9,7 @@ avahi (0.6.25-4) UNRELEASED; urgency=low
     (ISC DHCP v4) uses this new location. Create symlinks for dhcp3-client
     and preserve any local modifications. (Closes: #583992)
 
- -- Michael Biebl <biebl@debian.org>  Thu, 24 Jun 2010 18:10:59 +0200
+ -- Michael Biebl <biebl@debian.org>  Sat, 26 Jun 2010 01:44:57 +0200
 
 avahi (0.6.25-3) unstable; urgency=low
 
