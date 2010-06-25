@@ -2,8 +2,10 @@ Description: Fix avahi-daemon for GNU/kFreeBSD
 Author: Julien BLACHE <jblache@debian.org>
 Debian-Bug: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=564607
 Bug: http://avahi.org/ticket/299
---- avahi-0.6.25.orig/avahi-daemon/main.c
-+++ avahi-0.6.25/avahi-daemon/main.c
+Index: b/avahi-daemon/main.c
+===================================================================
+--- a/avahi-daemon/main.c	2010-06-25 11:30:47.046932265 +0200
++++ b/avahi-daemon/main.c	2010-06-25 11:31:03.698935981 +0200
 @@ -1307,7 +1307,7 @@
  #endif
  

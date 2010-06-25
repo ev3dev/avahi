@@ -1,7 +1,7 @@
-diff --git a/man/avahi-browse.1.xml.in b/man/avahi-browse.1.xml.in
-index 90b2d35..df4924b 100644
---- a/man/avahi-browse.1.xml.in
-+++ b/man/avahi-browse.1.xml.in
+Index: b/man/avahi-browse.1.xml.in
+===================================================================
+--- a/man/avahi-browse.1.xml.in	2010-06-25 11:30:47.106935157 +0200
++++ b/man/avahi-browse.1.xml.in	2010-06-25 11:31:01.050935003 +0200
 @@ -93,7 +93,7 @@
  
  	  <option>
@@ -11,10 +11,10 @@ index 90b2d35..df4924b 100644
  	  </option>
  
  	  <option>
-diff --git a/man/avahi-daemon.conf.5.xml.in b/man/avahi-daemon.conf.5.xml.in
-index 08992fa..baa9a21 100644
---- a/man/avahi-daemon.conf.5.xml.in
-+++ b/man/avahi-daemon.conf.5.xml.in
+Index: b/man/avahi-daemon.conf.5.xml.in
+===================================================================
+--- a/man/avahi-daemon.conf.5.xml.in	2010-06-25 11:30:47.090929208 +0200
++++ b/man/avahi-daemon.conf.5.xml.in	2010-06-25 11:31:01.050935003 +0200
 @@ -48,13 +48,13 @@
        </option>
  

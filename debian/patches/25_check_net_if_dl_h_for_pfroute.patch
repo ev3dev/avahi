@@ -13,9 +13,11 @@ Description: Fix build failure on GNU/Hurd
 Author: Pino Toscano <pino@kde.org>
 Debian-Bug: http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=558975
 Bug: http://avahi.org/ticket/298
-Index: avahi-0.6.25/configure.ac
+Index: b/configure.ac
 ===================================================================
-@@ -169,6 +170,7 @@
+--- a/configure.ac	2010-06-25 11:30:46.990932953 +0200
++++ b/configure.ac	2010-06-25 11:31:06.274935613 +0200
+@@ -169,6 +169,7 @@
  , [], [
  #include <sys/types.h>
  #include <sys/socket.h>

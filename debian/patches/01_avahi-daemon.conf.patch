@@ -1,7 +1,7 @@
-diff --git a/avahi-daemon/avahi-daemon.conf b/avahi-daemon/avahi-daemon.conf
-index ad69c73..737a3b2 100644
---- a/avahi-daemon/avahi-daemon.conf
-+++ b/avahi-daemon/avahi-daemon.conf
+Index: b/avahi-daemon/avahi-daemon.conf
+===================================================================
+--- a/avahi-daemon/avahi-daemon.conf	2010-06-25 11:30:47.202932592 +0200
++++ b/avahi-daemon/avahi-daemon.conf	2010-06-25 11:30:50.982931931 +0200
 @@ -23,9 +23,9 @@
  [server]
  #host-name=foo
