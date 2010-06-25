@@ -5,6 +5,9 @@ avahi (0.6.25-4) UNRELEASED; urgency=low
     - Drop quilt from Build-Depends.
     - Remove /usr/share/cdbs/1/rules/patchsys-quilt.mk from debian/rules.
   * Bump Standards-Version to 3.8.4. No further changes.
+  * Move dhclient hooks from /etc/dhcp3/ to /etc/dhcp/ as isc-dhcp-client
+    (ISC DHCP v4) uses this new location. Create symlinks for dhcp3-client
+    and preserve any local modifications. (Closes: #583992)
 
  -- Michael Biebl <biebl@debian.org>  Thu, 24 Jun 2010 18:10:59 +0200
 
