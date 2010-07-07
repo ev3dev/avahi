@@ -29,6 +29,8 @@ avahi (0.6.26-1) UNRELEASED; urgency=low
   * Remove AVAHI_DNSCONFD_START option because we start avahi-dnsconfd by
     default anyway. As /etc/default/avahi-dnsconfd is now empty, remove it on
     upgrades.
+  * debian/libavahi-common-data.install
+    - Install avahi gettext translations.
 
  -- Michael Biebl <biebl@debian.org>  Wed, 30 Jun 2010 02:47:56 +0200
 
