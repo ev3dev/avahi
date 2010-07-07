@@ -14,7 +14,8 @@ common-binary-post-install-arch:: list-missing
 LDFLAGS += -Wl,-z,defs -Wl,-O1
 
 DEB_CONFIGURE_EXTRA_FLAGS += --enable-compat-libdns_sd --enable-compat-howl \
-                             --disable-mono --disable-monodoc
+                             --disable-mono --disable-monodoc \
+                             --disable-gtk3
 
 # Only enable the stack protector on certain archs
 ifeq (,$(filter $(DEB_HOST_ARCH), powerpc s390 sparc amd64 i386 lpia))
