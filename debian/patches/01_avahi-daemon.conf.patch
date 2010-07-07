@@ -1,8 +1,8 @@
 Index: b/avahi-daemon/avahi-daemon.conf
 ===================================================================
---- a/avahi-daemon/avahi-daemon.conf	2010-06-25 11:30:47.202932592 +0200
-+++ b/avahi-daemon/avahi-daemon.conf	2010-06-25 11:30:50.982931931 +0200
-@@ -23,9 +23,9 @@
+--- a/avahi-daemon/avahi-daemon.conf	2010-06-29 02:19:57.000000000 +0200
++++ b/avahi-daemon/avahi-daemon.conf	2010-07-07 20:03:01.987655481 +0200
+@@ -21,9 +21,9 @@
  [server]
  #host-name=foo
  #domain-name=local

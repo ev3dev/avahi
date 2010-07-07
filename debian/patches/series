@@ -1,9 +1,4 @@
 # Debian patches for Avahi
 01_avahi-daemon.conf.patch
-11_avahi-autoipd.action-add-routes.patch
-15-manpage-typo-fixes.patch
-20_avahi-daemon_kfreebsd.patch
-25_check_net_if_dl_h_for_pfroute.patch
 26_am_maintainer_mode.patch
-30_dont_reflect_link-local_addresses.patch
 99_autoreconf.patch
