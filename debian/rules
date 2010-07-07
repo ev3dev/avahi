@@ -40,11 +40,9 @@ clean::
 
 binary-install/avahi-discover::
 	dh_pysupport -p$(cdbs_curpkg)
-	rm -f debian/tmp/usr/lib/python*/site-packages/avahi/*.py[co]
 
 binary-install/python-avahi::
 	dh_pysupport -p$(cdbs_curpkg)
-	rm -f debian/tmp/usr/lib/python*/site-packages/avahi/*.py[co]
 
 install/avahi-autoipd::
 	dh_installifupdown -p$(cdbs_curpkg)

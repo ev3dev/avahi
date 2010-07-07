@@ -22,6 +22,7 @@ avahi (0.6.26-1) UNRELEASED; urgency=low
     - Drop Build-Depends on libglade2-dev.
     - Bump Build-Depends on libgtk2.0-dev to (>= 2.14.0).
     - Update debian/avahi-discover.install for avahi-discover.ui.
+  * Update debian/python-avahi.install for python dist-packages transition.
 
  -- Michael Biebl <biebl@debian.org>  Wed, 30 Jun 2010 02:47:56 +0200
 
