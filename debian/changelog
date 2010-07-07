@@ -1,4 +1,4 @@
-avahi (0.6.26-1) unstable; urgency=low
+avahi (0.6.26-1) UNRELEASED; urgency=low
 
   * New upstream release.
     - Make avahi limits configurable instead of setting them during compile
