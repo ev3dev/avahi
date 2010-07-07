@@ -38,6 +38,8 @@ avahi (0.6.26-1) UNRELEASED; urgency=low
     - Install avahi gettext translations.
   * debian/avahi-daemon.examples
     - Install sftp-ssh.service file. (Closes: #389336)
+  * debian/control
+    - Recommend isc-dhcp-client instead of dhcp3-client.
 
  -- Michael Biebl <biebl@debian.org>  Wed, 07 Jul 2010 23:38:16 +0200
 
