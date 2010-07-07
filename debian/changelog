@@ -17,6 +17,7 @@ avahi (0.6.26-1) UNRELEASED; urgency=low
     - Install interfaces into standard D-Bus interfaces directory.
   * debian/{avahi-autoipd.install,rules}
     - The dhclient hooks are installed to /etc/dhcp by upstream now.
+  * Bump libavahi-core soname from 6 to 7.
 
  -- Michael Biebl <biebl@debian.org>  Wed, 30 Jun 2010 02:47:56 +0200
 
