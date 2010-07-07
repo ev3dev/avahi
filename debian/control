@@ -10,7 +10,7 @@ Build-Depends: debhelper (>= 7),
                cdbs (>= 0.4.43),
                pkg-config,
                python-support (>= 0.6),
-               libcap-dev (>= 1:2.16) [!hurd-i386 !kfreebsd-i386 !kfreebsd-amd64 !netbsd-i386],
+               libcap-dev (>= 1:2.16) [linux-any],
                libgdbm-dev,
                libglib2.0-dev (>= 2.4),
                libgtk2.0-dev (>= 2.14.0),
@@ -25,7 +25,7 @@ Build-Depends: debhelper (>= 7),
                libqt4-dev,
                xmltoman,
                intltool (>= 0.35.0)
-Standards-Version: 3.8.4
+Standards-Version: 3.9.0
 Vcs-Svn: svn://svn.debian.org/pkg-utopia/packages/unstable/avahi/
 Vcs-Browser: http://svn.debian.org/wsvn/pkg-utopia/packages/unstable/avahi/
 Homepage: http://avahi.org/
@@ -73,7 +73,7 @@ Description: Avahi DNS configuration tool
 
 Package: avahi-autoipd
 Section: net
-Architecture: i386 ia64 alpha amd64 armeb armel arm hppa lpia m32r m68k mips mipsel powerpc ppc64 s390 s390x sh3 sh3eb sh4 sh4eb sparc
+Architecture: linux-any
 Depends: ${shlibs:Depends},
          ${misc:Depends},
          adduser
