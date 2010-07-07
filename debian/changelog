@@ -9,6 +9,8 @@ avahi (0.6.26-1) UNRELEASED; urgency=low
     - debian/patches/30_dont_reflect_link-local_addresses.patch
   * debian/patches/02_have_gtk2_build_fix.patch
     - Fix build for systems that have gtk2 but no gtk3.
+  * debian/patches/99_autoreconf.patch
+    - Refresh for new upstream release.
 
  -- Michael Biebl <biebl@debian.org>  Wed, 30 Jun 2010 02:47:56 +0200
 
