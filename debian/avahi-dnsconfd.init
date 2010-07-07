@@ -25,15 +25,6 @@ test -x $DAEMON || exit 0
 
 . /lib/lsb/init-functions
 
-# don't start if /etc/default/avahi-dnsconfd says so.
-AVAHI_DNSCONFD_START=1
-test -f /etc/default/avahi-dnsconfd && . /etc/default/avahi-dnsconfd
-
-if [ "$AVAHI_DNSCONFD_START" != "1" -a "$1" != "stop" ]; then
-    log_warning_msg "Not starting $DESC $NAME, disabled via /etc/default/$NAME"
-    exit 0
-fi
-
 #
 #       Function that starts the daemon/service.
 #
@@ -47,7 +38,7 @@ d_start() {
 	fi
 	cp -fp /etc/localtime /etc/avahi/etc >/dev/null 2>&1
     fi;
-    
+
     $DAEMON -D
 }
 

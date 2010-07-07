@@ -26,6 +26,9 @@ avahi (0.6.26-1) UNRELEASED; urgency=low
     python dist-packages transition.
   * Bump Standards-Version to 3.9.0. Use architecture wild-card linux-any for
     the libcap-dev Build-Depends and avahi-autoipd.
+  * Remove AVAHI_DNSCONFD_START option because we start avahi-dnsconfd by
+    default anyway. As /etc/default/avahi-dnsconfd is now empty, remove it on
+    upgrades.
 
  -- Michael Biebl <biebl@debian.org>  Wed, 30 Jun 2010 02:47:56 +0200
 
