@@ -1,4 +1,4 @@
-avahi (0.6.26-1) UNRELEASED; urgency=low
+avahi (0.6.26-1) unstable; urgency=low
 
   * New upstream release.
     - Make avahi limits configurable instead of setting them during compile
@@ -39,7 +39,7 @@ avahi (0.6.26-1) UNRELEASED; urgency=low
   * debian/avahi-daemon.examples
     - Install sftp-ssh.service file. (Closes: #389336)
 
- -- Michael Biebl <biebl@debian.org>  Wed, 30 Jun 2010 02:47:56 +0200
+ -- Michael Biebl <biebl@debian.org>  Wed, 07 Jul 2010 23:38:16 +0200
 
 avahi (0.6.25-4) unstable; urgency=low
 
