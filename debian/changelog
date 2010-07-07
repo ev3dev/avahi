@@ -15,6 +15,8 @@ avahi (0.6.26-1) UNRELEASED; urgency=low
     - Disable gtk3 support.
   * debian/avahi-daemon.install
     - Install interfaces into standard D-Bus interfaces directory.
+  * debian/{avahi-autoipd.install,rules}
+    - The dhclient hooks are installed to /etc/dhcp by upstream now.
 
  -- Michael Biebl <biebl@debian.org>  Wed, 30 Jun 2010 02:47:56 +0200
 
