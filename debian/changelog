@@ -1,6 +1,11 @@
 avahi (0.6.26-1) UNRELEASED; urgency=low
 
   * New upstream release.
+    - Make avahi limits configurable instead of setting them during compile
+      time and bump up the default limits. (Closes: #557931)
+    - Clarify avahi-daemon.conf.5 man page. (Closes: #549445)
+    - Don't ignore mDNS response records containing link-local addresses.
+      (Closes: #567067)
   * Remove patches that were merged upstream
     - debian/patches/11_avahi-autoipd.action-add-routes.patch
     - debian/patches/15-manpage-typo-fixes.patch
@@ -31,6 +36,8 @@ avahi (0.6.26-1) UNRELEASED; urgency=low
     upgrades.
   * debian/libavahi-common-data.install
     - Install avahi gettext translations.
+  * debian/avahi-daemon.examples
+    - Install sftp-ssh.service file. (Closes: #389336)
 
  -- Michael Biebl <biebl@debian.org>  Wed, 30 Jun 2010 02:47:56 +0200
 
