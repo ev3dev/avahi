@@ -13,6 +13,8 @@ avahi (0.6.26-1) UNRELEASED; urgency=low
     - Refresh for new upstream release.
   * debian/rules
     - Disable gtk3 support.
+  * debian/avahi-daemon.install
+    - Install interfaces into standard D-Bus interfaces directory.
 
  -- Michael Biebl <biebl@debian.org>  Wed, 30 Jun 2010 02:47:56 +0200
 
