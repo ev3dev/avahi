@@ -4,4 +4,3 @@ debian/tmp/etc/dbus-1/system.d/avahi-dbus.conf
 debian/tmp/usr/sbin/avahi-daemon
 debian/tmp/usr/share/avahi/avahi-service.dtd
 debian/tmp/usr/share/dbus-1/interfaces/
-avahi-daemon/example.service /usr/share/doc/avahi-daemon/examples/
