@@ -1,6 +1,10 @@
 avahi (0.6.27-1) UNRELEASED; urgency=low
 
   * New upstream release.
+  * Remove patches
+    - debian/patches/02_have_gtk2_build_fix.patch (merged upstream)
+    - debian/patches/26_am_maintainer_mode.patch (no longer required)
+    - debian/patches/99_autoreconf.patch (no longer required)
 
  -- Michael Biebl <biebl@debian.org>  Tue, 13 Jul 2010 14:29:49 +0200
 

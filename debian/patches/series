@@ -1,5 +1,2 @@
 # Debian patches for Avahi
 01_avahi-daemon.conf.patch
-02_have_gtk2_build_fix.patch
-26_am_maintainer_mode.patch
-99_autoreconf.patch
