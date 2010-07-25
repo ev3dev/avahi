@@ -1,4 +1,4 @@
-avahi (0.6.27-1) UNRELEASED; urgency=low
+avahi (0.6.27-1) unstable; urgency=low
 
   * New upstream release.
   * Remove patches
@@ -10,7 +10,7 @@ avahi (0.6.27-1) UNRELEASED; urgency=low
     there are no more reverse dependencies left in the Debian archive since
     lenny.
 
- -- Michael Biebl <biebl@debian.org>  Tue, 13 Jul 2010 14:29:49 +0200
+ -- Michael Biebl <biebl@debian.org>  Sun, 25 Jul 2010 23:20:51 +0200
 
 avahi (0.6.26-1) unstable; urgency=low
 
