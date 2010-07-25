@@ -7,8 +7,7 @@ avahi (0.6.27-1) unstable; urgency=low
     - debian/patches/99_autoreconf.patch (no longer required)
   * Drop Howl compatibility library. (Closes: #588389)
     Development of the original Howl implementation has been discontinued and
-    there are no more reverse dependencies left in the Debian archive since
-    lenny.
+    there are no more reverse dependencies in the Debian archive since lenny.
 
  -- Michael Biebl <biebl@debian.org>  Sun, 25 Jul 2010 23:20:51 +0200
 
