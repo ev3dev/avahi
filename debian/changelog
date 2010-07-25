@@ -5,6 +5,10 @@ avahi (0.6.27-1) UNRELEASED; urgency=low
     - debian/patches/02_have_gtk2_build_fix.patch (merged upstream)
     - debian/patches/26_am_maintainer_mode.patch (no longer required)
     - debian/patches/99_autoreconf.patch (no longer required)
+  * Drop Howl compatibility library. (Closes: #588389)
+    Development of the original Howl implementation has been discontinued and
+    there are no more reverse dependencies left in the Debian archive since
+    lenny.
 
  -- Michael Biebl <biebl@debian.org>  Tue, 13 Jul 2010 14:29:49 +0200
 
@@ -39,7 +43,7 @@ avahi (0.6.26-1) unstable; urgency=low
     - Update debian/avahi-discover.install for avahi-discover.ui.
   * Update debian/python-avahi.install and debian/avahi-discover.install for
     python dist-packages transition.
-  * Bump Standards-Version to 3.9.0. Use architecture wild-card linux-any for
+  * Bump Standards-Version to 3.9.0. Use architecture wildcard linux-any for
     the libcap-dev Build-Depends and avahi-autoipd.
   * Remove AVAHI_DNSCONFD_START option because we start avahi-dnsconfd by
     default anyway. As /etc/default/avahi-dnsconfd is now empty, remove it on

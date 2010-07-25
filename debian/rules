@@ -13,7 +13,7 @@ common-binary-post-install-arch:: list-missing
 # symbols, and speed up loading.
 LDFLAGS += -Wl,-z,defs -Wl,-O1
 
-DEB_CONFIGURE_EXTRA_FLAGS += --enable-compat-libdns_sd --enable-compat-howl \
+DEB_CONFIGURE_EXTRA_FLAGS += --enable-compat-libdns_sd \
                              --disable-mono --disable-monodoc \
                              --disable-gtk3
 
