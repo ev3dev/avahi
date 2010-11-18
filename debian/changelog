@@ -1,4 +1,4 @@
-avahi (0.6.28-1) UNRELEASED; urgency=low
+avahi (0.6.28-1) experimental; urgency=low
 
   * New upstream release.
   * Remove debian/patches/02_avahi_client.patch, merged upstream.
@@ -10,7 +10,7 @@ avahi (0.6.28-1) UNRELEASED; urgency=low
   * Install systemd unit files for avahi-daemon and avahi-dnsconfd.
   * Install D-Bus system service file for avahi-daemon.
 
- -- Michael Biebl <biebl@debian.org>  Thu, 18 Nov 2010 06:12:26 +0100
+ -- Michael Biebl <biebl@debian.org>  Thu, 18 Nov 2010 08:05:00 +0100
 
 avahi (0.6.27-3) unstable; urgency=low
 
