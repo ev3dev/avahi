@@ -22,7 +22,8 @@ override_dh_auto_configure:
 	dh_auto_configure -- $(CONFFLAGS) \
 		--enable-compat-libdns_sd \
 		--disable-mono --disable-monodoc \
-		--disable-gtk3
+		--disable-gtk3 \
+		--with-systemdsystemunitdir=/lib/systemd/system
 
 
 override_dh_auto_build:

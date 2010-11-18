@@ -4,3 +4,6 @@ debian/tmp/etc/dbus-1/system.d/avahi-dbus.conf
 debian/tmp/usr/sbin/avahi-daemon
 debian/tmp/usr/share/avahi/avahi-service.dtd
 debian/tmp/usr/share/dbus-1/interfaces/
+debian/tmp/usr/share/dbus-1/system-services/org.freedesktop.Avahi.service
+debian/tmp/lib/systemd/system/avahi-daemon.socket
+debian/tmp/lib/systemd/system/avahi-daemon.service
