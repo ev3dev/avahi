@@ -2,6 +2,11 @@ avahi (0.6.28-1) UNRELEASED; urgency=low
 
   * New upstream release.
   * Remove debian/patches/02_avahi_client.patch, merged upstream.
+  * Move from cdbs to dh
+    - Drop Build-Depends on cdbs.
+    - Bump Build-Depends on debhelper to (>= 7.0.50~) for override targets.
+    - Convert debian/rules to use dh.
+    - Drop debian/clean-la.mk (merged into debian/rules).
 
  -- Michael Biebl <biebl@debian.org>  Thu, 18 Nov 2010 06:12:26 +0100
 
