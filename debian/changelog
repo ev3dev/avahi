@@ -1,4 +1,4 @@
-avahi (0.6.27-3) UNRELEASED; urgency=low
+avahi (0.6.27-3) unstable; urgency=low
 
   * debian/control
     - Update Vcs-* fields: Move packaging from svn to git.
@@ -7,7 +7,7 @@ avahi (0.6.27-3) UNRELEASED; urgency=low
     - Replace patch with upstream commit 9a4db66 which uses Ping() to test
       whether avahi is around.
 
- -- Michael Biebl <biebl@debian.org>  Thu, 18 Nov 2010 04:34:40 +0100
+ -- Michael Biebl <biebl@debian.org>  Thu, 18 Nov 2010 05:47:11 +0100
 
 avahi (0.6.27-2) unstable; urgency=low
 
