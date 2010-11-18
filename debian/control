@@ -25,7 +25,7 @@ Build-Depends: debhelper (>= 7),
                libqt4-dev,
                xmltoman,
                intltool (>= 0.35.0)
-Standards-Version: 3.9.0
+Standards-Version: 3.9.1
 Vcs-Git: git://git.debian.org/git/pkg-utopia/avahi.git
 Vcs-Browser: http://git.debian.org/?p=pkg-utopia/avahi.git;a=summary
 Homepage: http://avahi.org/
