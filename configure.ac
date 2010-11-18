@@ -19,7 +19,7 @@
 # USA.
 
 AC_PREREQ(2.63)
-AC_INIT([avahi],[0.6.27],[avahi (at) lists (dot) freedesktop (dot) org])
+AC_INIT([avahi],[0.6.28],[avahi (at) lists (dot) freedesktop (dot) org])
 AC_CONFIG_SRCDIR([avahi-core/server.c])
 AC_CONFIG_MACRO_DIR([common])
 AC_CONFIG_HEADERS([config.h])
@@ -29,12 +29,12 @@ AC_SUBST(PACKAGE_URL, [http://avahi.org/])
 
 AC_SUBST(LIBAVAHI_COMMON_VERSION_INFO, [8:2:5])
 AC_SUBST(LIBAVAHI_CORE_VERSION_INFO, [7:0:0])
-AC_SUBST(LIBAVAHI_CLIENT_VERSION_INFO, [5:7:2])
+AC_SUBST(LIBAVAHI_CLIENT_VERSION_INFO, [5:8:2])
 AC_SUBST(LIBAVAHI_GLIB_VERSION_INFO, [1:2:0])
-AC_SUBST(LIBAVAHI_GOBJECT_VERSION_INFO, [0:2:0])
+AC_SUBST(LIBAVAHI_GOBJECT_VERSION_INFO, [0:3:0])
 AC_SUBST(LIBAVAHI_QT3_VERSION_INFO, [1:2:0])
 AC_SUBST(LIBAVAHI_QT4_VERSION_INFO, [1:2:0])
-AC_SUBST(LIBAVAHI_UI_VERSION_INFO, [1:2:1])
+AC_SUBST(LIBAVAHI_UI_VERSION_INFO, [1:3:1])
 
 # Do not touch these, since they we took this version-info from upstream HOWL/Bonjour
 AC_SUBST(LIBAVAHI_COMPAT_LIBDNS_SD_VERSION_INFO, [1:0:0])
@@ -472,7 +472,7 @@ AM_CONDITIONAL(HAVE_GOBJECT, test "x$HAVE_GOBJECT" = "xyes")
 #
 # Introspection support.
 #
-GOBJECT_INTROSPECTION_CHECK([0.6.7])
+GOBJECT_INTROSPECTION_CHECK([0.9.5])
 
 #
 # Check for Qt 3
@@ -770,7 +770,7 @@ AC_ARG_ENABLE(libdaemon,
         [HAVE_LIBDAEMON=yes])
 
 if test "x$HAVE_LIBDAEMON" = "xyes" ; then
-    PKG_CHECK_MODULES(LIBDAEMON, [ libdaemon >= 0.11 ])
+    PKG_CHECK_MODULES(LIBDAEMON, [ libdaemon >= 0.14 ])
     AC_SUBST(LIBDAEMON_CFLAGS)
     AC_SUBST(LIBDAEMON_LIBS)
 fi
@@ -1080,8 +1080,10 @@ AC_ARG_WITH([systemdsystemunitdir],
         AS_HELP_STRING([--with-systemdsystemunitdir=DIR], [Directory for systemd service files]),
         [],
         [with_systemdsystemunitdir=$($PKG_CONFIG --variable=systemdsystemunitdir systemd)])
-AC_SUBST([systemdsystemunitdir], [$with_systemdsystemunitdir])
-AM_CONDITIONAL(HAVE_SYSTEMD, [test -n "$with_systemdsystemunitdir"])
+if test "x$with_systemdsystemunitdir" != xno; then
+        AC_SUBST([systemdsystemunitdir], [$with_systemdsystemunitdir])
+fi
+AM_CONDITIONAL(HAVE_SYSTEMD, [test -n "$with_systemdsystemunitdir" -a "x$with_systemdsystemunitdir" != xno ])
 
 # ==========================================================================
 AC_CONFIG_FILES([
