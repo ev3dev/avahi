@@ -46,9 +46,7 @@ ifeq (linux,$(DEB_HOST_ARCH_OS))
 		debian/tmp/etc/dhcp/dhclient-exit-hooks.d/zzz_avahi-autoipd
 endif
 	# cleanup dependency_libs from libtool .la files
-	for file in $(wildcard debian/tmp/usr/lib/*.la); do \
-		sed -i "/dependency_libs/ s/'.*'/''/" $$file ; \
-	done
+	sed -i "/dependency_libs/ s/'.*'/''/" debian/tmp/usr/lib/*.la
 
 # List any files which are not installed
 override_dh_install:

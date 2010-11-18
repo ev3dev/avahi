@@ -1,3 +1,9 @@
+avahi (0.6.28-2) UNRELEASED; urgency=low
+
+  * debian/rules: Fix and simplify .la dependency_libs cleanup.
+
+ -- Michael Biebl <biebl@debian.org>  Thu, 18 Nov 2010 10:22:50 +0100
+
 avahi (0.6.28-1) experimental; urgency=low
 
   * New upstream release.
