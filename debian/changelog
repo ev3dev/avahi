@@ -3,6 +3,9 @@ avahi (0.6.27-3) UNRELEASED; urgency=low
   * debian/control
     - Update Vcs-* fields: Move packaging from svn to git.
     - Bump Standards-Version to 3.9.1. No further changes.
+  * debian/patches/02_avahi_client.patch
+    - Replace patch with upstream commit 9a4db66 which uses Ping() to test
+      whether avahi is around.
 
  -- Michael Biebl <biebl@debian.org>  Thu, 18 Nov 2010 04:34:40 +0100
 

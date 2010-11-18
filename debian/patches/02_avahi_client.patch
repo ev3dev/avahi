@@ -1,69 +1,67 @@
-From 55c732acd013b6ac979b6e1f5432a301481879ca Mon Sep 17 00:00:00 2001
-From: Sjoerd Simons <sjoerd.simons@collabora.co.uk>
-Date: Sun, 15 Aug 2010 22:56:49 +0100
-Subject: [PATCH] Check if the deamon isn't already running
+commit 9a4db66ee760635ddc7e734ec182143cf6f729d3
+Author: Lennart Poettering <lennart@poettering.net>
+Date:   Tue Oct 5 01:14:21 2010 +0200
 
----
- avahi-client/client.c |   29 +++++++++++++++++++++++++----
- 1 files changed, 25 insertions(+), 4 deletions(-)
+    client: use Ping() to test whether avahi is around
+    
+    Ping() should work more reliably on systems where dbus activation of
+    avahi is not available.
+    
+    http://avahi.org/ticket/319
 
 diff --git a/avahi-client/client.c b/avahi-client/client.c
-index be675ad..c7ece4a 100644
+index be675ad..70cc35d 100644
 --- a/avahi-client/client.c
 +++ b/avahi-client/client.c
 @@ -478,6 +478,7 @@ static DBusConnection* avahi_dbus_bus_get(DBusError *error) {
  AvahiClient *avahi_client_new(const AvahiPoll *poll_api, AvahiClientFlags flags, AvahiClientCallback callback, void *userdata, int *ret_error) {
      AvahiClient *client = NULL;
      DBusError error;
-+    int daemon_running = 0;
++    DBusMessage *message = NULL, *reply = NULL;
  
      avahi_init_i18n();
  
-@@ -560,12 +561,33 @@ AvahiClient *avahi_client_new(const AvahiPoll *poll_api, AvahiClientFlags flags,
+@@ -551,7 +552,7 @@ AvahiClient *avahi_client_new(const AvahiPoll *poll_api, AvahiClientFlags flags,
+     if (dbus_error_is_set(&error))
+         goto fail;
+ 
+-    dbus_bus_add_match (
++    dbus_bus_add_match(
+         client->bus,
+         "type='signal', "
+         "interface='" DBUS_INTERFACE_LOCAL "'",
+@@ -560,8 +561,12 @@ AvahiClient *avahi_client_new(const AvahiPoll *poll_api, AvahiClientFlags flags,
      if (dbus_error_is_set(&error))
          goto fail;
  
 -    if (!dbus_bus_start_service_by_name(client->bus, AVAHI_DBUS_NAME, 0, NULL, &error)) {
++    if (!(message = dbus_message_new_method_call(AVAHI_DBUS_NAME, AVAHI_DBUS_PATH_SERVER, "org.freedesktop.DBus.Peer", "Ping")))
++        goto fail;
  
--        /* We free the error so its not set, that way the fail target
--         * will return the NO_DAEMON error rather than a DBUS error */
-+    /* Check if the process already exists on the bus, otherwise try to start
-+     * it. */
-+    if (!dbus_bus_name_has_owner (client->bus, AVAHI_DBUS_NAME, &error)) {
-+      dbus_error_free(&error);
-+      daemon_running = 0;
-+    } else {
-+      daemon_running = 1;
-+    }
++    reply = dbus_connection_send_with_reply_and_block (client->bus, message, -1, &error);
 +
-+    if (!daemon_running &&
-+        !dbus_bus_start_service_by_name(client->bus,
-+          AVAHI_DBUS_NAME, 0, NULL, &error)) {
++    if (!reply || dbus_error_is_set (&error)) {
+         /* We free the error so its not set, that way the fail target
+          * will return the NO_DAEMON error rather than a DBUS error */
          dbus_error_free(&error);
-+    } else {
-+      daemon_running = 1;
-+    }
+@@ -584,10 +589,20 @@ AvahiClient *avahi_client_new(const AvahiPoll *poll_api, AvahiClientFlags flags,
+             goto fail;
+     }
  
-+    /* Re-check something else didn't start the daemon */
-+    if (!daemon_running &&
-+        !dbus_bus_name_has_owner (client->bus, AVAHI_DBUS_NAME, &error)) {
-+      dbus_error_free(&error);
-+    } else {
-+      daemon_running = 1;
-+    }
++    dbus_message_unref(message);
 +
-+    if (!daemon_running) {
-         if (!(flags & AVAHI_CLIENT_NO_FAIL)) {
++    if (reply)
++        dbus_message_unref(reply);
++
+     return client;
  
-             if (ret_error)
-@@ -577,7 +599,6 @@ AvahiClient *avahi_client_new(const AvahiPoll *poll_api, AvahiClientFlags flags,
-         /* The user doesn't want this call to fail if the daemon is not
-          * available, so let's return succesfully */
-         client_set_state(client, AVAHI_CLIENT_CONNECTING);
--
-     } else {
+ fail:
  
-         if (init_server(client, ret_error) < 0)
--- 
-1.7.1
-
++    if (message)
++        dbus_message_unref(message);
++    if (reply)
++        dbus_message_unref(reply);
++
+     if (client)
+         avahi_client_free(client);
+ 
