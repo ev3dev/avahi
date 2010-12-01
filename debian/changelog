@@ -3,6 +3,7 @@ avahi (0.6.28-2) UNRELEASED; urgency=low
   * debian/rules: Fix and simplify .la dependency_libs cleanup.
   * Stop installing libtool .la files for those packages which have no more
     reverse dependencies.
+  * Remove pre-lenny upgrade code from maintainer scripts.
 
  -- Michael Biebl <biebl@debian.org>  Thu, 18 Nov 2010 10:22:50 +0100
 
