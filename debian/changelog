@@ -1,3 +1,10 @@
+avahi (0.6.28-3) UNRELEASED; urgency=low
+
+  * debian/avahi-daemon.init
+    - Map force-reload to reload, not restart.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 22 Dec 2010 05:09:15 +0100
+
 avahi (0.6.28-2) experimental; urgency=low
 
   * debian/rules: Fix and simplify .la dependency_libs cleanup.

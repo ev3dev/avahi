@@ -81,12 +81,12 @@ case "$1" in
         d_stop
         log_end_msg $?
         ;;
-    reload)
+    reload|force-reload)
         log_daemon_msg "Reloading services for $DESC" "$NAME"
         d_reload
         log_end_msg $?
         ;;
-    restart|force-reload)
+    restart)
         log_daemon_msg "Restarting $DESC" "$NAME"
         $DAEMON -c && d_stop
         d_start
