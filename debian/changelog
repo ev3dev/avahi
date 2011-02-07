@@ -1,4 +1,4 @@
-avahi (0.6.28-3) UNRELEASED; urgency=low
+avahi (0.6.28-3) unstable; urgency=low
 
   * debian/avahi-daemon.init
     - Map force-reload action to reload, not restart.
@@ -14,7 +14,7 @@ avahi (0.6.28-3) UNRELEASED; urgency=low
   * Remove avahi-autoipd compat symlinks for dhcp3-client.
   * Upload to unstable.
 
- -- Michael Biebl <biebl@debian.org>  Mon, 07 Feb 2011 02:27:00 +0100
+ -- Michael Biebl <biebl@debian.org>  Mon, 07 Feb 2011 03:54:51 +0100
 
 avahi (0.6.28-2) experimental; urgency=low
 
