@@ -12,8 +12,6 @@
 #                    DHCP-like fashion
 ### END INIT INFO
 
-#set -e
-
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 DESC="Avahi Unicast DNS Configuration Daemon"
 NAME="avahi-dnsconfd"
@@ -29,14 +27,13 @@ test -x $DAEMON || exit 0
 #       Function that starts the daemon/service.
 #
 d_start() {
-    $DAEMON -c
-    [ $? = 0 ] && exit 0
+    $DAEMON -c && return 0
 
     if [ -s /etc/localtime ]; then
-	if [ ! -d /etc/avahi/etc ]; then
-	    mkdir -p /etc/avahi/etc >/dev/null 2>&1
-	fi
-	cp -fp /etc/localtime /etc/avahi/etc >/dev/null 2>&1
+        if [ ! -d /etc/avahi/etc ]; then
+            mkdir -p /etc/avahi/etc >/dev/null 2>&1
+        fi
+        cp -fp /etc/localtime /etc/avahi/etc >/dev/null 2>&1
     fi;
 
     $DAEMON -D
@@ -46,28 +43,23 @@ d_start() {
 #       Function that stops the daemon/service.
 #
 d_stop() {
-    $DAEMON -c
-    [ $? != 0 ] && exit 0
-
-    $DAEMON -k
+    if $DAEMON -c ; then
+       $DAEMON -k
+    fi
 }
 
 #
 #       Function that reload the config file for the daemon/service.
 #
 d_refresh() {
-    $DAEMON -c
-    [ $? != 0 ] && exit 0
-
-    $DAEMON -r
+    $DAEMON -c && $DAEMON -r
 }
 
 #
 #       Function that check the status of the daemon/service.
 #
 d_status() {
-    $DAEMON -c
-    [ $? = 0 ]  && echo "$DESC is running" || echo "$DESC is not running"
+    $DAEMON -c && echo "$DESC is running" || echo "$DESC is not running"
 }
 
 case "$1" in
@@ -86,15 +78,15 @@ case "$1" in
         d_refresh
         log_end_msg $?
         ;;
-    reload|restart|force-reload)
+    restart|force-reload)
         log_daemon_msg "Restarting $DESC" "$NAME"
-        $DAEMON -c && d_stop
+        d_stop
         d_start
         log_end_msg $?
         ;;
     status)
         d_status
-	;;
+        ;;
     *)
         echo "Usage: $SCRIPTNAME {start|stop|restart|force-reload|reload}" >&2
         exit 1

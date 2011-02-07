@@ -12,8 +12,6 @@
 #                    automatically
 ### END INIT INFO
 
-#set -e
-
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 DESC="Avahi mDNS/DNS-SD Daemon"
 NAME="avahi-daemon"
@@ -34,14 +32,12 @@ DISABLE_TAG="/var/run/avahi-daemon/disabled-for-unicast-local"
 #       Function that starts the daemon/service.
 #
 d_start() {
-    modprobe capability >/dev/null 2>&1 || true
-
     $DAEMON -c && return 0
 
-    if [ -e $DISABLE_TAG -a "$AVAHI_DAEMON_DETECT_LOCAL" != "0" ]; then 
-      # Disabled because of the existance of an unicast .local domain
-      log_warning_msg "avahi-daemon disabled because there is a unicast .local domain"
-      exit 0;
+    if [ -e $DISABLE_TAG -a "$AVAHI_DAEMON_DETECT_LOCAL" != "0" ]; then
+        # Disabled because of the existance of an unicast .local domain
+        log_warning_msg "avahi-daemon disabled because there is a unicast .local domain"
+        exit 0;
     fi;
 
     $DAEMON -D
@@ -51,8 +47,8 @@ d_start() {
 #       Function that stops the daemon/service.
 #
 d_stop() {
-    if $DAEMON -c ; then 
-       $DAEMON -k 
+    if $DAEMON -c ; then
+       $DAEMON -k
     fi
 }
 
@@ -88,13 +84,13 @@ case "$1" in
         ;;
     restart)
         log_daemon_msg "Restarting $DESC" "$NAME"
-        $DAEMON -c && d_stop
+        d_stop
         d_start
         log_end_msg $?
         ;;
     status)
         d_status
-	;;
+        ;;
     *)
         echo "Usage: $SCRIPTNAME {start|stop|restart|force-reload|reload}" >&2
         exit 1
