@@ -29,17 +29,6 @@ case "$1" in
         mv_conffile "/etc/dhcp3/dhclient-exit-hooks.d/zzz_avahi-autoipd" \
                     "/etc/dhcp/dhclient-exit-hooks.d/zzz_avahi-autoipd"
     fi
-    # Create compat symlinks for dhcp3-client
-    if [ -d /etc/dhcp3/dhclient-enter-hooks.d ] &&
-       [ ! -e /etc/dhcp3/dhclient-enter-hooks.d/avahi-autoipd ]; then
-        ln -s /etc/dhcp/dhclient-enter-hooks.d/avahi-autoipd \
-              /etc/dhcp3/dhclient-enter-hooks.d/avahi-autoipd
-    fi
-    if [ -d /etc/dhcp3/dhclient-exit-hooks.d ] &&
-       [ ! -e /etc/dhcp3/dhclient-exit-hooks.d/zzz_avahi-autoipd ] ; then
-        ln -s /etc/dhcp/dhclient-exit-hooks.d/zzz_avahi-autoipd \
-              /etc/dhcp3/dhclient-exit-hooks.d/zzz_avahi-autoipd
-    fi
 
     # FIXME: restart it somehow... SIGHUP?
   ;;
