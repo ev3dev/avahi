@@ -1,4 +1,4 @@
-avahi (0.6.28-4) UNRELEASED; urgency=high
+avahi (0.6.28-4) unstable; urgency=high
 
   * Bump debhelper compatibility level to 8 and update build dependency
     on debhelper accordingly.
@@ -7,7 +7,7 @@ avahi (0.6.28-4) UNRELEASED; urgency=high
       and DoS of Avahi. (Closes: #614785, Fixes: CVE-2011-1002)
   * Urgency high for the security fix.
 
- -- Michael Biebl <biebl@debian.org>  Wed, 23 Feb 2011 15:15:20 +0100
+ -- Michael Biebl <biebl@debian.org>  Wed, 23 Feb 2011 15:34:21 +0100
 
 avahi (0.6.28-3) unstable; urgency=low
 
