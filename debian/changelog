@@ -1,11 +1,11 @@
-avahi (0.6.27-2+squeeze1) UNRELEASED; urgency=high
+avahi (0.6.27-2+squeeze1) stable-security; urgency=high
 
   * debian/patches/03_read_null_udp_packets.patch
     - Read NULL UDP packets else we end up in an infinite loop using 100% CPU
       and DoS of Avahi. (Closes: #614785, Fixes: CVE-2011-1002)
   * Urgency high for the security fix.
 
- -- Michael Biebl <biebl@debian.org>  Wed, 23 Feb 2011 15:15:20 +0100
+ -- Michael Biebl <biebl@debian.org>  Wed, 23 Feb 2011 15:59:15 +0100
 
 avahi (0.6.27-2) unstable; urgency=low
 
