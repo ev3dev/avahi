@@ -2,6 +2,9 @@ avahi (0.6.28-4) UNRELEASED; urgency=low
 
   * Bump debhelper compatibility level to 8 and update build dependency
     on debhelper accordingly.
+  * debian/patches/03_read_null_udp_packets.patch
+    - Read NULL UDP packets else we end up in an infinite loop using 100% CPU
+      and DoS of Avahi. (Closes: #614785, Fixes: CVE-2011-1002)
 
  -- Michael Biebl <biebl@debian.org>  Wed, 23 Feb 2011 15:15:20 +0100
 
@@ -960,7 +963,7 @@ avahi (0.6.10-1) unstable; urgency=high
   * New upstream release
   * Urgency high, contains security fixes
     - Local DOS via unspecified mDNS name conflicts (CVE-2006-2288)
-    - Local buffer overflow in avahi-core (CVS-2006-2289)
+    - Local buffer overflow in avahi-core (CVE-2006-2289)
   * No longer ship the avahi cli bindings, they now have their own source
     package (Closes: #360881)
   * Don't build-depend on libcap-dev on hurd, kfreebsd-* and netbsd-i386 archs
