@@ -1,3 +1,10 @@
+avahi (0.6.28-4) UNRELEASED; urgency=low
+
+  * Bump debhelper compatibility level to 8 and update build dependency
+    on debhelper accordingly.
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 23 Feb 2011 15:15:20 +0100
+
 avahi (0.6.28-3) unstable; urgency=low
 
   * debian/avahi-daemon.init
