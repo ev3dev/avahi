@@ -1,3 +1,4 @@
 # Debian patches for Avahi
 01_avahi-daemon.conf.patch
 03_read_null_udp_packets.patch
+04-fix_netlink_flags_for_dump_operations.patch

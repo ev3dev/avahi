@@ -3,6 +3,9 @@ avahi (0.6.28-5) UNRELEASED; urgency=low
   * debian/rules
     - Enable stack smashing protector for all architectures and let configure
       check if it is supported.
+  * debian/patches/04-fix_netlink_flags_for_dump_operations.patch
+    - Use correct flag combination for rtnetlink dump operations.
+      Thanks to Pablo Neira Ayuso for the patch. (Closes: #610281)
 
  -- Michael Biebl <biebl@debian.org>  Mon, 07 Mar 2011 09:06:42 +0100
 
