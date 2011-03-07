@@ -3,13 +3,8 @@
 %:
 	dh $@
 
-DEB_HOST_ARCH    ?= $(shell dpkg-architecture -qDEB_HOST_ARCH)
 DEB_HOST_ARCH_OS ?= $(shell dpkg-architecture -qDEB_HOST_ARCH_OS)
 
-# Only enable the stack protector on certain archs
-ifeq (,$(filter $(DEB_HOST_ARCH), powerpc s390 sparc amd64 i386 lpia))
-	CONFFLAGS += --disable-stack-protector
-endif
 ifneq (linux,$(DEB_HOST_ARCH_OS))
 	CONFFLAGS += --disable-autoipd
 endif
@@ -24,7 +19,6 @@ override_dh_auto_configure:
 		--disable-mono --disable-monodoc \
 		--disable-gtk3 \
 		--with-systemdsystemunitdir=/lib/systemd/system
-
 
 override_dh_auto_build:
 	dh_auto_build
