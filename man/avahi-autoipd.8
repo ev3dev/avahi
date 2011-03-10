@@ -33,7 +33,7 @@ Daemonize after startup. Implies \fB--syslog\f1.
 Kill an already running avahi-autoipd on the specified network interface. (Equivalent to sending a SIGTERM)
 .TP
 \fB-r | --refresh\f1
-Tell an already running avahi-autoipd to reannounce the acquired IP address on the specified network interface. (Equivalent to sending a SIGHUP)
+Tell an already running avahi-autoipd to re-announce the acquired IP address on the specified network interface. (Equivalent to sending a SIGHUP)
 .TP
 \fB-c | --check\f1
 Return 0 as return code if avahi-autoipd is already running for the specified network interface.
@@ -54,7 +54,7 @@ Don't \fBchroot(2)\f1 the daemon. This option is only available when compiled wi
 Try to acquire the specified IP address, which must be from the IPv4LL range 169.254.0.0/16.
 .TP
 \fB-w | --wait\f1
-Wait until a IP address has been sucessfully acquired before detaching. Only valid in combination with \fB--daemonize\f1.
+Wait until a IP address has been successfully acquired before detaching. Only valid in combination with \fB--daemonize\f1.
 .TP
 \fB--force-bind\f1
 Acquire an IPv4LL address, even if a routable address has been configured on the interface.
@@ -70,9 +70,9 @@ Show version information.
 .SH FILES
 \fI/etc/avahi/avahi-autoipd.action\f1: the script to run when an IP address as been acquired or is lost.
 .SH SIGNALS
-\fISIGINT, SIGTERM, SIGQUIT\f1: avahi-autoipd will shutdown. (Same as \fB--kill\f1)
+\fISIGINT, SIGTERM\f1: avahi-autoipd will shutdown. (Same as \fB--kill\f1)
 
-\fISIGHUP\f1: avahi-autoipd will reannounce the acquired IP address. (Same as \fB--refresh\f1)
+\fISIGHUP\f1: avahi-autoipd will re-announce the acquired IP address. (Same as \fB--refresh\f1)
 .SH AUTHORS
 The Avahi Developers <avahi (at) lists (dot) freedesktop (dot) org>; Avahi is available from \fBhttp://avahi.org/\f1
 .SH SEE ALSO

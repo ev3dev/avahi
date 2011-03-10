@@ -67,16 +67,20 @@ extern "C" {
   See sd-daemon(7) for more information.
 */
 
+#ifndef _sd_printf_attr_
 #if __GNUC__ >= 4
 #define _sd_printf_attr_(a,b) __attribute__ ((format (printf, a, b)))
 #else
 #define _sd_printf_attr_(a,b)
 #endif
+#endif
 
+#ifndef _sd_hidden_
 #if (__GNUC__ >= 4) && !defined(SD_EXPORT_SYMBOLS)
 #define _sd_hidden_ __attribute__ ((visibility("hidden")))
 #else
 #define _sd_hidden_
+#endif
 #endif
 
 /*
@@ -181,7 +185,7 @@ int sd_is_socket_unix(int fd, int type, int listening, const char *path, size_t 
      READY=1      Tells systemd that daemon startup is finished (only
                   relevant for services of Type=notify). The passed
                   argument is a boolean "1" or "0". Since there is
-                  little value in signalling non-readiness the only
+                  little value in signaling non-readiness the only
                   value daemons should send is "READY=1".
 
      STATUS=...   Passes a single-line status string back to systemd
@@ -202,7 +206,7 @@ int sd_is_socket_unix(int fd, int type, int listening, const char *path, size_t 
                   fork off the process itself. Example: "MAINPID=4711"
 
   Daemons can choose to send additional variables. However, it is
-  recommened to prefix variable names not listed above with X_.
+  recommended to prefix variable names not listed above with X_.
 
   Returns a negative errno-style error code on failure. Returns > 0
   if systemd could be notified, 0 if it couldn't possibly because
@@ -248,21 +252,11 @@ int sd_notifyf(int unset_environment, const char *format, ...) _sd_printf_attr_(
   fine. You should NOT protect them with a call to this function. Also
   note that this function checks whether the system, not the user
   session is controlled by systemd. However the functions above work
-  for both session and system services.
+  for both user and system services.
 
   See sd_booted(3) for more information.
 */
 int sd_booted(void) _sd_hidden_;
-
-/*
-  Controls ongoing disk read-ahead operations during boot-up. The argument
-  must be a string, and either "cancel", "done" or "noreplay".
-
-  cancel = terminate read-ahead data collection, drop collected information
-  done = terminate read-ahead data collection, keep collected information
-  noreplay = terminate read-ahead replay
-*/
-int sd_readahead(const char *action);
 
 #ifdef __cplusplus
 }
