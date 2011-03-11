@@ -4,8 +4,14 @@ avahi (0.6.29-1) UNRELEASED; urgency=low
   * Remove patches, merged upstream
     - debian/patches/03_read_null_udp_packets.patch
     - debian/patches/04-fix_netlink_flags_for_dump_operations.patch
+  * debian/avahi-daemon.links
+    - Enable avahi-daemon by default when using systemd, so it can be started
+      via D-Bus activation, socket activation and multi-user.target.
+  * debian/avahi-dnsconfd.links
+    - Enable avahi-dnsconfd by default when using systemd. It will be started
+      by multi-user.target.
 
- -- Michael Biebl <biebl@debian.org>  Fri, 11 Mar 2011 00:34:37 +0100
+ -- Michael Biebl <biebl@debian.org>  Fri, 11 Mar 2011 01:54:00 +0100
 
 avahi (0.6.28-5) unstable; urgency=low
 
