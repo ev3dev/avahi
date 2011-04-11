@@ -20,7 +20,6 @@ Build-Depends: debhelper (>= 8),
                python-gdbm (>= 2.4.3),
                python-dbus,
                python-gtk2 (>= 2.8.6-2),
-               libqt3-mt-dev,
                libqt4-dev,
                xmltoman,
                intltool (>= 0.35.0)
@@ -325,38 +324,6 @@ Description: Development headers for the Avahi GObject library
  .
  This package contains the development headers for a GObject interface
  to Avahi
-
-Package: libavahi-qt3-1
-Section: libs
-Architecture: any
-Depends: ${shlibs:Depends},
-         ${misc:Depends}
-Description: Avahi Qt 3 integration library
- Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
- It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration. For
- example you can plug into a network and instantly find printers to
- print to, files to look at and people to talk to.
- .
- This library contains the interface to integrate the Avahi libraries
- into a Qt 3 main loop application.
-
-Package: libavahi-qt3-dev
-Section: libdevel
-Architecture: any
-Depends: libavahi-qt3-1 (= ${binary:Version}),
-         ${misc:Depends},
-         libqt3-mt-dev,
-         libavahi-common-dev
-Description: Development headers for the Avahi Qt 3 integration library
- Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
- It allows programs to publish and discover services and hosts
- running on a local network with no specific configuration. For
- example you can plug into a network and instantly find printers to
- print to, files to look at and people to talk to.
- .
- This package contains the development headers for the interface
- to integrate the Avahi libraries  into a Qt 3 main loop application.
 
 Package: libavahi-qt4-1
 Section: libs
