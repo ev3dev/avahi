@@ -41,8 +41,6 @@ ifeq (linux,$(DEB_HOST_ARCH_OS))
 	mv debian/tmp/etc/dhcp/dhclient-exit-hooks.d/avahi-autoipd \
 		debian/tmp/etc/dhcp/dhclient-exit-hooks.d/zzz_avahi-autoipd
 endif
-	# cleanup dependency_libs from libtool .la files
-	sed -i "/dependency_libs/ s/'.*'/''/" debian/tmp/usr/lib/*.la
 
 # List any files which are not installed
 override_dh_install:
