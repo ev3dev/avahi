@@ -5,6 +5,7 @@ avahi (0.6.30-2) UNRELEASED; urgency=low
     - Drop Build-Depends on libqt3-mt-dev.
     - Drop libavahi-qt3-1 and libavahi-qt3-dev package.
     - Update debian/rules, pass --disable-qt3 to configure.
+  * Remove libtool .la files for libavahi-client and libavahi-common.
 
  -- Michael Biebl <biebl@debian.org>  Mon, 11 Apr 2011 04:19:44 +0200
 
