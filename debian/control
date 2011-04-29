@@ -13,6 +13,7 @@ Build-Depends: debhelper (>= 8),
                libgdbm-dev,
                libglib2.0-dev (>= 2.4),
                libgtk2.0-dev (>= 2.14.0),
+               libgtk-3-dev,
                libexpat-dev,
                libdaemon-dev (>= 0.11),
                libdbus-1-dev (>= 0.60),
@@ -410,6 +411,38 @@ Depends: libavahi-ui0 (= ${binary:Version}),
          libavahi-client-dev,
          libavahi-glib-dev,
          libgtk2.0-dev
+Description: Development headers for the Avahi GTK+ User interface library
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration. For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This package contains the development headers for the GTK+ library of Avahi.
+
+Package: libavahi-ui-gtk3-0
+Section: libs
+Architecture: any
+Depends: ${shlibs:Depends},
+         ${misc:Depends}
+Description: Avahi GTK+ User interface library for GTK3
+ Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
+ It allows programs to publish and discover services and hosts
+ running on a local network with no specific configuration. For
+ example you can plug into a network and instantly find printers to
+ print to, files to look at and people to talk to.
+ .
+ This library contains a GTK+ widget for browsing services.
+
+Package: libavahi-ui-gtk3-dev
+Section: libdevel
+Architecture: any
+Depends: libavahi-ui-gtk3-0 (= ${binary:Version}),
+         ${misc:Depends},
+         libavahi-client-dev,
+         libavahi-glib-dev,
+         libgtk-3-dev
+Conflicts: libavahi-ui-dev
 Description: Development headers for the Avahi GTK+ User interface library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
