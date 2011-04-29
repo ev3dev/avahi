@@ -1,4 +1,4 @@
-avahi (0.6.30-3) UNRELEASED; urgency=low
+avahi (0.6.30-3) unstable; urgency=low
 
   * Enable GTK3 support. (Closes: #610772)
     - Add Build-Depends on libgtk-3-dev.
@@ -7,7 +7,7 @@ avahi (0.6.30-3) UNRELEASED; urgency=low
       packages ship the same header file.
     - Pass --enable-gtk3 to configure.
 
- -- Michael Biebl <biebl@debian.org>  Fri, 29 Apr 2011 16:01:45 +0200
+ -- Michael Biebl <biebl@debian.org>  Fri, 29 Apr 2011 16:50:38 +0200
 
 avahi (0.6.30-2) unstable; urgency=low
 
