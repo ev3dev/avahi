@@ -1,1 +1,1 @@
-usr/lib/libavahi-glib.so.*
+usr/lib/*/libavahi-glib.so.*

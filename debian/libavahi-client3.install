@@ -1,1 +1,1 @@
-usr/lib/libavahi-client.so.*
+usr/lib/*/libavahi-client.so.*

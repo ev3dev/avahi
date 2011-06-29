@@ -1,1 +1,1 @@
-usr/lib/libdns_sd.so.*
+usr/lib/*/libdns_sd.so.*

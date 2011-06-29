@@ -1,4 +1,4 @@
-usr/lib/libavahi-core.so
-usr/lib/libavahi-core.a
 usr/include/avahi-core
-usr/lib/pkgconfig/avahi-core.pc
+usr/lib/*/libavahi-core.so
+usr/lib/*/libavahi-core.a
+usr/lib/*/pkgconfig/avahi-core.pc

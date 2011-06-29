@@ -1,4 +1,4 @@
-usr/lib/libavahi-client.so
-usr/lib/libavahi-client.a
 usr/include/avahi-client
-usr/lib/pkgconfig/avahi-client.pc
+usr/lib/*/libavahi-client.so
+usr/lib/*/libavahi-client.a
+usr/lib/*/pkgconfig/avahi-client.pc

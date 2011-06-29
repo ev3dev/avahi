@@ -1,1 +1,1 @@
-usr/lib/libavahi-gobject.so.*
+usr/lib/*/libavahi-gobject.so.*

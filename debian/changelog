@@ -1,3 +1,9 @@
+avahi (0.6.30-4) UNRELEASED; urgency=low
+
+  * Add multiarch support. Patch courtesy of Steve Langasek. (Closes: #631836)
+
+ -- Michael Biebl <biebl@debian.org>  Wed, 29 Jun 2011 04:24:20 +0200
+
 avahi (0.6.30-3) unstable; urgency=low
 
   * Enable GTK3 support. (Closes: #610772)

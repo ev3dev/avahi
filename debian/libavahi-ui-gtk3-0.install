@@ -1,1 +1,1 @@
-usr/lib/libavahi-ui-gtk3.so.*
+usr/lib/*/libavahi-ui-gtk3.so.*

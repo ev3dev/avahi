@@ -6,7 +6,7 @@ Uploaders: Sjoerd Simons <sjoerd@debian.org>,
            Sebastian Dröge <slomo@debian.org>,
            Loic Minier <lool@dooz.org>,
            Michael Biebl <biebl@debian.org>
-Build-Depends: debhelper (>= 8),
+Build-Depends: debhelper (>= 8.1.3),
                pkg-config,
                python-support (>= 0.6),
                libcap-dev (>= 1:2.16) [linux-any],
@@ -40,6 +40,7 @@ Depends: ${shlibs:Depends},
          bind9-host | host
 Recommends: libnss-mdns
 Suggests: avahi-autoipd
+Multi-Arch: foreign
 Description: Avahi mDNS/DNS-SD daemon
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -94,7 +95,7 @@ Description: Avahi IPv4LL network address configuration daemon
 
 Package: python-avahi
 Section: python
-Architecture: all
+Architecture: any
 Depends: ${python:Depends},
          ${misc:Depends},
          python-gdbm (>= 2.4.3-1),
@@ -151,6 +152,8 @@ Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends},
          libavahi-common-data
+Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
 Description: Avahi common library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -165,6 +168,7 @@ Package: libavahi-common-data
 Section: libs
 Architecture: any
 Depends: ${misc:Depends}
+Multi-Arch: same
 Description: Avahi common data files
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -195,6 +199,8 @@ Section: libs
 Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends}
+Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
 Description: Avahi's embeddable mDNS/DNS-SD library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -234,6 +240,8 @@ Section: libs
 Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends}
+Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
 Description: Avahi client library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -266,6 +274,8 @@ Section: libs
 Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends}
+Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
 Description: Avahi glib integration library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -299,6 +309,8 @@ Section: libs
 Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends}
+Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
 Description: Avahi GObject library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -331,6 +343,8 @@ Section: libs
 Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends}
+Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
 Description: Avahi Qt 4 integration library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -364,6 +378,8 @@ Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends}
 Recommends: libnss-mdns
+Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
 Description: Avahi Apple Bonjour compatibility library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -394,6 +410,8 @@ Section: libs
 Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends}
+Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
 Description: Avahi GTK+ User interface library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -425,6 +443,8 @@ Section: libs
 Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends}
+Pre-Depends: ${misc:Pre-Depends}
+Multi-Arch: same
 Description: Avahi GTK+ User interface library for GTK3
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts

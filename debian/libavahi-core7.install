@@ -1,1 +1,1 @@
-usr/lib/libavahi-core.so.*
+usr/lib/*/libavahi-core.so.*

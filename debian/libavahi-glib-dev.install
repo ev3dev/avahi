@@ -1,4 +1,4 @@
-usr/lib/libavahi-glib.so
-usr/lib/libavahi-glib.a
 usr/include/avahi-glib
-usr/lib/pkgconfig/avahi-glib.pc
+usr/lib/*/libavahi-glib.so
+usr/lib/*/libavahi-glib.a
+usr/lib/*/pkgconfig/avahi-glib.pc
