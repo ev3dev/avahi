@@ -1,4 +1,4 @@
-debian/tmp/usr/lib/libavahi-client.so
-debian/tmp/usr/lib/libavahi-client.a
-debian/tmp/usr/include/avahi-client
-debian/tmp/usr/lib/pkgconfig/avahi-client.pc
+usr/lib/libavahi-client.so
+usr/lib/libavahi-client.a
+usr/include/avahi-client
+usr/lib/pkgconfig/avahi-client.pc
