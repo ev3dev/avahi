@@ -95,7 +95,7 @@ Description: Avahi IPv4LL network address configuration daemon
 
 Package: python-avahi
 Section: python
-Architecture: all
+Architecture: any
 Depends: ${python:Depends},
          ${misc:Depends},
          python-gdbm (>= 2.4.3-1),
