@@ -16,20 +16,12 @@ set -e
 
 case "$1" in
   configure)
-    if ! getent passwd avahi >/dev/null; then
-      adduser --disabled-password  --quiet --system \
-        --home /var/run/avahi-daemon --no-create-home \
-        --gecos "Avahi mDNS daemon" --group avahi
-    fi
-    # If the Avahi user has the old home, change it
-    if ! getent passwd avahi | grep -q /var/run/avahi-daemon; then
-        usermod -d /var/run/avahi-daemon avahi
-    fi
+    adduser --disabled-password  --quiet --system \
+      --home /var/run/avahi-daemon --no-create-home \
+      --gecos "Avahi mDNS daemon" --group avahi
 
     # Add the netdev group unless it's already there
-    if ! getent group netdev >/dev/null; then
-      addgroup --quiet --system netdev || true
-    fi
+    addgroup --quiet --system netdev || true
 
     # Ask the bus to reload the config file
     if [ -x "/etc/init.d/dbus" ]; then

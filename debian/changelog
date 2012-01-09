@@ -1,6 +1,7 @@
 avahi (0.6.30-6) UNRELEASED; urgency=low
 
   * Switch to dh_python2. (Closes: #637552)
+  * Simplify postinst for avahi-autoipd and avahi-daemon.
 
  -- Michael Biebl <biebl@debian.org>  Tue, 10 Jan 2012 00:47:58 +0100
 
