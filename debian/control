@@ -276,7 +276,7 @@ Depends: ${shlibs:Depends},
          ${misc:Depends}
 Pre-Depends: ${misc:Pre-Depends}
 Multi-Arch: same
-Description: Avahi glib integration library
+Description: Avahi GLib integration library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
  running on a local network with no specific configuration. For
@@ -284,7 +284,7 @@ Description: Avahi glib integration library
  print to, files to look at and people to talk to.
  .
  This library contains the interface to integrate the Avahi libraries
- into a GLIB main loop application, including GTK+ applications.
+ into a GLib main loop application, including GTK+ applications.
 
 Package: libavahi-glib-dev
 Section: libdevel
@@ -293,7 +293,7 @@ Depends: libavahi-glib1 (= ${binary:Version}),
          ${misc:Depends},
          libglib2.0-dev,
          libavahi-common-dev
-Description: Development headers for the Avahi glib integration library
+Description: Development headers for the Avahi GLib integration library
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
  running on a local network with no specific configuration. For
@@ -301,7 +301,7 @@ Description: Development headers for the Avahi glib integration library
  print to, files to look at and people to talk to.
  .
  This package contains the development headers for the interface
- to integrate the Avahi libraries  into a GLIB main loop application,
+ to integrate the Avahi libraries  into a GLib main loop application,
  including GTK+ applications.
 
 Package: libavahi-gobject0
