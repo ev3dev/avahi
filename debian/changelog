@@ -3,15 +3,8 @@ avahi (0.6.31-1) UNRELEASED; urgency=low
   * New upstream release.
   * Mark private stdb_* symbols in libavahi-ui and libavahi-ui-gtk3 as
     optional.
-  * Fixes for proper multiarch support:
-    - Move arch-dependent service-types.db file from libavahi-common-data
-      to python-avahi since ServiceTypeDatabase.py is the only place where it
-      is used anyway. Add the necessary Breaks/Replaces.
-    - Make libavahi-common-data Architecture: all, M-A: foreign.
-    - Add Depends on libavahi-common-data to avahi-discover for the gettext
-      translations.
 
- -- Michael Biebl <biebl@debian.org>  Thu, 16 Feb 2012 22:00:56 +0100
+ -- Michael Biebl <biebl@debian.org>  Wed, 15 Feb 2012 17:47:04 +0100
 
 avahi (0.6.30-6) unstable; urgency=low
 
