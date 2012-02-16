@@ -99,9 +99,10 @@ Architecture: any
 Depends: ${python:Depends},
          ${misc:Depends},
          python-gdbm (>= 2.4.3-1),
-         libavahi-common-data (>= 0.6.22),
          python-dbus
 Provides: ${python:Provides}
+Breaks: libavahi-common-data (<< 0.6.31-1)
+Replaces: libavahi-common-data (<< 0.6.31-1)
 Description: Python utility package for Avahi
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
@@ -132,6 +133,7 @@ Section: net
 Architecture: all
 Depends: ${python:Depends},
          ${misc:Depends},
+         libavahi-common-data,
          python-avahi,
          python-dbus,
          python-gtk2 (>= 2.8.6-2),
@@ -166,9 +168,9 @@ Description: Avahi common library
 
 Package: libavahi-common-data
 Section: libs
-Architecture: any
+Architecture: all
 Depends: ${misc:Depends}
-Multi-Arch: same
+Multi-Arch: foreign
 Description: Avahi common data files
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
  It allows programs to publish and discover services and hosts
