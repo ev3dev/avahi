@@ -3,8 +3,9 @@ avahi (0.6.31-1) UNRELEASED; urgency=low
   * New upstream release.
   * Mark private stdb_* symbols in libavahi-ui and libavahi-ui-gtk3 as
     optional.
+  * Bump Build-Depends on debhelper to (>= 9).
 
- -- Michael Biebl <biebl@debian.org>  Wed, 15 Feb 2012 17:47:04 +0100
+ -- Michael Biebl <biebl@debian.org>  Sun, 04 Mar 2012 04:57:59 +0100
 
 avahi (0.6.30-6) unstable; urgency=low
 
