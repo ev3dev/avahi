@@ -55,6 +55,7 @@ Description: Avahi mDNS/DNS-SD daemon
 Package: avahi-dnsconfd
 Section: net
 Architecture: any
+Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends},
          ${misc:Depends},
          avahi-daemon,
@@ -74,6 +75,7 @@ Description: Avahi DNS configuration tool
 Package: avahi-autoipd
 Section: net
 Architecture: linux-any
+Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends},
          ${misc:Depends},
          adduser
