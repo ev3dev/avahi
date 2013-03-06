@@ -6,7 +6,7 @@
 [ "$IFACE" != "lo" ] || exit 0
 case "$ADDRFAM" in
 	inet|inet6) ;;
-	*) exit 0
+	*) exit 0 ;;
 esac
 
 # If we have an unicast .local domain, we immediately disable avahi to avoid
