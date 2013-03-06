@@ -13,8 +13,8 @@ set -e
 
 [ "$IFACE" != "lo" ] || exit 0
 case "$ADDRFAM" in
-  inet|NetworkManager) ;;
-  *) exit 0
+	inet) ;;
+	*) exit 0
 esac
 case "$METHOD" in
 	static|dhcp|NetworkManager) ;;
