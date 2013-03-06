@@ -88,7 +88,7 @@ case "$1" in
         d_status
         ;;
     *)
-        echo "Usage: $SCRIPTNAME {start|stop|restart|force-reload|reload}" >&2
+        echo "Usage: $SCRIPTNAME {start|stop|restart|force-reload|refresh}" >&2
         exit 1
         ;;
 esac

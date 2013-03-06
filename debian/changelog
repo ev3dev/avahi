@@ -1,6 +1,8 @@
 avahi (0.6.31-2) UNRELEASED; urgency=low
 
   * Use recommended maintscript versioning scheme.
+  * The avahi-dnsconfd init script doesn't support reload but provides a
+    refresh action, so list that instead in the usage help message.
 
  -- Michael Biebl <biebl@debian.org>  Wed, 06 Mar 2013 22:41:58 +0100
 
