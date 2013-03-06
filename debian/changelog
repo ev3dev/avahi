@@ -1,4 +1,4 @@
-avahi (0.6.31-2) UNRELEASED; urgency=low
+avahi (0.6.31-2) unstable; urgency=low
 
   * Use recommended maintscript versioning scheme.
   * The avahi-dnsconfd init script doesn't support reload but provides a
@@ -7,7 +7,7 @@ avahi (0.6.31-2) UNRELEASED; urgency=low
     of ADDRFAM=NetworkManager, since network-manager no longer uses that. Run
     avahi-daemon only for ADDRFAM inet and inet6. (Closes: #699749)
 
- -- Michael Biebl <biebl@debian.org>  Wed, 06 Mar 2013 22:41:58 +0100
+ -- Michael Biebl <biebl@debian.org>  Wed, 06 Mar 2013 22:58:55 +0100
 
 avahi (0.6.31-1) unstable; urgency=low
 
