@@ -8,6 +8,7 @@ Uploaders: Sjoerd Simons <sjoerd@debian.org>,
            Michael Biebl <biebl@debian.org>
 Build-Depends: debhelper (>= 9),
                dh-systemd (>= 1.5),
+               autotools-dev,
                pkg-config,
                libcap-dev (>= 1:2.16) [linux-any],
                libgdbm-dev,

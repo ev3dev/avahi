@@ -9,6 +9,7 @@ avahi (0.6.31-3) UNRELEASED; urgency=low
     dh-systemd to do the correct thing
   * debian/control: Drop duplicate Section to please lintian
   * debian/control: Bump Standards-Version to 3.9.4 (no further changes)
+  * debian/control, debian/rules: Update config.{guess,sub} during the build
 
  -- Laurent Bigonville <bigon@debian.org>  Tue, 26 Nov 2013 16:37:19 +0100
 
