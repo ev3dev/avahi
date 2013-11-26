@@ -25,8 +25,8 @@ Build-Depends: debhelper (>= 9),
                intltool (>= 0.35.0)
 Standards-Version: 3.9.3
 X-Python-Version: >= 2.4
-Vcs-Git: git://git.debian.org/git/pkg-utopia/avahi.git
-Vcs-Browser: http://git.debian.org/?p=pkg-utopia/avahi.git;a=summary
+Vcs-Git: git://anonscm.debian.org/pkg-utopia/avahi.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-utopia/avahi.git;a=summary
 Homepage: http://avahi.org/
 
 Package: avahi-daemon
