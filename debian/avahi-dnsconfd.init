@@ -1,8 +1,8 @@
 #!/bin/sh
 ### BEGIN INIT INFO
 # Provides:          avahi-dnsconfd
-# Required-Start:    $remote_fs avahi
-# Required-Stop:     $remote_fs avahi
+# Required-Start:    $remote_fs avahi-daemon
+# Required-Stop:     $remote_fs avahi-daemon
 # Should-Start:	     $syslog
 # Should-Stop:       $syslog
 # Default-Start:     2 3 4 5

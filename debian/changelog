@@ -3,6 +3,7 @@ avahi (0.6.31-3) UNRELEASED; urgency=low
   * debian/control: Use canonical URL's for Vcs-* fields
   * debian/avahi-daemon.init: Add "avahi-daemon" to the Provides list
     (Closes: #730546)
+  * debian/avahi-dnsconfd.init: Depend against the new avahi-daemon Provides
 
  -- Laurent Bigonville <bigon@debian.org>  Tue, 26 Nov 2013 16:37:19 +0100
 
