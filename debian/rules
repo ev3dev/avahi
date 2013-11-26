@@ -11,7 +11,7 @@ endif
 
 # Ensure at build time that the library has no dependencies on undefined
 # symbols, and speed up loading.
-export DEB_LDFLAGS_MAINT_APPEND = -Wl,-z,defs -Wl,-O1
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,-z,defs -Wl,-O1 -Wl,--as-needed
 
 override_dh_auto_configure:
 	dh_auto_configure -- $(CONFFLAGS) \
@@ -56,3 +56,5 @@ override_dh_installdocs:
 override_dh_strip:
 	dh_strip --dbg-package=avahi-dbg
 
+override_dh_autoreconf:
+	dh_autoreconf --as-needed
