@@ -31,7 +31,6 @@ Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-utopia/avahi.git;a=summary
 Homepage: http://avahi.org/
 
 Package: avahi-daemon
-Section: net
 Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends},
@@ -54,7 +53,6 @@ Description: Avahi mDNS/DNS-SD daemon
  mDNS/DNS-SD records.
 
 Package: avahi-dnsconfd
-Section: net
 Architecture: any
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends},
@@ -74,7 +72,6 @@ Description: Avahi DNS configuration tool
  IPv6 networks.
 
 Package: avahi-autoipd
-Section: net
 Architecture: linux-any
 Pre-Depends: ${misc:Pre-Depends}
 Depends: ${shlibs:Depends},
@@ -115,7 +112,6 @@ Description: Python utility package for Avahi
  This package contains utility modules to talk to Avahi with Python easier.
 
 Package: avahi-utils
-Section: net
 Architecture: any
 Depends: ${shlibs:Depends},
          ${misc:Depends},
@@ -131,7 +127,6 @@ Description: Avahi browsing, publishing and discovery utilities
  the Avahi daemon, including publish, browsing and discovering services.
 
 Package: avahi-discover
-Section: net
 Architecture: all
 Depends: ${python:Depends},
          ${misc:Depends},
