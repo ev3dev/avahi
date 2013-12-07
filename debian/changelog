@@ -15,7 +15,7 @@ avahi (0.6.31-3) UNRELEASED; urgency=low
   * debian/rules: Pass --as-needed to dh_autoreconf and add it to LDFLAGS to
     limit runtime dependencies
   * debian/avahi-daemon.init, avahi-dnsconfd.init: Fix initscripts to return
-    an error in the appropriate cases (Closes: #730546)
+    an error in the appropriate cases (Closes: #718716)
 
   [ Hector Oron ]
   * debian/patch/no-deprecations.patch: Don't disable deprecated functions
