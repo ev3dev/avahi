@@ -1,5 +1,6 @@
-avahi (0.6.31-3) UNRELEASED; urgency=low
+avahi (0.6.31-3) unstable; urgency=low
 
+  * Team upload.
   [ Laurent Bigonville ]
   * debian/control: Use canonical URL's for Vcs-* fields
   * debian/avahi-daemon.init: Add "avahi-daemon" to the Provides list
@@ -23,7 +24,7 @@ avahi (0.6.31-3) UNRELEASED; urgency=low
   * debian/rules: run autoreconf at build time.
   * debian/control: add dh-autoreconf build depend
 
- -- Laurent Bigonville <bigon@debian.org>  Tue, 26 Nov 2013 16:37:19 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Sat, 07 Dec 2013 16:24:13 +0100
 
 avahi (0.6.31-2) unstable; urgency=low
 
