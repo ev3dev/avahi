@@ -63,7 +63,7 @@ d_reload() {
 #       Function that check the status of the daemon/service.
 #
 d_status() {
-    $DAEMON -c && echo "$DESC is running" || echo "$DESC is not running"
+    $DAEMON -c && { echo "$DESC is running"; exit 0; } || { echo "$DESC is not running"; exit 3; }
 }
 
 case "$1" in
@@ -85,15 +85,19 @@ case "$1" in
     restart)
         log_daemon_msg "Restarting $DESC" "$NAME"
         d_stop
-        d_start
-        log_end_msg $?
+        if [ "$?" -eq 0 ]; then
+                d_start
+                log_end_msg $?
+        else
+                log_end_msg 1
+        fi
         ;;
     status)
         d_status
         ;;
     *)
-        echo "Usage: $SCRIPTNAME {start|stop|restart|force-reload|reload}" >&2
-        exit 1
+        echo "Usage: $SCRIPTNAME {start|stop|restart|force-reload|reload|status}" >&2
+        exit 3
         ;;
 esac
 
