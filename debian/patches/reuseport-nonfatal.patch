@@ -1,0 +1,18 @@
+Description: Do not exit avahi-daemon if we cannot set SO_REUSEPORT to the socket.
+ This is only supported with kernel version >= 3.9
+ .
+ This patch could be removed after jessie release.
+Author: Laurent Bigonville <bigon@debian.org>
+Forwarded: not-needed
+
+--- a/avahi-core/socket.c
++++ b/avahi-core/socket.c
+@@ -177,7 +177,7 @@ static int reuseaddr(int fd) {
+     yes = 1;
+     if (setsockopt(fd, SOL_SOCKET, SO_REUSEPORT, &yes, sizeof(yes)) < 0) {
+         avahi_log_warn("SO_REUSEPORT failed: %s", strerror(errno));
+-        return -1;
++        /*return -1; */
+     }
+ #endif
+ 

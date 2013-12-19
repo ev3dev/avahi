@@ -1,3 +1,10 @@
+avahi (0.6.31-4) UNRELEASED; urgency=medium
+
+  * debian/patches/reuseport-nonfatal.patch: Do not exit avahi-daemon if we
+    cannot set SO_REUSEPORT to the socket. (Closes: #732009)
+
+ -- Laurent Bigonville <bigon@debian.org>  Thu, 19 Dec 2013 19:18:20 +0100
+
 avahi (0.6.31-3) unstable; urgency=low
 
   * Team upload.
