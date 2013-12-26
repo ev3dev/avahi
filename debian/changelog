@@ -11,8 +11,9 @@ avahi (0.6.31-4) UNRELEASED; urgency=medium
     patch
   * debian/patches/suse-patch-gtk-box.patch: Don't use GTK vbox API which is
     deprecated when compiling for GTK3.
+  * debian/control: Bump Standards-Version to 3.9.5 (no further changes)
 
- -- Laurent Bigonville <bigon@debian.org>  Thu, 26 Dec 2013 18:16:31 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Thu, 26 Dec 2013 18:23:57 +0100
 
 avahi (0.6.31-3) unstable; urgency=low
 
