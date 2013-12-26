@@ -1,7 +1,8 @@
 avahi (0.6.31-4) UNRELEASED; urgency=medium
 
-  * debian/patches/reuseport-nonfatal.patch: Do not exit avahi-daemon if we
-    cannot set SO_REUSEPORT to the socket. (Closes: #732009)
+  * d/p/so_reuseport-may-not-exist-in-running-kernel.patch: Do not exit
+    avahi-daemon if we cannot set SO_REUSEPORT on the socket. This patch has
+    be taken from Ubuntu, thanks to them (Closes: #732009)
 
  -- Laurent Bigonville <bigon@debian.org>  Thu, 19 Dec 2013 19:18:20 +0100
 

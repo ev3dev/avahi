@@ -1,4 +1,4 @@
 # Debian patches for Avahi
 01_avahi-daemon.conf.patch
+so_reuseport-may-not-exist-in-running-kernel.patch
 no-deprecations.patch
-reuseport-nonfatal.patch
