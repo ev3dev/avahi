@@ -47,6 +47,8 @@ libavahi-core.so.7 libavahi-core7 #MINVER#
  avahi_dns_packet_new_query@Base 0.6.24
  avahi_dns_packet_new_reply@Base 0.6.24
  avahi_dns_packet_new_response@Base 0.6.24
+ avahi_dns_packet_reserve_size@Base 0.6.31-4~
+ avahi_dns_packet_reserved_space@Base 0.6.31-4~
  avahi_dns_packet_set_field@Base 0.6.24
  avahi_dns_packet_skip@Base 0.6.24
  avahi_dns_packet_space@Base 0.6.24
