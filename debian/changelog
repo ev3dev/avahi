@@ -9,8 +9,10 @@ avahi (0.6.31-4) UNRELEASED; urgency=medium
     printer shares get registered (Closes: #693604)
   * debian/libavahi-core7.symbols: Add 2 new symbols exported by the previous
     patch
+  * debian/patches/suse-patch-gtk-box.patch: Don't use GTK vbox API which is
+    deprecated when compiling for GTK3.
 
- -- Laurent Bigonville <bigon@debian.org>  Thu, 26 Dec 2013 18:09:19 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Thu, 26 Dec 2013 18:16:31 +0100
 
 avahi (0.6.31-3) unstable; urgency=low
 
