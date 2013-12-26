@@ -1,5 +1,6 @@
-avahi (0.6.31-4) UNRELEASED; urgency=medium
+avahi (0.6.31-4) unstable; urgency=medium
 
+  * Team upload.
   * d/p/so_reuseport-may-not-exist-in-running-kernel.patch: Do not exit
     avahi-daemon if we cannot set SO_REUSEPORT on the socket. This patch has
     be taken from Ubuntu, thanks to them (Closes: #732009)
@@ -13,7 +14,7 @@ avahi (0.6.31-4) UNRELEASED; urgency=medium
     deprecated when compiling for GTK3.
   * debian/control: Bump Standards-Version to 3.9.5 (no further changes)
 
- -- Laurent Bigonville <bigon@debian.org>  Thu, 26 Dec 2013 18:23:57 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Thu, 26 Dec 2013 18:24:41 +0100
 
 avahi (0.6.31-3) unstable; urgency=low
 
