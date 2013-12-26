@@ -3,8 +3,12 @@ avahi (0.6.31-4) UNRELEASED; urgency=medium
   * d/p/so_reuseport-may-not-exist-in-running-kernel.patch: Do not exit
     avahi-daemon if we cannot set SO_REUSEPORT on the socket. This patch has
     be taken from Ubuntu, thanks to them (Closes: #732009)
+  * debian/patches/avahi-core-reserve-space-for-record-data-when-size-estimate.patch:
+    avahi-core: reserve space for record data when size estimate. This
+    prevents avahi-daemon from falling into an invalid loop when many CUPS/IPP
+    printer shares get registered (Closes: #693604)
 
- -- Laurent Bigonville <bigon@debian.org>  Thu, 19 Dec 2013 19:18:20 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Thu, 26 Dec 2013 18:09:19 +0100
 
 avahi (0.6.31-3) unstable; urgency=low
 

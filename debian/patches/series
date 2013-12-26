@@ -1,4 +1,5 @@
 # Debian patches for Avahi
 01_avahi-daemon.conf.patch
+avahi-core-reserve-space-for-record-data-when-size-estimate.patch
 so_reuseport-may-not-exist-in-running-kernel.patch
 no-deprecations.patch
