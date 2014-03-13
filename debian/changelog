@@ -1,3 +1,9 @@
+avahi (0.6.31-5) UNRELEASED; urgency=medium
+
+  * Recommend iproute2 instead of transitional package iproute
+
+ -- Andreas Henriksson <andreas@fatal.se>  Thu, 13 Mar 2014 20:29:14 +0100
+
 avahi (0.6.31-4) unstable; urgency=medium
 
   * Team upload.

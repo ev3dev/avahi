@@ -80,7 +80,7 @@ Depends: ${shlibs:Depends},
          ${misc:Depends},
          adduser
 Recommends: isc-dhcp-client,
-            iproute
+            iproute2
 Conflicts: zeroconf
 Description: Avahi IPv4LL network address configuration daemon
  Avahi is a fully LGPL framework for Multicast DNS Service Discovery.
