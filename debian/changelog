@@ -12,6 +12,8 @@ avahi (0.6.31-5) UNRELEASED; urgency=medium
   * Use --restart-after-upgrade for avahi-daemon and avahi-dnsconfd to
     minimise downtime and avoid avahi-daemon being triggered via socket or
     D-Bus activation during upgrades. (Closes: #768620)
+  * Mask avahi-daemon.service on remove to avoid the stop request being
+    cancelled via socket or D-Bus activation.
 
  -- Michael Biebl <biebl@debian.org>  Mon, 13 Apr 2015 20:59:05 +0200
 

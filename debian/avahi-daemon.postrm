@@ -2,6 +2,11 @@
 
 set -e
 
+# drop the temporary mask from prerm
+if [ -d /run/systemd/system ] && [ "$1" = remove ]; then
+    systemctl unmask --runtime avahi-daemon.service
+fi
+
 #DEBHELPER#
 
 if [ "$1" = "purge" ] ; then
