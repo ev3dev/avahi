@@ -6,6 +6,10 @@ avahi (0.6.31-5) UNRELEASED; urgency=medium
     with a fallback to net-tools and graceful degradation if neither is
     installed. (Closes: #762326)
 
+  [ Michael Biebl ]
+  * Don't run the avahi-autoipd ifupdown hook scripts if the package has been
+    removed but not purged. (Closes: #780872)
+
  -- Michael Biebl <biebl@debian.org>  Mon, 13 Apr 2015 20:59:05 +0200
 
 avahi (0.6.31-4) unstable; urgency=medium
