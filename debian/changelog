@@ -1,4 +1,4 @@
-avahi (0.6.31-5) UNRELEASED; urgency=medium
+avahi (0.6.31-5) unstable; urgency=medium
 
   [ Andreas Henriksson ]
   * Recommend iproute2 instead of transitional package iproute.
@@ -15,7 +15,7 @@ avahi (0.6.31-5) UNRELEASED; urgency=medium
   * Mask avahi-daemon.service on remove to avoid the stop request being
     cancelled via socket or D-Bus activation.
 
- -- Michael Biebl <biebl@debian.org>  Mon, 13 Apr 2015 20:59:05 +0200
+ -- Michael Biebl <biebl@debian.org>  Mon, 13 Apr 2015 21:51:24 +0200
 
 avahi (0.6.31-4) unstable; urgency=medium
 
