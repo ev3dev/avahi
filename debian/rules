@@ -47,8 +47,8 @@ override_dh_install:
 	dh_install --list-missing
 
 override_dh_installinit:
-	dh_installinit -pavahi-daemon -- start 14 2 3 4 5 . stop 86 0 1 6 .
-	dh_installinit -pavahi-dnsconfd -- start 16 2 3 4 5 . stop 84 0 1 6 .
+	dh_installinit -pavahi-daemon --restart-after-upgrade
+	dh_installinit -pavahi-dnsconfd --restart-after-upgrade
 
 override_dh_installdocs:
 	dh_installdocs --all docs/NEWS docs/README
