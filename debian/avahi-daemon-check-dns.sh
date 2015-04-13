@@ -101,10 +101,10 @@ enable_avahi () {
   # no unicast .local conflict, so remove the tag and start avahi again
   if [ -e ${DISABLE_TAG} ]; then
     rm -f ${DISABLE_TAG}
-    if [ -x "`which invoke-rc.d 2>/dev/null`" ]; then
-      invoke-rc.d avahi-daemon start || true
-    else
-      if [ -x "/etc/init.d/avahi-daemon" ]; then
+    if [ -x "/etc/init.d/avahi-daemon" ]; then
+      if [ -x "$(which invoke-rc.d 2>/dev/null)" ]; then
+        invoke-rc.d avahi-daemon start || true
+      else
         /etc/init.d/avahi-daemon start || true
       fi
     fi
@@ -115,12 +115,10 @@ disable_avahi () {
   [ -e ${DISABLE_TAG} ] && return
 
   if [ -x /etc/init.d/avahi-daemon ]; then
-    if [ -x "`which invoke-rc.d 2>/dev/null`" ]; then
+    if [ -x "$(which invoke-rc.d 2>/dev/null)" ]; then
       invoke-rc.d --force avahi-daemon stop || true
     else
-      if [ -x "/etc/init.d/avahi-daemon" ]; then
-        /etc/init.d/avahi-daemon stop || true
-      fi
+      /etc/init.d/avahi-daemon stop || true
     fi
     if [ -x /usr/bin/logger ]; then
       logger -p daemon.warning -t avahi <<EOF
