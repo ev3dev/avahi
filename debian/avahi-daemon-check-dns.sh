@@ -31,12 +31,17 @@ dns_reachable() {
   # If there is no local nameserver and no we have no global ip addresses
   # then we can't reach any nameservers
   if ! $(egrep -q "nameserver 127.0.0.1|::1" /etc/resolv.conf); then 
-    # Get addresses of all running interfaces
-    ADDRS=$(LC_ALL=C ifconfig | grep ' addr:')
-    # Filter out all local addresses
-    ADDRS=$(echo "${ADDRS}" | egrep -v ':127|Scope:Host|Scope:Link')
-    # Check we have a default route
-    ROUTES=$(route -n | grep '^0.0.0.0 ')
+    if [ -x "$(which ip)" ]; then
+      ADDRS=$(ip addr show scope global | grep inet)
+      ROUTES=$(ip route show 0.0.0.0/0)
+    elif [ -x "$(which ifconfig)" -a -x "$(which route)" ]; then
+      # Get addresses of all running interfaces
+      ADDRS=$(LC_ALL=C ifconfig | grep ' addr:')
+      # Filter out all local addresses
+      ADDRS=$(echo "${ADDRS}" | egrep -v ':127|Scope:Host|Scope:Link')
+      # Check we have a default route
+      ROUTES=$(route -n | grep '^0.0.0.0 ')
+    fi
     if [ -z "${ADDRS}" -o -z "${ROUTES}" ] ; then
       return 1;
     fi
