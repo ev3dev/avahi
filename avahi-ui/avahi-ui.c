@@ -890,7 +890,11 @@ static void response_callback(GtkDialog *dialog, gint response, gpointer user_da
         gtk_widget_set_sensitive(GTK_WIDGET(dialog), FALSE);
         cursor = gdk_cursor_new(GDK_WATCH);
         gdk_window_set_cursor(gtk_widget_get_window(GTK_WIDGET(dialog)), cursor);
-        g_object_unref(G_OBJECT(cursor));
+#if GTK_CHECK_VERSION(3,0,0)
+        g_object_unref(cursor);
+#else
+        gdk_cursor_unref(cursor);
+#endif
 
         if (!(d->priv->resolver = avahi_service_resolver_new(
                       d->priv->client, interface, protocol, name, type, d->priv->domain,
@@ -991,7 +995,11 @@ static void domain_button_clicked(GtkButton *button G_GNUC_UNUSED, gpointer user
     gtk_dialog_set_has_separator(GTK_DIALOG(p->domain_dialog), FALSE);
 #endif
 
+#if GTK_CHECK_VERSION(3,0,0)
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 8);
+#else
     vbox = gtk_vbox_new(FALSE, 8);
+#endif
     gtk_container_set_border_width(GTK_CONTAINER(vbox), 8);
     gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(p->domain_dialog))), vbox, TRUE, TRUE, 0);
 
@@ -1002,7 +1010,11 @@ static void domain_button_clicked(GtkButton *button G_GNUC_UNUSED, gpointer user
     g_signal_connect(p->domain_entry, "changed", G_CALLBACK(domain_entry_changed_callback), d);
     gtk_box_pack_start(GTK_BOX(vbox), p->domain_entry, FALSE, FALSE, 0);
 
+#if GTK_CHECK_VERSION(3,0,0)
+    vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 8);
+#else
     vbox2 = gtk_vbox_new(FALSE, 8);
+#endif
     gtk_box_pack_start(GTK_BOX(vbox), vbox2, TRUE, TRUE, 0);
 
     scrolled_window = gtk_scrolled_window_new(NULL, NULL);
@@ -1032,8 +1044,8 @@ static void domain_button_clicked(GtkButton *button G_GNUC_UNUSED, gpointer user
     gtk_progress_bar_set_pulse_step(GTK_PROGRESS_BAR(p->domain_progress_bar), 0.1);
     gtk_box_pack_end(GTK_BOX(vbox2), p->domain_progress_bar, FALSE, FALSE, 0);
 
-    gtk_dialog_add_button(GTK_DIALOG(p->domain_dialog), GTK_STOCK_CANCEL, GTK_RESPONSE_CANCEL);
-    p->domain_ok_button = GTK_WIDGET(gtk_dialog_add_button(GTK_DIALOG(p->domain_dialog), GTK_STOCK_OK, GTK_RESPONSE_ACCEPT));
+    gtk_dialog_add_button(GTK_DIALOG(p->domain_dialog), _("_Cancel"), GTK_RESPONSE_CANCEL);
+    p->domain_ok_button = GTK_WIDGET(gtk_dialog_add_button(GTK_DIALOG(p->domain_dialog), _("_OK"), GTK_RESPONSE_ACCEPT));
     gtk_dialog_set_default_response(GTK_DIALOG(p->domain_dialog), GTK_RESPONSE_ACCEPT);
     gtk_widget_set_sensitive(p->domain_ok_button, is_valid_domain_suffix(gtk_entry_get_text(GTK_ENTRY(p->domain_entry))));
 
@@ -1109,11 +1121,13 @@ static void aui_service_dialog_init(AuiServiceDialog *d) {
     p->service_list_store = p->domain_list_store = NULL;
     p->service_type_names = NULL;
 
-    gtk_widget_push_composite_child();
-
     gtk_container_set_border_width(GTK_CONTAINER(d), 5);
 
+#if GTK_CHECK_VERSION(3,0,0)
+    vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 8);
+#else
     vbox = gtk_vbox_new(FALSE, 8);
+#endif
     gtk_container_set_border_width(GTK_CONTAINER(vbox), 8);
     gtk_box_pack_start(GTK_BOX(gtk_dialog_get_content_area(GTK_DIALOG(d))), vbox, TRUE, TRUE, 0);
 
@@ -1123,7 +1137,11 @@ static void aui_service_dialog_init(AuiServiceDialog *d) {
     gtk_box_pack_start(GTK_BOX(vbox), p->domain_label, FALSE, FALSE, 0);
 
 
+#if GTK_CHECK_VERSION(3,0,0)
+    vbox2 = gtk_box_new(GTK_ORIENTATION_VERTICAL, 8);
+#else
     vbox2 = gtk_vbox_new(FALSE, 8);
+#endif
     gtk_box_pack_start(GTK_BOX(vbox), vbox2, TRUE, TRUE, 0);
 
     scrolled_window = gtk_scrolled_window_new(NULL, NULL);
@@ -1164,7 +1182,7 @@ static void aui_service_dialog_init(AuiServiceDialog *d) {
     gtk_box_pack_end(GTK_BOX(vbox2), p->service_progress_bar, FALSE, FALSE, 0);
 
     p->domain_button = gtk_button_new_with_mnemonic(_("_Domain..."));
-    gtk_button_set_image(GTK_BUTTON(p->domain_button), gtk_image_new_from_stock(GTK_STOCK_NETWORK, GTK_ICON_SIZE_BUTTON));
+    gtk_button_set_image(GTK_BUTTON(p->domain_button), gtk_image_new_from_icon_name("network-workgroup", GTK_ICON_SIZE_BUTTON));
     g_signal_connect(p->domain_button, "clicked", G_CALLBACK(domain_button_clicked), d);
     gtk_box_pack_start(GTK_BOX(gtk_dialog_get_action_area(GTK_DIALOG(d))), p->domain_button, FALSE, TRUE, 0);
     gtk_button_box_set_child_secondary(GTK_BUTTON_BOX(gtk_dialog_get_action_area(GTK_DIALOG(d))), p->domain_button, TRUE);
@@ -1177,8 +1195,6 @@ static void aui_service_dialog_init(AuiServiceDialog *d) {
     gtk_window_set_default_size(GTK_WINDOW(d), 400, 300);
 
     gtk_widget_show_all(vbox);
-
-    gtk_widget_pop_composite_child();
 
     p->glib_poll = avahi_glib_poll_new(NULL, G_PRIORITY_DEFAULT);
 

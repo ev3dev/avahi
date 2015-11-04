@@ -19,7 +19,7 @@
 # USA.
 
 AC_PREREQ(2.63)
-AC_INIT([avahi],[0.6.31],[avahi (at) lists (dot) freedesktop (dot) org])
+AC_INIT([avahi],[0.6.32-rc],[avahi (at) lists (dot) freedesktop (dot) org])
 AC_CONFIG_SRCDIR([avahi-core/server.c])
 AC_CONFIG_MACRO_DIR([common])
 AC_CONFIG_HEADERS([config.h])
@@ -59,6 +59,7 @@ AC_PROG_CXX
 AM_PROG_CC_C_O
 AC_USE_SYSTEM_EXTENSIONS
 AC_PROG_CPP
+AC_PROG_MKDIR_P
 AC_PROG_INSTALL
 AC_PROG_LN_S
 AC_PROG_MAKE_SET
@@ -1020,7 +1021,7 @@ if test x$manpages = xyes ; then
     fi
 
     if test x$have_xmltoman = xno -o x$xmltoman = xno; then
-        if ! test -e man/avahi-daemon.8 ; then
+        if ! test -e $srcdir/man/avahi-daemon.8 ; then
             AC_MSG_ERROR([*** xmltoman was not found or was disabled, it is required to build the manpages as they have not been pre-built, install xmltoman, pass --disable-manpages or dont pass --disable-xmltoman])
             exit 1
         fi
