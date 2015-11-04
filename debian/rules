@@ -57,4 +57,4 @@ override_dh_strip:
 	dh_strip --dbg-package=avahi-dbg
 
 override_dh_autoreconf:
-	dh_autoreconf --as-needed
+	NOCONFIGURE=1 dh_autoreconf --as-needed ./autogen.sh
