@@ -9,8 +9,9 @@ avahi (0.6.32~rc+dfsg-1) UNRELEASED; urgency=medium
       d/p/so_reuseport-may-not-exist-in-running-kernel.patch, merged upstream.
   * debian/control: Bump Standards-Version to 3.9.6 (no further changes)
   * debian/rules: Ask dh_autoreconf to run the autogen.sh script
+  * debian/control: Add dh-python to the build-dependencies
 
- -- Laurent Bigonville <bigon@debian.org>  Wed, 04 Nov 2015 17:52:14 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 04 Nov 2015 20:57:09 +0100
 
 avahi (0.6.31-5) unstable; urgency=medium
 
