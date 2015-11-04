@@ -3,8 +3,12 @@ avahi (0.6.32~rc+dfsg-1) UNRELEASED; urgency=medium
   * New upstream release
     - Don't log warnings about invalid packets, commonly triggered by Windows
       10 systems (Closes: #639163)
+    - Drop debian/patches/01_avahi-daemon.conf.patch,
+      d/p/avahi-core-reserve-space-for-record-data-when-size-estimate.patch,
+      d/p/suse-patch-gtk-box.patch, d/p/no-deprecations.patch,
+      d/p/so_reuseport-may-not-exist-in-running-kernel.patch, merged upstream.
 
- -- Laurent Bigonville <bigon@debian.org>  Wed, 04 Nov 2015 16:44:57 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 04 Nov 2015 16:59:19 +0100
 
 avahi (0.6.31-5) unstable; urgency=medium
 
