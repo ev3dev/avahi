@@ -32,6 +32,9 @@
 #include <pwd.h>
 #include <sys/stat.h>
 #include <sys/ioctl.h>
+#ifdef HAVE_SYS_FILIO_H
+#include <sys/filio.h>
+#endif
 #include <stdio.h>
 #include <fcntl.h>
 #include <time.h>
@@ -65,6 +68,7 @@
 #include <avahi-core/publish.h>
 #include <avahi-core/dns-srv-rr.h>
 #include <avahi-core/log.h>
+#include <avahi-core/util.h>
 
 #ifdef ENABLE_CHROOT
 #include "chroot.h"
@@ -516,6 +520,9 @@ static int parse_command_line(DaemonConfig *c, int argc, char *argv[]) {
                 break;
             case OPTION_DEBUG:
                 c->debug = 1;
+#ifdef DAEMON_SET_VERBOSITY_AVAILABLE
+                daemon_set_verbosity(LOG_DEBUG);
+#endif
                 break;
             default:
                 return -1;
@@ -576,6 +583,29 @@ static int parse_usec(const char *s, AvahiUsec *u) {
     return 0;
 }
 
+static char *get_machine_id(void) {
+    int fd;
+    char buf[32];
+
+    fd = open("/etc/machine-id", O_RDONLY|O_CLOEXEC|O_NOCTTY);
+    if (fd == -1 && errno == ENOENT)
+        fd = open("/var/lib/dbus/machine-id", O_RDONLY|O_CLOEXEC|O_NOCTTY);
+    if (fd == -1)
+        return NULL;
+
+    /* File is on a filesystem so we never get EINTR or partial reads */
+    if (read(fd, buf, sizeof buf) != sizeof buf) {
+        close(fd);
+        return NULL;
+    }
+    close(fd);
+
+    /* Contents can be lower, upper and even mixed case so normalize */
+    avahi_strdown(buf);
+
+    return avahi_strndup(buf, sizeof buf);
+}
+
 static int load_config_file(DaemonConfig *c) {
     int r = -1;
     AvahiIniFile *f;
@@ -631,6 +661,15 @@ static int load_config_file(DaemonConfig *c) {
                     c->server_config.use_iff_running = is_yes(p->value);
                 else if (strcasecmp(p->key, "disallow-other-stacks") == 0)
                     c->server_config.disallow_other_stacks = is_yes(p->value);
+                else if (strcasecmp(p->key, "host-name-from-machine-id") == 0) {
+                    if (*(p->value) == 'y' || *(p->value) == 'Y') {
+                        char *machine_id = get_machine_id();
+                        if (machine_id != NULL) {
+                            avahi_free(c->server_config.host_name);
+                            c->server_config.host_name = machine_id;
+                        }
+                    }
+                }
 #ifdef HAVE_DBUS
                 else if (strcasecmp(p->key, "enable-dbus") == 0) {
 

@@ -40,6 +40,12 @@
     </option>
 
     <option>
+      <p><opt>host-name-from-machine-id=</opt> Takes a boolean
+      value ("yes" or "no"). If set to "yes" avahi-daemon
+      will use the machine-id as name on the LAN.</p>
+    </option>
+
+    <option>
       <p><opt>domain-name=</opt> Set the default domain name avahi-daemon
       tries to register its host name and services on the LAN in. If
       omitted defaults to ".local".</p>
@@ -244,7 +250,7 @@
       useful for administrative purposes. This is recommended by the
       mDNS specification but not required. For the sake of privacy
       you might choose to disable this feature. Defaults to
-      "yes."</p>
+      "no".</p>
     </option>
 
     <option>
@@ -254,7 +260,7 @@
       might be useful for administrative purposes (i.e. browse for
       all PCs on the LAN), but is not required or recommended by any
       specification. Newer MacOS X releases register a service of
-      this type. Defaults to "yes".</p>
+      this type. Defaults to "no".</p>
     </option>
 
     <option>
