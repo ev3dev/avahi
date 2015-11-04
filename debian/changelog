@@ -1,5 +1,6 @@
-avahi (0.6.32~rc+dfsg-1) UNRELEASED; urgency=medium
+avahi (0.6.32~rc+dfsg-1) unstable; urgency=medium
 
+  * Team upload.
   * New upstream release
     - Don't log warnings about invalid packets, commonly triggered by Windows
       10 systems (Closes: #639163)
@@ -11,7 +12,7 @@ avahi (0.6.32~rc+dfsg-1) UNRELEASED; urgency=medium
   * debian/rules: Ask dh_autoreconf to run the autogen.sh script
   * debian/control: Add dh-python to the build-dependencies
 
- -- Laurent Bigonville <bigon@debian.org>  Wed, 04 Nov 2015 20:57:09 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 04 Nov 2015 21:47:52 +0100
 
 avahi (0.6.31-5) unstable; urgency=medium
 
