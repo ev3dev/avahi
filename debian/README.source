@@ -1,0 +1,10 @@
+avahi for Debian
+----------------
+
+The upstream tarball has been repackaged and the following files have removed
+because they are non-DFSG:
+
+  - docs/utilities-avahi1.svg
+  - specs/*
+
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 04 Nov 2015 21:25:05 +0100

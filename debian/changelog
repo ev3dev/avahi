@@ -1,3 +1,11 @@
+avahi (0.6.32~rc+dfsg-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+    - Don't log warnings about invalid packets, commonly triggered by Windows
+      10 systems (Closes: #639163)
+
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 04 Nov 2015 16:44:57 +0100
+
 avahi (0.6.31-5) unstable; urgency=medium
 
   [ Andreas Henriksson ]
