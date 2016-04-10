@@ -19,7 +19,7 @@
 # USA.
 
 AC_PREREQ(2.63)
-AC_INIT([avahi],[0.6.32-rc],[avahi (at) lists (dot) freedesktop (dot) org])
+AC_INIT([avahi],[0.6.32],[avahi (at) lists (dot) freedesktop (dot) org])
 AC_CONFIG_SRCDIR([avahi-core/server.c])
 AC_CONFIG_MACRO_DIR([common])
 AC_CONFIG_HEADERS([config.h])
@@ -1101,7 +1101,6 @@ avahi-client/Makefile
 initscript/Makefile
 initscript/debian/Makefile
 initscript/gentoo/Makefile
-initscript/archlinux/Makefile
 initscript/suse/Makefile
 initscript/fedora/Makefile
 initscript/lfs/Makefile
@@ -1186,7 +1185,7 @@ fi
 
 BUILD_CLIENT="no   (You need avahi-daemon and D-Bus!)"
 
-if test "x$BUILD_DAEMON" = "xyes" -a "x$HAVE_DBUS" = "xyes" ; then
+if "x$HAVE_DBUS" = "xyes" ; then
     BUILD_CLIENT=yes
 fi
 
