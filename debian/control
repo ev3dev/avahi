@@ -1,11 +1,7 @@
 Source: avahi
 Section: net
 Priority: optional
-Maintainer: Utopia Maintenance Team <pkg-utopia-maintainers@lists.alioth.debian.org>
-Uploaders: Sjoerd Simons <sjoerd@debian.org>,
-           Sebastian Dröge <slomo@debian.org>,
-           Loic Minier <lool@dooz.org>,
-           Michael Biebl <biebl@debian.org>
+Maintainer: David Lechner <david@lechnology.com>
 Build-Depends: debhelper (>= 9),
                dh-systemd (>= 1.5),
                dh-python,
@@ -29,8 +25,8 @@ Build-Depends: debhelper (>= 9),
                intltool (>= 0.35.0)
 Standards-Version: 3.9.6
 X-Python-Version: >= 2.4
-Vcs-Git: git://anonscm.debian.org/pkg-utopia/avahi.git
-Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-utopia/avahi.git;a=summary
+Vcs-Git: git://github.com/ev3dev/avahi.git
+Vcs-Browser: https://github.com/ev3dev/avahi
 Homepage: http://avahi.org/
 
 Package: avahi-daemon
